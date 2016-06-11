@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Steam Tiles for Windows 10", "Steam Tiles for Windows 10\Steam Tiles for Windows 10.vbproj", "{C28ED237-7935-424B-BB09-B1FE9CA3DB23}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Debug|ARM.ActiveCfg = Debug|ARM
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Debug|ARM.Build.0 = Debug|ARM
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Debug|ARM.Deploy.0 = Debug|ARM
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Debug|x64.ActiveCfg = Debug|x64
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Debug|x64.Build.0 = Debug|x64
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Debug|x64.Deploy.0 = Debug|x64
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Debug|x86.ActiveCfg = Debug|x86
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Debug|x86.Build.0 = Debug|x86
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Debug|x86.Deploy.0 = Debug|x86
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Release|ARM.ActiveCfg = Release|ARM
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Release|ARM.Build.0 = Release|ARM
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Release|ARM.Deploy.0 = Release|ARM
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Release|x64.ActiveCfg = Release|x64
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Release|x64.Build.0 = Release|x64
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Release|x64.Deploy.0 = Release|x64
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Release|x86.ActiveCfg = Release|x86
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Release|x86.Build.0 = Release|x86
+		{C28ED237-7935-424B-BB09-B1FE9CA3DB23}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
