@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Steam Tiles in Windows 10")>
+<Assembly: AssemblyTitle("Steam Tiles")>
 <Assembly: AssemblyDescription("")>
-<Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("Steam Tiles in Windows 10")>
-<Assembly: AssemblyCopyright("Copyright ©  2015")>
+<Assembly: AssemblyCompany("https://pepeizqapps.com")>
+<Assembly: AssemblyProduct("Steam Tiles")>
+<Assembly: AssemblyCopyright("Copyright © pepeizq 2016")>
 <Assembly: AssemblyTrademark("")>
 
 ' Version information for an assembly consists of the following four values:

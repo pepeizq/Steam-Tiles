@@ -358,17 +358,18 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>5078pepeizq.2647680D81F99</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.19563A9081E52</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>Tiles for Steam Games</ReservedName>
+      <ReservedName>Steam Tiles</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
-    <MainPackageIdentityName>5078pepeizq.OfertasdeunPanda-AplicacinOficial</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.2647680D81F99</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.SteamTilesinWindows10</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.SteamTilesforWindows10</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.OfertasenAmazon</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.RedditGameDeals</MainPackageIdentityName>
-    <MainPackageIdentityName>5078pepeizq.SteamTilesforWindows10</MainPackageIdentityName>
-    <MainPackageIdentityName>5078pepeizq.SteamTilesinWindows10</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.OfertasdeunPanda-AplicacinOficial</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGH5GHPN" />
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH51SB3" />
 </StoreAssociation>

@@ -1,5 +1,4 @@
-﻿Imports Windows.ApplicationModel.Store
-Imports Windows.Networking.BackgroundTransfer
+﻿Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI
@@ -16,9 +15,18 @@ Public NotInheritable Class MainPage
         buttonBuscarRutaTilesSteam.Content = recursos.GetString("Boton Busqueda")
         checkboxTilesSteamTitulo.Content = recursos.GetString("Titulo Tile")
         buttonVotaciones.Content = recursos.GetString("Boton Votar")
-        'buttonDonaciones.Content = recursos.GetString("Boton Donar")
+        buttonContactar.Content = recursos.GetString("Boton Contactar")
+        buttonWeb.Content = recursos.GetString("Boton Web")
 
-        Tiles.CargaSteam(gridViewTilesSteam, tbRutaTilesSteam, buttonBuscarRutaTilesSteam, scrollViewerGridSteam, False, gridAviso, textBlockAviso)
+        Listado.Generar(gridViewTilesSteam, buttonBuscarRutaTilesSteam, progressRingCarga, scrollViewerGridSteam, False)
+
+    End Sub
+
+    '-----------------------------------------------------------------------------
+
+    Private Sub buttonBuscarRutaTilesSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonBuscarRutaTilesSteam.Click
+
+        Listado.Generar(gridViewTilesSteam, buttonBuscarRutaTilesSteam, progressRingCarga, scrollViewerGridSteam, True)
 
     End Sub
 
@@ -36,6 +44,8 @@ Public NotInheritable Class MainPage
 
     End Sub
 
+    '-----------------------------------------------------------------------------
+
     Private Sub buttonVotaciones_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonVotaciones.PointerEntered
 
         buttonVotaciones.BorderBrush = New SolidColorBrush(Colors.Black)
@@ -50,43 +60,75 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    'Private Sub buttonDonaciones_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonDonaciones.PointerEntered
-
-    '    buttonDonaciones.BorderBrush = New SolidColorBrush(Colors.Black)
-    '    buttonDonaciones.Background = New SolidColorBrush(Colors.DarkGray)
-
-    'End Sub
-
-    'Private Sub buttonDonaciones_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonDonaciones.PointerExited
-
-    '    buttonDonaciones.BorderBrush = New SolidColorBrush(Colors.DarkGray)
-    '    buttonDonaciones.Background = New SolidColorBrush(Colors.Transparent)
-
-    'End Sub
-
     Private Async Sub buttonVotaciones_Click(sender As Object, e As RoutedEventArgs) Handles buttonVotaciones.Click
 
         Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
 
     End Sub
 
-    'Private Async Sub buttonDonaciones_Click(sender As Object, e As RoutedEventArgs) Handles buttonDonaciones.Click
-
-    '    Await CurrentApp.RequestProductPurchaseAsync("Donation", False)
-
-    'End Sub
-
     '-----------------------------------------------------------------------------
 
-    Private Sub buttonBuscarRutaTilesSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonBuscarRutaTilesSteam.Click
+    Private Sub buttonContactar_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonContactar.PointerEntered
 
-        Tiles.CargaSteam(gridViewTilesSteam, tbRutaTilesSteam, buttonBuscarRutaTilesSteam, scrollViewerGridSteam, True, gridAviso, textBlockAviso)
+        buttonContactar.BorderBrush = New SolidColorBrush(Colors.Black)
+        buttonContactar.Background = New SolidColorBrush(Colors.DarkGray)
 
     End Sub
 
+    Private Sub buttonContactar_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonContactar.PointerExited
+
+        buttonContactar.BorderBrush = New SolidColorBrush(Colors.DarkGray)
+        buttonContactar.Background = New SolidColorBrush(Colors.Transparent)
+
+    End Sub
+
+    Private Async Sub buttonContactar_Click(sender As Object, e As RoutedEventArgs) Handles buttonContactar.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/contact/"))
+
+    End Sub
+
+    '-----------------------------------------------------------------------------
+
+    Private Sub buttonWeb_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonWeb.PointerEntered
+
+        buttonWeb.BorderBrush = New SolidColorBrush(Colors.Black)
+        buttonWeb.Background = New SolidColorBrush(Colors.DarkGray)
+
+    End Sub
+
+    Private Sub buttonWeb_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonWeb.PointerExited
+
+        buttonWeb.BorderBrush = New SolidColorBrush(Colors.DarkGray)
+        buttonWeb.Background = New SolidColorBrush(Colors.Transparent)
+
+    End Sub
+
+    Private Async Sub buttonWeb_Click(sender As Object, e As RoutedEventArgs) Handles buttonWeb.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/"))
+
+    End Sub
+
+    '-----------------------------------------------------------------------------
+
+    Private Sub checkboxTilesSteamTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles checkboxTilesSteamTitulo.Checked
+
+        ApplicationData.Current.LocalSettings.Values("titulotilesteam") = "on"
+
+    End Sub
+
+    Private Sub checkboxTilesSteamTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles checkboxTilesSteamTitulo.Unchecked
+
+        ApplicationData.Current.LocalSettings.Values("titulotilesteam") = "off"
+
+    End Sub
+
+    '-----------------------------------------------------------------------------
+
     Private Async Sub gridviewTiles_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesSteam.ItemClick
 
-        Dim tile As Tiles.Tiles = e.ClickedItem
+        Dim tile As Tiles = e.ClickedItem
 
         Dim ficheroImagen As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync("headersteam.png", CreationCollisionOption.GenerateUniqueName)
         Dim downloader As BackgroundDownloader = New BackgroundDownloader()
@@ -110,18 +152,5 @@ Public NotInheritable Class MainPage
         Await nuevaTile.RequestCreateForSelectionAsync(rect)
 
     End Sub
-
-    Private Sub checkboxTilesSteamTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles checkboxTilesSteamTitulo.Checked
-
-        ApplicationData.Current.LocalSettings.Values("titulotilesteam") = "on"
-
-    End Sub
-
-    Private Sub checkboxTilesSteamTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles checkboxTilesSteamTitulo.Unchecked
-
-        ApplicationData.Current.LocalSettings.Values("titulotilesteam") = "off"
-
-    End Sub
-
 
 End Class

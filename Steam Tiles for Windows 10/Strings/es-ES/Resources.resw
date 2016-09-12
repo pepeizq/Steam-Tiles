@@ -118,25 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Boton Busqueda" xml:space="preserve">
-    <value>Buscar</value>
+    <value>Añadir Carpeta</value>
   </data>
-  <data name="Boton Donar" xml:space="preserve">
-    <value>Donación</value>
+  <data name="Boton Contactar" xml:space="preserve">
+    <value>Contactar</value>
   </data>
   <data name="Boton Votar" xml:space="preserve">
     <value>Vota la App</value>
   </data>
+  <data name="Boton Web" xml:space="preserve">
+    <value>Otras Apps</value>
+  </data>
   <data name="Directorio" xml:space="preserve">
-    <value>Carpeta de Steam (Ejemplo: C:\Steam\steamapps):</value>
+    <value>Añade la carpeta de Steam siguiendo este ejemplo: C:\Steam\steamapps</value>
   </data>
   <data name="Fallo1" xml:space="preserve">
-    <value>No games detected. Remember select the folder steamapps inside of Steam.</value>
-  </data>
-  <data name="Fallo2" xml:space="preserve">
-    <value>The app detect another folder with games but Microsoft not allow me automatically show the tiles. You must search and select the folder:</value>
-  </data>
-  <data name="Fallo3" xml:space="preserve">
-    <value>The app detect another folders with games but Microsoft not allow me automatically show the tiles.  You must search and select the folders:</value>
+    <value>No se han detectado juegos. Recuerda seleccionar la carpeta steamapps dentro de Steam.</value>
   </data>
   <data name="Titulo App" xml:space="preserve">
     <value>Steam Tiles para Windows 10</value>
