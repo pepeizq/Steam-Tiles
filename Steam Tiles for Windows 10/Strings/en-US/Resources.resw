@@ -135,6 +135,9 @@
   <data name="Fallo1" xml:space="preserve">
     <value>No games detected. Remember select the folder steamapps inside of Steam.</value>
   </data>
+  <data name="Fallo2" xml:space="preserve">
+    <value>You must add the subfolder steamapps</value>
+  </data>
   <data name="Titulo App" xml:space="preserve">
     <value>Steam Tiles for Windows 10</value>
   </data>

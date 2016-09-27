@@ -1,6 +1,7 @@
 ﻿Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
+Imports Windows.Web.Http
 
 Module Listado
 
@@ -11,7 +12,8 @@ Module Listado
         button.IsEnabled = False
         pr.IsEnabled = True
 
-        Dim carpetas As ApplicationDataContainer = ApplicationData.Current.LocalSettings
+        Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
+        Dim numCarpetas As ApplicationDataContainer = ApplicationData.Current.LocalSettings
 
         If boolBuscarCarpeta = True Then
             Try
@@ -24,17 +26,22 @@ Module Listado
                 Dim carpetaTemp As StorageFolder = Nothing
 
                 Dim i As Integer = 0
-                While i < 30
+                While i < (numCarpetas.Values("numCarpetas") + 1)
 
                     Try
                         carpetaTemp = Await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(clave + i.ToString)
                     Catch ex As Exception
                         StorageApplicationPermissions.FutureAccessList.AddOrReplace(clave + i.ToString, carpeta)
+                        numCarpetas.Values("numCarpetas") = i + 1
                         Exit While
                     End Try
 
                     i += 1
                 End While
+
+                If Not carpeta.Path.Contains("steamapps") Then
+                    MessageBox.EnseñarMensaje(recursos.GetString("Fallo2"))
+                End If
 
             Catch ex As Exception
 
@@ -43,12 +50,11 @@ Module Listado
 
         '-------------------------------------------------------------
 
-        Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
         Dim listaTemp As New List(Of String)
         Dim listaFinal As List(Of Tiles) = New List(Of Tiles)
 
         Dim h As Integer = 0
-        While h < 30
+        While h < numCarpetas.Values("numCarpetas") + 1
             Dim carpeta As StorageFolder = Nothing
 
             Try
@@ -72,7 +78,43 @@ Module Listado
 
                 For Each fichero As StorageFile In ficheros
                     If fichero.FileType.Contains(".acf") Then
-                        listaTemp.Add(Await LeerFichero(fichero))
+                        Try
+                            Dim text As String = Await FileIO.ReadTextAsync(fichero)
+
+                            Dim temp, temp2 As String
+                            Dim int, int2 As Integer
+
+                            int = text.IndexOf("name")
+                            temp = text.Remove(0, int + 5)
+
+                            int2 = temp.IndexOf("StateFlags")
+                            temp2 = temp.Remove(int2 - 1, temp.Length - int2 + 1)
+
+                            temp2 = temp2.Trim
+                            temp2 = temp2.Remove(0, 1)
+                            temp2 = temp2.Remove(temp2.Length - 1, 1)
+
+                            Dim titulo As String = temp2.Trim
+
+                            Dim temp3, temp4 As String
+                            Dim int3, int4 As Integer
+
+                            int3 = text.IndexOf("appid")
+                            temp3 = text.Remove(0, int3 + 6)
+
+                            int4 = temp3.IndexOf("Universe")
+                            temp4 = temp3.Remove(int4 - 1, temp3.Length - int4 + 1)
+
+                            temp4 = temp4.Trim
+                            temp4 = temp4.Remove(0, 1)
+                            temp4 = temp4.Remove(temp4.Length - 1, 1)
+
+                            Dim id As String = temp4.Trim
+
+                            listaTemp.Add(titulo + "/*/" + id)
+                        Catch ex As Exception
+
+                        End Try
                     End If
                 Next
 
@@ -99,10 +141,15 @@ Module Listado
                             If tituloBool = False Then
                                 Try
                                     Dim imagen As Uri = New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
+                                    Dim client As New HttpClient
+                                    Dim response As Streams.IBuffer = Await client.GetBufferAsync(imagen)
+                                    Dim stream As Stream = response.AsStream
+                                    Dim mem As MemoryStream = New MemoryStream()
+                                    Await stream.CopyToAsync(mem)
+                                    mem.Position = 0
 
                                     Dim bitmap As New BitmapImage
-                                    bitmap.CreateOptions = BitmapCreateOptions.IgnoreImageCache
-                                    bitmap.UriSource = imagen
+                                    bitmap.SetSource(mem.AsRandomAccessStream)
 
                                     listaFinal.Add(New Tiles(titulo, id, New Uri("steam://rungameid/" + id), bitmap, imagen))
                                 Catch ex As Exception
@@ -132,48 +179,5 @@ Module Listado
         pr.IsActive = False
 
     End Sub
-
-    Private Async Function LeerFichero(fichero As Object) As Task(Of String)
-
-        Try
-            Dim text As String = Await FileIO.ReadTextAsync(fichero)
-
-            Dim temp, temp2 As String
-            Dim int, int2 As Integer
-
-            int = text.IndexOf("name")
-            temp = text.Remove(0, int + 5)
-
-            int2 = temp.IndexOf("StateFlags")
-            temp2 = temp.Remove(int2 - 1, temp.Length - int2 + 1)
-
-            temp2 = temp2.Trim
-            temp2 = temp2.Remove(0, 1)
-            temp2 = temp2.Remove(temp2.Length - 1, 1)
-
-            Dim titulo As String = temp2.Trim
-
-            Dim temp3, temp4 As String
-            Dim int3, int4 As Integer
-
-            int3 = text.IndexOf("appid")
-            temp3 = text.Remove(0, int3 + 6)
-
-            int4 = temp3.IndexOf("Universe")
-            temp4 = temp3.Remove(int4 - 1, temp3.Length - int4 + 1)
-
-            temp4 = temp4.Trim
-            temp4 = temp4.Remove(0, 1)
-            temp4 = temp4.Remove(temp4.Length - 1, 1)
-
-            Dim id As String = temp4.Trim
-
-            Dim stringFinal As String = titulo + "/*/" + id
-
-            Return stringFinal
-        Catch ex As Exception
-            Return Nothing
-        End Try
-    End Function
 
 End Module

@@ -12,35 +12,35 @@ Public NotInheritable Class MainPage
         Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
 
         tbDirectorioSteam.Text = recursos.GetString("Directorio")
-        buttonBuscarRutaTilesSteam.Content = recursos.GetString("Boton Busqueda")
+        buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Busqueda")
         checkboxTilesSteamTitulo.Content = recursos.GetString("Titulo Tile")
-        buttonVotaciones.Content = recursos.GetString("Boton Votar")
+        buttonVotacionesTexto.Text = recursos.GetString("Boton Votar")
         buttonContactar.Content = recursos.GetString("Boton Contactar")
         buttonWeb.Content = recursos.GetString("Boton Web")
 
-        Listado.Generar(gridViewTilesSteam, buttonBuscarRutaTilesSteam, progressRingCarga, scrollViewerGridSteam, False)
+        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, progressRingCarga, scrollViewerGridSteam, False)
 
     End Sub
 
     '-----------------------------------------------------------------------------
 
-    Private Sub buttonBuscarRutaTilesSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonBuscarRutaTilesSteam.Click
+    Private Sub buttonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
 
-        Listado.Generar(gridViewTilesSteam, buttonBuscarRutaTilesSteam, progressRingCarga, scrollViewerGridSteam, True)
-
-    End Sub
-
-    Private Sub buttonBuscarRutaTilesSteam_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonBuscarRutaTilesSteam.PointerEntered
-
-        buttonBuscarRutaTilesSteam.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonBuscarRutaTilesSteam.Background = New SolidColorBrush(Colors.DarkGray)
+        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, progressRingCarga, scrollViewerGridSteam, True)
 
     End Sub
 
-    Private Sub buttonBuscarRutaTilesSteam_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonBuscarRutaTilesSteam.PointerExited
+    Private Sub buttonAñadirCarpetaSteam_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonAñadirCarpetaSteam.PointerEntered
 
-        buttonBuscarRutaTilesSteam.BorderBrush = New SolidColorBrush(Colors.DarkGray)
-        buttonBuscarRutaTilesSteam.Background = New SolidColorBrush(Colors.Transparent)
+        buttonAñadirCarpetaSteam.BorderBrush = New SolidColorBrush(Colors.Black)
+        buttonAñadirCarpetaSteam.Background = New SolidColorBrush(Colors.DarkGray)
+
+    End Sub
+
+    Private Sub buttonAñadirCarpetaSteam_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonAñadirCarpetaSteam.PointerExited
+
+        buttonAñadirCarpetaSteam.BorderBrush = New SolidColorBrush(Colors.DarkGray)
+        buttonAñadirCarpetaSteam.Background = New SolidColorBrush(Colors.Transparent)
 
     End Sub
 

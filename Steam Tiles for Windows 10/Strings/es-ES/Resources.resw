@@ -135,6 +135,9 @@
   <data name="Fallo1" xml:space="preserve">
     <value>No se han detectado juegos. Recuerda seleccionar la carpeta steamapps dentro de Steam.</value>
   </data>
+  <data name="Fallo2" xml:space="preserve">
+    <value>Debes añadir la subcarpeta steamapps</value>
+  </data>
   <data name="Titulo App" xml:space="preserve">
     <value>Steam Tiles para Windows 10</value>
   </data>

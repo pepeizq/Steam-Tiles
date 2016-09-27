@@ -52,10 +52,20 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="buttonBuscarRutaTilesSteam" Grid.Column="0" x:Uid="Boton Busqueda" Padding="10,5" Margin="0,0,10,0" BorderBrush="DarkGray" Background="Transparent" />
+                    <Button x:Name="buttonAñadirCarpetaSteam" Grid.Column="0" Padding="10,5" BorderBrush="DarkGray" Background="Transparent" Margin="0,0,10,0">
+                        <StackPanel Orientation="Horizontal" >
+                            <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="buttonAñadirCarpetaSteamTexto" x:Uid="Boton Busqueda"/>
+                        </StackPanel>
+                    </Button> 
                     <ProgressRing x:Name="progressRingCarga" Grid.Column="1" IsActive="True"/>
                     <CheckBox x:Name="checkboxTilesSteamTitulo" Grid.Column="2" x:Uid="Titulo Tile" HorizontalAlignment="Right" Margin="0,0,20,0" />
-                    <Button x:Name="buttonVotaciones" Grid.Column="3" x:Uid="Boton Votar" Padding="10,5" BorderBrush="DarkGray" Background="Transparent" Margin="0,0,10,0" />
+                    <Button x:Name="buttonVotaciones" Grid.Column="3" Padding="10,5" BorderBrush="DarkGray" Background="Transparent" Margin="0,0,10,0">
+                        <StackPanel Orientation="Horizontal" >
+                            <SymbolIcon Symbol="Like" Margin="0,0,10,0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="buttonVotacionesTexto" x:Uid="Boton Votar"/>
+                        </StackPanel>
+                    </Button> 
                     <Button x:Name="buttonContactar" Grid.Column="4" x:Uid="Boton Contactar" Padding="10,5" BorderBrush="DarkGray" Background="Transparent" Margin="0,0,10,0" />
                     <Button x:Name="buttonWeb" Grid.Column="5" x:Uid="Boton Web" Padding="10,5" BorderBrush="DarkGray" Background="Transparent" />
                 </Grid>
