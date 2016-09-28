@@ -18,60 +18,82 @@
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Border>
-            <Border.Background>
-                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Color="Gray" Offset="0.5" />
-                    <GradientStop Color="LightGray" Offset="1.0" />
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>
-
-        <Grid>
+        <Grid Background="#FFE4E4E4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0" Background="#FFE4E4E4" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+            <Border Grid.Row="3">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="Gray" Offset="0.5" />
+                        <GradientStop Color="LightGray" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
 
-                <TextBlock x:Name="tbDirectorioSteam" Grid.Row="0" x:Uid="Directorio" Margin="10" />
-
-                <Grid Grid.Row="1" Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Button x:Name="buttonAñadirCarpetaSteam" Grid.Column="0" Padding="10,5" BorderBrush="DarkGray" Background="Transparent" Margin="0,0,10,0">
-                        <StackPanel Orientation="Horizontal" >
-                            <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center" />
-                            <TextBlock x:Name="buttonAñadirCarpetaSteamTexto" x:Uid="Boton Busqueda"/>
-                        </StackPanel>
-                    </Button> 
-                    <ProgressRing x:Name="progressRingCarga" Grid.Column="1" IsActive="True"/>
-                    <CheckBox x:Name="checkboxTilesSteamTitulo" Grid.Column="2" x:Uid="Titulo Tile" HorizontalAlignment="Right" Margin="0,0,20,0" />
-                    <Button x:Name="buttonVotaciones" Grid.Column="3" Padding="10,5" BorderBrush="DarkGray" Background="Transparent" Margin="0,0,10,0">
-                        <StackPanel Orientation="Horizontal" >
-                            <SymbolIcon Symbol="Like" Margin="0,0,10,0" VerticalAlignment="Center" />
-                            <TextBlock x:Name="buttonVotacionesTexto" x:Uid="Boton Votar"/>
-                        </StackPanel>
-                    </Button> 
-                    <Button x:Name="buttonContactar" Grid.Column="4" x:Uid="Boton Contactar" Padding="10,5" BorderBrush="DarkGray" Background="Transparent" Margin="0,0,10,0" />
-                    <Button x:Name="buttonWeb" Grid.Column="5" x:Uid="Boton Web" Padding="10,5" BorderBrush="DarkGray" Background="Transparent" />
-                </Grid>
+            <Grid Grid.Row="0" Margin="10">
+                <TextBlock x:Name="tbDirectorioSteam" />
             </Grid>
 
-            <Grid x:Name="gridTilesSteam" Margin="10" Grid.Row="1" HorizontalAlignment="Center">
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="buttonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="Transparent" Margin="0,0,10,0">
+                    <StackPanel Orientation="Horizontal" >
+                        <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="buttonAñadirCarpetaSteamTexto"/>
+                    </StackPanel>
+                </Button>
+                <Grid x:Name="gridCargando" Grid.Column="1" Padding="10" Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal" >
+                        <ProgressRing IsActive="True" Margin="0,0,10,0" />
+                        <TextBlock x:Name="gridCargandoTexto"/>
+                    </StackPanel>                  
+               </Grid>
+
+                <CheckBox x:Name="checkboxTilesSteamTitulo" Grid.Column="2" Padding="10,0" HorizontalAlignment="Right" VerticalContentAlignment="Center" />
+                <AppBarSeparator Grid.Column="3" />
+                <Button x:Name="buttonVotaciones" Grid.Column="4" Padding="10" Background="Transparent">
+                    <StackPanel Orientation="Horizontal" >
+                        <SymbolIcon Symbol="Like" Margin="0,0,10,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="buttonVotacionesTexto"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="buttonCompartir" Grid.Column="5" Padding="10" Background="Transparent">
+                    <StackPanel Orientation="Horizontal" >
+                        <FontIcon Glyph="&#xE72D;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="buttonCompartirTexto"/>
+                    </StackPanel>
+                </Button>
+                <AppBarSeparator Grid.Column="6" />
+                <Button x:Name="buttonContactar" Grid.Column="7" Padding="10" Background="Transparent">
+                    <StackPanel Orientation="Horizontal" >
+                        <SymbolIcon Symbol="Contact" Margin="0,0,10,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="buttonContactarTexto"/>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="buttonWeb" Grid.Column="8" Padding="10" Background="Transparent">
+                    <StackPanel Orientation="Horizontal" >
+                        <SymbolIcon Symbol="More" Margin="0,0,10,0" VerticalAlignment="Center" />
+                        <TextBlock x:Name="buttonWebTexto"/>
+                    </StackPanel>
+                </Button> 
+            </Grid>
+         
+            <Grid x:Name="gridTilesSteam" Margin="10" Grid.Row="2" HorizontalAlignment="Center">
                 <ScrollViewer x:Name="scrollViewerGridSteam" VerticalScrollMode="Auto" Visibility="Collapsed" >
                     <GridView x:Name="gridViewTilesSteam" ItemTemplate="{StaticResource dataTemplateTilesSteam}" IsItemClickEnabled="True" Padding="0,0,15,0" />
                 </ScrollViewer>

@@ -1,1 +1,1 @@
-C:\Users\pepei\Documents\Visual Studio 2015\Projects\Steam Tiles\Steam Tiles for Windows 10\AppPackages\Steam Tiles for Windows 10_1.0.7.0\Steam Tiles for Windows 10_1.0.7.0_x86_x64.appxbundle
+C:\Users\pepei\Documents\Visual Studio 2015\Projects\Steam Tiles\Steam Tiles for Windows 10\AppPackages\Steam Tiles for Windows 10_1.1.0.0\Steam Tiles for Windows 10_1.1.0.0_x86_x64.appxbundle

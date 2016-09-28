@@ -7,10 +7,10 @@ Module Listado
 
     Dim clave As String = "carpeta33"
 
-    Public Async Sub Generar(gridview As GridView, button As Button, pr As ProgressRing, sv As ScrollViewer, boolBuscarCarpeta As Boolean)
+    Public Async Sub Generar(gridview As GridView, button As Button, gridCargando As Grid, sv As ScrollViewer, boolBuscarCarpeta As Boolean)
 
         button.IsEnabled = False
-        pr.IsEnabled = True
+        gridCargando.Visibility = Visibility.Visible
 
         Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
         Dim numCarpetas As ApplicationDataContainer = ApplicationData.Current.LocalSettings
@@ -40,7 +40,9 @@ Module Listado
                 End While
 
                 If Not carpeta.Path.Contains("steamapps") Then
-                    MessageBox.EnseñarMensaje(recursos.GetString("Fallo2"))
+                    If Not gridview.Items.Count = 0 Then
+                        MessageBox.EnseñarMensaje(recursos.GetString("Fallo2"))
+                    End If
                 End If
 
             Catch ex As Exception
@@ -176,7 +178,7 @@ Module Listado
         gridview.ItemsSource = listaFinal
 
         button.IsEnabled = True
-        pr.IsActive = False
+        gridCargando.Visibility = Visibility.Collapsed
 
     End Sub
 

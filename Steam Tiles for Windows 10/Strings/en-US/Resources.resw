@@ -117,8 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Boton Busqueda" xml:space="preserve">
+  <data name="Boton Añadir" xml:space="preserve">
     <value>Add Folder</value>
+  </data>
+  <data name="Boton Compartir" xml:space="preserve">
+    <value>Share</value>
   </data>
   <data name="Boton Contactar" xml:space="preserve">
     <value>Contact</value>
@@ -129,6 +132,9 @@
   <data name="Boton Web" xml:space="preserve">
     <value>More Apps</value>
   </data>
+  <data name="Cargando" xml:space="preserve">
+    <value>Loading</value>
+  </data>
   <data name="Directorio" xml:space="preserve">
     <value>Add your Steam folder following this example: C:\Steam\steamapps</value>
   </data>
@@ -137,9 +143,6 @@
   </data>
   <data name="Fallo2" xml:space="preserve">
     <value>You must add the subfolder steamapps</value>
-  </data>
-  <data name="Titulo App" xml:space="preserve">
-    <value>Steam Tiles for Windows 10</value>
   </data>
   <data name="Titulo Tile" xml:space="preserve">
     <value>Add title to the Tile</value>

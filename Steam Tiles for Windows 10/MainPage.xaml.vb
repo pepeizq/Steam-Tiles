@@ -1,4 +1,5 @@
-﻿Imports Windows.Networking.BackgroundTransfer
+﻿Imports Windows.ApplicationModel.DataTransfer
+Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI
@@ -12,13 +13,15 @@ Public NotInheritable Class MainPage
         Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
 
         tbDirectorioSteam.Text = recursos.GetString("Directorio")
-        buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Busqueda")
+        buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Añadir")
+        gridCargandoTexto.Text = recursos.GetString("Cargando")
         checkboxTilesSteamTitulo.Content = recursos.GetString("Titulo Tile")
         buttonVotacionesTexto.Text = recursos.GetString("Boton Votar")
-        buttonContactar.Content = recursos.GetString("Boton Contactar")
-        buttonWeb.Content = recursos.GetString("Boton Web")
+        buttonCompartirTexto.Text = recursos.GetString("Boton Compartir")
+        buttonContactarTexto.Text = recursos.GetString("Boton Contactar")
+        buttonWebTexto.Text = recursos.GetString("Boton Web")
 
-        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, progressRingCarga, scrollViewerGridSteam, False)
+        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, gridCargando, scrollViewerGridSteam, False)
 
     End Sub
 
@@ -26,21 +29,37 @@ Public NotInheritable Class MainPage
 
     Private Sub buttonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
 
-        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, progressRingCarga, scrollViewerGridSteam, True)
+        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, gridCargando, scrollViewerGridSteam, True)
 
     End Sub
 
     Private Sub buttonAñadirCarpetaSteam_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonAñadirCarpetaSteam.PointerEntered
 
         buttonAñadirCarpetaSteam.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonAñadirCarpetaSteam.Background = New SolidColorBrush(Colors.DarkGray)
+        buttonAñadirCarpetaSteam.Background = New SolidColorBrush(Colors.LightGray)
 
     End Sub
 
     Private Sub buttonAñadirCarpetaSteam_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonAñadirCarpetaSteam.PointerExited
 
-        buttonAñadirCarpetaSteam.BorderBrush = New SolidColorBrush(Colors.DarkGray)
+        buttonAñadirCarpetaSteam.BorderBrush = New SolidColorBrush(Colors.Transparent)
         buttonAñadirCarpetaSteam.Background = New SolidColorBrush(Colors.Transparent)
+
+    End Sub
+
+    '-----------------------------------------------------------------------------
+
+    Private Sub checkboxTilesSteamTitulo_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles checkboxTilesSteamTitulo.PointerEntered
+
+        checkboxTilesSteamTitulo.BorderBrush = New SolidColorBrush(Colors.Black)
+        checkboxTilesSteamTitulo.Background = New SolidColorBrush(Colors.LightGray)
+
+    End Sub
+
+    Private Sub checkboxTilesSteamTitulo_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles checkboxTilesSteamTitulo.PointerExited
+
+        checkboxTilesSteamTitulo.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        checkboxTilesSteamTitulo.Background = New SolidColorBrush(Colors.Transparent)
 
     End Sub
 
@@ -49,13 +68,13 @@ Public NotInheritable Class MainPage
     Private Sub buttonVotaciones_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonVotaciones.PointerEntered
 
         buttonVotaciones.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonVotaciones.Background = New SolidColorBrush(Colors.DarkGray)
+        buttonVotaciones.Background = New SolidColorBrush(Colors.LightGray)
 
     End Sub
 
     Private Sub buttonVotaciones_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonVotaciones.PointerExited
 
-        buttonVotaciones.BorderBrush = New SolidColorBrush(Colors.DarkGray)
+        buttonVotaciones.BorderBrush = New SolidColorBrush(Colors.Transparent)
         buttonVotaciones.Background = New SolidColorBrush(Colors.Transparent)
 
     End Sub
@@ -68,16 +87,49 @@ Public NotInheritable Class MainPage
 
     '-----------------------------------------------------------------------------
 
+    Private Sub buttonCompartir_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonCompartir.PointerEntered
+
+        buttonCompartir.BorderBrush = New SolidColorBrush(Colors.Black)
+        buttonCompartir.Background = New SolidColorBrush(Colors.LightGray)
+
+    End Sub
+
+    Private Sub buttonCompartir_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonCompartir.PointerExited
+
+        buttonCompartir.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        buttonCompartir.Background = New SolidColorBrush(Colors.Transparent)
+
+    End Sub
+
+    Private Sub buttonCompartir_Click(sender As Object, e As RoutedEventArgs) Handles buttonCompartir.Click
+
+        Dim datos As DataTransferManager = DataTransferManager.GetForCurrentView()
+        AddHandler datos.DataRequested, AddressOf MainPage_DataRequested
+        DataTransferManager.ShowShareUI()
+
+    End Sub
+
+    Private Sub MainPage_DataRequested(sender As DataTransferManager, e As DataRequestedEventArgs)
+
+        Dim request As DataRequest = e.Request
+        request.Data.SetText("Steam Tiles")
+        request.Data.Properties.Title = "Steam Tiles"
+        request.Data.Properties.Description = "Add Tiles to your Steam games in the Start Menu of Windows 10"
+
+    End Sub
+
+    '-----------------------------------------------------------------------------
+
     Private Sub buttonContactar_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonContactar.PointerEntered
 
         buttonContactar.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonContactar.Background = New SolidColorBrush(Colors.DarkGray)
+        buttonContactar.Background = New SolidColorBrush(Colors.LightGray)
 
     End Sub
 
     Private Sub buttonContactar_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonContactar.PointerExited
 
-        buttonContactar.BorderBrush = New SolidColorBrush(Colors.DarkGray)
+        buttonContactar.BorderBrush = New SolidColorBrush(Colors.Transparent)
         buttonContactar.Background = New SolidColorBrush(Colors.Transparent)
 
     End Sub
@@ -93,13 +145,13 @@ Public NotInheritable Class MainPage
     Private Sub buttonWeb_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonWeb.PointerEntered
 
         buttonWeb.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonWeb.Background = New SolidColorBrush(Colors.DarkGray)
+        buttonWeb.Background = New SolidColorBrush(Colors.LightGray)
 
     End Sub
 
     Private Sub buttonWeb_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonWeb.PointerExited
 
-        buttonWeb.BorderBrush = New SolidColorBrush(Colors.DarkGray)
+        buttonWeb.BorderBrush = New SolidColorBrush(Colors.Transparent)
         buttonWeb.Background = New SolidColorBrush(Colors.Transparent)
 
     End Sub
