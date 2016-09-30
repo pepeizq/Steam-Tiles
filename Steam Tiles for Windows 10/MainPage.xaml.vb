@@ -14,6 +14,7 @@ Public NotInheritable Class MainPage
 
         tbDirectorioSteam.Text = recursos.GetString("Directorio")
         buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Añadir")
+        buttonVolverTilesTexto.Text = recursos.GetString("Boton Volver")
         gridCargandoTexto.Text = recursos.GetString("Cargando")
         checkboxTilesSteamTitulo.Content = recursos.GetString("Titulo Tile")
         buttonVotacionesTexto.Text = recursos.GetString("Boton Votar")
@@ -25,7 +26,7 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    '-----------------------------------------------------------------------------
+    'AÑADIRCARPETA-----------------------------------------------------------------------------
 
     Private Sub buttonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
 
@@ -47,23 +48,33 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    '-----------------------------------------------------------------------------
+    'VOLVER-----------------------------------------------------------------------------
 
-    Private Sub checkboxTilesSteamTitulo_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles checkboxTilesSteamTitulo.PointerEntered
+    Private Sub buttonVolverTiles_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonVolverTiles.PointerEntered
 
-        checkboxTilesSteamTitulo.BorderBrush = New SolidColorBrush(Colors.Black)
-        checkboxTilesSteamTitulo.Background = New SolidColorBrush(Colors.LightGray)
-
-    End Sub
-
-    Private Sub checkboxTilesSteamTitulo_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles checkboxTilesSteamTitulo.PointerExited
-
-        checkboxTilesSteamTitulo.BorderBrush = New SolidColorBrush(Colors.Transparent)
-        checkboxTilesSteamTitulo.Background = New SolidColorBrush(Colors.Transparent)
+        buttonVolverTiles.BorderBrush = New SolidColorBrush(Colors.Black)
+        buttonVolverTiles.Background = New SolidColorBrush(Colors.LightGray)
 
     End Sub
 
-    '-----------------------------------------------------------------------------
+    Private Sub buttonVolverTiles_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonVolverTiles.PointerExited
+
+        buttonVolverTiles.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        buttonVolverTiles.Background = New SolidColorBrush(Colors.Transparent)
+
+    End Sub
+
+    Private Sub buttonVolverTiles_Click(sender As Object, e As RoutedEventArgs) Handles buttonVolverTiles.Click
+
+        gridWebContacto.Visibility = Visibility.Collapsed
+        gridTilesSteam.Visibility = Visibility.Visible
+
+        buttonVolverTiles.Visibility = Visibility.Collapsed
+        buttonAñadirCarpetaSteam.Visibility = Visibility.Visible
+
+    End Sub
+
+    'VOTAR-----------------------------------------------------------------------------
 
     Private Sub buttonVotaciones_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonVotaciones.PointerEntered
 
@@ -85,7 +96,7 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    '-----------------------------------------------------------------------------
+    'COMPARTIR-----------------------------------------------------------------------------
 
     Private Sub buttonCompartir_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonCompartir.PointerEntered
 
@@ -118,7 +129,7 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    '-----------------------------------------------------------------------------
+    'CONTACTAR-----------------------------------------------------------------------------
 
     Private Sub buttonContactar_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonContactar.PointerEntered
 
@@ -134,13 +145,17 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Async Sub buttonContactar_Click(sender As Object, e As RoutedEventArgs) Handles buttonContactar.Click
+    Private Sub buttonContactar_Click(sender As Object, e As RoutedEventArgs) Handles buttonContactar.Click
 
-        Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/contact/"))
+        gridWebContacto.Visibility = Visibility.Visible
+        gridTilesSteam.Visibility = Visibility.Collapsed
+
+        buttonVolverTiles.Visibility = Visibility.Visible
+        buttonAñadirCarpetaSteam.Visibility = Visibility.Collapsed
 
     End Sub
 
-    '-----------------------------------------------------------------------------
+    'WEB-----------------------------------------------------------------------------
 
     Private Sub buttonWeb_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonWeb.PointerEntered
 
@@ -162,7 +177,21 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    '-----------------------------------------------------------------------------
+    'CBTITULOS-----------------------------------------------------------------------------
+
+    Private Sub checkboxTilesSteamTitulo_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles checkboxTilesSteamTitulo.PointerEntered
+
+        checkboxTilesSteamTitulo.BorderBrush = New SolidColorBrush(Colors.Black)
+        checkboxTilesSteamTitulo.Background = New SolidColorBrush(Colors.LightGray)
+
+    End Sub
+
+    Private Sub checkboxTilesSteamTitulo_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles checkboxTilesSteamTitulo.PointerExited
+
+        checkboxTilesSteamTitulo.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        checkboxTilesSteamTitulo.Background = New SolidColorBrush(Colors.Transparent)
+
+    End Sub
 
     Private Sub checkboxTilesSteamTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles checkboxTilesSteamTitulo.Checked
 

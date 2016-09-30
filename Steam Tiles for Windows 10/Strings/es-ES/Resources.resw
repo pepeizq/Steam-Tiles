@@ -126,6 +126,9 @@
   <data name="Boton Contactar" xml:space="preserve">
     <value>Contactar</value>
   </data>
+  <data name="Boton Volver" xml:space="preserve">
+    <value>Volver</value>
+  </data>
   <data name="Boton Votar" xml:space="preserve">
     <value>Vota la App</value>
   </data>
