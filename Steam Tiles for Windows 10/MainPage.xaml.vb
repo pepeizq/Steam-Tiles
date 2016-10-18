@@ -66,6 +66,7 @@ Public NotInheritable Class MainPage
 
     Private Sub buttonVolverTiles_Click(sender As Object, e As RoutedEventArgs) Handles buttonVolverTiles.Click
 
+        gridWeb.Visibility = Visibility.Collapsed
         gridWebContacto.Visibility = Visibility.Collapsed
         gridTilesSteam.Visibility = Visibility.Visible
 
@@ -147,6 +148,7 @@ Public NotInheritable Class MainPage
 
     Private Sub buttonContactar_Click(sender As Object, e As RoutedEventArgs) Handles buttonContactar.Click
 
+        gridWeb.Visibility = Visibility.Collapsed
         gridWebContacto.Visibility = Visibility.Visible
         gridTilesSteam.Visibility = Visibility.Collapsed
 
@@ -171,9 +173,14 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Async Sub buttonWeb_Click(sender As Object, e As RoutedEventArgs) Handles buttonWeb.Click
+    Private Sub buttonWeb_Click(sender As Object, e As RoutedEventArgs) Handles buttonWeb.Click
 
-        Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/"))
+        gridWeb.Visibility = Visibility.Visible
+        gridWebContacto.Visibility = Visibility.Collapsed
+        gridTilesSteam.Visibility = Visibility.Collapsed
+
+        buttonVolverTiles.Visibility = Visibility.Visible
+        buttonAñadirCarpetaSteam.Visibility = Visibility.Collapsed
 
     End Sub
 

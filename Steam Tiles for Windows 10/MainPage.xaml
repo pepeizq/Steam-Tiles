@@ -100,13 +100,21 @@
             </Grid>
          
             <Grid x:Name="gridTilesSteam" Margin="10" Grid.Row="2" HorizontalAlignment="Center">
-                <ScrollViewer x:Name="scrollViewerGridSteam" VerticalScrollMode="Auto" Visibility="Collapsed" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <ScrollViewer x:Name="scrollViewerGridSteam" Grid.Row="0" VerticalScrollMode="Auto" Visibility="Collapsed" >
                     <GridView x:Name="gridViewTilesSteam" ItemTemplate="{StaticResource dataTemplateTilesSteam}" IsItemClickEnabled="True" Padding="0,0,15,0" />
                 </ScrollViewer>
             </Grid>
 
             <Grid x:Name="gridWebContacto" Margin="10" Grid.Row="2" Visibility="Collapsed">
                 <WebView x:Name="webViewContact" Source="https://pepeizqapps.com/contact/" />
+            </Grid>
+
+            <Grid x:Name="gridWeb" Margin="10" Grid.Row="2" Visibility="Collapsed">
+                <WebView x:Name="webViewWeb" Source="https://pepeizqapps.com/" />
             </Grid>
         </Grid>
     </Grid>
