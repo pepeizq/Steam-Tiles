@@ -110,11 +110,11 @@
             </Grid>
 
             <Grid x:Name="gridWebContacto" Margin="10" Grid.Row="2" Visibility="Collapsed">
-                <!--<WebView x:Name="webViewContact" Source="https://pepeizqapps.com/contact/" />-->
+                <WebView x:Name="webViewContact" Source="https://pepeizqapps.com/contact/" />
             </Grid>
 
             <Grid x:Name="gridWeb" Margin="10" Grid.Row="2" Visibility="Collapsed">
-                <!--<WebView x:Name="webViewWeb" Source="https://pepeizqapps.com/" />-->
+                <WebView x:Name="webViewWeb" Source="https://pepeizqapps.com/" />
             </Grid>
         </Grid>
     </Grid>
