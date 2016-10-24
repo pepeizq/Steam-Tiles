@@ -57,111 +57,159 @@ Module Listado
 
         Dim h As Integer = 0
         While h < numCarpetas.Values("numCarpetas") + 1
-            Dim carpeta As StorageFolder = Nothing
+            Dim listaCarpetas As New List(Of StorageFolder)
+            Dim carpetaMaestra As StorageFolder = Nothing
 
             Try
-                carpeta = Await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(clave + h.ToString)
+                carpetaMaestra = Await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(clave + h.ToString)
+                listaCarpetas.Add(carpetaMaestra)
             Catch ex As Exception
 
             End Try
 
-            If Not carpeta Is Nothing Then
-                Dim ficheros As IReadOnlyList(Of StorageFile) = Await carpeta.GetFilesAsync()
+            Dim i As Integer = 0
 
-                Dim i As Integer = 0
-                If gridview.Items.Count > 0 Then
-                    While i < gridview.Items.Count
-                        Dim tile As Tiles = gridview.Items(i)
+            'If Not carpetaMaestra Is Nothing Then
+            '    Dim ficheros As IReadOnlyList(Of StorageFile) = Await carpetaMaestra.GetFilesAsync()
 
-                        listaTemp.Add(tile.titulo + "/*/" + tile.id)
-                        i += 1
-                    End While
-                End If
+            '    For Each fichero As StorageFile In ficheros
+            '        If fichero.Name.Contains("libraryfolders") Then
+            '            Try
+            '                Dim lineas As String = Await FileIO.ReadTextAsync(fichero)
 
-                For Each fichero As StorageFile In ficheros
-                    If fichero.FileType.Contains(".acf") Then
-                        Try
-                            Dim text As String = Await FileIO.ReadTextAsync(fichero)
+            '                If Not lineas = Nothing Then
+            '                    i = 0
+            '                    While i < 10
+            '                        If lineas.Contains(ChrW(34) + i.ToString + ChrW(34)) Then
+            '                            Dim temp, temp2, temp3 As String
+            '                            Dim int, int2, int3 As Integer
 
-                            Dim temp, temp2 As String
-                            Dim int, int2 As Integer
+            '                            int = lineas.IndexOf(ChrW(34) + i.ToString + ChrW(34))
+            '                            temp = lineas.Remove(0, int + 3)
 
-                            int = text.IndexOf("name")
-                            temp = text.Remove(0, int + 5)
+            '                            int2 = temp.IndexOf(ChrW(34))
+            '                            temp2 = temp.Remove(0, int2 + 1)
 
-                            int2 = temp.IndexOf("StateFlags")
-                            temp2 = temp.Remove(int2 - 1, temp.Length - int2 + 1)
+            '                            int3 = temp2.IndexOf(ChrW(34))
+            '                            temp3 = temp2.Remove(int3, temp2.Length - int3)
 
-                            temp2 = temp2.Trim
-                            temp2 = temp2.Remove(0, 1)
-                            temp2 = temp2.Remove(temp2.Length - 1, 1)
+            '                            temp3 = temp3.Replace("\\", "\")
 
-                            Dim titulo As String = temp2.Trim
+            '                            StorageApplicationPermissions.FutureAccessList.AddOrReplace("carpetaSecundaria" + i.ToString, Await StorageFolder.GetFolderFromPathAsync(temp3))
+            '                            Dim carpetaSecundaria As StorageFolder = Await StorageFolder.GetFolderFromPathAsync(temp3 + "\steamapps")
+            '                            MessageBox.EnseñarMensaje(carpetaSecundaria.Path)
+            '                        End If
+            '                        i += 1
+            '                    End While
+            '                End If
+            '            Catch ex As Exception
 
-                            Dim temp3, temp4 As String
-                            Dim int3, int4 As Integer
+            '            End Try
+            '        End If
+            '    Next
+            'End If
 
-                            int3 = text.IndexOf("appid")
-                            temp3 = text.Remove(0, int3 + 6)
+            If listaCarpetas.Count > 0 Then
+                For Each carpeta As StorageFolder In listaCarpetas
+                    If Not carpeta Is Nothing Then
+                        Dim ficheros As IReadOnlyList(Of StorageFile) = Await carpeta.GetFilesAsync()
 
-                            int4 = temp3.IndexOf("Universe")
-                            temp4 = temp3.Remove(int4 - 1, temp3.Length - int4 + 1)
+                        i = 0
+                        If gridview.Items.Count > 0 Then
+                            While i < gridview.Items.Count
+                                Dim tile As Tiles = gridview.Items(i)
 
-                            temp4 = temp4.Trim
-                            temp4 = temp4.Remove(0, 1)
-                            temp4 = temp4.Remove(temp4.Length - 1, 1)
-
-                            Dim id As String = temp4.Trim
-
-                            listaTemp.Add(titulo + "/*/" + id)
-                        Catch ex As Exception
-
-                        End Try
-                    End If
-                Next
-
-                i = 0
-                While i < listaTemp.Count
-                    If Not listaTemp(i) = Nothing Then
-                        If listaTemp(i).Contains("/*/") Then
-                            Dim int As Integer
-
-                            int = listaTemp(i).IndexOf("/*/")
-
-                            Dim titulo As String = listaTemp(i).Remove(int, listaTemp(i).Length - int)
-                            Dim id As String = listaTemp(i).Remove(0, int + 3)
-
-                            Dim tituloBool As Boolean = False
-                            Dim g As Integer = 0
-                            While g < listaFinal.Count
-                                If listaFinal(g).titulo = titulo Then
-                                    tituloBool = True
-                                End If
-                                g += 1
+                                listaTemp.Add(tile.titulo + "/*/" + tile.id)
+                                i += 1
                             End While
+                        End If
 
-                            If tituloBool = False Then
+                        For Each fichero As StorageFile In ficheros
+                            If fichero.FileType.Contains(".acf") Then
                                 Try
-                                    Dim imagen As Uri = New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
-                                    Dim client As New HttpClient
-                                    Dim response As Streams.IBuffer = Await client.GetBufferAsync(imagen)
-                                    Dim stream As Stream = response.AsStream
-                                    Dim mem As MemoryStream = New MemoryStream()
-                                    Await stream.CopyToAsync(mem)
-                                    mem.Position = 0
+                                    Dim lineas As String = Await FileIO.ReadTextAsync(fichero)
 
-                                    Dim bitmap As New BitmapImage
-                                    bitmap.SetSource(mem.AsRandomAccessStream)
+                                    Dim temp, temp2 As String
+                                    Dim int, int2 As Integer
 
-                                    listaFinal.Add(New Tiles(titulo, id, New Uri("steam://rungameid/" + id), bitmap, imagen))
+                                    int = lineas.IndexOf("name")
+                                    temp = lineas.Remove(0, int + 5)
+
+                                    int2 = temp.IndexOf("StateFlags")
+                                    temp2 = temp.Remove(int2 - 1, temp.Length - int2 + 1)
+
+                                    temp2 = temp2.Trim
+                                    temp2 = temp2.Remove(0, 1)
+                                    temp2 = temp2.Remove(temp2.Length - 1, 1)
+
+                                    Dim titulo As String = temp2.Trim
+
+                                    Dim temp3, temp4 As String
+                                    Dim int3, int4 As Integer
+
+                                    int3 = lineas.IndexOf("appid")
+                                    temp3 = lineas.Remove(0, int3 + 6)
+
+                                    int4 = temp3.IndexOf("Universe")
+                                    temp4 = temp3.Remove(int4 - 1, temp3.Length - int4 + 1)
+
+                                    temp4 = temp4.Trim
+                                    temp4 = temp4.Remove(0, 1)
+                                    temp4 = temp4.Remove(temp4.Length - 1, 1)
+
+                                    Dim id As String = temp4.Trim
+
+                                    listaTemp.Add(titulo + "/*/" + id)
                                 Catch ex As Exception
 
                                 End Try
                             End If
-                        End If
+                        Next
+
+                        i = 0
+                        While i < listaTemp.Count
+                            If Not listaTemp(i) = Nothing Then
+                                If listaTemp(i).Contains("/*/") Then
+                                    Dim int As Integer
+
+                                    int = listaTemp(i).IndexOf("/*/")
+
+                                    Dim titulo As String = listaTemp(i).Remove(int, listaTemp(i).Length - int)
+                                    Dim id As String = listaTemp(i).Remove(0, int + 3)
+
+                                    Dim tituloBool As Boolean = False
+                                    Dim g As Integer = 0
+                                    While g < listaFinal.Count
+                                        If listaFinal(g).titulo = titulo Then
+                                            tituloBool = True
+                                        End If
+                                        g += 1
+                                    End While
+
+                                    If tituloBool = False Then
+                                        Try
+                                            Dim imagen As Uri = New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
+                                            Dim client As New HttpClient
+                                            Dim response As Streams.IBuffer = Await client.GetBufferAsync(imagen)
+                                            Dim stream As Stream = response.AsStream
+                                            Dim mem As MemoryStream = New MemoryStream()
+                                            Await stream.CopyToAsync(mem)
+                                            mem.Position = 0
+
+                                            Dim bitmap As New BitmapImage
+                                            bitmap.SetSource(mem.AsRandomAccessStream)
+
+                                            listaFinal.Add(New Tiles(titulo, id, New Uri("steam://rungameid/" + id), bitmap, imagen))
+                                        Catch ex As Exception
+
+                                        End Try
+                                    End If
+                                End If
+                            End If
+                            i += 1
+                        End While
                     End If
-                    i += 1
-                End While
+                Next
             End If
             h += 1
         End While
