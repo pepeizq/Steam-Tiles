@@ -1,4 +1,5 @@
-﻿Imports Windows.ApplicationModel.DataTransfer
+﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
+Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
 Imports Windows.System
@@ -12,17 +13,21 @@ Public NotInheritable Class MainPage
 
         Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
 
-        tbDirectorioSteam.Text = recursos.GetString("Directorio")
+        tbConfig.Text = recursos.GetString("Boton Config")
+        tbDirectoriosSteam.Text = recursos.GetString("Directorio")
         buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Añadir")
-        buttonVolverTilesTexto.Text = recursos.GetString("Boton Volver")
-        gridCargandoTexto.Text = recursos.GetString("Cargando")
-        checkboxTilesSteamTitulo.Content = recursos.GetString("Titulo Tile")
-        buttonVotacionesTexto.Text = recursos.GetString("Boton Votar")
-        buttonCompartirTexto.Text = recursos.GetString("Boton Compartir")
-        buttonContactarTexto.Text = recursos.GetString("Boton Contactar")
-        buttonWebTexto.Text = recursos.GetString("Boton Web")
+        tbCarpetasAñadidasSteam.Text = recursos.GetString("Carpetas Añadidas")
+        tbCarpetasAvisoSteam.Text = recursos.GetString("Carpetas Aviso")
 
-        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, gridCargando, scrollViewerGridSteam, False)
+        checkboxTilesSteamTitulo.Content = recursos.GetString("Titulo Tile")
+
+        menuItemConfig.Label = recursos.GetString("Boton Config")
+        menuItemVote.Label = recursos.GetString("Boton Votar")
+        menuItemShare.Label = recursos.GetString("Boton Compartir")
+        menuItemContact.Label = recursos.GetString("Boton Contactar")
+        menuItemWeb.Label = recursos.GetString("Boton Web")
+
+        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, prTilesSteam, scrollViewerGridSteam, False, tbCarpetasDetectadasSteam, gridTilesSteam, gridConfig)
 
     End Sub
 
@@ -30,157 +35,7 @@ Public NotInheritable Class MainPage
 
     Private Sub buttonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
 
-        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, gridCargando, scrollViewerGridSteam, True)
-
-    End Sub
-
-    Private Sub buttonAñadirCarpetaSteam_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonAñadirCarpetaSteam.PointerEntered
-
-        buttonAñadirCarpetaSteam.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonAñadirCarpetaSteam.Background = New SolidColorBrush(Colors.LightGray)
-
-    End Sub
-
-    Private Sub buttonAñadirCarpetaSteam_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonAñadirCarpetaSteam.PointerExited
-
-        buttonAñadirCarpetaSteam.BorderBrush = New SolidColorBrush(Colors.Transparent)
-        buttonAñadirCarpetaSteam.Background = New SolidColorBrush(Colors.Transparent)
-
-    End Sub
-
-    'VOLVER-----------------------------------------------------------------------------
-
-    Private Sub buttonVolverTiles_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonVolverTiles.PointerEntered
-
-        buttonVolverTiles.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonVolverTiles.Background = New SolidColorBrush(Colors.LightGray)
-
-    End Sub
-
-    Private Sub buttonVolverTiles_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonVolverTiles.PointerExited
-
-        buttonVolverTiles.BorderBrush = New SolidColorBrush(Colors.Transparent)
-        buttonVolverTiles.Background = New SolidColorBrush(Colors.Transparent)
-
-    End Sub
-
-    Private Sub buttonVolverTiles_Click(sender As Object, e As RoutedEventArgs) Handles buttonVolverTiles.Click
-
-        gridWeb.Visibility = Visibility.Collapsed
-        gridWebContacto.Visibility = Visibility.Collapsed
-        gridTilesSteam.Visibility = Visibility.Visible
-
-        buttonVolverTiles.Visibility = Visibility.Collapsed
-        buttonAñadirCarpetaSteam.Visibility = Visibility.Visible
-
-    End Sub
-
-    'VOTAR-----------------------------------------------------------------------------
-
-    Private Sub buttonVotaciones_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonVotaciones.PointerEntered
-
-        buttonVotaciones.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonVotaciones.Background = New SolidColorBrush(Colors.LightGray)
-
-    End Sub
-
-    Private Sub buttonVotaciones_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonVotaciones.PointerExited
-
-        buttonVotaciones.BorderBrush = New SolidColorBrush(Colors.Transparent)
-        buttonVotaciones.Background = New SolidColorBrush(Colors.Transparent)
-
-    End Sub
-
-    Private Async Sub buttonVotaciones_Click(sender As Object, e As RoutedEventArgs) Handles buttonVotaciones.Click
-
-        Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
-
-    End Sub
-
-    'COMPARTIR-----------------------------------------------------------------------------
-
-    Private Sub buttonCompartir_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonCompartir.PointerEntered
-
-        buttonCompartir.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonCompartir.Background = New SolidColorBrush(Colors.LightGray)
-
-    End Sub
-
-    Private Sub buttonCompartir_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonCompartir.PointerExited
-
-        buttonCompartir.BorderBrush = New SolidColorBrush(Colors.Transparent)
-        buttonCompartir.Background = New SolidColorBrush(Colors.Transparent)
-
-    End Sub
-
-    Private Sub buttonCompartir_Click(sender As Object, e As RoutedEventArgs) Handles buttonCompartir.Click
-
-        Dim datos As DataTransferManager = DataTransferManager.GetForCurrentView()
-        AddHandler datos.DataRequested, AddressOf MainPage_DataRequested
-        DataTransferManager.ShowShareUI()
-
-    End Sub
-
-    Private Sub MainPage_DataRequested(sender As DataTransferManager, e As DataRequestedEventArgs)
-
-        Dim request As DataRequest = e.Request
-        request.Data.SetText("Steam Tiles")
-        request.Data.Properties.Title = "Steam Tiles"
-        request.Data.Properties.Description = "Add Tiles to your Steam games in the Start Menu of Windows 10"
-
-    End Sub
-
-    'CONTACTAR-----------------------------------------------------------------------------
-
-    Private Sub buttonContactar_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonContactar.PointerEntered
-
-        buttonContactar.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonContactar.Background = New SolidColorBrush(Colors.LightGray)
-
-    End Sub
-
-    Private Sub buttonContactar_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonContactar.PointerExited
-
-        buttonContactar.BorderBrush = New SolidColorBrush(Colors.Transparent)
-        buttonContactar.Background = New SolidColorBrush(Colors.Transparent)
-
-    End Sub
-
-    Private Sub buttonContactar_Click(sender As Object, e As RoutedEventArgs) Handles buttonContactar.Click
-
-        gridWeb.Visibility = Visibility.Collapsed
-        gridWebContacto.Visibility = Visibility.Visible
-        gridTilesSteam.Visibility = Visibility.Collapsed
-
-        buttonVolverTiles.Visibility = Visibility.Visible
-        buttonAñadirCarpetaSteam.Visibility = Visibility.Collapsed
-
-    End Sub
-
-    'WEB-----------------------------------------------------------------------------
-
-    Private Sub buttonWeb_PointerEntered(sender As Object, e As PointerRoutedEventArgs) Handles buttonWeb.PointerEntered
-
-        buttonWeb.BorderBrush = New SolidColorBrush(Colors.Black)
-        buttonWeb.Background = New SolidColorBrush(Colors.LightGray)
-
-    End Sub
-
-    Private Sub buttonWeb_PointerExited(sender As Object, e As PointerRoutedEventArgs) Handles buttonWeb.PointerExited
-
-        buttonWeb.BorderBrush = New SolidColorBrush(Colors.Transparent)
-        buttonWeb.Background = New SolidColorBrush(Colors.Transparent)
-
-    End Sub
-
-    Private Sub buttonWeb_Click(sender As Object, e As RoutedEventArgs) Handles buttonWeb.Click
-
-        gridWeb.Visibility = Visibility.Visible
-        gridWebContacto.Visibility = Visibility.Collapsed
-        gridTilesSteam.Visibility = Visibility.Collapsed
-
-        buttonVolverTiles.Visibility = Visibility.Visible
-        buttonAñadirCarpetaSteam.Visibility = Visibility.Collapsed
+        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, prTilesSteam, scrollViewerGridSteam, True, tbCarpetasDetectadasSteam, gridTilesSteam, gridConfig)
 
     End Sub
 
@@ -238,6 +93,58 @@ Public NotInheritable Class MainPage
         End If
 
         Await nuevaTile.RequestCreateForSelectionAsync(rect)
+
+    End Sub
+
+    '-----------------------------------------------------------------------------
+
+    Private Sub GridVisibilidad(grid As Grid)
+
+        gridTilesSteam.Visibility = Visibility.Collapsed
+        gridConfig.Visibility = Visibility.Collapsed
+        gridWebContacto.Visibility = Visibility.Collapsed
+        gridWeb.Visibility = Visibility.Collapsed
+
+        grid.Visibility = Visibility.Visible
+
+    End Sub
+
+    Private Sub hamburgerMaestro_ItemClick(sender As Object, e As ItemClickEventArgs) Handles hamburgerMaestro.ItemClick
+
+        Dim menuItem As HamburgerMenuGlyphItem = TryCast(e.ClickedItem, HamburgerMenuGlyphItem)
+
+        If menuItem.Tag = 1 Then
+            GridVisibilidad(gridTilesSteam)
+        End If
+
+    End Sub
+
+    Private Async Sub hamburgerMaestro_OptionsItemClick(sender As Object, e As ItemClickEventArgs) Handles hamburgerMaestro.OptionsItemClick
+
+        Dim menuItem As HamburgerMenuGlyphItem = TryCast(e.ClickedItem, HamburgerMenuGlyphItem)
+
+        If menuItem.Tag = 99 Then
+            GridVisibilidad(gridConfig)
+        ElseIf menuItem.Tag = 100 Then
+            Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
+        ElseIf menuItem.Tag = 101 Then
+            Dim datos As DataTransferManager = DataTransferManager.GetForCurrentView()
+            AddHandler datos.DataRequested, AddressOf MainPage_DataRequested
+            DataTransferManager.ShowShareUI()
+        ElseIf menuItem.Tag = 102 Then
+            GridVisibilidad(gridWebContacto)
+        ElseIf menuItem.Tag = 103 Then
+            GridVisibilidad(gridWeb)
+        End If
+
+    End Sub
+
+    Private Sub MainPage_DataRequested(sender As DataTransferManager, e As DataRequestedEventArgs)
+
+        Dim request As DataRequest = e.Request
+        request.Data.SetText("Steam Tiles")
+        request.Data.Properties.Title = "Steam Tiles"
+        request.Data.Properties.Description = "Add Tiles for your Steam games in the Start Menu of Windows 10"
 
     End Sub
 

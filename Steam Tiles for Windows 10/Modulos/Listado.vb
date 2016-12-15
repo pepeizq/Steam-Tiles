@@ -7,10 +7,14 @@ Module Listado
 
     Dim clave As String = "carpeta33"
 
-    Public Async Sub Generar(gridview As GridView, button As Button, gridCargando As Grid, sv As ScrollViewer, boolBuscarCarpeta As Boolean)
+    Public Async Sub Generar(gridview As GridView, button As Button, pr As ProgressRing, sv As ScrollViewer, boolBuscarCarpeta As Boolean, tbCarpetas As TextBlock, gridTiles As Grid, gridConfig As Grid)
 
         button.IsEnabled = False
-        gridCargando.Visibility = Visibility.Visible
+        pr.Visibility = Visibility.Visible
+
+        If Not tbCarpetas.Text = Nothing Then
+            tbCarpetas.Text = ""
+        End If
 
         Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
         Dim numCarpetas As ApplicationDataContainer = ApplicationData.Current.LocalSettings
@@ -30,9 +34,11 @@ Module Listado
 
                     Try
                         carpetaTemp = Await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(clave + i.ToString)
+                        tbCarpetas.Text = tbCarpetas.Text + carpetaTemp.Path + Environment.NewLine
                     Catch ex As Exception
                         StorageApplicationPermissions.FutureAccessList.AddOrReplace(clave + i.ToString, carpeta)
                         numCarpetas.Values("numCarpetas") = i + 1
+                        tbCarpetas.Text = tbCarpetas.Text + carpeta.Path + Environment.NewLine
                         Exit While
                     End Try
 
@@ -41,13 +47,32 @@ Module Listado
 
                 If Not carpeta.Path.Contains("steamapps") Then
                     If Not gridview.Items.Count = 0 Then
-                        MessageBox.EnseñarMensaje(recursos.GetString("Fallo2"))
+                        Toast("Steam Tiles", recursos.GetString("Fallo2"))
                     End If
                 End If
 
             Catch ex As Exception
 
             End Try
+        Else
+            Dim i As Integer = 0
+            While i < (numCarpetas.Values("numCarpetas") + 1)
+                Try
+                    Dim carpetaTemp As StorageFolder = Await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(clave + i.ToString)
+                    tbCarpetas.Text = tbCarpetas.Text + carpetaTemp.Path + Environment.NewLine
+                Catch ex As Exception
+
+                End Try
+                i += 1
+            End While
+        End If
+
+        If tbCarpetas.Text = Nothing Then
+            tbCarpetas.Text = recursos.GetString("Ninguna")
+            gridTiles.Visibility = Visibility.Collapsed
+            gridConfig.Visibility = Visibility.Visible
+        Else
+            tbCarpetas.Text = tbCarpetas.Text.Trim
         End If
 
         '-------------------------------------------------------------
@@ -219,14 +244,14 @@ Module Listado
             sv.Visibility = Visibility.Visible
         Else
             If boolBuscarCarpeta = True Then
-                MessageBox.EnseñarMensaje(recursos.GetString("Fallo1"))
+                Toast("Steam Tiles", recursos.GetString("Fallo1"))
             End If
         End If
 
         gridview.ItemsSource = listaFinal
 
         button.IsEnabled = True
-        gridCargando.Visibility = Visibility.Collapsed
+        pr.Visibility = Visibility.Collapsed
 
     End Sub
 

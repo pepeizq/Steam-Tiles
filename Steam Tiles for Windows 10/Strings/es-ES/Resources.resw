@@ -123,11 +123,11 @@
   <data name="Boton Compartir" xml:space="preserve">
     <value>Compartir</value>
   </data>
+  <data name="Boton Config" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
   <data name="Boton Contactar" xml:space="preserve">
     <value>Contactar</value>
-  </data>
-  <data name="Boton Volver" xml:space="preserve">
-    <value>Volver</value>
   </data>
   <data name="Boton Votar" xml:space="preserve">
     <value>Vota la App</value>
@@ -135,8 +135,11 @@
   <data name="Boton Web" xml:space="preserve">
     <value>Más Apps</value>
   </data>
-  <data name="Cargando" xml:space="preserve">
-    <value>Cargando</value>
+  <data name="Carpetas Aviso" xml:space="preserve">
+    <value>Consejo: Si tienes juegos instalados en diferentes discos duros y debido a como funciona Windows 10 hay que añadir cada carpeta de steamapps.</value>
+  </data>
+  <data name="Carpetas Añadidas" xml:space="preserve">
+    <value>Carpetas añadidas:</value>
   </data>
   <data name="Directorio" xml:space="preserve">
     <value>Añade la carpeta de Steam siguiendo este ejemplo: C:\Steam\steamapps</value>
@@ -146,6 +149,9 @@
   </data>
   <data name="Fallo2" xml:space="preserve">
     <value>Debes añadir la subcarpeta steamapps</value>
+  </data>
+  <data name="Ninguna" xml:space="preserve">
+    <value>Ninguna</value>
   </data>
   <data name="Titulo Tile" xml:space="preserve">
     <value>Añadir titulo a la Tile</value>
