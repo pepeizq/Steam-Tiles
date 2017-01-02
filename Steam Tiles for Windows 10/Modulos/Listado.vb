@@ -1,16 +1,21 @@
 ﻿Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
+Imports Windows.UI
 Imports Windows.Web.Http
 
 Module Listado
 
-    Dim clave As String = "carpeta33"
+    Dim clave As String = "carpeta35"
 
-    Public Async Sub Generar(gridview As GridView, button As Button, pr As ProgressRing, sv As ScrollViewer, boolBuscarCarpeta As Boolean, tbCarpetas As TextBlock, gridTiles As Grid, gridConfig As Grid)
+    Public Async Sub Generar(gridview As GridView, button As Button, pr As ProgressRing, sv As ScrollViewer, boolBuscarCarpeta As Boolean)
 
         button.IsEnabled = False
         pr.Visibility = Visibility.Visible
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+        Dim tbCarpetas As TextBlock = pagina.FindName("tbCarpetasDetectadasSteam")
 
         If Not tbCarpetas.Text = Nothing Then
             tbCarpetas.Text = ""
@@ -45,11 +50,11 @@ Module Listado
                     i += 1
                 End While
 
-                If Not carpeta.Path.Contains("steamapps") Then
-                    If Not gridview.Items.Count = 0 Then
-                        Toast("Steam Tiles", recursos.GetString("Fallo2"))
-                    End If
-                End If
+                'If Not carpeta.Path.Contains("steamapps") Then
+                '    If Not gridview.Items.Count = 0 Then
+                '        Toast("Steam Tiles", recursos.GetString("Fallo2"))
+                '    End If
+                'End If
 
             Catch ex As Exception
 
@@ -69,8 +74,19 @@ Module Listado
 
         If tbCarpetas.Text = Nothing Then
             tbCarpetas.Text = recursos.GetString("Ninguna")
+
+            Dim gridTiles As Grid = pagina.FindName("gridTiles")
             gridTiles.Visibility = Visibility.Collapsed
+
+            Dim gridConfig As Grid = pagina.FindName("gridConfig")
             gridConfig.Visibility = Visibility.Visible
+
+            Dim gridConfigApp As Grid = pagina.FindName("gridConfigApp")
+            gridConfigApp.Visibility = Visibility.Visible
+
+            Dim buttonConfigApp As Button = pagina.FindName("buttonConfigApp")
+            buttonConfigApp.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.ColorHelper.ToColor("#bfbfbf"))
+            buttonConfigApp.BorderBrush = New SolidColorBrush(Colors.Black)
         Else
             tbCarpetas.Text = tbCarpetas.Text.Trim
         End If

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="App" xml:space="preserve">
+    <value>Aplicación</value>
+  </data>
   <data name="Boton Añadir" xml:space="preserve">
     <value>Añadir Carpeta</value>
   </data>
@@ -154,6 +157,6 @@
     <value>Ninguna</value>
   </data>
   <data name="Titulo Tile" xml:space="preserve">
-    <value>Añadir titulo a la Tile</value>
+    <value>Añadir titulo</value>
   </data>
 </root>

@@ -6,7 +6,7 @@
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Loading="Page_Loading">
+    mc:Ignorable="d" Loaded="Page_Loaded">
 
     <Page.Resources>
         <DataTemplate x:Key="TileSteam">
@@ -66,7 +66,7 @@
                 </controls:HamburgerMenu.OptionsItemsSource>
 
                 <Grid>
-                    <Grid x:Name="gridTilesSteam" Padding="10">
+                    <Grid x:Name="gridTiles" Padding="10">
                         <Grid.Background>
                             <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                                 <GradientStop Color="Gray" Offset="0.5" />
@@ -90,42 +90,71 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <TextBlock x:Name="tbConfig" Grid.Row="0" FontSize="23" Margin="5,0,0,20"/>
-                        <Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,10"/>
-                        <Grid Grid.Row="2" Margin="0,5">
+                        <Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,15"/>
+
+                        <Grid Grid.Row="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button x:Name="buttonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="#FFE4E4E4">
-                                <StackPanel Orientation="Horizontal" >
-                                    <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center" />
-                                    <TextBlock x:Name="buttonAñadirCarpetaSteamTexto"/>
-                                </StackPanel>
-                            </Button>
-                            <TextBlock x:Name="tbDirectoriosSteam" Grid.Column="1" VerticalAlignment="Center" Margin="15,0,0,0" TextWrapping="Wrap"/>
-                        </Grid>
-                        <TextBlock x:Name="tbCarpetasAñadidasSteam" Grid.Row="3" Margin="10,15,10,5"/>
-                        <TextBlock x:Name="tbCarpetasDetectadasSteam" Grid.Row="4" Margin="10"/>
-                        <Grid Grid.Row="5" Padding="10" Background="#FFE4E4E4" Margin="0,10" HorizontalAlignment="Left">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0" VerticalAlignment="Top" BorderThickness="0,0,1,0" BorderBrush="Black" Padding="0,0,20,0">
 
-                            <SymbolIcon Grid.Column="0" Symbol="Help" VerticalAlignment="Center" />
-                            <TextBlock x:Name="tbCarpetasAvisoSteam" Grid.Column="1" Margin="10,0" TextWrapping="Wrap"/>
+                                <Button x:Name="buttonConfigApp" Width="160" Margin="0,0,0,5" Padding="5" Background="#FFE4E4E4"/>
+                                <Button x:Name="buttonConfigTiles" Width="160" Margin="0,0,0,5" Padding="5" Background="#FFE4E4E4" Content="Tiles"/>
+
+                            </StackPanel>
+
+                            <Grid x:Name="gridConfigApp" Grid.Column="1" Padding="20,0,0,0" Visibility="Collapsed">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button x:Name="buttonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="#FFE4E4E4">
+                                        <ToolTipService.ToolTip>
+                                            <Grid Padding="10" Width="300">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <SymbolIcon Grid.Column="0" Symbol="Help" VerticalAlignment="Center" />
+                                                <TextBlock x:Name="tbCarpetasAvisoSteam" Grid.Column="1" Margin="10,0" TextWrapping="Wrap"/>
+                                            </Grid>
+                                        </ToolTipService.ToolTip>
+
+                                        <StackPanel Orientation="Horizontal" >
+                                            <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center" />
+                                            <TextBlock x:Name="buttonAñadirCarpetaSteamTexto"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <TextBlock x:Name="tbDirectoriosSteam" Grid.Column="1" VerticalAlignment="Center" Margin="15,0,0,0" TextWrapping="Wrap"/>
+                                </Grid>
+                                <TextBlock x:Name="tbCarpetasAñadidasSteam" Grid.Row="1" Margin="10,20,10,5"/>
+                                <TextBlock x:Name="tbCarpetasDetectadasSteam" Grid.Row="2" Margin="10"/>
+                            </Grid>
+
+                            <Grid x:Name="gridConfigTiles" Grid.Column="1" Padding="20,0,0,0" Visibility="Collapsed">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <CheckBox x:Name="checkboxTilesSteamTitulo" Grid.Row="0" Padding="10,0" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
+                                <Image x:Name="imageTileTitulo" Grid.Row="1" HorizontalAlignment="Left" Width="206" Height="102"/>
+                            </Grid>
                         </Grid>
-                        <Border Grid.Row="6" BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,20" Width="300" HorizontalAlignment="Left"/>
-                        <CheckBox x:Name="checkboxTilesSteamTitulo" Grid.Row="7" Padding="10,0" VerticalContentAlignment="Center"/>
                     </Grid>
 
                     <Grid x:Name="gridWebContacto" Background="#FFF0F0F0" Visibility="Collapsed" Padding="10">
