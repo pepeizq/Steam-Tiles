@@ -4,12 +4,13 @@ Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI
+Imports Windows.UI.Core
 Imports Windows.UI.StartScreen
 
 Public NotInheritable Class MainPage
     Inherits Page
 
-    Private Sub Page_Loaded(sender As FrameworkElement, args As Object)
+    Private Async Sub Page_Loaded(sender As FrameworkElement, args As Object)
 
         Dim barra As ApplicationViewTitleBar = ApplicationView.GetForCurrentView().TitleBar
 
@@ -30,6 +31,7 @@ Public NotInheritable Class MainPage
         buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Añadir")
         tbCarpetasAñadidasSteam.Text = recursos.GetString("Carpetas Añadidas")
         tbCarpetasAvisoSteam.Text = recursos.GetString("Carpetas Aviso")
+        buttonBorrarCarpetasTexto.Text = recursos.GetString("Boton Borrar")
 
         checkboxTilesSteamTitulo.Content = recursos.GetString("Titulo Tile")
 
@@ -39,7 +41,11 @@ Public NotInheritable Class MainPage
         menuItemContact.Label = recursos.GetString("Boton Contactar")
         menuItemWeb.Label = recursos.GetString("Boton Web")
 
-        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, prTilesSteam, scrollViewerGridSteam, False)
+        '--------------------------------------------------------
+
+        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
+                                                                     Listado.Generar(False)
+                                                                 End Sub)
 
         If ApplicationData.Current.LocalSettings.Values("titulotilesteam") = "on" Then
             checkboxTilesSteamTitulo.IsChecked = True
@@ -62,9 +68,11 @@ Public NotInheritable Class MainPage
 
     'AÑADIRCARPETA-----------------------------------------------------------------------------
 
-    Private Sub buttonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
+    Private Async Sub buttonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
 
-        Listado.Generar(gridViewTilesSteam, buttonAñadirCarpetaSteam, prTilesSteam, scrollViewerGridSteam, True)
+        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
+                                                                     Listado.Generar(True)
+                                                                 End Sub)
 
     End Sub
 
@@ -92,10 +100,10 @@ Public NotInheritable Class MainPage
 
         Dim ficheroImagen As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync("headersteam.png", CreationCollisionOption.GenerateUniqueName)
         Dim downloader As BackgroundDownloader = New BackgroundDownloader()
-        Dim descarga As DownloadOperation = downloader.CreateDownload(tile.imagenUri, ficheroImagen)
+        Dim descarga As DownloadOperation = downloader.CreateDownload(tile.ImagenUri, ficheroImagen)
         Await descarga.StartAsync
 
-        Dim nuevaTile As SecondaryTile = New SecondaryTile(tile.id, tile.titulo, "steam://rungameid/" + tile.id, New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
+        Dim nuevaTile As SecondaryTile = New SecondaryTile(tile.ID, tile.Titulo, "steam://rungameid/" + tile.ID, New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
 
         Dim frame As FrameworkElement = TryCast(sender, FrameworkElement)
         Dim button As GeneralTransform = frame.TransformToVisual(Nothing)
@@ -198,4 +206,11 @@ Public NotInheritable Class MainPage
 
     End Sub
 
+    Private Async Sub buttonBorrarCarpetas_Click(sender As Object, e As RoutedEventArgs) Handles buttonBorrarCarpetas.Click
+
+        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
+                                                                     Listado.Borrar()
+                                                                 End Sub)
+
+    End Sub
 End Class

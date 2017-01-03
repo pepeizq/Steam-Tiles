@@ -20,7 +20,7 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
     <AppxBundlePlatforms>x86|x64</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>B20A75C8B8796CD3A659DEE1F470C4C50B1459C4</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>27FD6BEBBB4A562569452F98AFB4D1C48BE9DFEF</PackageCertificateThumbprint>
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
@@ -110,6 +110,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="project.json" />
+    <None Include="Steam Tiles for Windows 10_TemporaryKey.pfx" />
     <PRIResource Include="Strings\es-ES\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
@@ -129,8 +130,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="Steam Tiles for Windows 10_TemporaryKey.pfx" />
-    <None Include="Steam Tiles for Windows 10_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\NewStoreLogo.scale-100.png" />

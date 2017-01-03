@@ -123,6 +123,9 @@
   <data name="Boton Añadir" xml:space="preserve">
     <value>Add Folder</value>
   </data>
+  <data name="Boton Borrar" xml:space="preserve">
+    <value>Delete Folders</value>
+  </data>
   <data name="Boton Compartir" xml:space="preserve">
     <value>Share</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="Fallo2" xml:space="preserve">
     <value>You must add the subfolder steamapps</value>
+  </data>
+  <data name="Juegos Detectados" xml:space="preserve">
+    <value>games detected</value>
   </data>
   <data name="Ninguna" xml:space="preserve">
     <value>None</value>

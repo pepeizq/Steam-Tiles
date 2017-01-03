@@ -8,13 +8,23 @@ Module Listado
 
     Dim clave As String = "carpeta35"
 
-    Public Async Sub Generar(gridview As GridView, button As Button, pr As ProgressRing, sv As ScrollViewer, boolBuscarCarpeta As Boolean)
-
-        button.IsEnabled = False
-        pr.Visibility = Visibility.Visible
+    Public Async Sub Generar(boolBuscarCarpeta As Boolean)
 
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
+
+        Dim buttonAñadir As Button = pagina.FindName("buttonAñadirCarpetaSteam")
+        buttonAñadir.IsEnabled = False
+
+        Dim buttonBorrar As Button = pagina.FindName("buttonBorrarCarpetas")
+        buttonBorrar.IsEnabled = False
+
+        Dim pr As ProgressRing = pagina.FindName("prTilesSteam")
+        pr.Visibility = Visibility.Visible
+
+        Dim sv As ScrollViewer = pagina.FindName("scrollViewerGridSteam")
+        Dim gridview As GridView = pagina.FindName("gridViewTilesSteam")
+
         Dim tbCarpetas As TextBlock = pagina.FindName("tbCarpetasDetectadasSteam")
 
         If Not tbCarpetas.Text = Nothing Then
@@ -49,12 +59,6 @@ Module Listado
 
                     i += 1
                 End While
-
-                'If Not carpeta.Path.Contains("steamapps") Then
-                '    If Not gridview.Items.Count = 0 Then
-                '        Toast("Steam Tiles", recursos.GetString("Fallo2"))
-                '    End If
-                'End If
 
             Catch ex As Exception
 
@@ -160,7 +164,7 @@ Module Listado
                             While i < gridview.Items.Count
                                 Dim tile As Tiles = gridview.Items(i)
 
-                                listaTemp.Add(tile.titulo + "/*/" + tile.id)
+                                listaTemp.Add(tile.Titulo + "/*/" + tile.ID)
                                 i += 1
                             End While
                         End If
@@ -221,7 +225,7 @@ Module Listado
                                     Dim tituloBool As Boolean = False
                                     Dim g As Integer = 0
                                     While g < listaFinal.Count
-                                        If listaFinal(g).titulo = titulo Then
+                                        If listaFinal(g).Titulo = titulo Then
                                             tituloBool = True
                                         End If
                                         g += 1
@@ -256,8 +260,12 @@ Module Listado
         End While
 
         If listaFinal.Count > 0 Then
-            listaFinal.Sort(Function(x, y) x.titulo.CompareTo(y.titulo))
+            listaFinal.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
             sv.Visibility = Visibility.Visible
+
+            If boolBuscarCarpeta = True Then
+                Toast("Steam Tiles", listaTemp.Count.ToString + " " + recursos.GetString("Juegos Detectados"))
+            End If
         Else
             If boolBuscarCarpeta = True Then
                 Toast("Steam Tiles", recursos.GetString("Fallo1"))
@@ -266,8 +274,27 @@ Module Listado
 
         gridview.ItemsSource = listaFinal
 
-        button.IsEnabled = True
+        buttonAñadir.IsEnabled = True
+        buttonBorrar.IsEnabled = True
         pr.Visibility = Visibility.Collapsed
+
+    End Sub
+
+    Public Sub Borrar()
+
+        StorageApplicationPermissions.FutureAccessList.Clear()
+
+        Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
+        Dim numCarpetas As ApplicationDataContainer = ApplicationData.Current.LocalSettings
+        numCarpetas.Values("numCarpetas") = 0
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+        Dim tbCarpetas As TextBlock = pagina.FindName("tbCarpetasDetectadasSteam")
+
+        tbCarpetas.Text = recursos.GetString("Ninguna")
+
+        Generar(False)
 
     End Sub
 

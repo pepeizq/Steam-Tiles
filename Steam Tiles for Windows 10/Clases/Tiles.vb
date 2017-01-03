@@ -1,65 +1,61 @@
 ﻿Public Class Tiles
 
-    Public _titulo As String
+    Private _Titulo As String
+    Private _ID As String
+    Private _Enlace As Uri
+    Private _Imagen As BitmapImage
+    Private _ImagenUri As Uri
 
-    Public Property titulo As String
+    Public Property Titulo As String
         Get
-            Return _titulo
+            Return _Titulo
         End Get
         Set(ByVal value As String)
-            _titulo = value
+            _Titulo = value
         End Set
     End Property
 
-    Public _id As String
-
-    Public Property id As String
+    Public Property ID As String
         Get
-            Return _id
+            Return _ID
         End Get
         Set(ByVal value As String)
-            _id = value
+            _ID = value
         End Set
     End Property
 
-    Public _enlace As Uri
-
-    Public Property enlace As Uri
+    Public Property Enlace As Uri
         Get
-            Return _enlace
+            Return _Enlace
         End Get
         Set(ByVal value As Uri)
-            _enlace = value
+            _Enlace = value
         End Set
     End Property
 
-    Public _imagen As BitmapImage
-
-    Public Property imagen As BitmapImage
+    Public Property Imagen As BitmapImage
         Get
-            Return _imagen
+            Return _Imagen
         End Get
         Set(ByVal value As BitmapImage)
-            _imagen = value
+            _Imagen = value
         End Set
     End Property
 
-    Public _imagenUri As Uri
-
-    Public Property imagenUri As Uri
+    Public Property ImagenUri As Uri
         Get
-            Return _imagenUri
+            Return _ImagenUri
         End Get
         Set(ByVal value As Uri)
-            _imagenUri = value
+            _ImagenUri = value
         End Set
     End Property
 
-    Public Sub New(ByVal tit As String, ByVal id As String, ByVal enl As Uri, ByVal img As BitmapImage, ByVal uri As Uri)
-        _titulo = tit
-        _id = id
-        _enlace = enl
-        _imagen = img
-        _imagenUri = uri
+    Public Sub New(ByVal titulo As String, ByVal id As String, ByVal enlace As Uri, ByVal imagen As BitmapImage, ByVal imagenUri As Uri)
+        _Titulo = titulo
+        _ID = id
+        _Enlace = enlace
+        _Imagen = imagen
+        _ImagenUri = imagenUri
     End Sub
 End Class
