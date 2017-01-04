@@ -3,7 +3,7 @@ Imports Windows.UI.Popups
 
 Module Notificaciones
 
-    Public Async Sub Toast(contenido As String)
+    Public Async Sub MessageBox(contenido As String)
 
         Try
             Dim messageDialog = New MessageDialog(contenido)

@@ -43,6 +43,10 @@ Public NotInheritable Class MainPage
 
         '--------------------------------------------------------
 
+        'Await Task.Run(Sub()
+        '                   Listado.Generar(False)
+        '               End Sub)
+
         Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
                                                                      Listado.Generar(False)
                                                                  End Sub)
@@ -96,7 +100,8 @@ Public NotInheritable Class MainPage
 
     Private Async Sub gridviewTiles_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesSteam.ItemClick
 
-        Dim tile As Tiles = e.ClickedItem
+        Dim grid As Grid = e.ClickedItem
+        Dim tile As Tiles = grid.Tag
 
         Dim ficheroImagen As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync("headersteam.png", CreationCollisionOption.GenerateUniqueName)
         Dim downloader As BackgroundDownloader = New BackgroundDownloader()

@@ -1,4 +1,5 @@
-﻿Imports Windows.Storage
+﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
+Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
 Imports Windows.UI
@@ -162,7 +163,8 @@ Module Listado
                         i = 0
                         If gridview.Items.Count > 0 Then
                             While i < gridview.Items.Count
-                                Dim tile As Tiles = gridview.Items(i)
+                                Dim grid As Grid = gridview.Items(i)
+                                Dim tile As Tiles = grid.Tag
 
                                 listaTemp.Add(tile.Titulo + "/*/" + tile.ID)
                                 i += 1
@@ -233,9 +235,9 @@ Module Listado
 
                                     If tituloBool = False Then
                                         Try
-                                            Dim imagen As Uri = New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
+                                            Dim imagenUri As Uri = New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
                                             Dim client As New HttpClient
-                                            Dim response As Streams.IBuffer = Await client.GetBufferAsync(imagen)
+                                            Dim response As Streams.IBuffer = Await client.GetBufferAsync(imagenUri)
                                             Dim stream As Stream = response.AsStream
                                             Dim mem As MemoryStream = New MemoryStream()
                                             Await stream.CopyToAsync(mem)
@@ -244,7 +246,9 @@ Module Listado
                                             Dim bitmap As New BitmapImage
                                             bitmap.SetSource(mem.AsRandomAccessStream)
 
-                                            listaFinal.Add(New Tiles(titulo, id, New Uri("steam://rungameid/" + id), bitmap, imagen))
+                                            Dim tile As New Tiles(titulo, id, New Uri("steam://rungameid/" + id), bitmap, imagenUri)
+
+                                            listaFinal.Add(tile)
                                         Catch ex As Exception
 
                                         End Try
@@ -263,16 +267,34 @@ Module Listado
             listaFinal.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
             sv.Visibility = Visibility.Visible
 
+            gridview.Items.Clear()
+
+            For Each tile In listaFinal
+                Dim grid As New Grid
+                grid.Margin = New Thickness(1, 1, 1, 1)
+                grid.Tag = tile
+                grid.BorderBrush = New SolidColorBrush(Colors.Black)
+                grid.BorderThickness = New Thickness(1, 1, 1, 1)
+                grid.Width = 230
+                grid.Height = 107
+
+                Dim imagen As New ImageEx
+                imagen.Source = New BitmapImage(New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + tile.ID + "/header.jpg", UriKind.RelativeOrAbsolute))
+                imagen.Stretch = Stretch.UniformToFill
+
+                grid.Children.Add(imagen)
+
+                gridview.Items.Add(grid)
+            Next
+
             If boolBuscarCarpeta = True Then
-                Toast("Steam Tiles", listaTemp.Count.ToString + " " + recursos.GetString("Juegos Detectados"))
+                Toast("Steam Tiles", listaFinal.Count.ToString + " " + recursos.GetString("Juegos Detectados"))
             End If
         Else
             If boolBuscarCarpeta = True Then
                 Toast("Steam Tiles", recursos.GetString("Fallo1"))
             End If
         End If
-
-        gridview.ItemsSource = listaFinal
 
         buttonAñadir.IsEnabled = True
         buttonBorrar.IsEnabled = True

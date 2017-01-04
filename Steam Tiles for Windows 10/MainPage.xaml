@@ -9,14 +9,6 @@
     mc:Ignorable="d" Loaded="Page_Loaded">
 
     <Page.Resources>
-        <DataTemplate x:Key="TileSteam">
-            <Grid Width="230" Height="107" Margin="1">
-                <Border BorderThickness="1" BorderBrush="Black">
-                    <Image Source="{Binding Path=imagen}" ToolTipService.ToolTip="{Binding Path=titulo}" Stretch="UniformToFill" />
-                </Border>
-            </Grid>
-        </DataTemplate>
-
         <DataTemplate x:Key="HamburgerMenuImageItem" x:DataType="controls:HamburgerMenuGlyphItem">
             <Grid Height="64">
                 <Grid.ColumnDefinitions>
@@ -79,7 +71,7 @@
                         </Grid.RowDefinitions>
 
                         <ScrollViewer x:Name="scrollViewerGridSteam" Grid.Row="0" VerticalScrollMode="Auto" Visibility="Collapsed">
-                            <GridView x:Name="gridViewTilesSteam" ItemTemplate="{StaticResource TileSteam}" IsItemClickEnabled="True" Padding="0,0,15,0" />
+                            <GridView x:Name="gridViewTilesSteam" IsItemClickEnabled="True" Padding="0,0,15,0" />
                         </ScrollViewer>
 
                         <ProgressRing x:Name="prTilesSteam" Grid.Row="0" IsActive="True" Width="64" Height="64" Foreground="#FFF0F0F0" Visibility="Collapsed"/>
