@@ -142,7 +142,7 @@
     <value>Más Apps</value>
   </data>
   <data name="Carpetas Aviso" xml:space="preserve">
-    <value>Consejo: Si tienes juegos instalados en diferentes discos duros y debido a como funciona Windows 10 hay que añadir cada carpeta de steamapps.</value>
+    <value>Aviso: Si tienes juegos instalados en diferentes discos duros hay que añadir la carpeta steamapps de cada disco duro.</value>
   </data>
   <data name="Carpetas Añadidas" xml:space="preserve">
     <value>Carpetas añadidas:</value>

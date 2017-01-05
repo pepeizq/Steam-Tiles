@@ -43,10 +43,6 @@ Public NotInheritable Class MainPage
 
         '--------------------------------------------------------
 
-        'Await Task.Run(Sub()
-        '                   Listado.Generar(False)
-        '               End Sub)
-
         Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
                                                                      Listado.Generar(False)
                                                                  End Sub)

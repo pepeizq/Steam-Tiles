@@ -142,7 +142,7 @@
     <value>More Apps</value>
   </data>
   <data name="Carpetas Aviso" xml:space="preserve">
-    <value>Advice: If you have installed games in different hard drives and because it works Windows 10 you have to add manually each steamapps folder.</value>
+    <value>Advice: If you have installed games in different hard drives add the steamapps folder of each hard drive.</value>
   </data>
   <data name="Carpetas Añadidas" xml:space="preserve">
     <value>Folders added:</value>
