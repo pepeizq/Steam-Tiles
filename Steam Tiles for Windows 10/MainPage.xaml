@@ -16,7 +16,10 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <controls:ImageEx Grid.Column="0" Margin="10" Source="{Binding Glyph}" Stretch="UniformToFill" />
+                <Grid Grid.Column="0" Margin="8" Background="DimGray">
+                    <controls:ImageEx Margin="4" Source="{Binding Glyph}" Stretch="UniformToFill"/>
+                </Grid>
+               
                 <TextBlock Grid.Column="1" VerticalAlignment="Center" FontSize="16" Text="{x:Bind Label}" Margin="10,0,0,0" />
             </Grid>
         </DataTemplate>
@@ -43,7 +46,7 @@
             <controls:HamburgerMenu x:Name="hamburgerMaestro" Grid.Row="0" ItemTemplate="{StaticResource HamburgerMenuImageItem}" OptionsItemTemplate="{StaticResource HamburgerMenuImageItemOption}" HamburgerHeight="64" HamburgerWidth="64" CompactPaneLength="64">
                 <controls:HamburgerMenu.ItemsSource>
                     <controls:HamburgerMenuItemCollection>
-                        <controls:HamburgerMenuGlyphItem x:Name="menuItemTiles" Glyph="/Assets/NewStoreLogo.scale-100.png" Tag="1" Label="Tiles"/>
+                        <controls:HamburgerMenuGlyphItem x:Name="menuItemTiles" Glyph="/Assets/Badge/Badge.scale-400.png" Tag="1" Label="Tiles"/>
                     </controls:HamburgerMenuItemCollection>
                 </controls:HamburgerMenu.ItemsSource>
 

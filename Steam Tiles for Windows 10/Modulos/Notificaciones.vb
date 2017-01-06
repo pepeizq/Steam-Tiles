@@ -20,7 +20,7 @@ Module Notificaciones
         Dim xml As Windows.Data.Xml.Dom.XmlDocument = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastImageAndText02)
 
         Dim nodosimagen As Windows.Data.Xml.Dom.XmlNodeList = xml.GetElementsByTagName("image")
-        nodosimagen(0).Attributes.GetNamedItem("src").NodeValue = "ms-appx:///Assets/NewStoreLogo.scale-100.png"
+        nodosimagen(0).Attributes.GetNamedItem("src").NodeValue = "ms-appx:///Assets/Badge/Badge.scale-400.png"
 
         Dim nodostexto As Windows.Data.Xml.Dom.XmlNodeList = xml.GetElementsByTagName("text")
         nodostexto.Item(0).AppendChild(xml.CreateTextNode(titulo))
