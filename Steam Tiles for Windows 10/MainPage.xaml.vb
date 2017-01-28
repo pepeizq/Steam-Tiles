@@ -1,5 +1,4 @@
-﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
-Imports Windows.ApplicationModel.DataTransfer
+﻿Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
 Imports Windows.System
@@ -25,6 +24,15 @@ Public NotInheritable Class MainPage
 
         Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
 
+        botonPrincipal.Label = recursos.GetString("Tiles")
+        botonConfig.Label = recursos.GetString("Boton Config")
+        botonVotar.Label = recursos.GetString("Boton Votar")
+        botonCompartir.Label = recursos.GetString("Boton Compartir")
+        botonContacto.Label = recursos.GetString("Boton Contactar")
+        botonMasApps.Label = recursos.GetString("Boton Web")
+
+        commadBarTop.DefaultLabelPosition = CommandBarDefaultLabelPosition.Right
+
         tbConfig.Text = recursos.GetString("Boton Config")
         buttonConfigApp.Content = recursos.GetString("App")
         tbDirectoriosSteam.Text = recursos.GetString("Directorio")
@@ -34,12 +42,6 @@ Public NotInheritable Class MainPage
         buttonBorrarCarpetasTexto.Text = recursos.GetString("Boton Borrar")
 
         checkboxTilesSteamTitulo.Content = recursos.GetString("Titulo Tile")
-
-        menuItemConfig.Label = recursos.GetString("Boton Config")
-        menuItemVote.Label = recursos.GetString("Boton Votar")
-        menuItemShare.Label = recursos.GetString("Boton Compartir")
-        menuItemContact.Label = recursos.GetString("Boton Contactar")
-        menuItemWeb.Label = recursos.GetString("Boton Web")
 
         '--------------------------------------------------------
 
@@ -54,15 +56,64 @@ Public NotInheritable Class MainPage
             imageTileTitulo.Source = New BitmapImage(New Uri(Me.BaseUri, "/Assets/Otros/titulo0.png"))
         End If
 
-        '--------------------------------------------------------
+    End Sub
 
-        Dim coleccion As HamburgerMenuItemCollection = hamburgerMaestro.ItemsSource
-        hamburgerMaestro.ItemsSource = Nothing
-        hamburgerMaestro.ItemsSource = coleccion
+    Private Sub GridVisibilidad(grid As Grid)
 
-        Dim coleccionOpciones As HamburgerMenuItemCollection = hamburgerMaestro.OptionsItemsSource
-        hamburgerMaestro.OptionsItemsSource = Nothing
-        hamburgerMaestro.OptionsItemsSource = coleccionOpciones
+        gridTiles.Visibility = Visibility.Collapsed
+        gridConfig.Visibility = Visibility.Collapsed
+        gridWebContacto.Visibility = Visibility.Collapsed
+        gridWeb.Visibility = Visibility.Collapsed
+
+        grid.Visibility = Visibility.Visible
+
+    End Sub
+
+    Private Sub botonPrincipal_Click(sender As Object, e As RoutedEventArgs) Handles botonPrincipal.Click
+
+        GridVisibilidad(gridTiles)
+
+    End Sub
+
+    Private Sub botonConfig_Click(sender As Object, e As RoutedEventArgs) Handles botonConfig.Click
+
+        GridVisibilidad(gridConfig)
+        GridConfigVisibilidad(gridConfigApp, buttonConfigApp)
+
+    End Sub
+
+    Private Async Sub botonVotar_Click(sender As Object, e As RoutedEventArgs) Handles botonVotar.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
+
+    End Sub
+
+    Private Sub botonCompartir_Click(sender As Object, e As RoutedEventArgs) Handles botonCompartir.Click
+
+        Dim datos As DataTransferManager = DataTransferManager.GetForCurrentView()
+        AddHandler datos.DataRequested, AddressOf MainPage_DataRequested
+        DataTransferManager.ShowShareUI()
+
+    End Sub
+
+    Private Sub MainPage_DataRequested(sender As DataTransferManager, e As DataRequestedEventArgs)
+
+        Dim request As DataRequest = e.Request
+        request.Data.SetText("Download: https://www.microsoft.com/store/apps/9nblggh51sb3")
+        request.Data.Properties.Title = "Steam Tiles"
+        request.Data.Properties.Description = "Add Tiles for your Steam games in the Start Menu of Windows 10"
+
+    End Sub
+
+    Private Sub botonContacto_Click(sender As Object, e As RoutedEventArgs) Handles botonContacto.Click
+
+        GridVisibilidad(gridWebContacto)
+
+    End Sub
+
+    Private Sub botonMasApps_Click(sender As Object, e As RoutedEventArgs) Handles botonMasApps.Click
+
+        GridVisibilidad(gridWeb)
 
     End Sub
 
@@ -119,59 +170,6 @@ Public NotInheritable Class MainPage
         End If
 
         Await nuevaTile.RequestCreateForSelectionAsync(rect)
-
-    End Sub
-
-    '-----------------------------------------------------------------------------
-
-    Private Sub GridVisibilidad(grid As Grid)
-
-        gridTiles.Visibility = Visibility.Collapsed
-        gridConfig.Visibility = Visibility.Collapsed
-        gridWebContacto.Visibility = Visibility.Collapsed
-        gridWeb.Visibility = Visibility.Collapsed
-
-        grid.Visibility = Visibility.Visible
-
-    End Sub
-
-    Private Sub hamburgerMaestro_ItemClick(sender As Object, e As ItemClickEventArgs) Handles hamburgerMaestro.ItemClick
-
-        Dim menuItem As HamburgerMenuGlyphItem = TryCast(e.ClickedItem, HamburgerMenuGlyphItem)
-
-        If menuItem.Tag = 1 Then
-            GridVisibilidad(gridTiles)
-        End If
-
-    End Sub
-
-    Private Async Sub hamburgerMaestro_OptionsItemClick(sender As Object, e As ItemClickEventArgs) Handles hamburgerMaestro.OptionsItemClick
-
-        Dim menuItem As HamburgerMenuGlyphItem = TryCast(e.ClickedItem, HamburgerMenuGlyphItem)
-
-        If menuItem.Tag = 99 Then
-            GridVisibilidad(gridConfig)
-            GridConfigVisibilidad(gridConfigApp, buttonConfigApp)
-        ElseIf menuItem.Tag = 100 Then
-            Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
-        ElseIf menuItem.Tag = 101 Then
-            Dim datos As DataTransferManager = DataTransferManager.GetForCurrentView()
-            AddHandler datos.DataRequested, AddressOf MainPage_DataRequested
-            DataTransferManager.ShowShareUI()
-        ElseIf menuItem.Tag = 102 Then
-            GridVisibilidad(gridWebContacto)
-        ElseIf menuItem.Tag = 103 Then
-            GridVisibilidad(gridWeb)
-        End If
-
-    End Sub
-
-    Private Sub MainPage_DataRequested(sender As DataTransferManager, e As DataRequestedEventArgs)
-
-        Dim request As DataRequest = e.Request
-        request.Data.SetText("Steam Tiles")
-        request.Data.Properties.Title = "Steam Tiles"
-        request.Data.Properties.Description = "Add Tiles for your Steam games in the Start Menu of Windows 10"
 
     End Sub
 

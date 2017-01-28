@@ -162,6 +162,9 @@
   <data name="Ninguna" xml:space="preserve">
     <value>None</value>
   </data>
+  <data name="Tiles" xml:space="preserve">
+    <value>Tiles</value>
+  </data>
   <data name="Titulo Tile" xml:space="preserve">
     <value>Add title</value>
   </data>
