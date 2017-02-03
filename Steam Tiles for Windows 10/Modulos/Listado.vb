@@ -24,7 +24,7 @@ Module Listado
         pr.Visibility = Visibility.Visible
 
         Dim sv As ScrollViewer = pagina.FindName("scrollViewerGridSteam")
-        Dim gridview As GridView = pagina.FindName("gridViewTilesSteam")
+        Dim gv As GridView = pagina.FindName("gridViewTilesSteam")
 
         Dim tbCarpetas As TextBlock = pagina.FindName("tbCarpetasDetectadasSteam")
 
@@ -99,7 +99,7 @@ Module Listado
         '-------------------------------------------------------------
 
         Dim listaTemp As New List(Of String)
-        Dim listaFinal As List(Of Tiles) = New List(Of Tiles)
+        Dim listaFinal As List(Of Tile) = New List(Of Tile)
 
         Dim h As Integer = 0
         While h < numCarpetas.Values("numCarpetas") + 1
@@ -161,10 +161,10 @@ Module Listado
                         Dim ficheros As IReadOnlyList(Of StorageFile) = Await carpeta.GetFilesAsync()
 
                         i = 0
-                        If gridview.Items.Count > 0 Then
-                            While i < gridview.Items.Count
-                                Dim grid As Grid = gridview.Items(i)
-                                Dim tile As Tiles = grid.Tag
+                        If gv.Items.Count > 0 Then
+                            While i < gv.Items.Count
+                                Dim grid As Grid = gv.Items(i)
+                                Dim tile As Tile = grid.Tag
 
                                 listaTemp.Add(tile.Titulo + "/*/" + tile.ID)
                                 i += 1
@@ -246,7 +246,8 @@ Module Listado
                                             Dim bitmap As New BitmapImage
                                             bitmap.SetSource(mem.AsRandomAccessStream)
 
-                                            Dim tile As New Tiles(titulo, id, New Uri("steam://rungameid/" + id), bitmap, imagenUri)
+                                            Dim tile As New Tile(titulo, id, New Uri("steam://rungameid/" + id), bitmap, imagenUri, Nothing)
+                                            tile.Tile = tile
 
                                             listaFinal.Add(tile)
                                         Catch ex As Exception
@@ -267,25 +268,8 @@ Module Listado
             listaFinal.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
             sv.Visibility = Visibility.Visible
 
-            gridview.Items.Clear()
-
-            For Each tile In listaFinal
-                Dim grid As New Grid
-                grid.Margin = New Thickness(1, 1, 1, 1)
-                grid.Tag = tile
-                grid.BorderBrush = New SolidColorBrush(Colors.Black)
-                grid.BorderThickness = New Thickness(1, 1, 1, 1)
-                grid.Width = 230
-                grid.Height = 107
-
-                Dim imagen As New ImageEx
-                imagen.Source = New BitmapImage(New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + tile.ID + "/header.jpg", UriKind.RelativeOrAbsolute))
-                imagen.Stretch = Stretch.UniformToFill
-
-                grid.Children.Add(imagen)
-
-                gridview.Items.Add(grid)
-            Next
+            gv.Items.Clear()
+            gv.ItemsSource = listaFinal
 
             If boolBuscarCarpeta = True Then
                 Toast("Steam Tiles", listaFinal.Count.ToString + " " + recursos.GetString("Juegos Detectados"))

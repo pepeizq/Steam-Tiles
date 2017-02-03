@@ -1,10 +1,11 @@
-﻿Public Class Tiles
+﻿Public Class Tile
 
     Private _Titulo As String
     Private _ID As String
     Private _Enlace As Uri
     Private _Imagen As BitmapImage
     Private _ImagenUri As Uri
+    Private _Tile As Tile
 
     Public Property Titulo As String
         Get
@@ -51,11 +52,22 @@
         End Set
     End Property
 
-    Public Sub New(ByVal titulo As String, ByVal id As String, ByVal enlace As Uri, ByVal imagen As BitmapImage, ByVal imagenUri As Uri)
+    Public Property Tile As Tile
+        Get
+            Return _Tile
+        End Get
+        Set(ByVal value As Tile)
+            _Tile = value
+        End Set
+    End Property
+
+    Public Sub New(ByVal titulo As String, ByVal id As String, ByVal enlace As Uri, ByVal imagen As BitmapImage,
+                   ByVal imagenUri As Uri, ByVal tile As Tile)
         _Titulo = titulo
         _ID = id
         _Enlace = enlace
         _Imagen = imagen
         _ImagenUri = imagenUri
+        _Tile = tile
     End Sub
 End Class

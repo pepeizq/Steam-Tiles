@@ -147,8 +147,7 @@ Public NotInheritable Class MainPage
 
     Private Async Sub gridviewTiles_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesSteam.ItemClick
 
-        Dim grid As Grid = e.ClickedItem
-        Dim tile As Tiles = grid.Tag
+        Dim tile As Tile = e.ClickedItem
 
         Dim ficheroImagen As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync("headersteam.png", CreationCollisionOption.GenerateUniqueName)
         Dim downloader As BackgroundDownloader = New BackgroundDownloader()
@@ -169,7 +168,11 @@ Public NotInheritable Class MainPage
             nuevaTile.VisualElements.ShowNameOnWide310x150Logo = True
         End If
 
-        Await nuevaTile.RequestCreateForSelectionAsync(rect)
+        Try
+            Await nuevaTile.RequestCreateForSelectionAsync(rect)
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 

@@ -118,7 +118,7 @@
     <Compile Include="App.xaml.vb">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Clases\Tiles.vb" />
+    <Compile Include="Clases\Tile.vb" />
     <Compile Include="Modulos\Listado.vb" />
     <Compile Include="MainPage.xaml.vb">
       <DependentUpon>MainPage.xaml</DependentUpon>

@@ -36,6 +36,26 @@
         </CommandBar>
     </Page.TopAppBar>
 
+    <Page.Resources>
+        <DataTemplate x:Key="Tile">
+            <Grid Tag="{Binding Tile}" Margin="1" BorderThickness="1" BorderBrush="Black">
+                <ToolTipService.ToolTip>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Text="{Binding Titulo}" Grid.Row="0" Margin="0,0,0,5"/>
+                        <controls:ImageEx Source="{Binding ImagenUri}" Grid.Row="1"/>
+                    </Grid>
+                </ToolTipService.ToolTip>
+                
+                <controls:ImageEx Source="{Binding ImagenUri}" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid Background="#FFF0F0F0" Padding="5">
             <Grid.RowDefinitions>
@@ -48,7 +68,7 @@
                 </Grid.RowDefinitions>
 
                 <ScrollViewer x:Name="scrollViewerGridSteam" Grid.Row="0" VerticalScrollMode="Auto" Visibility="Collapsed">
-                    <GridView x:Name="gridViewTilesSteam" IsItemClickEnabled="True" Padding="0,0,15,0"/>
+                    <controls:AdaptiveGridView x:Name="gridViewTilesSteam" ItemTemplate="{StaticResource Tile}" IsItemClickEnabled="True" Padding="0,0,15,0" DesiredWidth="230" ItemHeight="107"/>
                 </ScrollViewer>
 
                 <ProgressRing x:Name="prTilesSteam" Grid.Row="0" IsActive="True" Width="64" Height="64" Foreground="#FFF0F0F0" Visibility="Collapsed"/>
