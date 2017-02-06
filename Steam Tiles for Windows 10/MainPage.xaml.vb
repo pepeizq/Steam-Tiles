@@ -4,6 +4,7 @@ Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI
 Imports Windows.UI.Core
+Imports Windows.UI.Popups
 Imports Windows.UI.StartScreen
 
 Public NotInheritable Class MainPage

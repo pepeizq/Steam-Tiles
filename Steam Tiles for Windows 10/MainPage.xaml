@@ -41,13 +41,7 @@
             <Grid Tag="{Binding Tile}" Margin="1" BorderThickness="1" BorderBrush="Black">
                 <ToolTipService.ToolTip>
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        
-                        <TextBlock Text="{Binding Titulo}" Grid.Row="0" Margin="0,0,0,5"/>
-                        <controls:ImageEx Source="{Binding ImagenUri}" Grid.Row="1"/>
+                        <TextBlock Text="{Binding Titulo}"/>
                     </Grid>
                 </ToolTipService.ToolTip>
                 
