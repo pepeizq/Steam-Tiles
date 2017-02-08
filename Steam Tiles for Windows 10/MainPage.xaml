@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Steam_Tiles_for_Windows_10"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="Page_Loaded">
@@ -62,7 +63,7 @@
                 </Grid.RowDefinitions>
 
                 <ScrollViewer x:Name="scrollViewerGridSteam" Grid.Row="0" VerticalScrollMode="Auto" Visibility="Collapsed">
-                    <controls:AdaptiveGridView x:Name="gridViewTilesSteam" ItemTemplate="{StaticResource Tile}" IsItemClickEnabled="True" Padding="0,0,15,0" DesiredWidth="230" ItemHeight="107"/>
+                    <controls:AdaptiveGridView x:Name="gridViewTilesSteam" ItemTemplate="{StaticResource Tile}" IsItemClickEnabled="True" Padding="0,0,15,0" DesiredWidth="230" ItemHeight="107" animations:ReorderGridAnimation.Duration="250"/>
                 </ScrollViewer>
 
                 <ProgressRing x:Name="prTilesSteam" Grid.Row="0" IsActive="True" Width="64" Height="64" Foreground="#FFF0F0F0" Visibility="Collapsed"/>
