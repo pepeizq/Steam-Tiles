@@ -146,7 +146,7 @@ Public NotInheritable Class MainPage
 
     '-----------------------------------------------------------------------------
 
-    Private Async Sub gridviewTiles_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesSteam.ItemClick
+    Private Async Sub gridviewTiles_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTiles.ItemClick
 
         Dim tile As Tile = e.ClickedItem
 

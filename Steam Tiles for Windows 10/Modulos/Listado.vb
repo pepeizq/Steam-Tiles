@@ -20,11 +20,10 @@ Module Listado
         Dim buttonBorrar As Button = pagina.FindName("buttonBorrarCarpetas")
         buttonBorrar.IsEnabled = False
 
-        Dim pr As ProgressRing = pagina.FindName("prTilesSteam")
+        Dim pr As ProgressRing = pagina.FindName("prTiles")
         pr.Visibility = Visibility.Visible
 
-        Dim sv As ScrollViewer = pagina.FindName("scrollViewerGridSteam")
-        Dim gv As GridView = pagina.FindName("gridViewTilesSteam")
+        Dim gv As GridView = pagina.FindName("gridViewTiles")
 
         Dim tbCarpetas As TextBlock = pagina.FindName("tbCarpetasDetectadasSteam")
 
@@ -266,7 +265,6 @@ Module Listado
 
         If listaFinal.Count > 0 Then
             listaFinal.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
-            sv.Visibility = Visibility.Visible
 
             gv.Items.Clear()
             gv.ItemsSource = listaFinal
