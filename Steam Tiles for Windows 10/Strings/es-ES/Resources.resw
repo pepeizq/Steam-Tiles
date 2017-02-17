@@ -168,4 +168,7 @@
   <data name="Titulo Tile" xml:space="preserve">
     <value>Añadir titulo</value>
   </data>
+  <data name="Twitter" xml:space="preserve">
+    <value>Enseñar últimas noticias de @pepeizqapps</value>
+  </data>
 </root>

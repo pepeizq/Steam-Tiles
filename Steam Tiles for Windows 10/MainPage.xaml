@@ -43,7 +43,7 @@
             <Grid Tag="{Binding Tile}" Margin="1" BorderThickness="1" BorderBrush="Black">
                 <ToolTipService.ToolTip>
                     <Grid>
-                        <TextBlock Text="{Binding Titulo}"/>
+                        <TextBlock Text="{Binding Titulo}" TextWrapping="Wrap"/>
                     </Grid>
                 </ToolTipService.ToolTip>
                 
@@ -56,9 +56,10 @@
         <Grid Background="#FFF0F0F0" Padding="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Grid x:Name="gridTiles">
+            <Grid x:Name="gridTiles" Grid.Row="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -74,7 +75,7 @@
                 <ProgressRing x:Name="prTiles" Grid.Row="0" IsActive="True" Width="64" Height="64" Foreground="#FFF0F0F0" Visibility="Collapsed"/>
             </Grid>
 
-            <Grid x:Name="gridConfig" Visibility="Collapsed" Padding="5">
+            <Grid x:Name="gridConfig" Grid.Row="0" Visibility="Collapsed" Padding="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -99,6 +100,7 @@
 
                     <Grid x:Name="gridConfigApp" Grid.Column="1" Padding="20,0,0,0" Visibility="Collapsed">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -139,6 +141,16 @@
                             <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" />
                             <TextBlock x:Name="tbCarpetasAvisoSteam" Grid.Column="1" Margin="10,0" TextWrapping="Wrap"/>
                         </Grid>
+
+                        <Grid Grid.Row="5" Padding="10" Margin="0,10" HorizontalAlignment="Left">
+                            <CheckBox x:Name="cbTwitter">
+                                <CheckBox.Content>
+                                    <Grid>
+                                        <TextBlock x:Name="tbTwitterConfig" TextWrapping="Wrap"/>
+                                    </Grid>
+                                </CheckBox.Content>
+                            </CheckBox> 
+                        </Grid>
                     </Grid>
 
                     <Grid x:Name="gridConfigTiles" Grid.Column="1" Padding="20,0,0,0" Visibility="Collapsed">
@@ -153,12 +165,41 @@
                 </Grid>
             </Grid>
 
-            <Grid x:Name="gridWebContacto" Visibility="Collapsed">
+            <Grid x:Name="gridWebContacto" Grid.Row="0" Visibility="Collapsed">
                 <WebView x:Name="webViewContacto" Source="https://pepeizqapps.com/contact/" />
             </Grid>
 
-            <Grid x:Name="gridWeb" Visibility="Collapsed">
+            <Grid x:Name="gridWeb" Grid.Row="0" Visibility="Collapsed">
                 <WebView x:Name="webViewWeb" Source="https://pepeizqapps.com/" />
+            </Grid>
+
+            <Grid x:Name="gridTwitter" Grid.Row="1" Visibility="Collapsed" Background="PowderBlue">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button x:Name="buttonTwitter" Grid.Column="0" Background="Transparent" HorizontalAlignment="Stretch">
+                    <Button.Content>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.Column="0" Margin="0,0,10,0" Source="Assets/twitter_logo.png" Width="32" Height="32"/>
+                            <TextBlock x:Name="tbTwitter" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </Grid>
+                    </Button.Content>
+                </Button>
+
+                <Button x:Name="buttonTwitterCancelar" Grid.Column="1" Background="Transparent">
+                    <Button.Content>
+                        <Grid>
+                            <SymbolIcon Symbol="Cancel" Height="32"/>
+                        </Grid>
+                    </Button.Content>
+                </Button> 
             </Grid>
         </Grid>
     </Grid>

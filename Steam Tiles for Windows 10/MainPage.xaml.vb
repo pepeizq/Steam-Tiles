@@ -4,7 +4,6 @@ Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI
 Imports Windows.UI.Core
-Imports Windows.UI.Popups
 Imports Windows.UI.StartScreen
 
 Public NotInheritable Class MainPage
@@ -44,6 +43,8 @@ Public NotInheritable Class MainPage
 
         checkboxTilesSteamTitulo.Content = recursos.GetString("Titulo Tile")
 
+        tbTwitterConfig.Text = recursos.GetString("Twitter")
+
         '--------------------------------------------------------
 
         Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
@@ -56,6 +57,8 @@ Public NotInheritable Class MainPage
         Else
             imageTileTitulo.Source = New BitmapImage(New Uri(Me.BaseUri, "/Assets/Otros/titulo0.png"))
         End If
+
+        Twitter.Generar()
 
     End Sub
 
@@ -214,6 +217,39 @@ Public NotInheritable Class MainPage
         Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
                                                                      Listado.Borrar()
                                                                  End Sub)
+
+    End Sub
+
+    '-----------------------------------------------------------------------------
+
+    Private Async Sub buttonTwitter_Click(sender As Object, e As RoutedEventArgs) Handles buttonTwitter.Click
+
+        Dim boton As Button = e.OriginalSource
+        Dim enlace As Uri = boton.Tag
+
+        Await Launcher.LaunchUriAsync(enlace)
+
+    End Sub
+
+    Private Sub buttonTwitterCancelar_Click(sender As Object, e As RoutedEventArgs) Handles buttonTwitterCancelar.Click
+
+        gridTwitter.Visibility = Visibility.Collapsed
+        ApplicationData.Current.LocalSettings.Values("twitter") = "off"
+        cbTwitter.IsChecked = False
+
+    End Sub
+
+    Private Sub cbTwitter_Checked(sender As Object, e As RoutedEventArgs) Handles cbTwitter.Checked
+
+        gridTwitter.Visibility = Visibility.Visible
+        ApplicationData.Current.LocalSettings.Values("twitter") = "on"
+
+    End Sub
+
+    Private Sub cbTwitter_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTwitter.Unchecked
+
+        gridTwitter.Visibility = Visibility.Collapsed
+        ApplicationData.Current.LocalSettings.Values("twitter") = "off"
 
     End Sub
 End Class
