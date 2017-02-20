@@ -1,9 +1,11 @@
-﻿Imports Windows.ApplicationModel.DataTransfer
+﻿Imports Microsoft.Toolkit.Uwp.Notifications
+Imports Windows.ApplicationModel.DataTransfer
 Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI
 Imports Windows.UI.Core
+Imports Windows.UI.Notifications
 Imports Windows.UI.StartScreen
 
 Public NotInheritable Class MainPage
@@ -41,7 +43,10 @@ Public NotInheritable Class MainPage
         tbCarpetasAvisoSteam.Text = recursos.GetString("Carpetas Aviso")
         buttonBorrarCarpetasTexto.Text = recursos.GetString("Boton Borrar")
 
-        checkboxTilesSteamTitulo.Content = recursos.GetString("Titulo Tile")
+        cbTilesTitulo.Content = recursos.GetString("Tile Titulo")
+        cbTilesBranding.Content = recursos.GetString("Tile Logo")
+        sliderTilesOverlay.Header = recursos.GetString("Tile Overlay")
+        cbTilesCirculo.Content = recursos.GetString("Tile Circulo")
 
         tbTwitterConfig.Text = recursos.GetString("Twitter")
 
@@ -51,13 +56,7 @@ Public NotInheritable Class MainPage
                                                                      Listado.Generar(False)
                                                                  End Sub)
 
-        If ApplicationData.Current.LocalSettings.Values("titulotilesteam") = "on" Then
-            checkboxTilesSteamTitulo.IsChecked = True
-            imageTileTitulo.Source = New BitmapImage(New Uri(Me.BaseUri, "/Assets/Otros/titulo1.png"))
-        Else
-            imageTileTitulo.Source = New BitmapImage(New Uri(Me.BaseUri, "/Assets/Otros/titulo0.png"))
-        End If
-
+        Config.Generar()
         Twitter.Generar()
 
     End Sub
@@ -131,19 +130,53 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    'CBTITULOS-----------------------------------------------------------------------------
+    'CBTILES-----------------------------------------------------------------------------
 
-    Private Sub checkboxTilesSteamTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles checkboxTilesSteamTitulo.Checked
+    Private Sub cbTilesTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Checked
 
-        ApplicationData.Current.LocalSettings.Values("titulotilesteam") = "on"
-        imageTileTitulo.Source = New BitmapImage(New Uri(Me.BaseUri, "/Assets/Otros/titulo1.png"))
+        ApplicationData.Current.LocalSettings.Values("titulotile") = "on"
+        Config.Generar()
 
     End Sub
 
-    Private Sub checkboxTilesSteamTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles checkboxTilesSteamTitulo.Unchecked
+    Private Sub cbTilesTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Unchecked
 
-        ApplicationData.Current.LocalSettings.Values("titulotilesteam") = "off"
-        imageTileTitulo.Source = New BitmapImage(New Uri(Me.BaseUri, "/Assets/Otros/titulo0.png"))
+        ApplicationData.Current.LocalSettings.Values("titulotile") = "off"
+        Config.Generar()
+
+    End Sub
+
+    Private Sub cbTilesBranding_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesBranding.Checked
+
+        ApplicationData.Current.LocalSettings.Values("logotile") = "on"
+        Config.Generar()
+
+    End Sub
+
+    Private Sub cbTilesBranding_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesBranding.Unchecked
+
+        ApplicationData.Current.LocalSettings.Values("logotile") = "off"
+        Config.Generar()
+
+    End Sub
+
+    Private Sub sliderTilesOverlay_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderTilesOverlay.ValueChanged
+
+        ApplicationData.Current.LocalSettings.Values("overlaytile") = sliderTilesOverlay.Value
+
+    End Sub
+
+    Private Sub cbTilesCirculo_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesCirculo.Checked
+
+        ApplicationData.Current.LocalSettings.Values("circulotile") = "on"
+        Config.Generar()
+
+    End Sub
+
+    Private Sub cbTilesCirculo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesCirculo.Unchecked
+
+        ApplicationData.Current.LocalSettings.Values("circulotile") = "off"
+        Config.Generar()
 
     End Sub
 
@@ -160,23 +193,99 @@ Public NotInheritable Class MainPage
 
         Dim nuevaTile As SecondaryTile = New SecondaryTile(tile.ID, tile.Titulo, "steam://rungameid/" + tile.ID, New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
 
-        Dim frame As FrameworkElement = TryCast(sender, FrameworkElement)
-        Dim button As GeneralTransform = frame.TransformToVisual(Nothing)
-        Dim point As Point = button.TransformPoint(New Point())
-        Dim rect As Rect = New Rect(point, New Size(frame.ActualWidth, frame.ActualHeight))
-
-        nuevaTile.RoamingEnabled = False
         nuevaTile.VisualElements.Wide310x150Logo = New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute)
+        nuevaTile.VisualElements.Square310x310Logo = New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute)
 
-        If ApplicationData.Current.LocalSettings.Values("titulotilesteam") = "on" Then
-            nuevaTile.VisualElements.ShowNameOnWide310x150Logo = True
+        Await nuevaTile.RequestCreateAsync()
+
+        Dim imagen As AdaptiveImage = New AdaptiveImage
+        imagen.Source = "ms-appdata:///local/" + ficheroImagen.Name
+        imagen.HintRemoveMargin = True
+        imagen.HintAlign = AdaptiveImageAlign.Stretch
+
+        If ApplicationData.Current.LocalSettings.Values("circulotile") = "on" Then
+            imagen.HintCrop = AdaptiveImageCrop.Circle
+        Else
+            imagen.HintCrop = AdaptiveImageCrop.Default
         End If
 
-        Try
-            Await nuevaTile.RequestCreateForSelectionAsync(rect)
-        Catch ex As Exception
+        Dim fondoImagen As TileBackgroundImage = New TileBackgroundImage
+        fondoImagen.Source = "ms-appdata:///local/" + ficheroImagen.Name
+        fondoImagen.HintOverlay = Integer.Parse(ApplicationData.Current.LocalSettings.Values("overlaytile"))
 
-        End Try
+        If ApplicationData.Current.LocalSettings.Values("circulotile") = "on" Then
+            fondoImagen.HintCrop = AdaptiveImageCrop.Circle
+        Else
+            fondoImagen.HintCrop = AdaptiveImageCrop.Default
+        End If
+
+        '-----------------------
+
+        Dim contenidoWile As TileBindingContentAdaptive = New TileBindingContentAdaptive
+        contenidoWile.BackgroundImage = fondoImagen
+
+        Dim tileWide As TileBinding = New TileBinding
+        tileWide.Content = contenidoWile
+
+        '-----------------------
+
+        Dim contenidoSmall As TileBindingContentAdaptive = New TileBindingContentAdaptive
+        contenidoSmall.Children.Add(imagen)
+
+        Dim tileSmall As TileBinding = New TileBinding
+        tileSmall.Content = contenidoSmall
+
+        '-----------------------
+
+        Dim contenidoMedium As TileBindingContentAdaptive = New TileBindingContentAdaptive
+        contenidoMedium.Children.Add(imagen)
+
+        Dim tileMedium As TileBinding = New TileBinding
+        tileMedium.Content = contenidoMedium
+
+        '-----------------------
+
+        Dim contenidoLarge As TileBindingContentAdaptive = New TileBindingContentAdaptive
+        contenidoLarge.Children.Add(imagen)
+
+        Dim tileLarge As TileBinding = New TileBinding
+        tileLarge.Content = contenidoLarge
+
+        '-----------------------
+
+        If ApplicationData.Current.LocalSettings.Values("titulotile") = "on" Then
+            If ApplicationData.Current.LocalSettings.Values("logotile") = "on" Then
+                tileWide.Branding = TileBranding.NameAndLogo
+                tileSmall.Branding = TileBranding.NameAndLogo
+                tileMedium.Branding = TileBranding.NameAndLogo
+                tileLarge.Branding = TileBranding.NameAndLogo
+            Else
+                tileWide.Branding = TileBranding.Name
+                tileSmall.Branding = TileBranding.Name
+                tileMedium.Branding = TileBranding.Name
+                tileLarge.Branding = TileBranding.Name
+            End If
+        Else
+            If ApplicationData.Current.LocalSettings.Values("logotile") = "on" Then
+                tileWide.Branding = TileBranding.Logo
+                tileSmall.Branding = TileBranding.Logo
+                tileMedium.Branding = TileBranding.Logo
+                tileLarge.Branding = TileBranding.Logo
+            End If
+        End If
+
+        Dim visual As TileVisual = New TileVisual
+        visual.TileWide = tileWide
+        visual.TileSmall = tileSmall
+        visual.TileMedium = tileMedium
+        visual.TileLarge = tileLarge
+
+        Dim contenido As TileContent = New TileContent
+        contenido.Visual = visual
+
+        Dim notificacion As TileNotification = New TileNotification(contenido.GetXml)
+
+        TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.ID).Update(notificacion)
 
     End Sub
 
@@ -220,7 +329,7 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    '-----------------------------------------------------------------------------
+    'TWITTER-----------------------------------------------------------------------------
 
     Private Async Sub buttonTwitter_Click(sender As Object, e As RoutedEventArgs) Handles buttonTwitter.Click
 
@@ -252,4 +361,6 @@ Public NotInheritable Class MainPage
         ApplicationData.Current.LocalSettings.Values("twitter") = "off"
 
     End Sub
+
+
 End Class

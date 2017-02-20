@@ -157,10 +157,14 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <CheckBox x:Name="checkboxTilesSteamTitulo" Grid.Row="0" Padding="10,0" VerticalContentAlignment="Center" Margin="0,0,0,10"/>
-                        <controls:ImageEx x:Name="imageTileTitulo" Grid.Row="1" HorizontalAlignment="Left" Width="206" Height="102"/>
+                        <CheckBox x:Name="cbTilesTitulo" Grid.Row="0" Padding="10,0" VerticalContentAlignment="Center" Margin="0,0,0,5"/>
+                        <CheckBox x:Name="cbTilesBranding" Grid.Row="1" Padding="10,0" VerticalContentAlignment="Center" Margin="0,5"/>
+                        <Slider x:Name="sliderTilesOverlay" Grid.Row="2" Width="500" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                        <CheckBox x:Name="cbTilesCirculo" Grid.Row="3" Padding="10,0" VerticalContentAlignment="Center" Margin="0,5"/>
                     </Grid>
                 </Grid>
             </Grid>

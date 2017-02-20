@@ -162,11 +162,20 @@
   <data name="Ninguna" xml:space="preserve">
     <value>None</value>
   </data>
+  <data name="Tile Circulo" xml:space="preserve">
+    <value>Circle</value>
+  </data>
+  <data name="Tile Logo" xml:space="preserve">
+    <value>Add logo</value>
+  </data>
+  <data name="Tile Overlay" xml:space="preserve">
+    <value>Black overlay</value>
+  </data>
+  <data name="Tile Titulo" xml:space="preserve">
+    <value>Add title</value>
+  </data>
   <data name="Tiles" xml:space="preserve">
     <value>Tiles</value>
-  </data>
-  <data name="Titulo Tile" xml:space="preserve">
-    <value>Add title</value>
   </data>
   <data name="Twitter" xml:space="preserve">
     <value>Show latest news from @pepeizqapps</value>
