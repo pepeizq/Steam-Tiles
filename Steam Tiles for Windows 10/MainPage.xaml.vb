@@ -4,14 +4,13 @@ Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI
-Imports Windows.UI.Core
 Imports Windows.UI.Notifications
 Imports Windows.UI.StartScreen
 
 Public NotInheritable Class MainPage
     Inherits Page
 
-    Private Async Sub Page_Loaded(sender As FrameworkElement, args As Object)
+    Private Sub Page_Loaded(sender As FrameworkElement, args As Object)
 
         Dim barra As ApplicationViewTitleBar = ApplicationView.GetForCurrentView().TitleBar
 
@@ -52,10 +51,7 @@ Public NotInheritable Class MainPage
 
         '--------------------------------------------------------
 
-        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
-                                                                     Listado.Generar(False)
-                                                                 End Sub)
-
+        Listado.Generar(False)
         Config.Generar()
         Twitter.Generar()
 
@@ -122,11 +118,9 @@ Public NotInheritable Class MainPage
 
     'AÑADIRCARPETA-----------------------------------------------------------------------------
 
-    Private Async Sub buttonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
+    Private Sub buttonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
 
-        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
-                                                                     Listado.Generar(True)
-                                                                 End Sub)
+        Listado.Generar(True)
 
     End Sub
 
@@ -321,11 +315,9 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Async Sub buttonBorrarCarpetas_Click(sender As Object, e As RoutedEventArgs) Handles buttonBorrarCarpetas.Click
+    Private Sub buttonBorrarCarpetas_Click(sender As Object, e As RoutedEventArgs) Handles buttonBorrarCarpetas.Click
 
-        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
-                                                                     Listado.Borrar()
-                                                                 End Sub)
+        Listado.Borrar()
 
     End Sub
 

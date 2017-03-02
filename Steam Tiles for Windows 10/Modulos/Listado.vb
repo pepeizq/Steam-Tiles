@@ -1,5 +1,4 @@
-﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
-Imports Windows.Storage
+﻿Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
 Imports Windows.UI
@@ -234,7 +233,7 @@ Module Listado
 
                                     If tituloBool = False Then
                                         Try
-                                            Dim imagenUri As Uri = New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
+                                            Dim imagenUri As Uri = New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
                                             Dim client As New HttpClient
                                             Dim response As Streams.IBuffer = Await client.GetBufferAsync(imagenUri)
                                             Dim stream As Stream = response.AsStream

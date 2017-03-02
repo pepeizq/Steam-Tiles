@@ -154,11 +154,12 @@ Module Twitter
                     tb.Text = listaTweets(i).Contenido
 
                     Await Task.Delay(15000)
+
+                    If i = (listaTweets.Count - 1) Then
+                        i = -1
+                    End If
                 End If
 
-                If i = (listaTweets.Count - 1) Then
-                    i = -1
-                End If
                 i += 1
             End While
         End If
