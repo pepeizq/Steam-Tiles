@@ -135,6 +135,9 @@
   <data name="Boton Contactar" xml:space="preserve">
     <value>Contactar</value>
   </data>
+  <data name="Boton Inicio" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
   <data name="Boton Votar" xml:space="preserve">
     <value>Vota la App</value>
   </data>
@@ -147,6 +150,9 @@
   <data name="Carpetas Añadidas" xml:space="preserve">
     <value>Carpetas añadidas:</value>
   </data>
+  <data name="Consejo Config" xml:space="preserve">
+    <value>Antes de añadir Tiles debes configurar primero</value>
+  </data>
   <data name="Directorio" xml:space="preserve">
     <value>Añade la carpeta de Steam siguiendo este ejemplo: C:\Steam\steamapps</value>
   </data>
@@ -156,11 +162,20 @@
   <data name="Fallo2" xml:space="preserve">
     <value>Debes añadir la subcarpeta steamapps</value>
   </data>
+  <data name="Grid Arranque" xml:space="preserve">
+    <value>Elige ventana donde arrancar</value>
+  </data>
   <data name="Juegos Detectados" xml:space="preserve">
     <value>juegos detectados</value>
   </data>
   <data name="Ninguna" xml:space="preserve">
     <value>Ninguna</value>
+  </data>
+  <data name="No Config" xml:space="preserve">
+    <value>No se han detectado juegos o no está configurado</value>
+  </data>
+  <data name="RSS" xml:space="preserve">
+    <value>Últimas Noticias</value>
   </data>
   <data name="Tile Circulo" xml:space="preserve">
     <value>Círculo</value>
@@ -176,8 +191,5 @@
   </data>
   <data name="Tiles" xml:space="preserve">
     <value>Tiles</value>
-  </data>
-  <data name="Twitter" xml:space="preserve">
-    <value>Enseñar últimas noticias de @pepeizqapps</value>
   </data>
 </root>

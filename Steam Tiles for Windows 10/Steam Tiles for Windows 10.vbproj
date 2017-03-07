@@ -119,15 +119,16 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Clases\Tile.vb" />
-    <Compile Include="Clases\Tweet.vb" />
+    <Compile Include="Clases\FeedRSS.vb" />
     <Compile Include="Modulos\Config.vb" />
     <Compile Include="Modulos\Decompiladores.vb" />
-    <Compile Include="Modulos\Listado.vb" />
+    <Compile Include="Modulos\Steam.vb" />
     <Compile Include="MainPage.xaml.vb">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modulos\Notificaciones.vb" />
-    <Compile Include="Modulos\Twitter.vb" />
+    <Compile Include="Modulos\RSS.vb" />
+    <Compile Include="Modulos\Tiles.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +170,7 @@
     <Content Include="Assets\AppList\AppList.targetsize-80_altform-unplated.png" />
     <Content Include="Assets\AppList\AppList.targetsize-96.png" />
     <Content Include="Assets\AppList\AppList.targetsize-96_altform-unplated.png" />
+    <Content Include="Assets\origin_logo.png" />
     <Content Include="Assets\Badge\Badge.scale-100.png" />
     <Content Include="Assets\Badge\Badge.scale-125.png" />
     <Content Include="Assets\Badge\Badge.scale-150.png" />
@@ -184,6 +186,7 @@
     <Content Include="Assets\Medium\Medium150x150Logo.scale-150.png" />
     <Content Include="Assets\Medium\Medium150x150Logo.scale-200.png" />
     <Content Include="Assets\Medium\Medium150x150Logo.scale-400.png" />
+    <Content Include="Assets\rss_logo.png" />
     <Content Include="Assets\Small\Small71x71Logo.scale-100.png" />
     <Content Include="Assets\Small\Small71x71Logo.scale-125.png" />
     <Content Include="Assets\Small\Small71x71Logo.scale-150.png" />

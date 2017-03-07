@@ -2,13 +2,12 @@
     x:Class="Steam_Tiles_for_Windows_10.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Steam_Tiles_for_Windows_10"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:wrapPanel="using:Microsoft.Toolkit.Uwp.UI.Controls.WrapPanel"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Loaded="Page_Loaded">
+    mc:Ignorable="d" Loaded="Page_Loaded" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Page.TopAppBar>
         <CommandBar x:Name="commadBarTop" Foreground="White">
@@ -20,21 +19,39 @@
             </CommandBar.Background>
 
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="botonPrincipal" Icon="Home" Foreground="White" FontSize="17"/>
-                <AppBarButton x:Name="botonConfig" Icon="Setting" Foreground="White" FontSize="17"/>
-            </CommandBar.PrimaryCommands>
-
-            <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="botonVotar" Icon="Like"/>
-                <AppBarButton x:Name="botonCompartir">
-                    <AppBarButton.Icon>
-                        <FontIcon Glyph="&#59181;"/>
-                    </AppBarButton.Icon>
+                <AppBarButton x:Name="botonInicio" Foreground="White">
+                    <AppBarButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Home" Margin="5,0,10,0"/>
+                            <TextBlock x:Name="botonInicioTexto" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </AppBarButton.Content>
                 </AppBarButton>
-                <AppBarSeparator/>
-                <AppBarButton x:Name="botonContacto" Icon="Contact"/>
-                <AppBarButton x:Name="botonMasApps" Icon="World"/>
-            </CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="botonTilesSteam" Foreground="White">
+                    <AppBarButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:ImageEx Margin="5,0,10,0" Source="Assets\Badge\Badge.scale-400.png" Width="20" Height="20"/>
+                            <TextBlock Text="Steam" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </AppBarButton.Content>
+                </AppBarButton>
+                <!--<AppBarButton x:Name="botonTilesOrigin" Foreground="White">
+                    <AppBarButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:ImageEx Margin="5,0,10,0" Source="Assets\origin_logo.png" Width="20" Height="20"/>
+                            <TextBlock Text="Origin" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </AppBarButton.Content>
+                </AppBarButton>-->
+                <AppBarButton x:Name="botonConfig" Foreground="White">
+                    <AppBarButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Setting" Margin="5,0,10,0"/>
+                            <TextBlock x:Name="botonConfigTexto" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </AppBarButton.Content>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.TopAppBar>
 
@@ -50,161 +67,252 @@
                 <controls:ImageEx Source="{Binding ImagenUri}" Stretch="UniformToFill"/>
             </Grid>
         </DataTemplate>
+
+        <DataTemplate x:Key="FeedRSS">
+            <Grid Tag="{Binding Enlace}" Margin="1">
+                <TextBlock Text="{Binding Titulo}" TextWrapping="Wrap" />
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="EllipsisButton" TargetType="Button">
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Background="#FFF0F0F0" Padding="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+    <Grid Background="#FFF0F0F0">
+        <Grid x:Name="gridInicio">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="400"/>
+            </Grid.ColumnDefinitions>
 
-            <Grid x:Name="gridTiles" Grid.Row="0">
+            <Grid Grid.Column="0" Padding="80,0">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Vertical" Margin="0,50,0,0" HorizontalAlignment="Left">
+                    <Button x:Name="botonInicioVotar" Padding="10" Background="SlateGray" Foreground="White" Width="200" Margin="0,0,0,20" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Symbol="Like" Margin="0,0,10,0"/>
+                                <TextBlock x:Name="botonInicioVotarTexto" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="botonInicioCompartir" Padding="10" Background="SlateGray" Foreground="White" Width="200" Margin="0,0,0,20" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <FontIcon Glyph="&#59181;" Margin="0,0,10,0"/>
+                                <TextBlock x:Name="botonInicioCompartirTexto" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="botonInicioContacto" Padding="10" Background="SlateGray" Foreground="White" Width="200" Margin="0,0,0,20" >
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Symbol="Contact" Margin="0,0,10,0"/>
+                                <TextBlock x:Name="botonInicioContactoTexto" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Vertical" Padding="0,0,0,50" HorizontalAlignment="Left">
+                    <Button x:Name="botonInicioMasApps" Padding="10" Background="SlateGray" Foreground="White" Width="200">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock x:Name="botonInicioMasAppsTexto" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <StackPanel x:Name="spMasApps" Orientation="Vertical" Width="200" Margin="0,5,0,0">
+                        <Button x:Name="botonAppSteamDeals" Padding="10" Background="darkOliveGreen" Foreground="White" Width="200" Margin="0,0,0,5" HorizontalContentAlignment="Left">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ImageEx Source="Assets\Badge\Badge.scale-400.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                    <TextBlock Text="Steam Deals" Foreground="White" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="botonAppSteamCategories" Padding="10" Background="darkBlue" Foreground="White" Width="200" Margin="0,0,0,5" HorizontalContentAlignment="Left">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ImageEx Source="Assets\Badge\Badge.scale-400.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                    <TextBlock Text="Steam Categories" Foreground="White" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="botonAppSteamBridge" Padding="10" Background="darkMagenta" Foreground="White" Width="200" Margin="0,0,0,5" HorizontalContentAlignment="Left">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ImageEx Source="Assets\Badge\Badge.scale-400.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                    <TextBlock Text="Steam Bridge" Foreground="White" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="botonAppSteamSkins" Padding="10" Background="darkCyan" Foreground="White" Width="200" Margin="0,0,0,5" HorizontalContentAlignment="Left">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ImageEx Source="Assets\Badge\Badge.scale-400.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                    <TextBlock Text="Steam Skins" Foreground="White" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" Padding="50,0">
+                <StackPanel Orientation="Horizontal" Padding="10" Background="SlateGray">
+                    <controls:ImageEx Source="Assets\rss_logo.png" Width="24" Height="24" HorizontalAlignment="Left"/>
+                    <TextBlock x:Name="tbRSS" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="White"/>
+                </StackPanel>
+                <ListView x:Name="lvRSS" IsItemClickEnabled="True" ItemTemplate="{StaticResource FeedRSS}" BorderThickness="1,0,1,1" BorderBrush="SlateGray"/>
+            </StackPanel>
+
+            <Grid Grid.Column="2" Padding="80,50,50,50">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <controls:AdaptiveGridView x:Name="gridViewTiles" Grid.Row="0" ItemTemplate="{StaticResource Tile}" IsItemClickEnabled="True" DesiredWidth="230" ItemHeight="107" animations:ReorderGridAnimation.Duration="250">
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <wrapPanel:WrapPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                </controls:AdaptiveGridView>
-
-                <ProgressRing x:Name="prTiles" Grid.Row="0" IsActive="True" Width="64" Height="64" Foreground="#FFF0F0F0" Visibility="Collapsed"/>
-            </Grid>
-
-            <Grid x:Name="gridConfig" Grid.Row="0" Visibility="Collapsed" Padding="5">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <TextBlock x:Name="tbConfig" Grid.Row="0" FontSize="23" Margin="5,0,0,20"/>
-                <Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,15"/>
-
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <StackPanel Grid.Column="0" VerticalAlignment="Top" BorderThickness="0,0,1,0" BorderBrush="Black" Padding="0,0,20,0">
-
-                        <Button x:Name="buttonConfigApp" Width="160" Margin="0,0,0,5" Padding="5" Background="#FFE4E4E4"/>
-                        <Button x:Name="buttonConfigTiles" Width="160" Margin="0,0,0,5" Padding="5" Background="#FFE4E4E4" Content="Tiles"/>
-
-                    </StackPanel>
-
-                    <Grid x:Name="gridConfigApp" Grid.Column="1" Padding="20,0,0,0" Visibility="Collapsed">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Button x:Name="buttonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="#FFE4E4E4">
-                                <StackPanel Orientation="Horizontal">
-                                    <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                    <TextBlock x:Name="buttonAñadirCarpetaSteamTexto"/>
-                                </StackPanel>
-                            </Button>
-                            <TextBlock x:Name="tbDirectoriosSteam" Grid.Column="1" VerticalAlignment="Center" Margin="15,0,0,0" TextWrapping="Wrap"/>
-                        </Grid>
-                        <TextBlock x:Name="tbCarpetasAñadidasSteam" Grid.Row="1" Margin="10,20,10,5"/>
-                        <TextBlock x:Name="tbCarpetasDetectadasSteam" Grid.Row="2" Margin="10,10,10,20"/>
-
-                        <Button x:Name="buttonBorrarCarpetas" Grid.Row="3" Padding="10" Background="#FFE4E4E4">
-                            <StackPanel Orientation="Horizontal" >
-                                <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" />
-                                <TextBlock x:Name="buttonBorrarCarpetasTexto"/>
-                            </StackPanel>
-                        </Button>
-
-                        <Grid Grid.Row="4" Padding="10" Margin="0,10" HorizontalAlignment="Left">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" />
-                            <TextBlock x:Name="tbCarpetasAvisoSteam" Grid.Column="1" Margin="10,0" TextWrapping="Wrap"/>
-                        </Grid>
-
-                        <Grid Grid.Row="5" Padding="10" Margin="0,10" HorizontalAlignment="Left">
-                            <CheckBox x:Name="cbTwitter">
-                                <CheckBox.Content>
-                                    <Grid>
-                                        <TextBlock x:Name="tbTwitterConfig" TextWrapping="Wrap"/>
-                                    </Grid>
-                                </CheckBox.Content>
-                            </CheckBox> 
-                        </Grid>
-                    </Grid>
-
-                    <Grid x:Name="gridConfigTiles" Grid.Column="1" Padding="20,0,0,0" Visibility="Collapsed">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <CheckBox x:Name="cbTilesTitulo" Grid.Row="0" Padding="10,0" VerticalContentAlignment="Center" Margin="0,0,0,5"/>
-                        <CheckBox x:Name="cbTilesBranding" Grid.Row="1" Padding="10,0" VerticalContentAlignment="Center" Margin="0,5"/>
-                        <Slider x:Name="sliderTilesOverlay" Grid.Row="2" Width="500" HorizontalAlignment="Left" Margin="0,10,0,0"/>
-                        <CheckBox x:Name="cbTilesCirculo" Grid.Row="3" Padding="10,0" VerticalContentAlignment="Center" Margin="0,5"/>
+                <Grid Grid.Row="0" VerticalAlignment="Top">
+                    <Grid HorizontalAlignment="Right">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <SymbolIcon Grid.Column="0" Symbol="Important" Margin="0,0,10,0"/>
+                        <TextBlock x:Name="tbConsejoConfig" Grid.Column="1" TextWrapping="Wrap"/>
                     </Grid>
                 </Grid>
-            </Grid>
 
-            <Grid x:Name="gridWebContacto" Grid.Row="0" Visibility="Collapsed">
-                <WebView x:Name="webViewContacto" Source="https://pepeizqapps.com/contact/" />
-            </Grid>
+                <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                    <Grid Padding="10" Background="SlateGray">
+                        <TextBlock x:Name="tbInicioGrid" Foreground="White" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                    </Grid>
+                    <ComboBox x:Name="cbArranque" HorizontalAlignment="Stretch">
+                        <ComboBoxItem x:Name="cbItemArranqueInicio"/>
+                        <ComboBoxItem Content="Steam"/>
+                        <ComboBoxItem x:Name="cbItemArranqueConfig"/>
+                    </ComboBox> 
+                </StackPanel>
 
-            <Grid x:Name="gridWeb" Grid.Row="0" Visibility="Collapsed">
-                <WebView x:Name="webViewWeb" Source="https://pepeizqapps.com/" />
+                <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Bottom">
+                    <TextBlock x:Name="tbVersionApp" HorizontalAlignment="Right" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="tbVersionWindows" HorizontalAlignment="Right" TextWrapping="Wrap"/>
+                </StackPanel>
             </Grid>
+        </Grid>
 
-            <Grid x:Name="gridTwitter" Grid.Row="1" Visibility="Collapsed" Background="PowderBlue">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                
-                <Button x:Name="buttonTwitter" Grid.Column="0" Background="Transparent" HorizontalAlignment="Stretch">
+        <Grid x:Name="gridTilesSteam" Visibility="Collapsed" Padding="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <controls:AdaptiveGridView x:Name="gridViewTilesSteam" Grid.Row="0" ItemTemplate="{StaticResource Tile}" IsItemClickEnabled="True" DesiredWidth="230" ItemHeight="107" animations:ReorderGridAnimation.Duration="250">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <wrapPanel:WrapPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </controls:AdaptiveGridView>
+
+            <TextBlock x:Name="tbNoJuegosSteam" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed"/>
+
+            <ProgressRing x:Name="prTilesSteam" Grid.Row="0" IsActive="True" Width="64" Height="64" Foreground="#FFF0F0F0" Visibility="Collapsed"/>
+        </Grid>
+
+        <Grid x:Name="gridTilesOrigin" Visibility="Collapsed" Padding="5">
+            
+        </Grid>
+
+        <Grid x:Name="gridConfig" Visibility="Collapsed" Background="SlateGray">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" VerticalAlignment="Top" Padding="0,20,0,0">
+
+                <Button x:Name="buttonConfigTiles" Width="160" Padding="10,15" Background="DimGray" Foreground="White" HorizontalContentAlignment="Left">
                     <Button.Content>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Image Grid.Column="0" Margin="0,0,10,0" Source="Assets/twitter_logo.png" Width="32" Height="32"/>
-                            <TextBlock x:Name="tbTwitter" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Center" />
-                        </Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="MailFilled" Margin="10,0"/>
+                            <TextBlock Text="Tiles"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="buttonConfigSteam" Width="160" Padding="10,15" Background="DimGray" Foreground="White" HorizontalContentAlignment="Left">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:ImageEx Margin="10,0" Source="Assets\Badge\Badge.scale-400.png" Width="20" Height="20"/>
+                            <TextBlock Text="Steam"/>
+                        </StackPanel>
                     </Button.Content>
                 </Button>
 
-                <Button x:Name="buttonTwitterCancelar" Grid.Column="1" Background="Transparent">
-                    <Button.Content>
-                        <Grid>
-                            <SymbolIcon Symbol="Cancel" Height="32"/>
-                        </Grid>
-                    </Button.Content>
-                </Button> 
+            </StackPanel>
+
+            <Grid Grid.Column="1" Padding="20" Background="#FFF0F0F0">
+
+                <StackPanel x:Name="spConfigTiles" Visibility="Collapsed" Orientation="Vertical">
+                    <TextBlock FontSize="23" Margin="5,0,0,15" Text="Tiles"/>
+                    <Border BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,25" Width="300" HorizontalAlignment="Left"/>
+                    <CheckBox x:Name="cbTilesTitulo" Padding="10,0" VerticalContentAlignment="Center" Margin="0,0,0,5"/>
+                    <CheckBox x:Name="cbTilesBranding" Padding="10,0" VerticalContentAlignment="Center" Margin="0,5"/>
+                    <Slider x:Name="sliderTilesOverlay" Width="500" HorizontalAlignment="Left" Margin="0,10,0,0"/>
+                    <CheckBox x:Name="cbTilesCirculo" Padding="10,0" VerticalContentAlignment="Center" Margin="0,5"/>
+                </StackPanel>
+
+                <StackPanel x:Name="spConfigSteam" Visibility="Collapsed" Orientation="Vertical">
+                    <TextBlock FontSize="23" Margin="5,0,0,15" Text="Steam"/>
+                    <Border BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,25" Width="300" HorizontalAlignment="Left"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="buttonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="#FFE4E4E4">
+                            <StackPanel Orientation="Horizontal">
+                                <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="buttonAñadirCarpetaSteamTexto"/>
+                            </StackPanel>
+                        </Button>
+                        <TextBlock x:Name="tbDirectoriosSteam" Grid.Column="1" VerticalAlignment="Center" Margin="15,0,0,0" TextWrapping="Wrap"/>
+                    </Grid>
+                    <TextBlock x:Name="tbCarpetasAñadidasSteam" Margin="10,20,10,5"/>
+                    <TextBlock x:Name="tbCarpetasDetectadasSteam" Margin="10,10,10,20"/>
+
+                    <Button x:Name="buttonBorrarCarpetasSteam" Padding="10" Background="#FFE4E4E4">
+                        <StackPanel Orientation="Horizontal" >
+                            <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" />
+                            <TextBlock x:Name="buttonBorrarCarpetasTextoSteam"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Grid Padding="10" Margin="0,10" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" />
+                        <TextBlock x:Name="tbCarpetasAvisoSteam" Grid.Column="1" Margin="10,0" TextWrapping="Wrap"/>
+                    </Grid>
+                </StackPanel>
+
             </Grid>
+        </Grid>
+
+        <Grid x:Name="gridWeb" Visibility="Collapsed" Padding="5">
+            <WebView x:Name="webViewWeb" Source="https://pepeizqapps.com/contact/" />
         </Grid>
     </Grid>
 </Page>

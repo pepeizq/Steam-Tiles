@@ -1,11 +1,8 @@
-﻿Imports Microsoft.Toolkit.Uwp.Notifications
+﻿Imports Microsoft.Toolkit.Uwp.Helpers
 Imports Windows.ApplicationModel.DataTransfer
-Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI
-Imports Windows.UI.Notifications
-Imports Windows.UI.StartScreen
 
 Public NotInheritable Class MainPage
     Inherits Page
@@ -25,69 +22,113 @@ Public NotInheritable Class MainPage
 
         Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
 
-        botonPrincipal.Label = recursos.GetString("Tiles")
-        botonConfig.Label = recursos.GetString("Boton Config")
-        botonVotar.Label = recursos.GetString("Boton Votar")
-        botonCompartir.Label = recursos.GetString("Boton Compartir")
-        botonContacto.Label = recursos.GetString("Boton Contactar")
-        botonMasApps.Label = recursos.GetString("Boton Web")
+        botonInicioTexto.Text = recursos.GetString("Boton Inicio")
+        botonConfigTexto.Text = recursos.GetString("Boton Config")
 
         commadBarTop.DefaultLabelPosition = CommandBarDefaultLabelPosition.Right
 
-        tbConfig.Text = recursos.GetString("Boton Config")
-        buttonConfigApp.Content = recursos.GetString("App")
-        tbDirectoriosSteam.Text = recursos.GetString("Directorio")
-        buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Añadir")
-        tbCarpetasAñadidasSteam.Text = recursos.GetString("Carpetas Añadidas")
-        tbCarpetasAvisoSteam.Text = recursos.GetString("Carpetas Aviso")
-        buttonBorrarCarpetasTexto.Text = recursos.GetString("Boton Borrar")
+        botonInicioVotarTexto.Text = recursos.GetString("Boton Votar")
+        botonInicioCompartirTexto.Text = recursos.GetString("Boton Compartir")
+        botonInicioContactoTexto.Text = recursos.GetString("Boton Contactar")
+        botonInicioMasAppsTexto.Text = recursos.GetString("Boton Web")
+
+        tbRSS.Text = recursos.GetString("RSS")
+
+        tbNoJuegosSteam.Text = recursos.GetString("No Config")
 
         cbTilesTitulo.Content = recursos.GetString("Tile Titulo")
         cbTilesBranding.Content = recursos.GetString("Tile Logo")
         sliderTilesOverlay.Header = recursos.GetString("Tile Overlay")
         cbTilesCirculo.Content = recursos.GetString("Tile Circulo")
 
-        tbTwitterConfig.Text = recursos.GetString("Twitter")
+        tbDirectoriosSteam.Text = recursos.GetString("Directorio")
+        buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Añadir")
+        tbCarpetasAñadidasSteam.Text = recursos.GetString("Carpetas Añadidas")
+        tbCarpetasAvisoSteam.Text = recursos.GetString("Carpetas Aviso")
+        buttonBorrarCarpetasTextoSteam.Text = recursos.GetString("Boton Borrar")
 
         '--------------------------------------------------------
 
-        Listado.Generar(False)
+        tbConsejoConfig.Text = recursos.GetString("Consejo Config")
+        tbInicioGrid.Text = recursos.GetString("Grid Arranque")
+
+        cbItemArranqueInicio.Content = recursos.GetString("Boton Inicio")
+        cbItemArranqueConfig.Content = recursos.GetString("Boton Config")
+
+        If ApplicationData.Current.LocalSettings.Values("cbarranque") = Nothing Then
+            cbArranque.SelectedIndex = 0
+            ApplicationData.Current.LocalSettings.Values("cbarranque") = "0"
+        Else
+            cbArranque.SelectedIndex = ApplicationData.Current.LocalSettings.Values("cbarranque")
+
+            If cbArranque.SelectedIndex = 0 Then
+                GridVisibilidad(gridInicio, botonInicio)
+            ElseIf cbArranque.SelectedIndex = 1 Then
+                GridVisibilidad(gridTilesSteam, botonTilesSteam)
+            ElseIf cbArranque.SelectedIndex = 2 Then
+                GridVisibilidad(gridConfig, botonConfig)
+            Else
+                GridVisibilidad(gridInicio, botonInicio)
+            End If
+        End If
+
+        tbVersionApp.Text = "App " + SystemInformation.ApplicationVersion.Major.ToString + "." + SystemInformation.ApplicationVersion.Minor.ToString + "." + SystemInformation.ApplicationVersion.Build.ToString + "." + SystemInformation.ApplicationVersion.Revision.ToString
+        tbVersionWindows.Text = "Windows " + SystemInformation.OperatingSystemVersion.Major.ToString + "." + SystemInformation.OperatingSystemVersion.Minor.ToString + "." + SystemInformation.OperatingSystemVersion.Build.ToString + "." + SystemInformation.OperatingSystemVersion.Revision.ToString
+
+        '--------------------------------------------------------
+
+        Steam.Generar(False)
         Config.Generar()
-        Twitter.Generar()
+        RSS.Generar()
 
     End Sub
 
-    Private Sub GridVisibilidad(grid As Grid)
+    Private Sub GridVisibilidad(grid As Grid, boton As AppBarButton)
 
-        gridTiles.Visibility = Visibility.Collapsed
+        gridInicio.Visibility = Visibility.Collapsed
+        gridTilesSteam.Visibility = Visibility.Collapsed
         gridConfig.Visibility = Visibility.Collapsed
-        gridWebContacto.Visibility = Visibility.Collapsed
         gridWeb.Visibility = Visibility.Collapsed
 
         grid.Visibility = Visibility.Visible
 
-    End Sub
+        botonInicio.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        botonTilesSteam.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        botonConfig.BorderBrush = New SolidColorBrush(Colors.Transparent)
 
-    Private Sub botonPrincipal_Click(sender As Object, e As RoutedEventArgs) Handles botonPrincipal.Click
-
-        GridVisibilidad(gridTiles)
-
-    End Sub
-
-    Private Sub botonConfig_Click(sender As Object, e As RoutedEventArgs) Handles botonConfig.Click
-
-        GridVisibilidad(gridConfig)
-        GridConfigVisibilidad(gridConfigApp, buttonConfigApp)
+        If Not boton Is Nothing Then
+            boton.BorderBrush = New SolidColorBrush(Colors.White)
+            boton.BorderThickness = New Thickness(0, 2, 0, 0)
+        End If
 
     End Sub
 
-    Private Async Sub botonVotar_Click(sender As Object, e As RoutedEventArgs) Handles botonVotar.Click
+    Private Sub BotonInicio_Click(sender As Object, e As RoutedEventArgs) Handles botonInicio.Click
+
+        GridVisibilidad(gridInicio, botonInicio)
+
+    End Sub
+
+    Private Sub BotonTilesSteam_Click(sender As Object, e As RoutedEventArgs) Handles botonTilesSteam.Click
+
+        GridVisibilidad(gridTilesSteam, botonTilesSteam)
+
+    End Sub
+
+    Private Sub BotonConfig_Click(sender As Object, e As RoutedEventArgs) Handles botonConfig.Click
+
+        GridVisibilidad(gridConfig, botonConfig)
+        GridConfigVisibilidad(spConfigTiles, buttonConfigTiles)
+
+    End Sub
+
+    Private Async Sub BotonInicioVotar_Click(sender As Object, e As RoutedEventArgs) Handles botonInicioVotar.Click
 
         Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
 
     End Sub
 
-    Private Sub botonCompartir_Click(sender As Object, e As RoutedEventArgs) Handles botonCompartir.Click
+    Private Sub BotonInicioCompartir_Click(sender As Object, e As RoutedEventArgs) Handles botonInicioCompartir.Click
 
         Dim datos As DataTransferManager = DataTransferManager.GetForCurrentView()
         AddHandler datos.DataRequested, AddressOf MainPage_DataRequested
@@ -104,70 +145,117 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub botonContacto_Click(sender As Object, e As RoutedEventArgs) Handles botonContacto.Click
+    Private Sub BotonInicioContacto_Click(sender As Object, e As RoutedEventArgs) Handles botonInicioContacto.Click
 
-        GridVisibilidad(gridWebContacto)
-
-    End Sub
-
-    Private Sub botonMasApps_Click(sender As Object, e As RoutedEventArgs) Handles botonMasApps.Click
-
-        GridVisibilidad(gridWeb)
+        GridVisibilidad(gridWeb, Nothing)
 
     End Sub
 
-    'AÑADIRCARPETA-----------------------------------------------------------------------------
+    Private Sub BotonInicioMasApps_Click(sender As Object, e As RoutedEventArgs) Handles botonInicioMasApps.Click
 
-    Private Sub buttonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
+        If spMasApps.Visibility = Visibility.Visible Then
+            spMasApps.Visibility = Visibility.Collapsed
+        Else
+            spMasApps.Visibility = Visibility.Visible
+        End If
 
-        Listado.Generar(True)
+    End Sub
+
+    Private Async Sub BotonAppSteamDeals_Click(sender As Object, e As RoutedEventArgs) Handles botonAppSteamDeals.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("ms-windows-store://pdp/?productid=9p7836m1tw15"))
+
+    End Sub
+
+    Private Async Sub BotonAppSteamCategories_Click(sender As Object, e As RoutedEventArgs) Handles botonAppSteamCategories.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("ms-windows-store://pdp/?productid=9p54scg1n6bm"))
+
+    End Sub
+
+    Private Async Sub BotonAppSteamBridge_Click(sender As Object, e As RoutedEventArgs) Handles botonAppSteamBridge.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("ms-windows-store://pdp/?productid=9nblggh441c9"))
+
+    End Sub
+
+    Private Async Sub BotonAppSteamSkins_Click(sender As Object, e As RoutedEventArgs) Handles botonAppSteamSkins.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("ms-windows-store://pdp/?productid=9nblggh55b7f"))
+
+    End Sub
+
+    Private Async Sub LvRSS_ItemClick(sender As Object, e As ItemClickEventArgs) Handles lvRSS.ItemClick
+
+        Dim feed As FeedRSS = e.ClickedItem
+        Await Launcher.LaunchUriAsync(feed.Enlace)
+
+    End Sub
+
+    Private Sub CbArranque_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbArranque.SelectionChanged
+
+        ApplicationData.Current.LocalSettings.Values("cbarranque") = cbArranque.SelectedIndex
+
+    End Sub
+
+    'STEAM-----------------------------------------------------------------------------
+
+    Private Sub ButtonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
+
+        Steam.Generar(True)
+
+    End Sub
+
+    Private Sub ButtonBorrarCarpetasSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonBorrarCarpetasSteam.Click
+
+        Steam.Borrar()
 
     End Sub
 
     'CBTILES-----------------------------------------------------------------------------
 
-    Private Sub cbTilesTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Checked
+    Private Sub CbTilesTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Checked
 
         ApplicationData.Current.LocalSettings.Values("titulotile") = "on"
         Config.Generar()
 
     End Sub
 
-    Private Sub cbTilesTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Unchecked
+    Private Sub CbTilesTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Unchecked
 
         ApplicationData.Current.LocalSettings.Values("titulotile") = "off"
         Config.Generar()
 
     End Sub
 
-    Private Sub cbTilesBranding_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesBranding.Checked
+    Private Sub CbTilesBranding_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesBranding.Checked
 
         ApplicationData.Current.LocalSettings.Values("logotile") = "on"
         Config.Generar()
 
     End Sub
 
-    Private Sub cbTilesBranding_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesBranding.Unchecked
+    Private Sub CbTilesBranding_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesBranding.Unchecked
 
         ApplicationData.Current.LocalSettings.Values("logotile") = "off"
         Config.Generar()
 
     End Sub
 
-    Private Sub sliderTilesOverlay_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderTilesOverlay.ValueChanged
+    Private Sub SliderTilesOverlay_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderTilesOverlay.ValueChanged
 
         ApplicationData.Current.LocalSettings.Values("overlaytile") = sliderTilesOverlay.Value
 
     End Sub
 
-    Private Sub cbTilesCirculo_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesCirculo.Checked
+    Private Sub CbTilesCirculo_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesCirculo.Checked
 
         ApplicationData.Current.LocalSettings.Values("circulotile") = "on"
         Config.Generar()
 
     End Sub
 
-    Private Sub cbTilesCirculo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesCirculo.Unchecked
+    Private Sub CbTilesCirculo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesCirculo.Unchecked
 
         ApplicationData.Current.LocalSettings.Values("circulotile") = "off"
         Config.Generar()
@@ -176,183 +264,43 @@ Public NotInheritable Class MainPage
 
     '-----------------------------------------------------------------------------
 
-    Private Async Sub gridviewTiles_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTiles.ItemClick
+    Private Sub GridViewTilesSteam_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesSteam.ItemClick
 
         Dim tile As Tile = e.ClickedItem
-
-        Dim ficheroImagen As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync("headersteam.png", CreationCollisionOption.GenerateUniqueName)
-        Dim downloader As BackgroundDownloader = New BackgroundDownloader()
-        Dim descarga As DownloadOperation = downloader.CreateDownload(tile.ImagenUri, ficheroImagen)
-        Await descarga.StartAsync
-
-        Dim nuevaTile As SecondaryTile = New SecondaryTile(tile.ID, tile.Titulo, "steam://rungameid/" + tile.ID, New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
-
-        nuevaTile.VisualElements.Wide310x150Logo = New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute)
-        nuevaTile.VisualElements.Square310x310Logo = New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute)
-
-        Await nuevaTile.RequestCreateAsync()
-
-        Dim imagen As AdaptiveImage = New AdaptiveImage
-        imagen.Source = "ms-appdata:///local/" + ficheroImagen.Name
-        imagen.HintRemoveMargin = True
-        imagen.HintAlign = AdaptiveImageAlign.Stretch
-
-        If ApplicationData.Current.LocalSettings.Values("circulotile") = "on" Then
-            imagen.HintCrop = AdaptiveImageCrop.Circle
-        Else
-            imagen.HintCrop = AdaptiveImageCrop.Default
-        End If
-
-        Dim fondoImagen As TileBackgroundImage = New TileBackgroundImage
-        fondoImagen.Source = "ms-appdata:///local/" + ficheroImagen.Name
-        fondoImagen.HintOverlay = Integer.Parse(ApplicationData.Current.LocalSettings.Values("overlaytile"))
-
-        If ApplicationData.Current.LocalSettings.Values("circulotile") = "on" Then
-            fondoImagen.HintCrop = AdaptiveImageCrop.Circle
-        Else
-            fondoImagen.HintCrop = AdaptiveImageCrop.Default
-        End If
-
-        '-----------------------
-
-        Dim contenidoWile As TileBindingContentAdaptive = New TileBindingContentAdaptive
-        contenidoWile.BackgroundImage = fondoImagen
-
-        Dim tileWide As TileBinding = New TileBinding
-        tileWide.Content = contenidoWile
-
-        '-----------------------
-
-        Dim contenidoSmall As TileBindingContentAdaptive = New TileBindingContentAdaptive
-        contenidoSmall.Children.Add(imagen)
-
-        Dim tileSmall As TileBinding = New TileBinding
-        tileSmall.Content = contenidoSmall
-
-        '-----------------------
-
-        Dim contenidoMedium As TileBindingContentAdaptive = New TileBindingContentAdaptive
-        contenidoMedium.Children.Add(imagen)
-
-        Dim tileMedium As TileBinding = New TileBinding
-        tileMedium.Content = contenidoMedium
-
-        '-----------------------
-
-        Dim contenidoLarge As TileBindingContentAdaptive = New TileBindingContentAdaptive
-        contenidoLarge.Children.Add(imagen)
-
-        Dim tileLarge As TileBinding = New TileBinding
-        tileLarge.Content = contenidoLarge
-
-        '-----------------------
-
-        If ApplicationData.Current.LocalSettings.Values("titulotile") = "on" Then
-            If ApplicationData.Current.LocalSettings.Values("logotile") = "on" Then
-                tileWide.Branding = TileBranding.NameAndLogo
-                tileSmall.Branding = TileBranding.NameAndLogo
-                tileMedium.Branding = TileBranding.NameAndLogo
-                tileLarge.Branding = TileBranding.NameAndLogo
-            Else
-                tileWide.Branding = TileBranding.Name
-                tileSmall.Branding = TileBranding.Name
-                tileMedium.Branding = TileBranding.Name
-                tileLarge.Branding = TileBranding.Name
-            End If
-        Else
-            If ApplicationData.Current.LocalSettings.Values("logotile") = "on" Then
-                tileWide.Branding = TileBranding.Logo
-                tileSmall.Branding = TileBranding.Logo
-                tileMedium.Branding = TileBranding.Logo
-                tileLarge.Branding = TileBranding.Logo
-            End If
-        End If
-
-        Dim visual As TileVisual = New TileVisual
-        visual.TileWide = tileWide
-        visual.TileSmall = tileSmall
-        visual.TileMedium = tileMedium
-        visual.TileLarge = tileLarge
-
-        Dim contenido As TileContent = New TileContent
-        contenido.Visual = visual
-
-        Dim notificacion As TileNotification = New TileNotification(contenido.GetXml)
-
-        TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.ID).Update(notificacion)
+        Tiles.Generar(tile)
 
     End Sub
 
     '-----------------------------------------------------------------------------
 
-    Private Sub GridConfigVisibilidad(grid As Grid, button As Button)
+    Private Sub GridConfigVisibilidad(panel As StackPanel, boton As Button)
 
-        buttonConfigApp.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.ColorHelper.ToColor("#e3e3e3"))
-        buttonConfigApp.BorderBrush = New SolidColorBrush(Colors.Transparent)
-        buttonConfigTiles.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.ColorHelper.ToColor("#e3e3e3"))
+        buttonConfigTiles.Background = New SolidColorBrush(Colors.SlateGray)
         buttonConfigTiles.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        buttonConfigSteam.Background = New SolidColorBrush(Colors.SlateGray)
+        buttonConfigSteam.BorderBrush = New SolidColorBrush(Colors.Transparent)
 
-        button.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.ColorHelper.ToColor("#bfbfbf"))
-        button.BorderBrush = New SolidColorBrush(Colors.Black)
+        boton.Background = New SolidColorBrush(Colors.DimGray)
+        boton.BorderBrush = New SolidColorBrush(Colors.White)
+        boton.BorderThickness = New Thickness(5, 0, 0, 0)
 
-        gridConfigApp.Visibility = Visibility.Collapsed
-        gridConfigTiles.Visibility = Visibility.Collapsed
+        spConfigTiles.Visibility = Visibility.Collapsed
+        spConfigSteam.Visibility = Visibility.Collapsed
 
-        grid.Visibility = Visibility.Visible
-
-    End Sub
-
-
-    Private Sub buttonConfigApp_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigApp.Click
-
-        GridConfigVisibilidad(gridConfigApp, buttonConfigApp)
+        panel.Visibility = Visibility.Visible
 
     End Sub
 
-    Private Sub buttonConfigTiles_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigTiles.Click
+    Private Sub ButtonConfigTiles_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigTiles.Click
 
-        GridConfigVisibilidad(gridConfigTiles, buttonConfigTiles)
-
-    End Sub
-
-    Private Sub buttonBorrarCarpetas_Click(sender As Object, e As RoutedEventArgs) Handles buttonBorrarCarpetas.Click
-
-        Listado.Borrar()
+        GridConfigVisibilidad(spConfigTiles, buttonConfigTiles)
 
     End Sub
 
-    'TWITTER-----------------------------------------------------------------------------
+    Private Sub ButtonConfigSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigSteam.Click
 
-    Private Async Sub buttonTwitter_Click(sender As Object, e As RoutedEventArgs) Handles buttonTwitter.Click
-
-        Dim boton As Button = e.OriginalSource
-        Dim enlace As Uri = boton.Tag
-
-        Await Launcher.LaunchUriAsync(enlace)
+        GridConfigVisibilidad(spConfigSteam, buttonConfigSteam)
 
     End Sub
-
-    Private Sub buttonTwitterCancelar_Click(sender As Object, e As RoutedEventArgs) Handles buttonTwitterCancelar.Click
-
-        gridTwitter.Visibility = Visibility.Collapsed
-        ApplicationData.Current.LocalSettings.Values("twitter") = "off"
-        cbTwitter.IsChecked = False
-
-    End Sub
-
-    Private Sub cbTwitter_Checked(sender As Object, e As RoutedEventArgs) Handles cbTwitter.Checked
-
-        gridTwitter.Visibility = Visibility.Visible
-        ApplicationData.Current.LocalSettings.Values("twitter") = "on"
-
-    End Sub
-
-    Private Sub cbTwitter_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTwitter.Unchecked
-
-        gridTwitter.Visibility = Visibility.Collapsed
-        ApplicationData.Current.LocalSettings.Values("twitter") = "off"
-
-    End Sub
-
 
 End Class

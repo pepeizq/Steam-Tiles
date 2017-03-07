@@ -14,7 +14,7 @@ Module Config
 
         If ApplicationData.Current.LocalSettings.Values("titulotile") = Nothing Then
             cbTitulo.IsChecked = True
-            ApplicationData.Current.LocalSettings.Values("titulotile") = "on"
+            ApplicationData.Current.LocalSettings.Values("titulotile") = "off"
         End If
 
         If ApplicationData.Current.LocalSettings.Values("logotile") = Nothing Then

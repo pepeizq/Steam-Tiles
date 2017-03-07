@@ -1,10 +1,9 @@
 ﻿Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
-Imports Windows.UI
 Imports Windows.Web.Http
 
-Module Listado
+Module Steam
 
     Dim clave As String = "carpeta35"
 
@@ -16,13 +15,13 @@ Module Listado
         Dim buttonAñadir As Button = pagina.FindName("buttonAñadirCarpetaSteam")
         buttonAñadir.IsEnabled = False
 
-        Dim buttonBorrar As Button = pagina.FindName("buttonBorrarCarpetas")
+        Dim buttonBorrar As Button = pagina.FindName("buttonBorrarCarpetasSteam")
         buttonBorrar.IsEnabled = False
 
-        Dim pr As ProgressRing = pagina.FindName("prTiles")
+        Dim pr As ProgressRing = pagina.FindName("prTilesSteam")
         pr.Visibility = Visibility.Visible
 
-        Dim gv As GridView = pagina.FindName("gridViewTiles")
+        Dim gv As GridView = pagina.FindName("gridViewTilesSteam")
 
         Dim tbCarpetas As TextBlock = pagina.FindName("tbCarpetasDetectadasSteam")
 
@@ -77,19 +76,6 @@ Module Listado
 
         If tbCarpetas.Text = Nothing Then
             tbCarpetas.Text = recursos.GetString("Ninguna")
-
-            Dim gridTiles As Grid = pagina.FindName("gridTiles")
-            gridTiles.Visibility = Visibility.Collapsed
-
-            Dim gridConfig As Grid = pagina.FindName("gridConfig")
-            gridConfig.Visibility = Visibility.Visible
-
-            Dim gridConfigApp As Grid = pagina.FindName("gridConfigApp")
-            gridConfigApp.Visibility = Visibility.Visible
-
-            Dim buttonConfigApp As Button = pagina.FindName("buttonConfigApp")
-            buttonConfigApp.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.ColorHelper.ToColor("#bfbfbf"))
-            buttonConfigApp.BorderBrush = New SolidColorBrush(Colors.Black)
         Else
             tbCarpetas.Text = tbCarpetas.Text.Trim
         End If
@@ -161,8 +147,7 @@ Module Listado
                         i = 0
                         If gv.Items.Count > 0 Then
                             While i < gv.Items.Count
-                                Dim grid As Grid = gv.Items(i)
-                                Dim tile As Tile = grid.Tag
+                                Dim tile As Tile = gv.Items(i)
 
                                 listaTemp.Add(tile.Titulo + "/*/" + tile.ID)
                                 i += 1
@@ -262,7 +247,11 @@ Module Listado
             h += 1
         End While
 
+        Dim appBarButton As AppBarButton = pagina.FindName("botonTilesSteam")
+        Dim tbNoJuegos As TextBlock = pagina.FindName("tbNoJuegosSteam")
+
         If listaFinal.Count > 0 Then
+            tbNoJuegos.Visibility = Visibility.Collapsed
             listaFinal.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
 
             gv.Items.Clear()
@@ -272,6 +261,7 @@ Module Listado
                 Toast("Steam Tiles", listaFinal.Count.ToString + " " + recursos.GetString("Juegos Detectados"))
             End If
         Else
+            tbNoJuegos.Visibility = Visibility.Visible
             If boolBuscarCarpeta = True Then
                 Toast("Steam Tiles", recursos.GetString("Fallo1"))
             End If
