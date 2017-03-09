@@ -10,7 +10,7 @@ Module Tiles
 
         Dim ficheroImagen As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync("header.png", CreationCollisionOption.GenerateUniqueName)
         Dim downloader As BackgroundDownloader = New BackgroundDownloader()
-        Dim descarga As DownloadOperation = downloader.CreateDownload(tile.ImagenUri, ficheroImagen)
+        Dim descarga As DownloadOperation = downloader.CreateDownload(tile.Imagen, ficheroImagen)
         Await descarga.StartAsync
 
         Dim nuevaTile As SecondaryTile = New SecondaryTile(tile.ID, tile.Titulo, tile.Enlace.ToString, New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
@@ -19,6 +19,21 @@ Module Tiles
         nuevaTile.VisualElements.Square310x310Logo = New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute)
 
         Await nuevaTile.RequestCreateAsync()
+
+        Dim imagenDRM As AdaptiveImage = Nothing
+
+        If ApplicationData.Current.LocalSettings.Values("logotile") = "on" Then
+            imagenDRM = New AdaptiveImage With {
+                .HintRemoveMargin = True,
+                .HintAlign = AdaptiveImageAlign.Right
+            }
+
+            If tile.Cliente = "Steam" Then
+                imagenDRM.Source = "Assets/AppList/AppList.targetsize-20.png"
+            ElseIf tile.Cliente = "Origin" Then
+                imagenDRM.Source = "Assets/origin_logo_mini.png"
+            End If
+        End If
 
         Dim imagen As AdaptiveImage = New AdaptiveImage With {
             .Source = "ms-appdata:///local/" + ficheroImagen.Name,
@@ -45,18 +60,26 @@ Module Tiles
 
         '-----------------------
 
-        Dim contenidoWile As TileBindingContentAdaptive = New TileBindingContentAdaptive With {
+        Dim contenidoWide As TileBindingContentAdaptive = New TileBindingContentAdaptive With {
             .BackgroundImage = fondoImagen
         }
 
+        If Not imagenDRM Is Nothing Then
+            contenidoWide.Children.Add(imagenDRM)
+        End If
+
         Dim tileWide As TileBinding = New TileBinding With {
-            .Content = contenidoWile
+            .Content = contenidoWide
         }
 
         '-----------------------
 
         Dim contenidoSmall As TileBindingContentAdaptive = New TileBindingContentAdaptive
         contenidoSmall.Children.Add(imagen)
+
+        If Not imagenDRM Is Nothing Then
+            contenidoSmall.Children.Add(imagenDRM)
+        End If
 
         Dim tileSmall As TileBinding = New TileBinding With {
             .Content = contenidoSmall
@@ -67,6 +90,10 @@ Module Tiles
         Dim contenidoMedium As TileBindingContentAdaptive = New TileBindingContentAdaptive
         contenidoMedium.Children.Add(imagen)
 
+        If Not imagenDRM Is Nothing Then
+            contenidoMedium.Children.Add(imagenDRM)
+        End If
+
         Dim tileMedium As TileBinding = New TileBinding With {
             .Content = contenidoMedium
         }
@@ -76,6 +103,10 @@ Module Tiles
         Dim contenidoLarge As TileBindingContentAdaptive = New TileBindingContentAdaptive
         contenidoLarge.Children.Add(imagen)
 
+        If Not imagenDRM Is Nothing Then
+            contenidoLarge.Children.Add(imagenDRM)
+        End If
+
         Dim tileLarge As TileBinding = New TileBinding With {
             .Content = contenidoLarge
         }
@@ -83,24 +114,10 @@ Module Tiles
         '-----------------------
 
         If ApplicationData.Current.LocalSettings.Values("titulotile") = "on" Then
-            If ApplicationData.Current.LocalSettings.Values("logotile") = "on" Then
-                tileWide.Branding = TileBranding.NameAndLogo
-                tileSmall.Branding = TileBranding.NameAndLogo
-                tileMedium.Branding = TileBranding.NameAndLogo
-                tileLarge.Branding = TileBranding.NameAndLogo
-            Else
-                tileWide.Branding = TileBranding.Name
-                tileSmall.Branding = TileBranding.Name
-                tileMedium.Branding = TileBranding.Name
-                tileLarge.Branding = TileBranding.Name
-            End If
-        Else
-            If ApplicationData.Current.LocalSettings.Values("logotile") = "on" Then
-                tileWide.Branding = TileBranding.Logo
-                tileSmall.Branding = TileBranding.Logo
-                tileMedium.Branding = TileBranding.Logo
-                tileLarge.Branding = TileBranding.Logo
-            End If
+            tileWide.Branding = TileBranding.Name
+            tileSmall.Branding = TileBranding.Name
+            tileMedium.Branding = TileBranding.Name
+            tileLarge.Branding = TileBranding.Name
         End If
 
         Dim visual As TileVisual = New TileVisual With {

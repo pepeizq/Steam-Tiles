@@ -35,17 +35,23 @@ Public NotInheritable Class MainPage
         tbRSS.Text = recursos.GetString("RSS")
 
         tbNoJuegosSteam.Text = recursos.GetString("No Config")
+        tbNoJuegosOrigin.Text = recursos.GetString("No Config")
+        tbSiJuegosOrigin.Text = recursos.GetString("Elegir Juego")
 
         cbTilesTitulo.Content = recursos.GetString("Tile Titulo")
         cbTilesBranding.Content = recursos.GetString("Tile Logo")
         sliderTilesOverlay.Header = recursos.GetString("Tile Overlay")
         cbTilesCirculo.Content = recursos.GetString("Tile Circulo")
 
-        tbDirectoriosSteam.Text = recursos.GetString("Directorio")
+        tbDirectoriosSteam.Text = recursos.GetString("Steam Carpetas Añadir")
         buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Añadir")
         tbCarpetasAñadidasSteam.Text = recursos.GetString("Carpetas Añadidas")
-        tbCarpetasAvisoSteam.Text = recursos.GetString("Carpetas Aviso")
+        tbCarpetasAvisoSteam.Text = recursos.GetString("Steam Carpetas Aviso")
         buttonBorrarCarpetasTextoSteam.Text = recursos.GetString("Boton Borrar")
+
+        tbOriginConfigInstrucciones.Text = recursos.GetString("Origin Carpeta Añadir")
+        buttonAñadirCarpetaOriginTexto.Text = recursos.GetString("Boton Añadir")
+        tbOriginConfigCarpeta.Text = recursos.GetString("Origin Carpeta No Config")
 
         '--------------------------------------------------------
 
@@ -66,6 +72,8 @@ Public NotInheritable Class MainPage
             ElseIf cbArranque.SelectedIndex = 1 Then
                 GridVisibilidad(gridTilesSteam, botonTilesSteam)
             ElseIf cbArranque.SelectedIndex = 2 Then
+                GridVisibilidad(gridTilesOrigin, botonTilesOrigin)
+            ElseIf cbArranque.SelectedIndex = 3 Then
                 GridVisibilidad(gridConfig, botonConfig)
             Else
                 GridVisibilidad(gridInicio, botonInicio)
@@ -77,9 +85,12 @@ Public NotInheritable Class MainPage
 
         '--------------------------------------------------------
 
-        Steam.Generar(False)
-        Config.Generar()
         RSS.Generar()
+
+        Steam.Generar(False)
+        Origin.CargarJuegos(False)
+
+        Config.Generar()
 
     End Sub
 
@@ -87,14 +98,20 @@ Public NotInheritable Class MainPage
 
         gridInicio.Visibility = Visibility.Collapsed
         gridTilesSteam.Visibility = Visibility.Collapsed
+        gridTilesOrigin.Visibility = Visibility.Collapsed
         gridConfig.Visibility = Visibility.Collapsed
         gridWeb.Visibility = Visibility.Collapsed
 
         grid.Visibility = Visibility.Visible
 
         botonInicio.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        botonInicio.BorderThickness = New Thickness(0, 0, 0, 0)
         botonTilesSteam.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        botonTilesSteam.BorderThickness = New Thickness(0, 0, 0, 0)
+        botonTilesOrigin.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        botonTilesOrigin.BorderThickness = New Thickness(0, 0, 0, 0)
         botonConfig.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        botonConfig.BorderThickness = New Thickness(0, 0, 0, 0)
 
         If Not boton Is Nothing Then
             boton.BorderBrush = New SolidColorBrush(Colors.White)
@@ -112,6 +129,12 @@ Public NotInheritable Class MainPage
     Private Sub BotonTilesSteam_Click(sender As Object, e As RoutedEventArgs) Handles botonTilesSteam.Click
 
         GridVisibilidad(gridTilesSteam, botonTilesSteam)
+
+    End Sub
+
+    Private Sub BotonTilesOrigin_Click(sender As Object, e As RoutedEventArgs) Handles botonTilesOrigin.Click
+
+        GridVisibilidad(gridTilesOrigin, botonTilesOrigin)
 
     End Sub
 
@@ -198,21 +221,70 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    'STEAM-----------------------------------------------------------------------------
+    'TILES-----------------------------------------------------------------------------
 
-    Private Sub ButtonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
+    Private Sub GridViewTilesSteam_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesSteam.ItemClick
 
-        Steam.Generar(True)
-
-    End Sub
-
-    Private Sub ButtonBorrarCarpetasSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonBorrarCarpetasSteam.Click
-
-        Steam.Borrar()
+        Dim tile As Tile = e.ClickedItem
+        Tiles.Generar(tile)
 
     End Sub
 
-    'CBTILES-----------------------------------------------------------------------------
+    Private Sub LvOriginJuegos_ItemClick(sender As Object, e As ItemClickEventArgs) Handles lvOriginJuegos.ItemClick
+
+        Dim juegoTexto As TextBlock = e.ClickedItem
+        Origin.CargarTiles(juegoTexto)
+
+    End Sub
+
+    Private Sub GridViewTilesOrigin_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesOrigin.ItemClick
+
+        Dim tile As Tile = e.ClickedItem
+        Tiles.Generar(tile)
+
+    End Sub
+
+    'CONFIG-----------------------------------------------------------------------------
+
+    Private Sub GridConfigVisibilidad(panel As StackPanel, boton As Button)
+
+        buttonConfigTiles.Background = New SolidColorBrush(Colors.SlateGray)
+        buttonConfigTiles.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        buttonConfigSteam.Background = New SolidColorBrush(Colors.SlateGray)
+        buttonConfigSteam.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        buttonConfigOrigin.Background = New SolidColorBrush(Colors.SlateGray)
+        buttonConfigOrigin.BorderBrush = New SolidColorBrush(Colors.Transparent)
+
+        boton.Background = New SolidColorBrush(Colors.DimGray)
+        boton.BorderBrush = New SolidColorBrush(Colors.White)
+
+        spConfigTiles.Visibility = Visibility.Collapsed
+        spConfigSteam.Visibility = Visibility.Collapsed
+        spConfigOrigin.Visibility = Visibility.Collapsed
+
+        panel.Visibility = Visibility.Visible
+
+    End Sub
+
+    Private Sub ButtonConfigTiles_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigTiles.Click
+
+        GridConfigVisibilidad(spConfigTiles, buttonConfigTiles)
+
+    End Sub
+
+    Private Sub ButtonConfigSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigSteam.Click
+
+        GridConfigVisibilidad(spConfigSteam, buttonConfigSteam)
+
+    End Sub
+
+    Private Sub ButtonConfigOrigin_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigOrigin.Click
+
+        GridConfigVisibilidad(spConfigOrigin, buttonConfigOrigin)
+
+    End Sub
+
+    'CONFIGTILES-----------------------------------------------------------------------------
 
     Private Sub CbTilesTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Checked
 
@@ -262,45 +334,27 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    '-----------------------------------------------------------------------------
+    'CONFIGSTEAM-----------------------------------------------------------------------------
 
-    Private Sub GridViewTilesSteam_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesSteam.ItemClick
+    Private Sub ButtonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
 
-        Dim tile As Tile = e.ClickedItem
-        Tiles.Generar(tile)
-
-    End Sub
-
-    '-----------------------------------------------------------------------------
-
-    Private Sub GridConfigVisibilidad(panel As StackPanel, boton As Button)
-
-        buttonConfigTiles.Background = New SolidColorBrush(Colors.SlateGray)
-        buttonConfigTiles.BorderBrush = New SolidColorBrush(Colors.Transparent)
-        buttonConfigSteam.Background = New SolidColorBrush(Colors.SlateGray)
-        buttonConfigSteam.BorderBrush = New SolidColorBrush(Colors.Transparent)
-
-        boton.Background = New SolidColorBrush(Colors.DimGray)
-        boton.BorderBrush = New SolidColorBrush(Colors.White)
-        boton.BorderThickness = New Thickness(5, 0, 0, 0)
-
-        spConfigTiles.Visibility = Visibility.Collapsed
-        spConfigSteam.Visibility = Visibility.Collapsed
-
-        panel.Visibility = Visibility.Visible
+        Steam.Generar(True)
 
     End Sub
 
-    Private Sub ButtonConfigTiles_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigTiles.Click
+    Private Sub ButtonBorrarCarpetasSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonBorrarCarpetasSteam.Click
 
-        GridConfigVisibilidad(spConfigTiles, buttonConfigTiles)
+        Steam.Borrar()
+
+    End Sub
+
+    'CONFIGORIGIN-----------------------------------------------------------------------------
+
+    Private Sub buttonAñadirCarpetaOrigin_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaOrigin.Click
+
+        Origin.CargarJuegos(True)
 
     End Sub
 
-    Private Sub ButtonConfigSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigSteam.Click
-
-        GridConfigVisibilidad(spConfigSteam, buttonConfigSteam)
-
-    End Sub
 
 End Class

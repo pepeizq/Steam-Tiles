@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("https://pepeizqapps.com")>
 <Assembly: AssemblyProduct("Steam Tiles")>
-<Assembly: AssemblyCopyright("Copyright © pepeizq 2016")>
+<Assembly: AssemblyCopyright("Copyright © pepeizq 2016-2017")>
 <Assembly: AssemblyTrademark("")>
 
 ' Version information for an assembly consists of the following four values:

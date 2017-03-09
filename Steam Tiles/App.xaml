@@ -1,5 +1,5 @@
 ﻿<Application
-    x:Class="Steam_Tiles_for_Windows_10.App"
+    x:Class="Steam_Tiles.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     RequestedTheme="Light">

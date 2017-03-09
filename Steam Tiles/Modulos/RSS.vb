@@ -39,8 +39,19 @@ Module RSS
             i += 1
 
             If i < 6 Then
-                Dim rss As New FeedRSS(feed.Title.Text, New Uri(feedUri))
-                listaFeeds.Add(rss)
+                Dim tituloBool As Boolean = False
+                Dim k As Integer = 0
+                While k < listaFeeds.Count
+                    If listaFeeds(k).Titulo = feed.Title.Text Then
+                        tituloBool = True
+                    End If
+                    k += 1
+                End While
+
+                If tituloBool = False Then
+                    Dim rss As New FeedRSS(feed.Title.Text, New Uri(feedUri))
+                    listaFeeds.Add(rss)
+                End If
             End If
         Next
 

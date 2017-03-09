@@ -217,25 +217,12 @@ Module Steam
                                     End While
 
                                     If tituloBool = False Then
-                                        Try
-                                            Dim imagenUri As Uri = New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
-                                            Dim client As New HttpClient
-                                            Dim response As Streams.IBuffer = Await client.GetBufferAsync(imagenUri)
-                                            Dim stream As Stream = response.AsStream
-                                            Dim mem As MemoryStream = New MemoryStream()
-                                            Await stream.CopyToAsync(mem)
-                                            mem.Position = 0
+                                        Dim imagen As Uri = New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
 
-                                            Dim bitmap As New BitmapImage
-                                            bitmap.SetSource(mem.AsRandomAccessStream)
+                                        Dim juego As New Tile(titulo, id, New Uri("steam://rungameid/" + id), imagen, "Steam", Nothing)
+                                        juego.Tile = juego
 
-                                            Dim tile As New Tile(titulo, id, New Uri("steam://rungameid/" + id), bitmap, imagenUri, Nothing)
-                                            tile.Tile = tile
-
-                                            listaFinal.Add(tile)
-                                        Catch ex As Exception
-
-                                        End Try
+                                        listaFinal.Add(juego)
                                     End If
                                 End If
                             End If
@@ -247,7 +234,6 @@ Module Steam
             h += 1
         End While
 
-        Dim appBarButton As AppBarButton = pagina.FindName("botonTilesSteam")
         Dim tbNoJuegos As TextBlock = pagina.FindName("tbNoJuegosSteam")
 
         If listaFinal.Count > 0 Then
