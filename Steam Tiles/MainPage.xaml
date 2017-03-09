@@ -173,7 +173,7 @@
                 <ListView x:Name="lvRSS" IsItemClickEnabled="True" ItemTemplate="{StaticResource FeedRSS}" BorderThickness="1,0,1,1" BorderBrush="SlateGray"/>
             </StackPanel>
 
-            <Grid Grid.Column="2" Padding="80,50,50,50">
+            <Grid Grid.Column="2" Padding="80,50">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
