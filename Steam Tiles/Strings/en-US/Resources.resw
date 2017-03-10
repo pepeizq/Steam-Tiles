@@ -120,6 +120,12 @@
   <data name="App" xml:space="preserve">
     <value>Application</value>
   </data>
+  <data name="Battlenet Carpeta Añadir" xml:space="preserve">
+    <value>Add the folder where are installed your Battle.net games (example: C:\Battle.net\Games\):</value>
+  </data>
+  <data name="Battlenet Carpeta No Config" xml:space="preserve">
+    <value>No folder added</value>
+  </data>
   <data name="Boton Añadir" xml:space="preserve">
     <value>Add Folder</value>
   </data>

@@ -7,7 +7,11 @@ Module RSS
 
     Public Sub Generar()
 
-        listaFeeds = New List(Of FeedRSS)
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        Dim listaView As ListView = pagina.FindName("lvRSS")
+        listaView.Items.Clear()
 
         bw = New BackgroundWorker With {
             .WorkerReportsProgress = True,
@@ -21,6 +25,8 @@ Module RSS
     End Sub
 
     Private Async Sub Bw_DoWork(ByVal sender As Object, ByVal e As DoWorkEventArgs) Handles bw.DoWork
+
+        listaFeeds = New List(Of FeedRSS)
 
         Dim cliente As SyndicationClient = New SyndicationClient
         Dim enlace As Uri = New Uri("https://pepeizqapps.com/feed/")

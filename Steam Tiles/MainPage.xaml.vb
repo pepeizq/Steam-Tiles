@@ -37,6 +37,8 @@ Public NotInheritable Class MainPage
         tbNoJuegosSteam.Text = recursos.GetString("No Config")
         tbNoJuegosOrigin.Text = recursos.GetString("No Config")
         tbSiJuegosOrigin.Text = recursos.GetString("Elegir Juego")
+        tbNoJuegosBattlenet.Text = recursos.GetString("No Config")
+        tbSiJuegosBattlenet.Text = recursos.GetString("Elegir Juego")
 
         cbTilesTitulo.Content = recursos.GetString("Tile Titulo")
         cbTilesBranding.Content = recursos.GetString("Tile Logo")
@@ -52,6 +54,10 @@ Public NotInheritable Class MainPage
         tbOriginConfigInstrucciones.Text = recursos.GetString("Origin Carpeta Añadir")
         buttonAñadirCarpetaOriginTexto.Text = recursos.GetString("Boton Añadir")
         tbOriginConfigCarpeta.Text = recursos.GetString("Origin Carpeta No Config")
+
+        tbBattlenetConfigInstrucciones.Text = recursos.GetString("Battlenet Carpeta Añadir")
+        buttonAñadirCarpetaBattlenetTexto.Text = recursos.GetString("Boton Añadir")
+        tbBattlenetConfigCarpeta.Text = recursos.GetString("Battlenet Carpeta No Config")
 
         '--------------------------------------------------------
 
@@ -74,6 +80,8 @@ Public NotInheritable Class MainPage
             ElseIf cbArranque.SelectedIndex = 2 Then
                 GridVisibilidad(gridTilesOrigin, botonTilesOrigin)
             ElseIf cbArranque.SelectedIndex = 3 Then
+                GridVisibilidad(gridTilesBattlenet, botonTilesBattlenet)
+            ElseIf cbArranque.SelectedIndex = 4 Then
                 GridVisibilidad(gridConfig, botonConfig)
             Else
                 GridVisibilidad(gridInicio, botonInicio)
@@ -89,6 +97,7 @@ Public NotInheritable Class MainPage
 
         Steam.Generar(False)
         Origin.CargarJuegos(False)
+        Battlenet.CargarJuegos(False)
 
         Config.Generar()
 
@@ -99,6 +108,7 @@ Public NotInheritable Class MainPage
         gridInicio.Visibility = Visibility.Collapsed
         gridTilesSteam.Visibility = Visibility.Collapsed
         gridTilesOrigin.Visibility = Visibility.Collapsed
+        gridTilesBattlenet.Visibility = Visibility.Collapsed
         gridConfig.Visibility = Visibility.Collapsed
         gridWeb.Visibility = Visibility.Collapsed
 
@@ -110,6 +120,8 @@ Public NotInheritable Class MainPage
         botonTilesSteam.BorderThickness = New Thickness(0, 0, 0, 0)
         botonTilesOrigin.BorderBrush = New SolidColorBrush(Colors.Transparent)
         botonTilesOrigin.BorderThickness = New Thickness(0, 0, 0, 0)
+        botonTilesBattlenet.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        botonTilesBattlenet.BorderThickness = New Thickness(0, 0, 0, 0)
         botonConfig.BorderBrush = New SolidColorBrush(Colors.Transparent)
         botonConfig.BorderThickness = New Thickness(0, 0, 0, 0)
 
@@ -135,6 +147,12 @@ Public NotInheritable Class MainPage
     Private Sub BotonTilesOrigin_Click(sender As Object, e As RoutedEventArgs) Handles botonTilesOrigin.Click
 
         GridVisibilidad(gridTilesOrigin, botonTilesOrigin)
+
+    End Sub
+
+    Private Sub BotonTilesBattlenet_Click(sender As Object, e As RoutedEventArgs) Handles botonTilesBattlenet.Click
+
+        GridVisibilidad(gridTilesBattlenet, botonTilesBattlenet)
 
     End Sub
 
@@ -233,11 +251,25 @@ Public NotInheritable Class MainPage
     Private Sub LvOriginJuegos_ItemClick(sender As Object, e As ItemClickEventArgs) Handles lvOriginJuegos.ItemClick
 
         Dim juegoTexto As TextBlock = e.ClickedItem
-        Origin.CargarTiles(juegoTexto)
+        Buscador.CargarTiles(juegoTexto, "Origin")
 
     End Sub
 
     Private Sub GridViewTilesOrigin_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesOrigin.ItemClick
+
+        Dim tile As Tile = e.ClickedItem
+        Tiles.Generar(tile)
+
+    End Sub
+
+    Private Sub LvBattlenetJuegos_ItemClick(sender As Object, e As ItemClickEventArgs) Handles lvBattlenetJuegos.ItemClick
+
+        Dim juegoTexto As TextBlock = e.ClickedItem
+        Buscador.CargarTiles(juegoTexto, "Battlenet")
+
+    End Sub
+
+    Private Sub GridViewTilesBattlenet_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesBattlenet.ItemClick
 
         Dim tile As Tile = e.ClickedItem
         Tiles.Generar(tile)
@@ -254,6 +286,8 @@ Public NotInheritable Class MainPage
         buttonConfigSteam.BorderBrush = New SolidColorBrush(Colors.Transparent)
         buttonConfigOrigin.Background = New SolidColorBrush(Colors.SlateGray)
         buttonConfigOrigin.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        buttonConfigBattlenet.Background = New SolidColorBrush(Colors.SlateGray)
+        buttonConfigBattlenet.BorderBrush = New SolidColorBrush(Colors.Transparent)
 
         boton.Background = New SolidColorBrush(Colors.DimGray)
         boton.BorderBrush = New SolidColorBrush(Colors.White)
@@ -261,6 +295,7 @@ Public NotInheritable Class MainPage
         spConfigTiles.Visibility = Visibility.Collapsed
         spConfigSteam.Visibility = Visibility.Collapsed
         spConfigOrigin.Visibility = Visibility.Collapsed
+        spConfigBattlenet.Visibility = Visibility.Collapsed
 
         panel.Visibility = Visibility.Visible
 
@@ -281,6 +316,12 @@ Public NotInheritable Class MainPage
     Private Sub ButtonConfigOrigin_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigOrigin.Click
 
         GridConfigVisibilidad(spConfigOrigin, buttonConfigOrigin)
+
+    End Sub
+
+    Private Sub ButtonConfigBattlenet_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigBattlenet.Click
+
+        GridConfigVisibilidad(spConfigBattlenet, buttonConfigBattlenet)
 
     End Sub
 
@@ -350,11 +391,18 @@ Public NotInheritable Class MainPage
 
     'CONFIGORIGIN-----------------------------------------------------------------------------
 
-    Private Sub buttonAñadirCarpetaOrigin_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaOrigin.Click
+    Private Sub ButtonAñadirCarpetaOrigin_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaOrigin.Click
 
         Origin.CargarJuegos(True)
 
     End Sub
 
+    'CONFIGBATTLENET-----------------------------------------------------------------------------
+
+    Private Sub ButtonAñadirCarpetaBattlenet_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaBattlenet.Click
+
+        Battlenet.CargarJuegos(True)
+
+    End Sub
 
 End Class

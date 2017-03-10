@@ -29,9 +29,11 @@ Module Tiles
             }
 
             If tile.Cliente = "Steam" Then
-                imagenDRM.Source = "Assets/AppList/AppList.targetsize-20.png"
+                imagenDRM.Source = "Assets/AppList/AppList.targetsize-16.png"
             ElseIf tile.Cliente = "Origin" Then
                 imagenDRM.Source = "Assets/origin_logo_mini.png"
+            ElseIf tile.Cliente = "Battle.net" Then
+                imagenDRM.Source = "Assets/battlenet_logo_mini.png"
             End If
         End If
 

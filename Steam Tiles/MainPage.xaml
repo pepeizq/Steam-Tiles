@@ -43,6 +43,14 @@
                         </StackPanel>
                     </AppBarButton.Content>
                 </AppBarButton>
+                <AppBarButton x:Name="botonTilesBattlenet" Foreground="White">
+                    <AppBarButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:ImageEx Margin="5,0,10,0" Source="Assets\battlenet_logo.png" Width="20" Height="20"/>
+                            <TextBlock Text="Battle.net" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </AppBarButton.Content>
+                </AppBarButton>
                 <AppBarButton x:Name="botonConfig" Foreground="White">
                     <AppBarButton.Content>
                         <StackPanel Orientation="Horizontal">
@@ -73,10 +81,6 @@
                 <TextBlock Text="{Binding Titulo}" TextWrapping="Wrap" />
             </Grid>
         </DataTemplate>
-
-        <Style x:Key="EllipsisButton" TargetType="Button">
-            <Setter Property="Visibility" Value="Collapsed"/>
-        </Style>
     </Page.Resources>
 
     <Grid Background="#FFF0F0F0">
@@ -200,6 +204,7 @@
                         <ComboBoxItem x:Name="cbItemArranqueInicio"/>
                         <ComboBoxItem Content="Steam"/>
                         <ComboBoxItem Content="Origin"/>
+                        <ComboBoxItem Content="Battle.net"/>
                         <ComboBoxItem x:Name="cbItemArranqueConfig"/>
                     </ComboBox> 
                 </StackPanel>
@@ -253,6 +258,30 @@
             <ProgressRing x:Name="prTilesOrigin" Grid.Column="1" Visibility="Collapsed" IsActive="True" Height="48" Width="48"/>
         </Grid>
 
+        <Grid x:Name="gridTilesBattlenet" Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="0" Padding="10,10,20,10" Background="SlateGray">
+                <ListView x:Name="lvBattlenetJuegos" IsItemClickEnabled="True"/>
+            </ScrollViewer>
+
+            <controls:AdaptiveGridView x:Name="gridViewTilesBattlenet" Grid.Column="1" ItemTemplate="{StaticResource Tile}" IsItemClickEnabled="True" Padding="10" DesiredWidth="310" ItemHeight="150" animations:ReorderGridAnimation.Duration="250">
+                <GridView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <wrapPanel:WrapPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </GridView.ItemsPanel>
+            </controls:AdaptiveGridView>
+
+            <TextBlock x:Name="tbNoJuegosBattlenet" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
+            <TextBlock x:Name="tbSiJuegosBattlenet" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
+
+            <ProgressRing x:Name="prTilesBattlenet" Grid.Column="1" Visibility="Collapsed" IsActive="True" Height="48" Width="48"/>
+        </Grid> 
+
         <Grid x:Name="gridConfig" Visibility="Collapsed" Background="SlateGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -282,6 +311,14 @@
                         <StackPanel Orientation="Horizontal">
                             <controls:ImageEx Margin="10,0" Source="Assets\origin_logo.png" Width="20" Height="20"/>
                             <TextBlock Text="Origin"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="buttonConfigBattlenet" Width="160" Padding="10,15" Background="DimGray" Foreground="White" HorizontalContentAlignment="Left" BorderThickness="5,0,0,0">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:ImageEx Margin="10,0" Source="Assets\battlenet_logo.png" Width="20" Height="20"/>
+                            <TextBlock Text="Battle.net"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -356,6 +393,28 @@
                         </Button>
                         <AppBarSeparator Grid.Column="1" VerticalAlignment="Center" />
                         <TextBlock x:Name="tbOriginConfigCarpeta" Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel x:Name="spConfigBattlenet" Visibility="Collapsed" Orientation="Vertical">
+                    <TextBlock FontSize="23" Margin="5,0,0,15" Text="Battle.net"/>
+                    <Border BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,25" Width="300" HorizontalAlignment="Left"/>
+                    <TextBlock x:Name="tbBattlenetConfigInstrucciones" Margin="5" TextWrapping="Wrap"/>
+                    <Grid Grid.Row="1" Margin="0,5,5,15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="buttonAñadirCarpetaBattlenet" Grid.Column="0" Padding="10" Background="#FFE4E4E4" Margin="0,5" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal" >
+                                <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="buttonAñadirCarpetaBattlenetTexto"/>
+                            </StackPanel>
+                        </Button>
+                        <AppBarSeparator Grid.Column="1" VerticalAlignment="Center" />
+                        <TextBlock x:Name="tbBattlenetConfigCarpeta" Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center"/>
                     </Grid>
                 </StackPanel> 
 

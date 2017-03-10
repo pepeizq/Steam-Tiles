@@ -7,7 +7,7 @@
     <ProjectGuid>{C28ED237-7935-424B-BB09-B1FE9CA3DB23}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <RootNamespace>Steam_Tiles</RootNamespace>
-    <AssemblyName>Steam Tiles Beta</AssemblyName>
+    <AssemblyName>Steam Tiles</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
@@ -110,7 +110,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="project.json" />
-    <None Include="Steam Tiles_TemporaryKey.pfx" />
+    <None Include="Steam Tiles_TemporaryKey2.pfx" />
     <PRIResource Include="Strings\es-ES\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
@@ -120,6 +120,8 @@
     </Compile>
     <Compile Include="Clases\Tile.vb" />
     <Compile Include="Clases\FeedRSS.vb" />
+    <Compile Include="Modulos\Buscador.vb" />
+    <Compile Include="Modulos\Clientes\Battlenet.vb" />
     <Compile Include="Modulos\Clientes\Origin.vb" />
     <Compile Include="Modulos\Config.vb" />
     <Compile Include="Modulos\Decompiladores.vb" />
@@ -138,6 +140,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\battlenet_logo_mini.png" />
+    <Content Include="Assets\battlenet_logo.png" />
     <Content Include="Assets\origin_logo_mini.png" />
     <Content Include="Assets\AppList\AppList.scale-100.png" />
     <Content Include="Assets\AppList\AppList.scale-125.png" />
