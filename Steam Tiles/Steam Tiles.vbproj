@@ -110,7 +110,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="project.json" />
-    <None Include="Steam Tiles_TemporaryKey2.pfx" />
+    <None Include="Steam Tiles_TemporaryKey.pfx" />
     <PRIResource Include="Strings\es-ES\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
   </ItemGroup>
@@ -122,6 +122,7 @@
     <Compile Include="Clases\FeedRSS.vb" />
     <Compile Include="Modulos\Buscador.vb" />
     <Compile Include="Modulos\Clientes\Battlenet.vb" />
+    <Compile Include="Modulos\Clientes\GOGGalaxy.vb" />
     <Compile Include="Modulos\Clientes\Origin.vb" />
     <Compile Include="Modulos\Config.vb" />
     <Compile Include="Modulos\Decompiladores.vb" />
@@ -140,8 +141,13 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\steam_logo.png" />
+    <Content Include="Assets\battlenet_logo_mini2.png" />
+    <Content Include="Assets\gog_logo_mini.png" />
+    <Content Include="Assets\gog_logo.png" />
     <Content Include="Assets\battlenet_logo_mini.png" />
     <Content Include="Assets\battlenet_logo.png" />
+    <Content Include="Assets\gog_logo_mini2.png" />
     <Content Include="Assets\origin_logo_mini.png" />
     <Content Include="Assets\AppList\AppList.scale-100.png" />
     <Content Include="Assets\AppList\AppList.scale-125.png" />
@@ -192,6 +198,7 @@
     <Content Include="Assets\Medium\Medium150x150Logo.scale-150.png" />
     <Content Include="Assets\Medium\Medium150x150Logo.scale-200.png" />
     <Content Include="Assets\Medium\Medium150x150Logo.scale-400.png" />
+    <Content Include="Assets\origin_logo_mini2.png" />
     <Content Include="Assets\rss_logo.png" />
     <Content Include="Assets\Small\Small71x71Logo.scale-100.png" />
     <Content Include="Assets\Small\Small71x71Logo.scale-125.png" />
@@ -203,6 +210,7 @@
     <Content Include="Assets\SplashScreen\SplashScreen.scale-150.png" />
     <Content Include="Assets\SplashScreen\SplashScreen.scale-200.png" />
     <Content Include="Assets\SplashScreen\SplashScreen.scale-400.png" />
+    <Content Include="Assets\steam_logo_mini2.png" />
     <Content Include="Assets\steam_logo.svg" />
     <Content Include="Assets\Store\StoreLogo.scale-100.png" />
     <Content Include="Assets\Store\StoreLogo.scale-125.png" />

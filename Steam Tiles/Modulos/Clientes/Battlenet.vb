@@ -16,6 +16,8 @@ Module Battlenet
 
         Dim botonCarpetaTexto As TextBlock = pagina.FindName("tbBattlenetConfigCarpeta")
 
+        Dim lvJuegos As ListView = pagina.FindName("lvBattlenetJuegos")
+
         Dim carpeta As StorageFolder = Nothing
 
         Try
@@ -126,7 +128,6 @@ Module Battlenet
                                      .Foreground = New SolidColorBrush(Colors.White)
                                     }
 
-                                Dim lvJuegos As ListView = pagina.FindName("lvBattlenetJuegos")
                                 lvJuegos.Items.Add(texto)
                             End If
                         End If
@@ -141,9 +142,11 @@ Module Battlenet
         If listaJuegos.Count > 0 Then
             tbSiJuegos.Visibility = Visibility.Visible
             tbNoJuegos.Visibility = Visibility.Collapsed
+            lvJuegos.Visibility = Visibility.Visible
         Else
             tbSiJuegos.Visibility = Visibility.Collapsed
             tbNoJuegos.Visibility = Visibility.Visible
+            lvJuegos.Visibility = Visibility.Collapsed
         End If
 
     End Sub

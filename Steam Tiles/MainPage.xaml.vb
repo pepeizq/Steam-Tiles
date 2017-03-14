@@ -39,9 +39,12 @@ Public NotInheritable Class MainPage
         tbSiJuegosOrigin.Text = recursos.GetString("Elegir Juego")
         tbNoJuegosBattlenet.Text = recursos.GetString("No Config")
         tbSiJuegosBattlenet.Text = recursos.GetString("Elegir Juego")
+        tbNoJuegosGOGGalaxy.Text = recursos.GetString("No Config")
 
         cbTilesTitulo.Content = recursos.GetString("Tile Titulo")
-        cbTilesBranding.Content = recursos.GetString("Tile Logo")
+        cbTilesLogos.Content = recursos.GetString("Tile Logo")
+        rbTipoLogoTexto1.Text = recursos.GetString("Tile Logo Tipo 1")
+        rbTipoLogoTexto2.Text = recursos.GetString("Tile Logo Tipo 2")
         sliderTilesOverlay.Header = recursos.GetString("Tile Overlay")
         cbTilesCirculo.Content = recursos.GetString("Tile Circulo")
 
@@ -58,6 +61,12 @@ Public NotInheritable Class MainPage
         tbBattlenetConfigInstrucciones.Text = recursos.GetString("Battlenet Carpeta Añadir")
         buttonAñadirCarpetaBattlenetTexto.Text = recursos.GetString("Boton Añadir")
         tbBattlenetConfigCarpeta.Text = recursos.GetString("Battlenet Carpeta No Config")
+
+        tbGOGGalaxyCarpetaInstrucciones.Text = recursos.GetString("GOGGalaxy Carpetas Añadir")
+        buttonAñadirCarpetaGOGGalaxyTexto.Text = recursos.GetString("Boton Añadir")
+        tbCarpetasAñadidasGOGGalaxy.Text = recursos.GetString("Carpetas Añadidas")
+        tbCarpetaAvisoGOGGalaxy.Text = recursos.GetString("GOGGalaxy Carpetas Aviso")
+        buttonBorrarCarpetasGOGGalaxyTexto.Text = recursos.GetString("Boton Borrar")
 
         '--------------------------------------------------------
 
@@ -82,6 +91,8 @@ Public NotInheritable Class MainPage
             ElseIf cbArranque.SelectedIndex = 3 Then
                 GridVisibilidad(gridTilesBattlenet, botonTilesBattlenet)
             ElseIf cbArranque.SelectedIndex = 4 Then
+                GridVisibilidad(gridTilesGOGGalaxy, botonTilesGOGGalaxy)
+            ElseIf cbArranque.SelectedIndex = 5 Then
                 GridVisibilidad(gridConfig, botonConfig)
             Else
                 GridVisibilidad(gridInicio, botonInicio)
@@ -98,6 +109,7 @@ Public NotInheritable Class MainPage
         Steam.Generar(False)
         Origin.CargarJuegos(False)
         Battlenet.CargarJuegos(False)
+        GOGGalaxy.Generar(False)
 
         Config.Generar()
 
@@ -109,6 +121,7 @@ Public NotInheritable Class MainPage
         gridTilesSteam.Visibility = Visibility.Collapsed
         gridTilesOrigin.Visibility = Visibility.Collapsed
         gridTilesBattlenet.Visibility = Visibility.Collapsed
+        gridTilesGOGGalaxy.Visibility = Visibility.Collapsed
         gridConfig.Visibility = Visibility.Collapsed
         gridWeb.Visibility = Visibility.Collapsed
 
@@ -122,6 +135,8 @@ Public NotInheritable Class MainPage
         botonTilesOrigin.BorderThickness = New Thickness(0, 0, 0, 0)
         botonTilesBattlenet.BorderBrush = New SolidColorBrush(Colors.Transparent)
         botonTilesBattlenet.BorderThickness = New Thickness(0, 0, 0, 0)
+        botonTilesGOGGalaxy.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        botonTilesGOGGalaxy.BorderThickness = New Thickness(0, 0, 0, 0)
         botonConfig.BorderBrush = New SolidColorBrush(Colors.Transparent)
         botonConfig.BorderThickness = New Thickness(0, 0, 0, 0)
 
@@ -153,6 +168,12 @@ Public NotInheritable Class MainPage
     Private Sub BotonTilesBattlenet_Click(sender As Object, e As RoutedEventArgs) Handles botonTilesBattlenet.Click
 
         GridVisibilidad(gridTilesBattlenet, botonTilesBattlenet)
+
+    End Sub
+
+    Private Sub BotonTilesGOGGalaxy_Click(sender As Object, e As RoutedEventArgs) Handles botonTilesGOGGalaxy.Click
+
+        GridVisibilidad(gridTilesGOGGalaxy, botonTilesGOGGalaxy)
 
     End Sub
 
@@ -276,6 +297,13 @@ Public NotInheritable Class MainPage
 
     End Sub
 
+    Private Sub GridViewTilesGOGGalaxy_ItemClick(sender As Object, e As ItemClickEventArgs) Handles gridViewTilesGOGGalaxy.ItemClick
+
+        Dim tile As Tile = e.ClickedItem
+        Tiles.Generar(tile)
+
+    End Sub
+
     'CONFIG-----------------------------------------------------------------------------
 
     Private Sub GridConfigVisibilidad(panel As StackPanel, boton As Button)
@@ -288,6 +316,8 @@ Public NotInheritable Class MainPage
         buttonConfigOrigin.BorderBrush = New SolidColorBrush(Colors.Transparent)
         buttonConfigBattlenet.Background = New SolidColorBrush(Colors.SlateGray)
         buttonConfigBattlenet.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        buttonConfigGOGGalaxy.Background = New SolidColorBrush(Colors.SlateGray)
+        buttonConfigGOGGalaxy.BorderBrush = New SolidColorBrush(Colors.Transparent)
 
         boton.Background = New SolidColorBrush(Colors.DimGray)
         boton.BorderBrush = New SolidColorBrush(Colors.White)
@@ -296,6 +326,7 @@ Public NotInheritable Class MainPage
         spConfigSteam.Visibility = Visibility.Collapsed
         spConfigOrigin.Visibility = Visibility.Collapsed
         spConfigBattlenet.Visibility = Visibility.Collapsed
+        spConfigGOGGalaxy.Visibility = Visibility.Collapsed
 
         panel.Visibility = Visibility.Visible
 
@@ -325,6 +356,12 @@ Public NotInheritable Class MainPage
 
     End Sub
 
+    Private Sub ButtonConfigGOGGalaxy_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigGOGGalaxy.Click
+
+        GridConfigVisibilidad(spConfigGOGGalaxy, buttonConfigGOGGalaxy)
+
+    End Sub
+
     'CONFIGTILES-----------------------------------------------------------------------------
 
     Private Sub CbTilesTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Checked
@@ -341,16 +378,44 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub CbTilesBranding_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesBranding.Checked
+    Private Sub CbTilesLogos_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesLogos.Checked
 
         ApplicationData.Current.LocalSettings.Values("logotile") = "on"
         Config.Generar()
 
     End Sub
 
-    Private Sub CbTilesBranding_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesBranding.Unchecked
+    Private Sub CbTilesLogos_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesLogos.Unchecked
 
         ApplicationData.Current.LocalSettings.Values("logotile") = "off"
+        Config.Generar()
+
+    End Sub
+
+    Private Sub RbTipoLogos1_Checked(sender As Object, e As RoutedEventArgs) Handles rbTipoLogos1.Checked
+
+        ApplicationData.Current.LocalSettings.Values("logotile1") = "on"
+        Config.Generar()
+
+    End Sub
+
+    Private Sub RbTipoLogos1_Unchecked(sender As Object, e As RoutedEventArgs) Handles rbTipoLogos1.Unchecked
+
+        ApplicationData.Current.LocalSettings.Values("logotile1") = "off"
+        Config.Generar()
+
+    End Sub
+
+    Private Sub RbTipoLogos2_Checked(sender As Object, e As RoutedEventArgs) Handles rbTipoLogos2.Checked
+
+        ApplicationData.Current.LocalSettings.Values("logotile2") = "on"
+        Config.Generar()
+
+    End Sub
+
+    Private Sub RbTipoLogos2_Unchecked(sender As Object, e As RoutedEventArgs) Handles rbTipoLogos2.Unchecked
+
+        ApplicationData.Current.LocalSettings.Values("logotile2") = "off"
         Config.Generar()
 
     End Sub
@@ -404,5 +469,20 @@ Public NotInheritable Class MainPage
         Battlenet.CargarJuegos(True)
 
     End Sub
+
+    'CONFIGGOGGALAXY-----------------------------------------------------------------------------
+
+    Private Sub ButtonAñadirCarpetaGOGGalaxy_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaGOGGalaxy.Click
+
+        GOGGalaxy.Generar(True)
+
+    End Sub
+
+    Private Sub ButtonBorrarCarpetasGOGGalaxy_Click(sender As Object, e As RoutedEventArgs) Handles buttonBorrarCarpetasGOGGalaxy.Click
+
+        GOGGalaxy.Borrar()
+
+    End Sub
+
 
 End Class

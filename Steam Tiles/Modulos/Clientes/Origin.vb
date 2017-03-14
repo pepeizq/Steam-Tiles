@@ -16,6 +16,8 @@ Module Origin
 
         Dim botonCarpetaTexto As TextBlock = pagina.FindName("tbOriginConfigCarpeta")
 
+        Dim lvJuegos As ListView = pagina.FindName("lvOriginJuegos")
+
         Dim carpeta As StorageFolder = Nothing
 
         Try
@@ -83,7 +85,6 @@ Module Origin
                                      .Foreground = New SolidColorBrush(Colors.White)
                                     }
 
-                                Dim lvJuegos As ListView = pagina.FindName("lvOriginJuegos")
                                 lvJuegos.Items.Add(texto)
                             End If
                         End If
@@ -98,9 +99,11 @@ Module Origin
         If listaJuegos.Count > 0 Then
             tbSiJuegos.Visibility = Visibility.Visible
             tbNoJuegos.Visibility = Visibility.Collapsed
+            lvJuegos.Visibility = Visibility.Visible
         Else
             tbSiJuegos.Visibility = Visibility.Collapsed
             tbNoJuegos.Visibility = Visibility.Visible
+            lvJuegos.Visibility = Visibility.Collapsed
         End If
 
     End Sub

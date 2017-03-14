@@ -28,12 +28,28 @@ Module Tiles
                 .HintAlign = AdaptiveImageAlign.Right
             }
 
-            If tile.Cliente = "Steam" Then
-                imagenDRM.Source = "Assets/AppList/AppList.targetsize-16.png"
-            ElseIf tile.Cliente = "Origin" Then
-                imagenDRM.Source = "Assets/origin_logo_mini.png"
-            ElseIf tile.Cliente = "Battle.net" Then
-                imagenDRM.Source = "Assets/battlenet_logo_mini.png"
+            If ApplicationData.Current.LocalSettings.Values("logotile1") = "on" Then
+                If tile.Cliente = "Steam" Then
+                    imagenDRM.Source = "Assets/AppList/AppList.targetsize-16.png"
+                ElseIf tile.Cliente = "Origin" Then
+                    imagenDRM.Source = "Assets/origin_logo_mini.png"
+                ElseIf tile.Cliente = "Battle.net" Then
+                    imagenDRM.Source = "Assets/battlenet_logo_mini.png"
+                ElseIf tile.Cliente = "GOG Galaxy" Then
+                    imagenDRM.Source = "Assets/gog_logo_mini.png"
+                End If
+            End If
+
+            If ApplicationData.Current.LocalSettings.Values("logotile2") = "on" Then
+                If tile.Cliente = "Steam" Then
+                    imagenDRM.Source = "Assets/steam_logo_mini2.png"
+                ElseIf tile.Cliente = "Origin" Then
+                    imagenDRM.Source = "Assets/origin_logo_mini2.png"
+                ElseIf tile.Cliente = "Battle.net" Then
+                    imagenDRM.Source = "Assets/battlenet_logo_mini2.png"
+                ElseIf tile.Cliente = "GOG Galaxy" Then
+                    imagenDRM.Source = "Assets/gog_logo_mini2.png"
+                End If
             End If
         End If
 
