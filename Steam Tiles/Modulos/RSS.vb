@@ -64,8 +64,10 @@ Module RSS
                     Dim tituloBool As Boolean = False
                     Dim k As Integer = 0
                     While k < listaFeeds.Count
-                        If listaFeeds(k).Enlace.AbsolutePath = feedUri Then
-                            tituloBool = True
+                        If Not listaFeeds(k).Enlace.AbsolutePath = Nothing Then
+                            If listaFeeds(k).Enlace.AbsolutePath = feedUri Then
+                                tituloBool = True
+                            End If
                         End If
                         k += 1
                     End While
@@ -73,8 +75,10 @@ Module RSS
                     If Not listaFeedsView Is Nothing Then
                         k = 0
                         While k < listaFeedsView.Count
-                            If listaFeedsView(k).Enlace.AbsolutePath = feedUri Then
-                                tituloBool = True
+                            If Not listaFeedsView(k).Enlace.AbsolutePath = Nothing Then
+                                If listaFeedsView(k).Enlace.AbsolutePath = feedUri Then
+                                    tituloBool = True
+                                End If
                             End If
                             k += 1
                         End While
