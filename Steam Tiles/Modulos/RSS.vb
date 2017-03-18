@@ -3,7 +3,6 @@
 Module RSS
 
     Dim listaFeeds As List(Of FeedRSS)
-    Dim listaFeedsView As List(Of FeedRSS)
     Dim WithEvents bw As New BackgroundWorker
 
     Public Sub Generar()
@@ -14,15 +13,11 @@ Module RSS
         Dim listaView As ListView = pagina.FindName("lvRSS")
 
         Try
+            listaView.ItemsSource = Nothing
             listaView.Items.Clear()
         Catch ex As Exception
 
         End Try
-
-        If listaView.Items.Count > 0 Then
-            listaFeedsView = New List(Of FeedRSS)
-            listaFeedsView = listaView.ItemsSource
-        End If
 
         bw.WorkerReportsProgress = True
         bw.WorkerSupportsCancellation = True
@@ -41,7 +36,6 @@ Module RSS
         Dim enlace As Uri = New Uri("https://pepeizqapps.com/feed/")
 
         cliente.SetRequestHeader("User-Agent", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)")
-        cliente.BypassCacheOnRetrieve = True
 
         Dim feeds As SyndicationFeed = New SyndicationFeed
 
@@ -64,31 +58,21 @@ Module RSS
                     Dim tituloBool As Boolean = False
                     Dim k As Integer = 0
                     While k < listaFeeds.Count
-                        If Not listaFeeds(k).Enlace.AbsolutePath = Nothing Then
-                            If listaFeeds(k).Enlace.AbsolutePath = feedUri Then
-                                tituloBool = True
+                        If feed.Title.Text.Trim = Nothing Then
+                            tituloBool = True
+                        Else
+                            If Not listaFeeds(k).Titulo = Nothing Then
+                                If listaFeeds(k).Titulo.Trim = feed.Title.Text.Trim Then
+                                    tituloBool = True
+                                End If
                             End If
                         End If
                         k += 1
                     End While
 
-                    If Not listaFeedsView Is Nothing Then
-                        k = 0
-                        While k < listaFeedsView.Count
-                            If Not listaFeedsView(k).Enlace.AbsolutePath = Nothing Then
-                                If listaFeedsView(k).Enlace.AbsolutePath = feedUri Then
-                                    tituloBool = True
-                                End If
-                            End If
-                            k += 1
-                        End While
-                    End If
-
                     If tituloBool = False Then
-                        If Not feed.Title.Text.Trim = Nothing Then
-                            Dim rss As New FeedRSS(feed.Title.Text.Trim, New Uri(feedUri))
-                            listaFeeds.Add(rss)
-                        End If
+                        Dim rss As New FeedRSS(feed.Title.Text.Trim, New Uri(feedUri))
+                        listaFeeds.Add(rss)
                     End If
                 End If
             Next

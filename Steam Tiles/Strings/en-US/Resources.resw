@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -175,7 +175,7 @@
     <value>Add your GOG Galaxy folder following this example: C:\GalaxyClient\Games</value>
   </data>
   <data name="Grid Arranque" xml:space="preserve">
-    <value>Select window to start</value>
+    <value>Select window where start</value>
   </data>
   <data name="Juegos Detectados" xml:space="preserve">
     <value>games detected</value>
