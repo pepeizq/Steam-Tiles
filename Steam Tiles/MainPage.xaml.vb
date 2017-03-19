@@ -7,7 +7,7 @@ Imports Windows.UI
 Public NotInheritable Class MainPage
     Inherits Page
 
-    Private Sub Page_Loaded(sender As FrameworkElement, args As Object)
+    Private Async Sub Page_Loaded(sender As FrameworkElement, args As Object)
 
         Dim barra As ApplicationViewTitleBar = ApplicationView.GetForCurrentView().TitleBar
 

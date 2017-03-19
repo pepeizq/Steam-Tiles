@@ -45,32 +45,39 @@ Module RSS
 
         End Try
 
-        Dim i As Integer = 0
-
         If feeds.Items.Count > 0 Then
             For Each feed In feeds.Items
-                Dim feedUri As String = feed.CommentsUri.ToString
-                feedUri = feedUri.Replace("#respond", Nothing)
+                Dim tituloBool As Boolean = False
 
-                i += 1
+                Dim feedUri As String = Nothing
 
-                If i < 6 Then
-                    Dim tituloBool As Boolean = False
-                    Dim k As Integer = 0
-                    While k < listaFeeds.Count
-                        If feed.Title.Text.Trim = Nothing Then
-                            tituloBool = True
-                        Else
-                            If Not listaFeeds(k).Titulo = Nothing Then
-                                If listaFeeds(k).Titulo.Trim = feed.Title.Text.Trim Then
-                                    tituloBool = True
-                                End If
+                Try
+                    feedUri = feed.Links.FirstOrDefault.Uri.AbsolutePath
+                    feedUri = feedUri.Replace("#respond", Nothing)
+
+                    If Not feedUri.Contains("https://pepeizqapps.com") Then
+                        feedUri = "https://pepeizqapps.com" + feedUri
+                    End If
+                Catch ex As Exception
+                    tituloBool = True
+                End Try
+
+                Dim k As Integer = 0
+                While k < listaFeeds.Count
+                    If feed.Title.Text.Trim = Nothing Then
+                        tituloBool = True
+                    Else
+                        If Not listaFeeds(k).Titulo = Nothing Then
+                            If listaFeeds(k).Titulo.Trim = feed.Title.Text.Trim Then
+                                tituloBool = True
                             End If
                         End If
-                        k += 1
-                    End While
+                    End If
+                    k += 1
+                End While
 
-                    If tituloBool = False Then
+                If tituloBool = False Then
+                    If listaFeeds.Count < 6 Then
                         Dim rss As New FeedRSS(feed.Title.Text.Trim, New Uri(feedUri))
                         listaFeeds.Add(rss)
                     End If
