@@ -121,7 +121,7 @@
     <value>Application</value>
   </data>
   <data name="Battlenet Carpeta Añadir" xml:space="preserve">
-    <value>Add the folder where are installed your Battle.net games (example: C:\Battle.net\Games\):</value>
+    <value>Add the folder where are installed your Blizzard App games (example: C:\Battle.net\Games\):</value>
   </data>
   <data name="Battlenet Carpeta No Config" xml:space="preserve">
     <value>No folder added</value>

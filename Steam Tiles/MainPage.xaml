@@ -48,7 +48,7 @@
                     <AppBarButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <controls:ImageEx Margin="5,0,10,0" Source="Assets\battlenet_logo.png" Width="20" Height="20"/>
-                            <TextBlock Text="Battle.net" VerticalAlignment="Center"/>
+                            <TextBlock Text="Blizzard App" VerticalAlignment="Center"/>
                         </StackPanel>
                     </AppBarButton.Content>
                 </AppBarButton>
@@ -347,7 +347,7 @@
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <controls:ImageEx Margin="10,0" Source="Assets\battlenet_logo.png" Width="20" Height="20"/>
-                            <TextBlock Text="Battle.net"/>
+                            <TextBlock Text="Blizzard App"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -464,7 +464,7 @@
                 </StackPanel>
 
                 <StackPanel x:Name="spConfigBattlenet" Visibility="Collapsed" Orientation="Vertical">
-                    <TextBlock FontSize="23" Margin="5,0,0,15" Text="Battle.net"/>
+                    <TextBlock FontSize="23" Margin="5,0,0,15" Text="Blizzard App"/>
                     <Border BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,25" Width="300" HorizontalAlignment="Left"/>
                     <TextBlock x:Name="tbBattlenetConfigInstrucciones" Margin="5" TextWrapping="Wrap"/>
                     <Grid Grid.Row="1" Margin="0,5,5,15">
