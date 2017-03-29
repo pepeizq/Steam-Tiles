@@ -71,6 +71,10 @@ Module RSS
                             If listaFeeds(k).Titulo.Trim = feed.Title.Text.Trim Then
                                 tituloBool = True
                             End If
+
+                            If listaFeeds(k).Enlace = New Uri(feedUri) Then
+                                tituloBool = True
+                            End If
                         End If
                     End If
                     k += 1
