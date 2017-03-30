@@ -49,6 +49,10 @@ Module RSS
             For Each feed In feeds.Items
                 Dim tituloBool As Boolean = False
 
+                If feed Is Nothing Then
+                    tituloBool = True
+                End If
+
                 Dim feedUri As String = Nothing
 
                 Try
