@@ -214,7 +214,7 @@
                         <ComboBoxItem x:Name="cbItemArranqueInicio"/>
                         <ComboBoxItem Content="Steam"/>
                         <ComboBoxItem Content="Origin"/>
-                        <ComboBoxItem Content="Battle.net"/>
+                        <ComboBoxItem Content="Blizzard App"/>
                         <ComboBoxItem Content="GOG Galaxy"/>
                         <ComboBoxItem x:Name="cbItemArranqueConfig"/>
                     </ComboBox> 
