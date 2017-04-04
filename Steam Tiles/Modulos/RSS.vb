@@ -33,7 +33,7 @@ Module RSS
         listaFeeds = New List(Of FeedRSS)
 
         Dim cliente As SyndicationClient = New SyndicationClient
-        Dim enlace As Uri = New Uri("https://pepeizqapps.com/feed/")
+        Dim enlace As Uri = New Uri("https://pepeizqapps.com/category/news/feed/")
 
         cliente.SetRequestHeader("User-Agent", "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; WOW64; Trident/6.0)")
 
