@@ -7,7 +7,7 @@ Imports Windows.UI
 Public NotInheritable Class MainPage
     Inherits Page
 
-    Private Async Sub Page_Loaded(sender As FrameworkElement, args As Object)
+    Private Sub Page_Loaded(sender As FrameworkElement, args As Object)
 
         Dim barra As ApplicationViewTitleBar = ApplicationView.GetForCurrentView().TitleBar
 
@@ -251,7 +251,7 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Async Sub LvRSS_ItemClick(sender As Object, e As ItemClickEventArgs) Handles lvRSS.ItemClick
+    Private Async Sub LvRSSUpdates_ItemClick(sender As Object, e As ItemClickEventArgs) Handles lvRSSUpdates.ItemClick
 
         Dim feed As FeedRSS = e.ClickedItem
         Await Launcher.LaunchUriAsync(feed.Enlace)
@@ -261,6 +261,24 @@ Public NotInheritable Class MainPage
     Private Sub CbArranque_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbArranque.SelectionChanged
 
         ApplicationData.Current.LocalSettings.Values("cbarranque") = cbArranque.SelectedIndex
+
+    End Sub
+
+    Private Async Sub BotonSocialTwitter_Click(sender As Object, e As RoutedEventArgs) Handles botonSocialTwitter.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("https://twitter.com/pepeizqapps"))
+
+    End Sub
+
+    Private Async Sub BotonSocialGitHub_Click(sender As Object, e As RoutedEventArgs) Handles botonSocialGitHub.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("https://github.com/pepeizq"))
+
+    End Sub
+
+    Private Async Sub BotonSocialPaypal_Click(sender As Object, e As RoutedEventArgs) Handles botonSocialPaypal.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("https://paypal.me/pepeizq/1"))
 
     End Sub
 

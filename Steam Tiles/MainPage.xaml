@@ -96,9 +96,9 @@
     <Grid Background="#FFF0F0F0">
         <Grid x:Name="gridInicio">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="400"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0" Padding="80,0">
@@ -179,12 +179,12 @@
                 </StackPanel>
             </Grid>
 
-            <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center" Padding="50,0">
+            <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal" Padding="10" Background="SlateGray">
                     <controls:ImageEx Source="Assets\rss_logo.png" Width="24" Height="24" HorizontalAlignment="Left"/>
                     <TextBlock x:Name="tbRSS" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="White"/>
                 </StackPanel>
-                <ListView x:Name="lvRSS" IsItemClickEnabled="True" ItemTemplate="{StaticResource FeedRSS}" BorderThickness="1,0,1,1" BorderBrush="SlateGray"/>
+                <ListView x:Name="lvRSSUpdates" IsItemClickEnabled="True" ItemTemplate="{StaticResource FeedRSS}" BorderThickness="1,0,1,1" BorderBrush="SlateGray"/>
             </StackPanel>
 
             <Grid Grid.Column="2" Padding="80,50">
@@ -206,9 +206,9 @@
                     </Grid>
                 </Grid>
 
-                <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" MaxWidth="400">
                     <Grid Padding="10" Background="SlateGray">
-                        <TextBlock x:Name="tbInicioGrid" Foreground="White" HorizontalAlignment="Center" TextWrapping="Wrap"/>
+                        <TextBlock x:Name="tbInicioGrid" Foreground="White" HorizontalAlignment="Center" TextWrapping="Wrap" Padding="10,0"/>
                     </Grid>
                     <ComboBox x:Name="cbArranque" HorizontalAlignment="Stretch">
                         <ComboBoxItem x:Name="cbItemArranqueInicio"/>
@@ -221,6 +221,23 @@
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Bottom">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
+                        <Button x:Name="botonSocialTwitter" Padding="10" Background="#1DA1F2" Margin="5,0,0,0">
+                            <Button.Content>
+                                <controls:ImageEx Source="Assets\social_twitter.png" Width="30" Height="30"/>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="botonSocialGitHub" Padding="10" Background="#181717" Margin="5,0,0,0">
+                            <Button.Content>
+                                <controls:ImageEx Source="Assets\social_github.png" Width="30" Height="30"/>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="botonSocialPaypal" Padding="10" Background="#00457C" Margin="5,0,0,0">
+                            <Button.Content>
+                                <controls:ImageEx Source="Assets\social_paypal.png" Width="30" Height="30"/>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
                     <TextBlock x:Name="tbVersionApp" HorizontalAlignment="Right" TextWrapping="Wrap"/>
                     <TextBlock x:Name="tbVersionWindows" HorizontalAlignment="Right" TextWrapping="Wrap"/>
                 </StackPanel>

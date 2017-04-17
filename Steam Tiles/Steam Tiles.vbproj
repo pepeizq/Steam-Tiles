@@ -141,6 +141,9 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\social_github.png" />
+    <Content Include="Assets\social_paypal.png" />
+    <Content Include="Assets\social_twitter.png" />
     <Content Include="Assets\steam_logo.png" />
     <Content Include="Assets\battlenet_logo_mini2.png" />
     <Content Include="Assets\gog_logo_mini.png" />
