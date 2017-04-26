@@ -151,7 +151,11 @@ Module Tiles
 
         Dim notificacion As TileNotification = New TileNotification(contenido.GetXml)
 
-        TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.ID).Update(notificacion)
+        Try
+            TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.ID).Update(notificacion)
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 

@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
-    xmlns:wrapPanel="using:Microsoft.Toolkit.Uwp.UI.Controls.WrapPanel"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="Page_Loaded" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -244,25 +243,21 @@
             </Grid>
         </Grid>
 
-        <Grid x:Name="gridTilesSteam" Visibility="Collapsed">
+        <Grid x:Name="gridTilesSteam" Visibility="Collapsed" Padding="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <controls:AdaptiveGridView x:Name="gridViewTilesSteam" Grid.Row="0" ItemTemplate="{StaticResource Tile}" IsItemClickEnabled="True" Padding="5" DesiredWidth="230" ItemHeight="107" animations:ReorderGridAnimation.Duration="250">
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <wrapPanel:WrapPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </controls:AdaptiveGridView>
+            <controls:AdaptiveGridView x:Name="gridViewTilesSteam" Grid.Row="0" ItemTemplate="{StaticResource Tile}" 
+                                       IsItemClickEnabled="True" DesiredWidth="230" ItemHeight="107" 
+                                       animations:ReorderGridAnimation.Duration="250"/>
 
             <TextBlock x:Name="tbNoJuegosSteam" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
 
             <ProgressRing x:Name="prTilesSteam" Grid.Row="0" IsActive="True" Width="64" Height="64" Foreground="#FFF0F0F0" Visibility="Collapsed"/>
         </Grid>
 
-        <Grid x:Name="gridTilesOrigin" Visibility="Collapsed">
+        <Grid x:Name="gridTilesOrigin" Visibility="Collapsed" Padding="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -272,13 +267,9 @@
                 <ListView x:Name="lvOriginJuegos" IsItemClickEnabled="True" Padding="10,10,20,10" Visibility="Collapsed"/>
             </ScrollViewer>
 
-            <controls:AdaptiveGridView x:Name="gridViewTilesOrigin" Grid.Column="1" ItemTemplate="{StaticResource Tile}" IsItemClickEnabled="True" Padding="10" DesiredWidth="303" ItemHeight="141" animations:ReorderGridAnimation.Duration="250">
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <wrapPanel:WrapPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </controls:AdaptiveGridView>
+            <controls:AdaptiveGridView x:Name="gridViewTilesOrigin" Grid.Column="1" ItemTemplate="{StaticResource Tile}" 
+                                       IsItemClickEnabled="True" DesiredWidth="303" ItemHeight="141" 
+                                       animations:ReorderGridAnimation.Duration="250"/>
 
             <TextBlock x:Name="tbNoJuegosOrigin" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
             <TextBlock x:Name="tbSiJuegosOrigin" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
@@ -286,7 +277,7 @@
             <ProgressRing x:Name="prTilesOrigin" Grid.Column="1" Visibility="Collapsed" IsActive="True" Height="48" Width="48"/>
         </Grid>
 
-        <Grid x:Name="gridTilesBattlenet" Visibility="Collapsed">
+        <Grid x:Name="gridTilesBattlenet" Visibility="Collapsed" Padding="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -296,13 +287,9 @@
                 <ListView x:Name="lvBattlenetJuegos" IsItemClickEnabled="True" Padding="10,10,20,10" Visibility="Collapsed"/>
             </ScrollViewer>
 
-            <controls:AdaptiveGridView x:Name="gridViewTilesBattlenet" Grid.Column="1" ItemTemplate="{StaticResource Tile}" IsItemClickEnabled="True" Padding="10" DesiredWidth="310" ItemHeight="150" animations:ReorderGridAnimation.Duration="250">
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <wrapPanel:WrapPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </controls:AdaptiveGridView>
+            <controls:AdaptiveGridView x:Name="gridViewTilesBattlenet" Grid.Column="1" ItemTemplate="{StaticResource Tile}" 
+                                       IsItemClickEnabled="True" DesiredWidth="310" ItemHeight="150" 
+                                       animations:ReorderGridAnimation.Duration="250"/>
 
             <TextBlock x:Name="tbNoJuegosBattlenet" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
             <TextBlock x:Name="tbSiJuegosBattlenet" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
@@ -310,18 +297,14 @@
             <ProgressRing x:Name="prTilesBattlenet" Grid.Column="1" Visibility="Collapsed" IsActive="True" Height="48" Width="48"/>
         </Grid>
 
-        <Grid x:Name="gridTilesGOGGalaxy" Visibility="Collapsed">
+        <Grid x:Name="gridTilesGOGGalaxy" Visibility="Collapsed" Padding="5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <controls:AdaptiveGridView x:Name="gridViewTilesGOGGalaxy" Grid.Row="0" ItemTemplate="{StaticResource Tile}" IsItemClickEnabled="True" Padding="5" DesiredWidth="224" ItemHeight="103" animations:ReorderGridAnimation.Duration="250">
-                <GridView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <wrapPanel:WrapPanel HorizontalAlignment="Center" Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </GridView.ItemsPanel>
-            </controls:AdaptiveGridView>
+            <controls:AdaptiveGridView x:Name="gridViewTilesGOGGalaxy" Grid.Row="0" ItemTemplate="{StaticResource Tile}" 
+                                       IsItemClickEnabled="True" DesiredWidth="224" ItemHeight="103" 
+                                       animations:ReorderGridAnimation.Duration="250"/>
 
             <TextBlock x:Name="tbNoJuegosGOGGalaxy" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
 
@@ -334,7 +317,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" VerticalAlignment="Top" Padding="0,20,0,0">
+            <StackPanel x:Name="spConfig" Grid.Column="0" VerticalAlignment="Top" Padding="0,20,0,0">
 
                 <Button x:Name="buttonConfigTiles" Width="180" Padding="10,15" Background="DimGray" Foreground="White" HorizontalContentAlignment="Left" BorderThickness="5,0,0,0">
                     <Button.Content>

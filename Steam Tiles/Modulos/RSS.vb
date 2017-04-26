@@ -2,10 +2,9 @@
 
 Module RSS
 
-    Dim boolDeals As Boolean = False
     Dim boolUpdates As Boolean = False
 
-    Dim listaFeedsDeals, listaFeedsUpdates As List(Of FeedRSS)
+    Dim listaFeedsUpdates As List(Of FeedRSS)
     Dim WithEvents bw As New BackgroundWorker
 
     Public Sub Generar()
