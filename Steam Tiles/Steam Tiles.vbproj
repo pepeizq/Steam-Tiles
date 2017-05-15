@@ -121,7 +121,6 @@
     <Compile Include="Clases\Tile.vb" />
     <Compile Include="Clases\FeedRSS.vb" />
     <Compile Include="Modulos\Acrilico.vb" />
-    <Compile Include="Modulos\Buscador.vb" />
     <Compile Include="Modulos\Config.vb" />
     <Compile Include="Modulos\Decompiladores.vb" />
     <Compile Include="Modulos\Steam.vb" />
