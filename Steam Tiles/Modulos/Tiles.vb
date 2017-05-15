@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.Toolkit.Uwp.Notifications
+Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
 Imports Windows.UI.Notifications
@@ -28,53 +29,25 @@ Module Tiles
                 .HintAlign = AdaptiveImageAlign.Right
             }
 
-            If ApplicationData.Current.LocalSettings.Values("logotile1") = "on" Then
-                If tile.Cliente = "Steam" Then
-                    imagenDRM.Source = "Assets/AppList/AppList.targetsize-16.png"
-                ElseIf tile.Cliente = "Origin" Then
-                    imagenDRM.Source = "Assets/origin_logo_mini.png"
-                ElseIf tile.Cliente = "Battle.net" Then
-                    imagenDRM.Source = "Assets/battlenet_logo_mini.png"
-                ElseIf tile.Cliente = "GOG Galaxy" Then
-                    imagenDRM.Source = "Assets/gog_logo_mini.png"
-                End If
-            End If
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+            Dim cbIconosLista As ComboBox = pagina.FindName("cbTilesIconosLista")
+            Dim imagenIcono As ImageEx = cbIconosLista.SelectedItem
+            imagenDRM.Source = imagenIcono.Source
 
-            If ApplicationData.Current.LocalSettings.Values("logotile2") = "on" Then
-                If tile.Cliente = "Steam" Then
-                    imagenDRM.Source = "Assets/steam_logo_mini2.png"
-                ElseIf tile.Cliente = "Origin" Then
-                    imagenDRM.Source = "Assets/origin_logo_mini2.png"
-                ElseIf tile.Cliente = "Battle.net" Then
-                    imagenDRM.Source = "Assets/battlenet_logo_mini2.png"
-                ElseIf tile.Cliente = "GOG Galaxy" Then
-                    imagenDRM.Source = "Assets/gog_logo_mini2.png"
-                End If
-            End If
         End If
 
         Dim imagen As AdaptiveImage = New AdaptiveImage With {
             .Source = "ms-appdata:///local/" + ficheroImagen.Name,
             .HintRemoveMargin = True,
-            .HintAlign = AdaptiveImageAlign.Stretch
+            .HintAlign = AdaptiveImageAlign.Stretch,
+            .HintCrop = AdaptiveImageCrop.Default
         }
-
-        If ApplicationData.Current.LocalSettings.Values("circulotile") = "on" Then
-            imagen.HintCrop = AdaptiveImageCrop.Circle
-        Else
-            imagen.HintCrop = AdaptiveImageCrop.Default
-        End If
 
         Dim fondoImagen As TileBackgroundImage = New TileBackgroundImage With {
             .Source = "ms-appdata:///local/" + ficheroImagen.Name,
-            .HintOverlay = Integer.Parse(ApplicationData.Current.LocalSettings.Values("overlaytile"))
+            .HintCrop = AdaptiveImageCrop.Default
         }
-
-        If ApplicationData.Current.LocalSettings.Values("circulotile") = "on" Then
-            fondoImagen.HintCrop = AdaptiveImageCrop.Circle
-        Else
-            fondoImagen.HintCrop = AdaptiveImageCrop.Default
-        End If
 
         '-----------------------
 

@@ -1,6 +1,8 @@
-﻿Imports Windows.Storage
+﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
+Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
+Imports Windows.UI
 Imports Windows.Web.Http
 
 Module Steam
@@ -234,20 +236,48 @@ Module Steam
             h += 1
         End While
 
-        Dim tbNoJuegos As TextBlock = pagina.FindName("tbNoJuegosSteam")
+        Dim panelAvisoNoJuegosSteam As DropShadowPanel = pagina.FindName("panelAvisoNoJuegosSteam")
+        Dim popupAvisoSeleccionar As Popup = pagina.FindName("popupAvisoSeleccionar")
 
         If listaFinal.Count > 0 Then
-            tbNoJuegos.Visibility = Visibility.Collapsed
+            panelAvisoNoJuegosSteam.Visibility = Visibility.Collapsed
             listaFinal.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
 
             gv.Items.Clear()
-            gv.ItemsSource = listaFinal
+
+            For Each juego In listaFinal
+                Dim boton As New Button
+
+                Dim imagen As New ImageEx
+
+                Try
+                    imagen.Source = New BitmapImage(juego.Imagen)
+                Catch ex As Exception
+
+                End Try
+
+                imagen.Stretch = Stretch.UniformToFill
+                imagen.Padding = New Thickness(0, 0, 0, 0)
+
+                boton.Tag = juego
+                boton.Content = imagen
+                boton.Padding = New Thickness(0, 0, 0, 0)
+                boton.BorderThickness = New Thickness(1, 1, 1, 1)
+                boton.BorderBrush = New SolidColorBrush(Colors.Black)
+                boton.Background = New SolidColorBrush(Colors.Transparent)
+
+                AddHandler boton.Click, AddressOf botonTile_Click
+
+                gv.Items.Add(boton)
+            Next
 
             If boolBuscarCarpeta = True Then
                 Toast("Steam Tiles", listaFinal.Count.ToString + " " + recursos.GetString("Juegos Detectados"))
             End If
         Else
-            tbNoJuegos.Visibility = Visibility.Visible
+            panelAvisoNoJuegosSteam.Visibility = Visibility.Visible
+            popupAvisoSeleccionar.IsOpen = False
+
             If boolBuscarCarpeta = True Then
                 Toast("Steam Tiles", recursos.GetString("Fallo1"))
             End If
@@ -256,6 +286,56 @@ Module Steam
         buttonAñadir.IsEnabled = True
         buttonBorrar.IsEnabled = True
         pr.Visibility = Visibility.Collapsed
+
+    End Sub
+
+    Private Sub BotonTile_Click(sender As Object, e As RoutedEventArgs)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        Dim gv As GridView = pagina.FindName("gridViewTilesSteam")
+
+        Dim botonJuego As Button = e.OriginalSource
+
+        Dim borde As Thickness = New Thickness(6, 6, 6, 6)
+        If botonJuego.BorderThickness = borde Then
+            botonJuego.BorderThickness = New Thickness(1, 1, 1, 1)
+            botonJuego.BorderBrush = New SolidColorBrush(Colors.Black)
+
+            Dim popupAviso As Popup = pagina.FindName("popupAvisoSeleccionar")
+            popupAviso.IsOpen = True
+
+            Dim grid As Grid = pagina.FindName("gridAñadirTiles")
+            grid.Visibility = Visibility.Collapsed
+        Else
+            For Each item In gv.Items
+                Dim itemBoton As Button = item
+                itemBoton.BorderThickness = New Thickness(1, 1, 1, 1)
+                itemBoton.BorderBrush = New SolidColorBrush(Colors.Black)
+            Next
+
+            botonJuego.BorderThickness = New Thickness(6, 6, 6, 6)
+            botonJuego.BorderBrush = New SolidColorBrush(Colors.DimGray)
+
+            Dim botonAñadirTile As Button = pagina.FindName("botonAñadirTile")
+            Dim juego As Tile = botonJuego.Tag
+            botonAñadirTile.Tag = juego
+
+            Dim imageJuegoSeleccionado As ImageEx = pagina.FindName("imageJuegoSeleccionado")
+            Dim imagenCapsula As String = juego.Imagen.ToString
+            imagenCapsula = imagenCapsula.Replace("header.jpg", "capsule_184x69.jpg")
+            imageJuegoSeleccionado.Source = New BitmapImage(New Uri(imagenCapsula))
+
+            Dim tbJuegoSeleccionado As TextBlock = pagina.FindName("tbJuegoSeleccionado")
+            tbJuegoSeleccionado.Text = juego.Titulo
+
+            Dim popupAviso As Popup = pagina.FindName("popupAvisoSeleccionar")
+            popupAviso.IsOpen = False
+
+            Dim grid As Grid = pagina.FindName("gridAñadirTiles")
+            grid.Visibility = Visibility.Visible
+        End If
 
     End Sub
 
@@ -272,6 +352,9 @@ Module Steam
         Dim tbCarpetas As TextBlock = pagina.FindName("tbCarpetasDetectadasSteam")
 
         tbCarpetas.Text = recursos.GetString("Ninguna")
+
+        Dim gv As GridView = pagina.FindName("gridViewTilesSteam")
+        gv.Items.Clear()
 
         Generar(False)
 

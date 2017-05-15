@@ -1,4 +1,5 @@
-﻿Imports Windows.System
+﻿Imports Windows.ApplicationModel.Core
+Imports Windows.System
 ''' <summary>
 ''' Provides application-specific behavior to supplement the default Application class.
 ''' </summary>
@@ -64,7 +65,8 @@ NotInheritable Class App
 
             Window.Current.Activate()
         Else
-            Window.Current.Close()
+            'Window.Current.Close()
+            CoreApplication.Exit()
         End If
     End Sub
 

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="5078pepeizq.19563A9081E52" Publisher="CN=C91088FC-231C-4E13-86D1-5F9658173DA7" Version="2.0.25.0" />
+  <Identity Name="5078pepeizq.19563A9081E52" Publisher="CN=C91088FC-231C-4E13-86D1-5F9658173DA7" Version="2.0.34.0" />
   <mp:PhoneIdentity PhoneProductId="86a2c0ec-5cdd-45bc-916b-08e712c09234" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Steam Games Tiles</DisplayName>
+    <DisplayName>Steam Tiles</DisplayName>
     <PublisherDisplayName>pepeizq</PublisherDisplayName>
     <Logo>assets\Store\StoreLogo.png</Logo>
   </Properties>
@@ -14,8 +14,8 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Steam_Games_Tiles.App">
-      <uap:VisualElements DisplayName="Steam Games Tiles" Square150x150Logo="assets\Medium\Medium150x150Logo.png" Square44x44Logo="assets\AppList\AppList.png" Description="https://pepeizqapps.com" BackgroundColor="dimGray">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Steam_Tiles.App">
+      <uap:VisualElements DisplayName="Steam Tiles" Square150x150Logo="assets\Medium\Medium150x150Logo.png" Square44x44Logo="assets\AppList\AppList.png" Description="https://pepeizqapps.com" BackgroundColor="dimGray">
         <uap:DefaultTile Wide310x150Logo="assets\Wide\Wide310x150Logo.png" ShortName="Steam Tiles" Square310x310Logo="assets\Large\Large310x310Logo.png" Square71x71Logo="assets\Small\Small71x71Logo.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />

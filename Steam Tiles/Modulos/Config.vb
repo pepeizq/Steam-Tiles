@@ -8,13 +8,10 @@ Module Config
         Dim pagina As Page = frame.Content
 
         Dim cbTitulo As CheckBox = pagina.FindName("cbTilesTitulo")
-        Dim cbLogos As CheckBox = pagina.FindName("cbTilesLogos")
-        Dim gridLogos As Grid = pagina.FindName("gridTilesLogos")
-        Dim rbLogos1 As RadioButton = pagina.FindName("rbTipoLogos1")
-        Dim rbLogos2 As RadioButton = pagina.FindName("rbTipoLogos2")
+        Dim cbIconos As CheckBox = pagina.FindName("cbTilesIconos")
+        Dim cbIconosLista As ComboBox = pagina.FindName("cbTilesIconosLista")
 
-        Dim slider As Slider = pagina.FindName("sliderTilesOverlay")
-        Dim cbCirculo As CheckBox = pagina.FindName("cbTilesCirculo")
+        cbIconosLista.SelectedIndex = 0
 
         If ApplicationData.Current.LocalSettings.Values("titulotile") = Nothing Then
             cbTitulo.IsChecked = False
@@ -22,22 +19,8 @@ Module Config
         End If
 
         If ApplicationData.Current.LocalSettings.Values("logotile") = Nothing Then
-            cbLogos.IsChecked = False
+            cbIconos.IsChecked = False
             ApplicationData.Current.LocalSettings.Values("logotile") = "off"
-            gridLogos.Visibility = Visibility.Collapsed
-            rbLogos1.IsChecked = True
-            rbLogos2.IsChecked = False
-            ApplicationData.Current.LocalSettings.Values("logotile1") = "on"
-            ApplicationData.Current.LocalSettings.Values("logotile2") = "off"
-        End If
-
-        If ApplicationData.Current.LocalSettings.Values("overlaytile") = Nothing Then
-            slider.Value = 0
-            ApplicationData.Current.LocalSettings.Values("overlaytile") = slider.Value
-        End If
-
-        If ApplicationData.Current.LocalSettings.Values("circulotile") = Nothing Then
-            ApplicationData.Current.LocalSettings.Values("circulotile") = "off"
         End If
 
         '----------------------------------
@@ -49,33 +32,11 @@ Module Config
         End If
 
         If ApplicationData.Current.LocalSettings.Values("logotile") = "on" Then
-            cbLogos.IsChecked = True
-            gridLogos.Visibility = Visibility.Visible
-
-            If ApplicationData.Current.LocalSettings.Values("logotile1") = "on" Then
-                rbLogos1.IsChecked = True
-            Else
-                rbLogos1.IsChecked = False
-            End If
-
-            If ApplicationData.Current.LocalSettings.Values("logotile2") = "on" Then
-                rbLogos2.IsChecked = True
-            Else
-                rbLogos2.IsChecked = False
-            End If
+            cbIconos.IsChecked = True
+            cbIconosLista.Visibility = Visibility.Visible
         Else
-            cbLogos.IsChecked = False
-            gridLogos.Visibility = Visibility.Collapsed
-        End If
-
-        If Not ApplicationData.Current.LocalSettings.Values("overlaytile") = 0 Then
-            slider.Value = ApplicationData.Current.LocalSettings.Values("overlaytile")
-        End If
-
-        If ApplicationData.Current.LocalSettings.Values("circulotile") = "on" Then
-            cbCirculo.IsChecked = True
-        Else
-            cbCirculo.IsChecked = False
+            cbIconos.IsChecked = False
+            cbIconosLista.Visibility = Visibility.Collapsed
         End If
 
     End Sub

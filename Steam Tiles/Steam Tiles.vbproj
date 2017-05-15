@@ -10,8 +10,8 @@
     <AssemblyName>Steam Tiles</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.15063.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
@@ -120,13 +120,11 @@
     </Compile>
     <Compile Include="Clases\Tile.vb" />
     <Compile Include="Clases\FeedRSS.vb" />
+    <Compile Include="Modulos\Acrilico.vb" />
     <Compile Include="Modulos\Buscador.vb" />
-    <Compile Include="Modulos\Clientes\Battlenet.vb" />
-    <Compile Include="Modulos\Clientes\GOGGalaxy.vb" />
-    <Compile Include="Modulos\Clientes\Origin.vb" />
     <Compile Include="Modulos\Config.vb" />
     <Compile Include="Modulos\Decompiladores.vb" />
-    <Compile Include="Modulos\Clientes\Steam.vb" />
+    <Compile Include="Modulos\Steam.vb" />
     <Compile Include="MainPage.xaml.vb">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -141,17 +139,11 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\social_pepeizq.png" />
+    <Content Include="Assets\steam_logo_mini3.png" />
+    <Content Include="Assets\steam_logo_mini2.png" />
     <Content Include="Assets\social_github.png" />
-    <Content Include="Assets\social_paypal.png" />
-    <Content Include="Assets\social_twitter.png" />
     <Content Include="Assets\steam_logo.png" />
-    <Content Include="Assets\battlenet_logo_mini2.png" />
-    <Content Include="Assets\gog_logo_mini.png" />
-    <Content Include="Assets\gog_logo.png" />
-    <Content Include="Assets\battlenet_logo_mini.png" />
-    <Content Include="Assets\battlenet_logo.png" />
-    <Content Include="Assets\gog_logo_mini2.png" />
-    <Content Include="Assets\origin_logo_mini.png" />
     <Content Include="Assets\AppList\AppList.scale-100.png" />
     <Content Include="Assets\AppList\AppList.scale-125.png" />
     <Content Include="Assets\AppList\AppList.scale-150.png" />
@@ -185,7 +177,6 @@
     <Content Include="Assets\AppList\AppList.targetsize-80_altform-unplated.png" />
     <Content Include="Assets\AppList\AppList.targetsize-96.png" />
     <Content Include="Assets\AppList\AppList.targetsize-96_altform-unplated.png" />
-    <Content Include="Assets\origin_logo.png" />
     <Content Include="Assets\Badge\Badge.scale-100.png" />
     <Content Include="Assets\Badge\Badge.scale-125.png" />
     <Content Include="Assets\Badge\Badge.scale-150.png" />
@@ -201,7 +192,6 @@
     <Content Include="Assets\Medium\Medium150x150Logo.scale-150.png" />
     <Content Include="Assets\Medium\Medium150x150Logo.scale-200.png" />
     <Content Include="Assets\Medium\Medium150x150Logo.scale-400.png" />
-    <Content Include="Assets\origin_logo_mini2.png" />
     <Content Include="Assets\rss_logo.png" />
     <Content Include="Assets\Small\Small71x71Logo.scale-100.png" />
     <Content Include="Assets\Small\Small71x71Logo.scale-125.png" />
@@ -213,14 +203,15 @@
     <Content Include="Assets\SplashScreen\SplashScreen.scale-150.png" />
     <Content Include="Assets\SplashScreen\SplashScreen.scale-200.png" />
     <Content Include="Assets\SplashScreen\SplashScreen.scale-400.png" />
-    <Content Include="Assets\steam_logo_mini2.png" />
+    <Content Include="Assets\steam_logo_mini1.png" />
     <Content Include="Assets\steam_logo.svg" />
+    <Content Include="Assets\steam_logo_mini4.png" />
+    <Content Include="Assets\steam_logo_mini5.png" />
     <Content Include="Assets\Store\StoreLogo.scale-100.png" />
     <Content Include="Assets\Store\StoreLogo.scale-125.png" />
     <Content Include="Assets\Store\StoreLogo.scale-150.png" />
     <Content Include="Assets\Store\StoreLogo.scale-200.png" />
     <Content Include="Assets\Store\StoreLogo.scale-400.png" />
-    <Content Include="Assets\twitter_logo.png" />
     <Content Include="Assets\Wide\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide\Wide310x150Logo.scale-150.png" />

@@ -8,83 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="Page_Loaded" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.TopAppBar>
-        <CommandBar x:Name="commadBarTop" Foreground="White" HorizontalContentAlignment="Center">
-            <CommandBar.Background>
-                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Color="SlateGray" Offset="0.5" />
-                    <GradientStop Color="SlateGray" Offset="1.0" />
-                </LinearGradientBrush>
-            </CommandBar.Background>
-
-            <CommandBar.PrimaryCommands>
-                <AppBarButton x:Name="botonInicio" Foreground="White">
-                    <AppBarButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="Home" Margin="5,0,10,0"/>
-                            <TextBlock x:Name="botonInicioTexto" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </AppBarButton.Content>
-                </AppBarButton>
-                <AppBarSeparator Foreground="White" VerticalAlignment="Center"/>
-                <AppBarButton x:Name="botonTilesSteam" Foreground="White">
-                    <AppBarButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <controls:ImageEx Margin="5,0,10,0" Source="Assets\steam_logo.png" Width="20" Height="20"/>
-                            <TextBlock Text="Steam" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </AppBarButton.Content>
-                </AppBarButton>
-                <AppBarButton x:Name="botonTilesOrigin" Foreground="White">
-                    <AppBarButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <controls:ImageEx Margin="5,0,10,0" Source="Assets\origin_logo.png" Width="20" Height="20"/>
-                            <TextBlock Text="Origin" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </AppBarButton.Content>
-                </AppBarButton>
-                <AppBarButton x:Name="botonTilesBattlenet" Foreground="White">
-                    <AppBarButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <controls:ImageEx Margin="5,0,10,0" Source="Assets\battlenet_logo.png" Width="20" Height="20"/>
-                            <TextBlock Text="Blizzard App" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </AppBarButton.Content>
-                </AppBarButton>
-                <AppBarButton x:Name="botonTilesGOGGalaxy" Foreground="White">
-                    <AppBarButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <controls:ImageEx Margin="5,0,10,0" Source="Assets\gog_logo.png" Width="20" Height="20"/>
-                            <TextBlock Text="GOG Galaxy" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </AppBarButton.Content>
-                </AppBarButton>
-                <AppBarSeparator Foreground="White" VerticalAlignment="Center"/>
-                <AppBarButton x:Name="botonConfig" Foreground="White">
-                    <AppBarButton.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="Setting" Margin="5,0,10,0"/>
-                            <TextBlock x:Name="botonConfigTexto" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </AppBarButton.Content>
-                </AppBarButton>
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-    </Page.TopAppBar>
-
     <Page.Resources>
-        <DataTemplate x:Key="Tile">
-            <Grid Tag="{Binding Tile}" Margin="1" BorderThickness="1" BorderBrush="Black">
-                <ToolTipService.ToolTip>
-                    <Grid>
-                        <TextBlock Text="{Binding Titulo}" TextWrapping="Wrap"/>
-                    </Grid>
-                </ToolTipService.ToolTip>
-                
-                <controls:ImageEx Source="{Binding Imagen}" Stretch="UniformToFill"/>
-            </Grid>
-        </DataTemplate>
-
         <DataTemplate x:Key="FeedRSS">
             <Grid Tag="{Binding Enlace}" Margin="1">
                 <TextBlock Text="{Binding Titulo}" TextWrapping="Wrap" />
@@ -92,444 +16,310 @@
         </DataTemplate>
     </Page.Resources>
 
-    <Grid Background="#FFF0F0F0">
-        <Grid x:Name="gridInicio">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="gridTopAcrilico" Grid.Row="0" Height="32"/>
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <SolidColorBrush Color="DimGray" Opacity="0.6"/>
+            </Grid.Background>
+
+            <TextBlock x:Name="tbTitulo" Foreground="White" Margin="65,0,0,0" VerticalAlignment="Center" FontSize="13"/>
+        </Grid>
+        <Grid Grid.Row="1" Background="Transparent">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0" Padding="80,0">
+            <Grid x:Name="gridMenuAcrilico" Grid.Column="0"/>
+            <Grid x:Name="gridMenu" Grid.Column="0">
+                <Grid.Background>
+                    <SolidColorBrush Color="DimGray" Opacity="0.6"/>
+                </Grid.Background>
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Grid.Row="0" Orientation="Vertical" Margin="0,50,0,0" HorizontalAlignment="Left">
-                    <Button x:Name="botonInicioVotar" Padding="10" Background="SlateGray" Foreground="White" Width="200" Margin="0,0,0,20" >
+                <StackPanel Grid.Row="0" Orientation="Vertical">
+                    <Button x:Name="botonTiles" Foreground="White" Background="Transparent" Padding="15">
+                        <ToolTipService.ToolTip>
+                            <TextBlock x:Name="botonTilesTexto" FontSize="16"/>
+                        </ToolTipService.ToolTip>
+
                         <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <SymbolIcon Symbol="Like" Margin="0,0,10,0"/>
-                                <TextBlock x:Name="botonInicioVotarTexto" />
-                            </StackPanel>
+                            <Image Source="Assets\steam_logo.png" Width="26" Height="26" HorizontalAlignment="Center"/>
                         </Button.Content>
                     </Button>
-                    <Button x:Name="botonInicioCompartir" Padding="10" Background="SlateGray" Foreground="White" Width="200" Margin="0,0,0,20" >
+                    <Button x:Name="botonConfig" Foreground="White" Background="Transparent" Padding="15">
+                        <ToolTipService.ToolTip>
+                            <TextBlock x:Name="botonConfigTexto" FontSize="16"/>
+                        </ToolTipService.ToolTip>
+
                         <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <FontIcon Glyph="&#59181;" Margin="0,0,10,0"/>
-                                <TextBlock x:Name="botonInicioCompartirTexto" />
-                            </StackPanel>
-                        </Button.Content>
-                    </Button>
-                    <Button x:Name="botonInicioContacto" Padding="10" Background="SlateGray" Foreground="White" Width="200" Margin="0,0,0,20" >
-                        <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <SymbolIcon Symbol="Contact" Margin="0,0,10,0"/>
-                                <TextBlock x:Name="botonInicioContactoTexto" />
-                            </StackPanel>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE713;" FontSize="26" HorizontalAlignment="Center"/>
                         </Button.Content>
                     </Button>
                 </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Vertical">
+                    <Button x:Name="botonVotar" Foreground="White" Background="Transparent" Padding="15">
+                        <ToolTipService.ToolTip>
+                            <TextBlock x:Name="botonVotarTexto" FontSize="16"/>
+                        </ToolTipService.ToolTip>
 
-                <StackPanel Grid.Row="1" Orientation="Vertical" Padding="0,0,0,50" HorizontalAlignment="Left">
-                    <Button x:Name="botonInicioMasApps" Padding="10" Background="SlateGray" Foreground="White" Width="200">
                         <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock x:Name="botonInicioMasAppsTexto" />
-                            </StackPanel>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8E1;" FontSize="26" HorizontalAlignment="Center"/>
                         </Button.Content>
                     </Button>
-                    <StackPanel x:Name="spMasApps" Orientation="Vertical" Width="200" Margin="0,5,0,0">
-                        <Button x:Name="botonAppSteamDeals" Padding="10" Background="darkOliveGreen" Foreground="White" Width="200" Margin="0,0,0,5" HorizontalContentAlignment="Left">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:ImageEx Source="Assets\steam_logo.png" Margin="0,0,10,0" Width="20" Height="20"/>
-                                    <TextBlock Text="Steam Deals" Foreground="White" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="botonAppSteamCategories" Padding="10" Background="darkBlue" Foreground="White" Width="200" Margin="0,0,0,5" HorizontalContentAlignment="Left">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:ImageEx Source="Assets\steam_logo.png" Margin="0,0,10,0" Width="20" Height="20"/>
-                                    <TextBlock Text="Steam Categories" Foreground="White" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="botonAppSteamBridge" Padding="10" Background="darkMagenta" Foreground="White" Width="200" Margin="0,0,0,5" HorizontalContentAlignment="Left">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:ImageEx Source="Assets\steam_logo.png" Margin="0,0,10,0" Width="20" Height="20"/>
-                                    <TextBlock Text="Steam Bridge" Foreground="White" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="botonAppSteamSkins" Padding="10" Background="darkCyan" Foreground="White" Width="200" Margin="0,0,0,5" HorizontalContentAlignment="Left">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:ImageEx Source="Assets\steam_logo.png" Margin="0,0,10,0" Width="20" Height="20"/>
-                                    <TextBlock Text="Steam Skins" Foreground="White" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                    </StackPanel>
+                    <Button x:Name="botonMasCosas" Foreground="White" Background="Transparent" Padding="15">
+                        <ToolTipService.ToolTip>
+                            <TextBlock x:Name="botonMasCosasTexto" FontSize="16"/>
+                        </ToolTipService.ToolTip>
+
+                        <Button.Content>
+                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE712;" FontSize="26" HorizontalAlignment="Center"/>
+                        </Button.Content>
+                    </Button>
                 </StackPanel>
             </Grid>
 
-            <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Center">
-                <StackPanel Orientation="Horizontal" Padding="10" Background="SlateGray">
-                    <controls:ImageEx Source="Assets\rss_logo.png" Width="24" Height="24" HorizontalAlignment="Left"/>
-                    <TextBlock x:Name="tbRSS" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="White"/>
-                </StackPanel>
-                <ListView x:Name="lvRSSUpdates" IsItemClickEnabled="True" ItemTemplate="{StaticResource FeedRSS}" BorderThickness="1,0,1,1" BorderBrush="SlateGray"/>
-            </StackPanel>
+            <Grid x:Name="gridTilesSteam" Grid.Column="1" Visibility="Collapsed">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#FFE4E4E4" Offset="0.5" />
+                        <GradientStop Color="#FFBFBFBF" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Grid.Background>
 
-            <Grid Grid.Column="2" Padding="80,50">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" VerticalAlignment="Top">
-                    <Grid HorizontalAlignment="Right">
+                <Grid x:Name="gridAñadirTiles" Grid.Row="0" Visibility="Collapsed">
+                    <Grid.ChildrenTransitions>
+                        <TransitionCollection>
+                            <PaneThemeTransition Edge="Top"/>
+                        </TransitionCollection>
+                    </Grid.ChildrenTransitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        
-                        <SymbolIcon Grid.Column="0" Symbol="Important" Margin="0,0,10,0"/>
-                        <TextBlock x:Name="tbConsejoConfig" Grid.Column="1" TextWrapping="Wrap"/>
+
+                        <controls:DropShadowPanel Grid.Column="0" Margin="2"
+                                                  Color="Black" BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
+                            <Button x:Name="botonAñadirTile" Padding="15,10" Background="SlateGray">
+                                <StackPanel Orientation="Horizontal"> 
+                                    <SymbolIcon Margin="0,0,10,0" VerticalAlignment="Center" Symbol="Add" Foreground="White"/>
+                                    <TextBlock x:Name="botonAñadirTileTexto" Foreground="White"/>
+                                </StackPanel>
+                            </Button>
+                        </controls:DropShadowPanel>
+
+                        <Border Grid.Column="1" Margin="15,0,5,0" BorderThickness="1" BorderBrush="Black" Width="129" Height="49" VerticalAlignment="Center">
+                            <controls:ImageEx x:Name="imageJuegoSeleccionado" Stretch="UniformToFill"/>
+                        </Border>
+
+                        <TextBlock x:Name="tbJuegoSeleccionado" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
+
+                        <CheckBox x:Name="cbTilesTitulo" Grid.Column="3" VerticalAlignment="Center" Margin="10,0" MinWidth="0"/>
+                        <CheckBox x:Name="cbTilesIconos" Grid.Column="4" VerticalAlignment="Center" Margin="10,0" MinWidth="0"/>
+                        <ComboBox x:Name="cbTilesIconosLista" Grid.Column="5" VerticalAlignment="Center" Margin="5,0" Visibility="Collapsed" Width="40" Padding="5,0,0,0">
+                            <ComboBox.Transitions>
+                                <TransitionCollection>
+                                    <PaneThemeTransition Edge="Top"/>
+                                </TransitionCollection>
+                            </ComboBox.Transitions>
+
+                            <ComboBox.ItemContainerStyle>
+                                <Style TargetType="ComboBoxItem">
+                                    <Setter Property="Width" Value="70"/>
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </ComboBox.ItemContainerStyle>
+
+                            <ComboBox.ItemContainerTransitions>
+                                <TransitionCollection>
+                                    <PaneThemeTransition Edge="Top"/>
+                                </TransitionCollection>
+                            </ComboBox.ItemContainerTransitions>
+
+                            <controls:ImageEx Source="Assets/steam_logo_mini1.png" Width="16" Height="16"/>
+                            <controls:ImageEx Source="Assets/steam_logo_mini2.png" Width="16" Height="16"/>
+                            <controls:ImageEx Source="Assets/steam_logo_mini3.png" Width="16" Height="16"/>
+                            <controls:ImageEx Source="Assets/steam_logo_mini4.png" Width="16" Height="16"/>
+                            <controls:ImageEx Source="Assets/steam_logo_mini5.png" Width="16" Height="16"/>
+                        </ComboBox> 
                     </Grid>
+
+                    <Border Grid.Row="1" BorderThickness="1" BorderBrush="SlateGray" VerticalAlignment="Bottom" Margin="10,0"/>
                 </Grid>
 
-                <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" MaxWidth="400">
-                    <Grid Padding="10" Background="SlateGray">
-                        <TextBlock x:Name="tbInicioGrid" Foreground="White" HorizontalAlignment="Center" TextWrapping="Wrap" Padding="10,0"/>
-                    </Grid>
-                    <ComboBox x:Name="cbArranque" HorizontalAlignment="Stretch">
-                        <ComboBoxItem x:Name="cbItemArranqueInicio"/>
-                        <ComboBoxItem Content="Steam"/>
-                        <ComboBoxItem Content="Origin"/>
-                        <ComboBoxItem Content="Blizzard App"/>
-                        <ComboBoxItem Content="GOG Galaxy"/>
-                        <ComboBoxItem x:Name="cbItemArranqueConfig"/>
-                    </ComboBox> 
-                </StackPanel>
-
-                <StackPanel Grid.Row="2" Orientation="Vertical" VerticalAlignment="Bottom">
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,10">
-                        <Button x:Name="botonSocialTwitter" Padding="10" Background="#1DA1F2" Margin="5,0,0,0">
-                            <Button.Content>
-                                <controls:ImageEx Source="Assets\social_twitter.png" Width="30" Height="30"/>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="botonSocialGitHub" Padding="10" Background="#181717" Margin="5,0,0,0">
-                            <Button.Content>
-                                <controls:ImageEx Source="Assets\social_github.png" Width="30" Height="30"/>
-                            </Button.Content>
-                        </Button>
-                        <Button x:Name="botonSocialPaypal" Padding="10" Background="#00457C" Margin="5,0,0,0">
-                            <Button.Content>
-                                <controls:ImageEx Source="Assets\social_paypal.png" Width="30" Height="30"/>
-                            </Button.Content>
-                        </Button>
-                    </StackPanel>
-                    <TextBlock x:Name="tbVersionApp" HorizontalAlignment="Right" TextWrapping="Wrap"/>
-                    <TextBlock x:Name="tbVersionWindows" HorizontalAlignment="Right" TextWrapping="Wrap"/>
-                </StackPanel>
-            </Grid>
-        </Grid>
-
-        <Grid x:Name="gridTilesSteam" Visibility="Collapsed" Padding="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <controls:AdaptiveGridView x:Name="gridViewTilesSteam" Grid.Row="0" ItemTemplate="{StaticResource Tile}" 
+                <controls:AdaptiveGridView x:Name="gridViewTilesSteam" Grid.Row="1"
                                        IsItemClickEnabled="True" DesiredWidth="230" ItemHeight="107" 
-                                       animations:ReorderGridAnimation.Duration="250"/>
+                                       animations:ReorderGridAnimation.Duration="250" Margin="10,10,0,0"/>
 
-            <TextBlock x:Name="tbNoJuegosSteam" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
-
-            <ProgressRing x:Name="prTilesSteam" Grid.Row="0" IsActive="True" Width="64" Height="64" Foreground="#FFF0F0F0" Visibility="Collapsed"/>
-        </Grid>
-
-        <Grid x:Name="gridTilesOrigin" Visibility="Collapsed" Padding="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <ScrollViewer Grid.Column="0" Background="SlateGray" VerticalScrollBarVisibility="Auto">
-                <ListView x:Name="lvOriginJuegos" IsItemClickEnabled="True" Padding="10,10,20,10" Visibility="Collapsed"/>
-            </ScrollViewer>
-
-            <controls:AdaptiveGridView x:Name="gridViewTilesOrigin" Grid.Column="1" ItemTemplate="{StaticResource Tile}" 
-                                       IsItemClickEnabled="True" DesiredWidth="303" ItemHeight="141" 
-                                       animations:ReorderGridAnimation.Duration="250"/>
-
-            <TextBlock x:Name="tbNoJuegosOrigin" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
-            <TextBlock x:Name="tbSiJuegosOrigin" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
-           
-            <ProgressRing x:Name="prTilesOrigin" Grid.Column="1" Visibility="Collapsed" IsActive="True" Height="48" Width="48"/>
-        </Grid>
-
-        <Grid x:Name="gridTilesBattlenet" Visibility="Collapsed" Padding="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <ScrollViewer Grid.Column="0" Background="SlateGray" VerticalScrollBarVisibility="Auto">
-                <ListView x:Name="lvBattlenetJuegos" IsItemClickEnabled="True" Padding="10,10,20,10" Visibility="Collapsed"/>
-            </ScrollViewer>
-
-            <controls:AdaptiveGridView x:Name="gridViewTilesBattlenet" Grid.Column="1" ItemTemplate="{StaticResource Tile}" 
-                                       IsItemClickEnabled="True" DesiredWidth="310" ItemHeight="150" 
-                                       animations:ReorderGridAnimation.Duration="250"/>
-
-            <TextBlock x:Name="tbNoJuegosBattlenet" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
-            <TextBlock x:Name="tbSiJuegosBattlenet" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
-
-            <ProgressRing x:Name="prTilesBattlenet" Grid.Column="1" Visibility="Collapsed" IsActive="True" Height="48" Width="48"/>
-        </Grid>
-
-        <Grid x:Name="gridTilesGOGGalaxy" Visibility="Collapsed" Padding="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <controls:AdaptiveGridView x:Name="gridViewTilesGOGGalaxy" Grid.Row="0" ItemTemplate="{StaticResource Tile}" 
-                                       IsItemClickEnabled="True" DesiredWidth="224" ItemHeight="103" 
-                                       animations:ReorderGridAnimation.Duration="250"/>
-
-            <TextBlock x:Name="tbNoJuegosGOGGalaxy" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
-
-            <ProgressRing x:Name="prTilesGOGGalaxy" Grid.Row="0" IsActive="True" Width="64" Height="64" Foreground="#FFF0F0F0" Visibility="Collapsed"/>
-        </Grid> 
-
-        <Grid x:Name="gridConfig" Visibility="Collapsed" Background="SlateGray">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel x:Name="spConfig" Grid.Column="0" VerticalAlignment="Top" Padding="0,20,0,0">
-
-                <Button x:Name="buttonConfigTiles" Width="180" Padding="10,15" Background="DimGray" Foreground="White" HorizontalContentAlignment="Left" BorderThickness="5,0,0,0">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <SymbolIcon Symbol="MailFilled" Margin="10,0"/>
-                            <TextBlock Text="Tiles"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button x:Name="buttonConfigSteam" Width="180" Padding="10,15" Background="DimGray" Foreground="White" HorizontalContentAlignment="Left" BorderThickness="5,0,0,0">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <controls:ImageEx Margin="10,0" Source="Assets\steam_logo.png" Width="20" Height="20"/>
-                            <TextBlock Text="Steam"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button x:Name="buttonConfigOrigin" Width="180" Padding="10,15" Background="DimGray" Foreground="White" HorizontalContentAlignment="Left" BorderThickness="5,0,0,0">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <controls:ImageEx Margin="10,0" Source="Assets\origin_logo.png" Width="20" Height="20"/>
-                            <TextBlock Text="Origin"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button x:Name="buttonConfigBattlenet" Width="180" Padding="10,15" Background="DimGray" Foreground="White" HorizontalContentAlignment="Left" BorderThickness="5,0,0,0">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <controls:ImageEx Margin="10,0" Source="Assets\battlenet_logo.png" Width="20" Height="20"/>
-                            <TextBlock Text="Blizzard App"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button x:Name="buttonConfigGOGGalaxy" Width="180" Padding="10,15" Background="DimGray" Foreground="White" HorizontalContentAlignment="Left" BorderThickness="5,0,0,0">
-                    <Button.Content>
-                        <StackPanel Orientation="Horizontal">
-                            <controls:ImageEx Margin="10,0" Source="Assets\gog_logo.png" Width="20" Height="20"/>
-                            <TextBlock Text="GOG Galaxy"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-
-            </StackPanel>
-
-            <Grid Grid.Column="1" Padding="20" Background="#FFF0F0F0">
-
-                <StackPanel x:Name="spConfigTiles" Visibility="Collapsed" Orientation="Vertical">
-                    <TextBlock FontSize="23" Margin="5,0,0,15" Text="Tiles"/>
-                    <Border BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,25" Width="300" HorizontalAlignment="Left"/>
-                    <CheckBox x:Name="cbTilesTitulo" Padding="10,0" VerticalContentAlignment="Center" Margin="0,0,0,5"/>
-                    <CheckBox x:Name="cbTilesLogos" Padding="10,0" VerticalContentAlignment="Center" Margin="0,5"/>
-                    <Grid x:Name="gridTilesLogos" Margin="30,0,0,0" Visibility="Collapsed">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <RadioButton x:Name="rbTipoLogos1" Grid.Column="0" Margin="0,0,20,0">
-                            <RadioButton.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock x:Name="rbTipoLogoTexto1" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                    <controls:ImageEx Source="Assets/AppList/AppList.targetsize-16.png" Width="16" Height="16" Margin="1,0"/>
-                                    <controls:ImageEx Source="Assets/origin_logo_mini.png" Width="16" Height="16" Margin="1,0"/>
-                                    <controls:ImageEx Source="Assets/battlenet_logo_mini.png" Width="16" Height="16" Margin="1,0"/>
-                                    <controls:ImageEx Source="Assets/gog_logo_mini.png" Width="16" Height="16" Margin="1,0"/>
-                                </StackPanel>
-                            </RadioButton.Content>
-                        </RadioButton> 
-                        
-                        <RadioButton x:Name="rbTipoLogos2" Grid.Column="1">
-                            <RadioButton.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock x:Name="rbTipoLogoTexto2" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                    <controls:ImageEx Source="Assets/steam_logo_mini2.png" Width="16" Height="16" Margin="1,0"/>
-                                    <controls:ImageEx Source="Assets/origin_logo_mini2.png" Width="16" Height="16" Margin="1,0"/>
-                                    <controls:ImageEx Source="Assets/battlenet_logo_mini2.png" Width="16" Height="16" Margin="1,0"/>
-                                    <controls:ImageEx Source="Assets/gog_logo_mini2.png" Width="16" Height="16" Margin="1,0"/>
-                                </StackPanel>
-                            </RadioButton.Content>
-                        </RadioButton>
-                    </Grid>
-                    <Slider x:Name="sliderTilesOverlay" Width="500" HorizontalAlignment="Left" Margin="0,50,0,0"/>
-                    <CheckBox x:Name="cbTilesCirculo" Padding="10,0" VerticalContentAlignment="Center" Margin="0,5"/>
-                </StackPanel>
-
-                <StackPanel x:Name="spConfigSteam" Visibility="Collapsed" Orientation="Vertical">
-                    <TextBlock FontSize="23" Margin="5,0,0,15" Text="Steam"/>
-                    <Border BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,25" Width="300" HorizontalAlignment="Left"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button x:Name="buttonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="#FFE4E4E4">
-                            <StackPanel Orientation="Horizontal">
-                                <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                <TextBlock x:Name="buttonAñadirCarpetaSteamTexto"/>
-                            </StackPanel>
-                        </Button>
-                        <TextBlock x:Name="tbDirectoriosSteam" Grid.Column="1" VerticalAlignment="Center" Margin="15,0,0,0" TextWrapping="Wrap"/>
-                    </Grid>
-                    <TextBlock x:Name="tbCarpetasAñadidasSteam" Margin="10,20,10,5"/>
-                    <TextBlock x:Name="tbCarpetasDetectadasSteam" Margin="10,10,10,20"/>
-
-                    <Button x:Name="buttonBorrarCarpetasSteam" Padding="10" Background="#FFE4E4E4">
-                        <StackPanel Orientation="Horizontal" >
-                            <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" />
-                            <TextBlock x:Name="buttonBorrarCarpetasTextoSteam"/>
-                        </StackPanel>
-                    </Button>
-
-                    <Grid Padding="10" Margin="0,10" HorizontalAlignment="Left">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" />
-                        <TextBlock x:Name="tbCarpetasAvisoSteam" Grid.Column="1" Margin="10,0" TextWrapping="Wrap"/>
-                    </Grid>
-                </StackPanel>
-
-                <StackPanel x:Name="spConfigOrigin" Visibility="Collapsed" Orientation="Vertical">
-                    <TextBlock FontSize="23" Margin="5,0,0,15" Text="Origin"/>
-                    <Border BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,25" Width="300" HorizontalAlignment="Left"/>
-                    <TextBlock x:Name="tbOriginConfigInstrucciones" Margin="5" TextWrapping="Wrap"/>
-                    <Grid Grid.Row="1" Margin="0,5,5,15">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button x:Name="buttonAñadirCarpetaOrigin" Grid.Column="0" Padding="10" Background="#FFE4E4E4" Margin="0,5" HorizontalAlignment="Center">
-                            <StackPanel Orientation="Horizontal" >
-                                <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                <TextBlock x:Name="buttonAñadirCarpetaOriginTexto"/>
-                            </StackPanel>
-                        </Button>
-                        <AppBarSeparator Grid.Column="1" VerticalAlignment="Center" />
-                        <TextBlock x:Name="tbOriginConfigCarpeta" Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    </Grid>
-                </StackPanel>
-
-                <StackPanel x:Name="spConfigBattlenet" Visibility="Collapsed" Orientation="Vertical">
-                    <TextBlock FontSize="23" Margin="5,0,0,15" Text="Blizzard App"/>
-                    <Border BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,25" Width="300" HorizontalAlignment="Left"/>
-                    <TextBlock x:Name="tbBattlenetConfigInstrucciones" Margin="5" TextWrapping="Wrap"/>
-                    <Grid Grid.Row="1" Margin="0,5,5,15">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button x:Name="buttonAñadirCarpetaBattlenet" Grid.Column="0" Padding="10" Background="#FFE4E4E4" Margin="0,5" HorizontalAlignment="Center">
-                            <StackPanel Orientation="Horizontal" >
-                                <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                <TextBlock x:Name="buttonAñadirCarpetaBattlenetTexto"/>
-                            </StackPanel>
-                        </Button>
-                        <AppBarSeparator Grid.Column="1" VerticalAlignment="Center" />
-                        <TextBlock x:Name="tbBattlenetConfigCarpeta" Grid.Column="2" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                    </Grid>
-                </StackPanel>
-
-                <StackPanel x:Name="spConfigGOGGalaxy" Visibility="Collapsed" Orientation="Vertical">
-                    <TextBlock FontSize="23" Margin="5,0,0,15" Text="GOG Galaxy"/>
-                    <Border BorderThickness="0,1,0,0" BorderBrush="Black" Margin="0,0,0,25" Width="300" HorizontalAlignment="Left"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button x:Name="buttonAñadirCarpetaGOGGalaxy" Grid.Column="0" Padding="10" Background="#FFE4E4E4">
-                            <StackPanel Orientation="Horizontal" >
-                                <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center" />
-                                <TextBlock x:Name="buttonAñadirCarpetaGOGGalaxyTexto"/>
-                            </StackPanel>
-                        </Button>
-                        <TextBlock x:Name="tbGOGGalaxyCarpetaInstrucciones" Grid.Column="1" VerticalAlignment="Center" Margin="15,0,0,0" TextWrapping="Wrap"/>
-                    </Grid>
-
-                    <TextBlock x:Name="tbCarpetasAñadidasGOGGalaxy" Margin="10,20,10,5"/>
-                    <TextBlock x:Name="tbCarpetasDetectadasGOGGalaxy" Margin="10,10,10,20"/>
-
-                    <Button x:Name="buttonBorrarCarpetasGOGGalaxy" Padding="10" Background="#FFE4E4E4">
-                        <StackPanel Orientation="Horizontal" >
-                            <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" />
-                            <TextBlock x:Name="buttonBorrarCarpetasGOGGalaxyTexto"/>
-                        </StackPanel>
-                    </Button>
-
-                    <Grid Padding="10" Margin="0,10" HorizontalAlignment="Left">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" />
-                        <TextBlock x:Name="tbCarpetaAvisoGOGGalaxy" Grid.Column="1" Margin="10,0" TextWrapping="Wrap"/>
-                    </Grid>
-                </StackPanel> 
-
+                <controls:DropShadowPanel x:Name="panelAvisoNoJuegosSteam" Grid.Row="1" Margin="10" Color="Black" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5" Visibility="Collapsed">
+                    <Grid Padding="10" Background="IndianRed">
+                        <TextBlock x:Name="tbNoJuegosSteam" TextWrapping="Wrap" Foreground="White"/>
+                    </Grid>                   
+                </controls:DropShadowPanel> 
+                    
+                <ProgressRing x:Name="prTilesSteam" Grid.Row="1" IsActive="True" Width="64" Height="64" Foreground="SlateGray" Visibility="Collapsed"/>
             </Grid>
-        </Grid>
 
-        <Grid x:Name="gridWeb" Visibility="Collapsed" Padding="5">
-            <WebView x:Name="webViewWeb" Source="https://pepeizqapps.com/contact/" />
-        </Grid>
+            <Popup x:Name="popupAvisoSeleccionar" Grid.Column="1" Margin="20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <Popup.ChildTransitions>
+                    <TransitionCollection>
+                        <PaneThemeTransition Edge="Right"/>
+                    </TransitionCollection>
+                </Popup.ChildTransitions>
+
+                <controls:DropShadowPanel x:Name="panelAvisoSeleccionar" Margin="1" Color="Black"
+                                          BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
+                    <Grid Padding="10" Background="IndianRed">
+                        <TextBlock x:Name="tbAvisoSeleccionar" TextWrapping="Wrap" Foreground="White"/>
+                    </Grid>
+                </controls:DropShadowPanel>
+            </Popup>
+
+            <Grid x:Name="gridConfig" Grid.Column="1" Visibility="Collapsed">
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#FFE4E4E4" Offset="0.5" />
+                        <GradientStop Color="#FFBFBFBF" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <controls:DropShadowPanel Grid.Column="0" Margin="10" VerticalAlignment="Top" Color="Black"
+                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
+                    <StackPanel Background="SlateGray">
+                        <Button x:Name="buttonConfigSteam" Padding="10,15" Background="Transparent" HorizontalContentAlignment="Left" Width="200" Foreground="White">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ImageEx Margin="10,0" Source="Assets\steam_logo.png" Width="20" Height="20"/>
+                                    <TextBlock Text="Steam"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel> 
+                </controls:DropShadowPanel>
+
+                <Grid x:Name="gridConfigSteam" Grid.Column="1" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <controls:DropShadowPanel Grid.Column="0" Margin="10" Color="Black" BlurRadius="4" ShadowOpacity="0.5" 
+                                                  OffsetZ="5">
+                            <Button x:Name="buttonAñadirCarpetaSteam" Padding="10" Background="SlateGray">
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
+                                    <TextBlock x:Name="buttonAñadirCarpetaSteamTexto" Foreground="White"/>
+                                </StackPanel>
+                            </Button>
+                        </controls:DropShadowPanel>
+
+                        <TextBlock x:Name="tbDirectoriosSteam" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                    </Grid>
+                    <TextBlock x:Name="tbCarpetasAñadidasSteam" Grid.Row="1" Margin="10"/>
+                    <TextBlock x:Name="tbCarpetasDetectadasSteam" Grid.Row="2" Margin="10"/>
+
+                    <controls:DropShadowPanel Grid.Row="3" Margin="10" Color="Black" BlurRadius="4" ShadowOpacity="0.5" 
+                                                  OffsetZ="5">
+                        <Button x:Name="buttonBorrarCarpetasSteam" Padding="10" Background="SlateGray">
+                            <StackPanel Orientation="Horizontal" >
+                                <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
+                                <TextBlock x:Name="buttonBorrarCarpetasTextoSteam" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </controls:DropShadowPanel>
+
+                    <controls:DropShadowPanel Grid.Row="4" Margin="10" Color="Black" HorizontalAlignment="Left"
+                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
+                        <Grid Padding="10" Background="IndianRed">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock x:Name="tbCarpetasAvisoSteam" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
+                        </Grid>
+                    </controls:DropShadowPanel>
+
+                </Grid>
+            </Grid>
+
+            <Popup x:Name="popupMasCosas" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="132">
+                <Popup.ChildTransitions>
+                    <TransitionCollection>
+                        <PaneThemeTransition Edge="Left"/>
+                    </TransitionCollection>
+                </Popup.ChildTransitions>
+
+                <StackPanel Orientation="Vertical" Width="200" Background="SlateGray">
+                    <Button x:Name="botonMasApps" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:ImageEx Source="Assets\social_pepeizq.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                <TextBlock x:Name="botonMasAppsTexto" Foreground="White" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="botonContactar" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:ImageEx Source="Assets\steam_logo.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                <TextBlock x:Name="botonContactarTexto" Foreground="White" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="botonCodigoFuente" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:ImageEx Source="Assets\social_github.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                <TextBlock x:Name="botonCodigoFuenteTexto" Foreground="White" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Popup>
+        </Grid> 
     </Grid>
 </Page>
 
