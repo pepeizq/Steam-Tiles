@@ -301,11 +301,11 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
-                    <Button x:Name="botonContactar" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
+                    <Button x:Name="botonReportar" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <controls:ImageEx Source="Assets\steam_logo.png" Margin="0,0,10,0" Width="20" Height="20"/>
-                                <TextBlock x:Name="botonContactarTexto" Foreground="White" VerticalAlignment="Center"/>
+                                <controls:ImageEx Source="Assets\social_feedback.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                <TextBlock x:Name="botonReportarTexto" Foreground="White" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>

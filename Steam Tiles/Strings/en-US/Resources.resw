@@ -141,14 +141,14 @@
   <data name="Boton Config" xml:space="preserve">
     <value>Configuration</value>
   </data>
-  <data name="Boton Contactar" xml:space="preserve">
-    <value>Contact</value>
-  </data>
   <data name="Boton Cosas" xml:space="preserve">
     <value>More Things</value>
   </data>
   <data name="Boton Inicio" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Boton Reportar" xml:space="preserve">
+    <value>Report a Bug</value>
   </data>
   <data name="Boton Votar" xml:space="preserve">
     <value>Vote the App</value>
