@@ -1,9 +1,10 @@
-﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
+﻿Imports Microsoft.Toolkit.Uwp.UI.Animations
+Imports Microsoft.Toolkit.Uwp.UI.Animations.Behaviors
+Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
 Imports Windows.UI
-Imports Windows.Web.Http
 
 Module Steam
 
@@ -266,7 +267,15 @@ Module Steam
                 boton.BorderBrush = New SolidColorBrush(Colors.Black)
                 boton.Background = New SolidColorBrush(Colors.Transparent)
 
-                AddHandler boton.Click, AddressOf botonTile_Click
+                Dim tbToolTip As TextBlock = New TextBlock With {
+                    .Text = juego.Titulo,
+                    .FontSize = 16
+                }
+
+                ToolTipService.SetToolTip(boton, tbToolTip)
+                ToolTipService.SetPlacement(boton, PlacementMode.Mouse)
+
+                AddHandler boton.Click, AddressOf BotonTile_Click
 
                 gv.Items.Add(boton)
             Next

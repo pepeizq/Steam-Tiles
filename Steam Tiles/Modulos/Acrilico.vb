@@ -25,7 +25,7 @@ Module Acrilico
         ElementCompositionPreview.SetElementChildVisual(panel, hostSprite)
 
         panel.Tag = hostSprite
-        AddHandler panel.SizeChanged, AddressOf panel_SizeChanged
+        AddHandler panel.SizeChanged, AddressOf Panel_SizeChanged
 
     End Sub
 
