@@ -114,7 +114,25 @@ Public NotInheritable Class MainPage
         Else
             botonMasCosas.Background = New SolidColorBrush(Colors.SlateGray)
             popupMasCosas.IsOpen = True
+
+            Try
+                RSS.Generar()
+            Catch ex As Exception
+
+            End Try
         End If
+
+    End Sub
+
+    Private Sub PopupMasCosas_LayoutUpdated(sender As Object, e As Object) Handles popupMasCosas.LayoutUpdated
+
+        popupMasCosas.Height = spMasCosas.ActualHeight
+
+    End Sub
+
+    Private Async Sub BotonRSS_Click(sender As Object, e As RoutedEventArgs) Handles botonRSS.Click
+
+        Await Launcher.LaunchUriAsync(New Uri(botonRSS.Tag.ToString))
 
     End Sub
 

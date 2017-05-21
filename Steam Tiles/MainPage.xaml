@@ -285,14 +285,32 @@
                 </Grid>
             </Grid>
 
-            <Popup x:Name="popupMasCosas" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="132">
+            <Popup x:Name="popupMasCosas" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <Popup.ChildTransitions>
                     <TransitionCollection>
                         <PaneThemeTransition Edge="Left"/>
                     </TransitionCollection>
                 </Popup.ChildTransitions>
 
-                <StackPanel Orientation="Vertical" Width="200" Background="SlateGray">
+                <StackPanel x:Name="spMasCosas" Orientation="Vertical" Width="200" Background="SlateGray">
+                    <StackPanel x:Name="spRSS" Orientation="Vertical" Visibility="Collapsed">
+                        <StackPanel.ChildrenTransitions>
+                            <TransitionCollection>
+                                <EdgeUIThemeTransition Edge="Bottom"/>
+                            </TransitionCollection>
+                        </StackPanel.ChildrenTransitions>
+                        
+                        <Button x:Name="botonRSS" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ImageEx Source="Assets\rss_logo.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                    <TextBlock x:Name="botonRSSTexto" Foreground="White" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Line X1="200" Y1="0" StrokeThickness="1" Stroke="White" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                    
                     <Button x:Name="botonMasApps" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
