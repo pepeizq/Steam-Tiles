@@ -293,29 +293,19 @@
                 </Popup.ChildTransitions>
 
                 <StackPanel x:Name="spMasCosas" Orientation="Vertical" Width="200" Background="SlateGray">
-                    <StackPanel x:Name="spRSS" Orientation="Vertical" Visibility="Collapsed">
-                        <StackPanel.ChildrenTransitions>
-                            <TransitionCollection>
-                                <EdgeUIThemeTransition Edge="Bottom"/>
-                            </TransitionCollection>
-                        </StackPanel.ChildrenTransitions>
-                        
-                        <Button x:Name="botonRSS" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
-                            <Button.Content>
-                                <StackPanel Orientation="Horizontal">
-                                    <controls:ImageEx Source="Assets\rss_logo.png" Margin="0,0,10,0" Width="20" Height="20"/>
-                                    <TextBlock x:Name="botonRSSTexto" Foreground="White" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                                </StackPanel>
-                            </Button.Content>
-                        </Button>
-                        <Line X1="200" Y1="0" StrokeThickness="1" Stroke="White" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                    
                     <Button x:Name="botonMasApps" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <controls:ImageEx Source="Assets\social_pepeizq.png" Margin="0,0,10,0" Width="20" Height="20"/>
                                 <TextBlock x:Name="botonMasAppsTexto" Foreground="White" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                    <Button x:Name="botonContacto" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:ImageEx Source="Assets\social_contacto.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                <TextBlock x:Name="botonContactoTexto" Foreground="White" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>

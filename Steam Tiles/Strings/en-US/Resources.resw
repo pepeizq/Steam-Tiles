@@ -141,6 +141,9 @@
   <data name="Boton Config" xml:space="preserve">
     <value>Configuration</value>
   </data>
+  <data name="Boton Contacto" xml:space="preserve">
+    <value>Contact</value>
+  </data>
   <data name="Boton Cosas" xml:space="preserve">
     <value>More Things</value>
   </data>

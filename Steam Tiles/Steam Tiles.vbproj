@@ -138,6 +138,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\social_contacto.png" />
     <Content Include="Assets\social_feedback.png" />
     <Content Include="Assets\social_pepeizq.png" />
     <Content Include="Assets\steam_logo_mini3.png" />
