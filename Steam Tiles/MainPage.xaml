@@ -175,7 +175,13 @@
 
                 <controls:AdaptiveGridView x:Name="gridViewTilesSteam" Grid.Row="1"
                                        IsItemClickEnabled="True" DesiredWidth="230" ItemHeight="107" 
-                                       animations:ReorderGridAnimation.Duration="250" Margin="10,10,0,0"/>
+                                       animations:ReorderGridAnimation.Duration="250" Margin="10,10,0,0">
+                    <controls:AdaptiveGridView.ItemContainerStyle>
+                        <Style TargetType="GridViewItem">
+                            <Setter Property="Margin" Value="1"/>
+                        </Style>
+                    </controls:AdaptiveGridView.ItemContainerStyle>
+                </controls:AdaptiveGridView> 
 
                 <controls:DropShadowPanel x:Name="panelAvisoNoJuegosSteam" Grid.Row="1" Margin="10" Color="Black" HorizontalAlignment="Center" VerticalAlignment="Center"
                                                   BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5" Visibility="Collapsed">
