@@ -302,7 +302,7 @@
                     <Button x:Name="botonMasApps" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <controls:ImageEx Source="Assets\social_pepeizq.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                <Image Source="Assets\social_pepeizq.png" Margin="0,0,10,0" Width="20" Height="20"/>
                                 <TextBlock x:Name="botonMasAppsTexto" Foreground="White" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button.Content>
@@ -310,7 +310,7 @@
                     <Button x:Name="botonContacto" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <controls:ImageEx Source="Assets\social_contacto.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                <Image Source="Assets\social_contacto.png" Margin="0,0,10,0" Width="20" Height="20"/>
                                 <TextBlock x:Name="botonContactoTexto" Foreground="White" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button.Content>
@@ -318,7 +318,7 @@
                     <Button x:Name="botonReportar" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <controls:ImageEx Source="Assets\social_feedback.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                <Image Source="Assets\social_feedback.png" Margin="0,0,10,0" Width="20" Height="20"/>
                                 <TextBlock x:Name="botonReportarTexto" Foreground="White" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button.Content>
@@ -326,7 +326,7 @@
                     <Button x:Name="botonCodigoFuente" Padding="10" Foreground="White" Width="200" HorizontalContentAlignment="Left">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <controls:ImageEx Source="Assets\social_github.png" Margin="0,0,10,0" Width="20" Height="20"/>
+                                <Image Source="Assets\social_github.png" Margin="0,0,10,0" Width="20" Height="20"/>
                                 <TextBlock x:Name="botonCodigoFuenteTexto" Foreground="White" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Button.Content>
