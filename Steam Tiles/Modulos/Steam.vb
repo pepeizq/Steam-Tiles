@@ -1,6 +1,4 @@
-﻿Imports Microsoft.Toolkit.Uwp.UI.Animations
-Imports Microsoft.Toolkit.Uwp.UI.Animations.Behaviors
-Imports Microsoft.Toolkit.Uwp.UI.Controls
+﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
@@ -220,9 +218,10 @@ Module Steam
                                     End While
 
                                     If tituloBool = False Then
-                                        Dim imagen As Uri = New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
+                                        Dim imagenWide As Uri = New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
+                                        Dim imagenLarge As Uri = New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/page_bg_generated_v6b.jpg", UriKind.RelativeOrAbsolute)
 
-                                        Dim juego As New Tile(titulo, id, New Uri("steam://rungameid/" + id), imagen, "Steam", Nothing)
+                                        Dim juego As New Tile(titulo, id, New Uri("steam://rungameid/" + id), imagenWide, imagenLarge, "Steam", Nothing)
                                         juego.Tile = juego
 
                                         listaFinal.Add(juego)
@@ -252,7 +251,7 @@ Module Steam
                 Dim imagen As New ImageEx
 
                 Try
-                    imagen.Source = New BitmapImage(juego.Imagen)
+                    imagen.Source = New BitmapImage(juego.ImagenWide)
                 Catch ex As Exception
 
                 End Try
@@ -332,7 +331,7 @@ Module Steam
             botonAñadirTile.Tag = juego
 
             Dim imageJuegoSeleccionado As ImageEx = pagina.FindName("imageJuegoSeleccionado")
-            Dim imagenCapsula As String = juego.Imagen.ToString
+            Dim imagenCapsula As String = juego.ImagenWide.ToString
             imagenCapsula = imagenCapsula.Replace("header.jpg", "capsule_184x69.jpg")
             imageJuegoSeleccionado.Source = New BitmapImage(New Uri(imagenCapsula))
 
@@ -368,5 +367,31 @@ Module Steam
         Generar(False)
 
     End Sub
+
+    Public Async Function SacarIcono(id As String) As Task(Of Uri)
+
+        Dim html As String = Await Decompiladores.HttpClient(New Uri("http://store.steampowered.com/app/" + id + "/"))
+        Dim uriIcono As Uri = Nothing
+
+        If Not html = Nothing Then
+            If html.Contains("<div class=" + ChrW(34) + "apphub_AppIcon") Then
+                Dim temp, temp2 As String
+                Dim int, int2 As Integer
+
+                int = html.IndexOf("<div class=" + ChrW(34) + "apphub_AppIcon")
+                temp = html.Remove(0, int)
+
+                int = temp.IndexOf("<img src=")
+                temp = temp.Remove(0, int + 10)
+
+                int2 = temp.IndexOf(ChrW(34))
+                temp2 = temp.Remove(int2, temp.Length - int2)
+
+                uriIcono = New Uri(temp2.Trim)
+            End If
+        End If
+
+        Return uriIcono
+    End Function
 
 End Module

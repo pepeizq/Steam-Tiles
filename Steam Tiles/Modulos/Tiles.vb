@@ -9,15 +9,20 @@ Module Tiles
 
     Public Async Sub Generar(tile As Tile)
 
-        Dim ficheroImagen As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync("header.png", CreationCollisionOption.GenerateUniqueName)
-        Dim downloader As BackgroundDownloader = New BackgroundDownloader()
-        Dim descarga As DownloadOperation = downloader.CreateDownload(tile.Imagen, ficheroImagen)
-        Await descarga.StartAsync
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
 
-        Dim nuevaTile As SecondaryTile = New SecondaryTile(tile.ID, tile.Titulo, tile.Enlace.ToString, New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
+        Dim boton As Button = pagina.FindName("botonAñadirTile")
+        boton.IsEnabled = False
 
-        nuevaTile.VisualElements.Wide310x150Logo = New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute)
-        nuevaTile.VisualElements.Square310x310Logo = New Uri("ms-appdata:///local/" + ficheroImagen.Name, UriKind.RelativeOrAbsolute)
+        DescargaImagen(Await Steam.SacarIcono(tile.ID), tile.ID + "icon")
+        DescargaImagen(tile.ImagenWide, tile.ID + "wide")
+        DescargaImagen(tile.ImagenLarge, tile.ID + "large")
+
+        Dim nuevaTile As SecondaryTile = New SecondaryTile(tile.ID, tile.Titulo, tile.Enlace.ToString, New Uri("ms-appdata:///local/" + tile.ID + "wide.png", UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
+
+        nuevaTile.VisualElements.Wide310x150Logo = New Uri("ms-appdata:///local/" + tile.ID + "wide.png", UriKind.RelativeOrAbsolute)
+        nuevaTile.VisualElements.Square310x310Logo = New Uri("ms-appdata:///local/" + tile.ID + "large.png", UriKind.RelativeOrAbsolute)
 
         Await nuevaTile.RequestCreateAsync()
 
@@ -29,8 +34,6 @@ Module Tiles
                 .HintAlign = AdaptiveImageAlign.Right
             }
 
-            Dim frame As Frame = Window.Current.Content
-            Dim pagina As Page = frame.Content
             Dim cbIconosLista As ComboBox = pagina.FindName("cbTilesIconosLista")
             Dim imagenIcono As ImageEx = cbIconosLista.SelectedItem
             imagenDRM.Source = imagenIcono.Source
@@ -38,21 +41,59 @@ Module Tiles
         End If
 
         Dim imagen As AdaptiveImage = New AdaptiveImage With {
-            .Source = "ms-appdata:///local/" + ficheroImagen.Name,
+            .Source = "ms-appdata:///local/" + tile.ID + "wide.png",
             .HintRemoveMargin = True,
             .HintAlign = AdaptiveImageAlign.Stretch,
             .HintCrop = AdaptiveImageCrop.Default
         }
 
-        Dim fondoImagen As TileBackgroundImage = New TileBackgroundImage With {
-            .Source = "ms-appdata:///local/" + ficheroImagen.Name,
+        Dim fondoImagenIcon As TileBackgroundImage = New TileBackgroundImage With {
+            .Source = "ms-appdata:///local/" + tile.ID + "icon.png",
+            .HintCrop = AdaptiveImageCrop.Default
+        }
+
+        Dim fondoImagenWide As TileBackgroundImage = New TileBackgroundImage With {
+            .Source = "ms-appdata:///local/" + tile.ID + "wide.png",
+            .HintCrop = AdaptiveImageCrop.Default
+        }
+
+        Dim fondoImagenLarge As TileBackgroundImage = New TileBackgroundImage With {
+            .Source = "ms-appdata:///local/" + tile.ID + "large.png",
             .HintCrop = AdaptiveImageCrop.Default
         }
 
         '-----------------------
 
+        Dim contenidoSmall As TileBindingContentAdaptive = New TileBindingContentAdaptive With {
+            .BackgroundImage = fondoImagenIcon
+        }
+
+        If Not imagenDRM Is Nothing Then
+            contenidoSmall.Children.Add(imagenDRM)
+        End If
+
+        Dim tileSmall As TileBinding = New TileBinding With {
+            .Content = contenidoSmall
+        }
+
+        '-----------------------
+
+        Dim contenidoMedium As TileBindingContentAdaptive = New TileBindingContentAdaptive With {
+            .BackgroundImage = fondoImagenIcon
+        }
+
+        If Not imagenDRM Is Nothing Then
+            contenidoMedium.Children.Add(imagenDRM)
+        End If
+
+        Dim tileMedium As TileBinding = New TileBinding With {
+            .Content = contenidoMedium
+        }
+
+        '-----------------------
+
         Dim contenidoWide As TileBindingContentAdaptive = New TileBindingContentAdaptive With {
-            .BackgroundImage = fondoImagen
+            .BackgroundImage = fondoImagenWide
         }
 
         If Not imagenDRM Is Nothing Then
@@ -65,34 +106,9 @@ Module Tiles
 
         '-----------------------
 
-        Dim contenidoSmall As TileBindingContentAdaptive = New TileBindingContentAdaptive
-        contenidoSmall.Children.Add(imagen)
-
-        If Not imagenDRM Is Nothing Then
-            contenidoSmall.Children.Add(imagenDRM)
-        End If
-
-        Dim tileSmall As TileBinding = New TileBinding With {
-            .Content = contenidoSmall
+        Dim contenidoLarge As TileBindingContentAdaptive = New TileBindingContentAdaptive With {
+            .BackgroundImage = fondoImagenLarge
         }
-
-        '-----------------------
-
-        Dim contenidoMedium As TileBindingContentAdaptive = New TileBindingContentAdaptive
-        contenidoMedium.Children.Add(imagen)
-
-        If Not imagenDRM Is Nothing Then
-            contenidoMedium.Children.Add(imagenDRM)
-        End If
-
-        Dim tileMedium As TileBinding = New TileBinding With {
-            .Content = contenidoMedium
-        }
-
-        '-----------------------
-
-        Dim contenidoLarge As TileBindingContentAdaptive = New TileBindingContentAdaptive
-        contenidoLarge.Children.Add(imagen)
 
         If Not imagenDRM Is Nothing Then
             contenidoLarge.Children.Add(imagenDRM)
@@ -129,6 +145,17 @@ Module Tiles
         Catch ex As Exception
 
         End Try
+
+        boton.IsEnabled = True
+
+    End Sub
+
+    Private Async Sub DescargaImagen(uri As Uri, clave As String)
+
+        Dim ficheroImagen As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync(clave + ".png", CreationCollisionOption.GenerateUniqueName)
+        Dim descargador As BackgroundDownloader = New BackgroundDownloader()
+        Dim descarga As DownloadOperation = descargador.CreateDownload(uri, ficheroImagen)
+        Await descarga.StartAsync
 
     End Sub
 
