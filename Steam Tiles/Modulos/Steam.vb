@@ -391,6 +391,28 @@ Module Steam
             End If
         End If
 
+        If html = Nothing Then
+            html = Await Decompiladores.HttpClient(New Uri("https://steamdb.info/app/" + id + "/"))
+
+            If Not html = Nothing Then
+                If html.Contains("<img class=" + ChrW(34) + "app-icon avatar") Then
+                    Dim temp, temp2 As String
+                    Dim int, int2 As Integer
+
+                    int = html.IndexOf("<img class=" + ChrW(34) + "app-icon avatar")
+                    temp = html.Remove(0, int)
+
+                    int = temp.IndexOf("src=")
+                    temp = temp.Remove(0, int + 5)
+
+                    int2 = temp.IndexOf(ChrW(34))
+                    temp2 = temp.Remove(int2, temp.Length - int2)
+
+                    uriIcono = New Uri(temp2.Trim)
+                End If
+            End If
+        End If
+
         Return uriIcono
     End Function
 

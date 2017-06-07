@@ -127,7 +127,7 @@
                         <controls:DropShadowPanel Grid.Column="0" Margin="2"
                                                   Color="Black" BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
                             <Button x:Name="botonAñadirTile" Padding="15,10" Background="SlateGray">
-                                <StackPanel Orientation="Horizontal"> 
+                                <StackPanel Orientation="Horizontal">
                                     <SymbolIcon Margin="0,0,10,0" VerticalAlignment="Center" Symbol="Add" Foreground="White"/>
                                     <TextBlock x:Name="botonAñadirTileTexto" Foreground="White"/>
                                 </StackPanel>
@@ -167,7 +167,7 @@
                             <controls:ImageEx Source="Assets/steam_logo_mini3.png" Width="16" Height="16"/>
                             <controls:ImageEx Source="Assets/steam_logo_mini4.png" Width="16" Height="16"/>
                             <controls:ImageEx Source="Assets/steam_logo_mini5.png" Width="16" Height="16"/>
-                        </ComboBox> 
+                        </ComboBox>
                     </Grid>
 
                     <Border Grid.Row="1" BorderThickness="1" BorderBrush="SlateGray" VerticalAlignment="Bottom" Margin="10,0"/>
@@ -181,18 +181,18 @@
                             <Setter Property="Margin" Value="1"/>
                         </Style>
                     </controls:AdaptiveGridView.ItemContainerStyle>
-                </controls:AdaptiveGridView> 
+                </controls:AdaptiveGridView>
 
                 <controls:DropShadowPanel x:Name="panelAvisoNoJuegosSteam" Grid.Row="1" Margin="10" Color="Black" HorizontalAlignment="Center" VerticalAlignment="Center"
                                                   BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5" Visibility="Collapsed">
                     <Grid Padding="10" Background="IndianRed">
                         <TextBlock x:Name="tbNoJuegosSteam" TextWrapping="Wrap" Foreground="White"/>
-                    </Grid>                   
-                </controls:DropShadowPanel> 
-                    
+                    </Grid>
+                </controls:DropShadowPanel>
+
                 <ProgressRing x:Name="prTilesSteam" Grid.Row="1" IsActive="True" Width="64" Height="64" Foreground="SlateGray" Visibility="Collapsed"/>
             </Grid>
-
+            
             <Popup x:Name="popupAvisoSeleccionar" Grid.Column="1" Margin="20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <Popup.ChildTransitions>
                     <TransitionCollection>
