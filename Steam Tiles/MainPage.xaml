@@ -135,7 +135,7 @@
                         </controls:DropShadowPanel>
 
                         <Border Grid.Column="1" Margin="15,0,5,0" BorderThickness="1" BorderBrush="Black" Width="129" Height="49" VerticalAlignment="Center">
-                            <controls:ImageEx x:Name="imageJuegoSeleccionado" Stretch="UniformToFill"/>
+                            <controls:ImageEx x:Name="imageJuegoSeleccionado" Stretch="UniformToFill" IsCacheEnabled="True"/>
                         </Border>
 
                         <TextBlock x:Name="tbJuegoSeleccionado" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>

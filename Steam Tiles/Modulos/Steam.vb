@@ -256,7 +256,8 @@ Module Steam
 
                 End Try
 
-                imagen.Stretch = Stretch.Uniform
+                imagen.IsCacheEnabled = True
+                imagen.Stretch = Stretch.UniformToFill
                 imagen.Padding = New Thickness(0, 0, 0, 0)
 
                 boton.Tag = juego
