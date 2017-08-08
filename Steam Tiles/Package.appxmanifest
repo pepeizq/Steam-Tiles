@@ -5,7 +5,7 @@
   <Properties>
     <DisplayName>Steam Tiles</DisplayName>
     <PublisherDisplayName>pepeizq</PublisherDisplayName>
-    <Logo>assets\Store\StoreLogo.png</Logo>
+    <Logo>assets\Logos\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
@@ -15,16 +15,16 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Steam_Tiles.App">
-      <uap:VisualElements DisplayName="Steam Tiles" Square150x150Logo="assets\Medium\Medium150x150Logo.png" Square44x44Logo="assets\AppList\AppList.png" Description="https://pepeizqapps.com" BackgroundColor="dimGray">
-        <uap:DefaultTile Wide310x150Logo="assets\Wide\Wide310x150Logo.png" ShortName="Steam Tiles" Square310x310Logo="assets\Large\Large310x310Logo.png" Square71x71Logo="assets\Small\Small71x71Logo.png">
+      <uap:VisualElements DisplayName="Steam Tiles" Square150x150Logo="assets\Logos\Medium150x150Logo.png" Square44x44Logo="assets\Logos\AppList.png" Description="https://pepeizqapps.com" BackgroundColor="dimGray">
+        <uap:DefaultTile Wide310x150Logo="assets\Logos\Wide310x150Logo.png" ShortName="Steam Tiles" Square310x310Logo="assets\Logos\Large310x310Logo.png" Square71x71Logo="assets\Logos\Small71x71Logo.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
             <uap:ShowOn Tile="wide310x150Logo" />
             <uap:ShowOn Tile="square310x310Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="assets\SplashScreen\SplashScreen.png" BackgroundColor="dimGray" />
-        <uap:LockScreen BadgeLogo="assets\Badge\Badge.png" Notification="badge" />
+        <uap:SplashScreen Image="assets\Logos\SplashScreen.png" BackgroundColor="dimGray" />
+        <uap:LockScreen BadgeLogo="assets\Logos\Badge.png" Notification="badge" />
       </uap:VisualElements>
     </Application>
   </Applications>
