@@ -1,1 +1,1 @@
-D:\Proyectos\Steam Tiles\Steam Tiles\bin\x64\Release\Upload\Steam Tiles_2.0.45.0\Steam Tiles_2.0.45.0_x86_x64.appxbundle
+E:\Proyectos\Steam Tiles\Steam Tiles\bin\x64\Release\Upload\Steam Tiles_2.0.46.0\Steam Tiles_2.0.46.0_x86_x64.appxbundle
