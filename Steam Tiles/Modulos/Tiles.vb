@@ -154,8 +154,11 @@ Module Tiles
 
         Dim ficheroImagen As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync(clave + ".png", CreationCollisionOption.GenerateUniqueName)
         Dim descargador As BackgroundDownloader = New BackgroundDownloader()
-        Dim descarga As DownloadOperation = descargador.CreateDownload(uri, ficheroImagen)
-        Await descarga.StartAsync
+
+        If Not uri = Nothing Then
+            Dim descarga As DownloadOperation = descargador.CreateDownload(uri, ficheroImagen)
+            Await descarga.StartAsync
+        End If
 
     End Sub
 

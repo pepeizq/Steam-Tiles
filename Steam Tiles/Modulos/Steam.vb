@@ -392,7 +392,7 @@ Module Steam
             End If
         End If
 
-        If html = Nothing Then
+        If uriIcono = Nothing Then
             html = Await Decompiladores.HttpClient(New Uri("https://steamdb.info/app/" + id + "/"))
 
             If Not html = Nothing Then
