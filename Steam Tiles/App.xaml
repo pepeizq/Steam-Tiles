@@ -8,5 +8,26 @@
         <Style x:Key="EllipsisButton" TargetType="Button">
             <Setter Property="MaxWidth" Value="0"/>
         </Style>
+
+        <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="White"/>
+
+        <Color x:Key="ColorMaestro">DimGray</Color>
+
+        <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent"/>
+        <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="{StaticResource ColorMaestro}"/>
+        <SolidColorBrush x:Key="ListViewItemForegroundPointerOver" Color="White"/>
+        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{StaticResource ColorMaestro}"/>
+
+        <SolidColorBrush x:Key="ColorGridPrincipal" Color="{StaticResource ColorMaestro}"/>
+        <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="{StaticResource ColorMaestro}"/>
+        <SolidColorBrush x:Key="SystemControlForegroundAccentBrush" Color="{StaticResource ColorMaestro}" />
+
+        <AcrylicBrush x:Key="GridTituloBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorMaestro}" TintOpacity=".7"/>
+        <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorMaestro}" TintOpacity=".7"/>
+        <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorMaestro}" TintOpacity=".7"/>
+
+        <SolidColorBrush x:Key="ColorSecundario" Color="SlateGray"/>
     </Application.Resources>
 </Application>

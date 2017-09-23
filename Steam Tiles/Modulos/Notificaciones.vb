@@ -23,15 +23,23 @@ Module Notificaciones
         nodosimagen(0).Attributes.GetNamedItem("src").NodeValue = "ms-appx:///Assets/steam_logo.png"
 
         Dim nodostexto As Windows.Data.Xml.Dom.XmlNodeList = xml.GetElementsByTagName("text")
-        nodostexto.Item(0).AppendChild(xml.CreateTextNode(titulo))
-        nodostexto.Item(1).AppendChild(xml.CreateTextNode(contenido))
+
+        If Not titulo = String.Empty Then
+            nodostexto.Item(0).AppendChild(xml.CreateTextNode(titulo))
+        End If
+
+        If Not contenido = String.Empty Then
+            nodostexto.Item(1).AppendChild(xml.CreateTextNode(contenido))
+        End If
 
         Dim toastnodo As Windows.Data.Xml.Dom.IXmlNode = xml.SelectSingleNode("/toast")
         Dim audio As Windows.Data.Xml.Dom.XmlElement = xml.CreateElement("audio")
         audio.SetAttribute("src", "ms-winsoundevent:Notification.SMS")
 
-        Dim toast As ToastNotification = New ToastNotification(xml)
-        toast.ExpirationTime = DateTime.Now.AddSeconds(10)
+        Dim toast As ToastNotification = New ToastNotification(xml) With {
+            .ExpirationTime = DateTime.Now.AddSeconds(10)
+        }
+
         notificador.Show(toast)
 
     End Sub

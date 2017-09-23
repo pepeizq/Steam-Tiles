@@ -237,7 +237,6 @@ Module Steam
         End While
 
         Dim panelAvisoNoJuegosSteam As DropShadowPanel = pagina.FindName("panelAvisoNoJuegosSteam")
-        Dim popupAvisoSeleccionar As Popup = pagina.FindName("popupAvisoSeleccionar")
 
         If listaFinal.Count > 0 Then
             panelAvisoNoJuegosSteam.Visibility = Visibility.Collapsed
@@ -285,7 +284,6 @@ Module Steam
             End If
         Else
             panelAvisoNoJuegosSteam.Visibility = Visibility.Visible
-            popupAvisoSeleccionar.IsOpen = False
 
             If boolBuscarCarpeta = True Then
                 Toast("Steam Tiles", recursos.GetString("Fallo1"))

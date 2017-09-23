@@ -8,149 +8,91 @@ Imports Windows.UI
 Public NotInheritable Class MainPage
     Inherits Page
 
+    Private Sub Nv_Loaded(sender As Object, e As RoutedEventArgs)
+
+        Dim recursos As New Resources.ResourceLoader()
+
+        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Tiles"), New SymbolIcon(Symbol.Home), 0))
+        nvPrincipal.MenuItems.Add(New NavigationViewItemSeparator)
+        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Config"), New SymbolIcon(Symbol.Setting), 1))
+        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("MoreThings"), New SymbolIcon(Symbol.More), 2))
+
+    End Sub
+
+    Private Sub Nv_ItemInvoked(sender As NavigationView, args As NavigationViewItemInvokedEventArgs)
+
+        Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
+
+        Dim item As TextBlock = args.InvokedItem
+
+        If item.Text = recursos.GetString("Tiles") Then
+            GridVisibilidad(gridTiles, item.Text)
+        ElseIf item.Text = recursos.GetString("Config") Then
+            GridVisibilidad(gridConfig, item.Text)
+        ElseIf item.Text = recursos.GetString("MoreThings") Then
+            GridVisibilidad(gridMasCosas, item.Text)
+        End If
+
+    End Sub
+
     Private Sub Page_Loaded(sender As FrameworkElement, args As Object)
 
         'Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "es-ES"
         'Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "en-US"
 
-        Acrilico.Generar(gridTopAcrilico)
-        Acrilico.Generar(gridMenuAcrilico)
+        Dim coreBarra As CoreApplicationViewTitleBar = CoreApplication.GetCurrentView.TitleBar
+        coreBarra.ExtendViewIntoTitleBar = True
 
         Dim barra As ApplicationViewTitleBar = ApplicationView.GetForCurrentView().TitleBar
         barra.ButtonBackgroundColor = Colors.Transparent
         barra.ButtonForegroundColor = Colors.White
-        barra.ButtonPressedBackgroundColor = Colors.DimGray
         barra.ButtonInactiveBackgroundColor = Colors.Transparent
-        Dim coreBarra As CoreApplicationViewTitleBar = CoreApplication.GetCurrentView.TitleBar
-        coreBarra.ExtendViewIntoTitleBar = True
 
         '--------------------------------------------------------
 
         Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
 
-        botonTilesTexto.Text = recursos.GetString("Tiles")
-        botonConfigTexto.Text = recursos.GetString("Boton Config")
-        botonVotarTexto.Text = recursos.GetString("Boton Votar")
-        botonMasCosasTexto.Text = recursos.GetString("Boton Cosas")
+        'botonTilesTexto.Text = recursos.GetString("Tiles")
+        'botonConfigTexto.Text = recursos.GetString("Boton Config")
+        'botonVotarTexto.Text = recursos.GetString("Boton Votar")
+        'botonMasCosasTexto.Text = recursos.GetString("Boton Cosas")
 
-        botonMasAppsTexto.Text = recursos.GetString("Boton Web")
-        botonContactoTexto.Text = recursos.GetString("Boton Contacto")
-        botonReportarTexto.Text = recursos.GetString("Boton Reportar")
-        botonCodigoFuenteTexto.Text = recursos.GetString("Boton Codigo Fuente")
+        'botonMasAppsTexto.Text = recursos.GetString("Boton Web")
+        'botonContactoTexto.Text = recursos.GetString("Boton Contacto")
+        'botonReportarTexto.Text = recursos.GetString("Boton Reportar")
+        'botonCodigoFuenteTexto.Text = recursos.GetString("Boton Codigo Fuente")
 
-        tbNoJuegosSteam.Text = recursos.GetString("No Config")
-        tbAvisoSeleccionar.Text = recursos.GetString("Seleccionar")
+        'tbNoJuegosSteam.Text = recursos.GetString("No Config")
+        'tbAvisoSeleccionar.Text = recursos.GetString("Seleccionar")
 
-        botonAñadirTileTexto.Text = recursos.GetString("Añadir Tile")
+        'botonAñadirTileTexto.Text = recursos.GetString("Añadir Tile")
 
-        cbTilesTitulo.Content = recursos.GetString("Tile Titulo")
-        cbTilesIconos.Content = recursos.GetString("Tile Logo")
+        'cbTilesTitulo.Content = recursos.GetString("Tile Titulo")
+        'cbTilesIconos.Content = recursos.GetString("Tile Logo")
 
-        tbDirectoriosSteam.Text = recursos.GetString("Steam Carpetas Añadir")
-        buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Añadir")
-        tbCarpetasAñadidasSteam.Text = recursos.GetString("Carpetas Añadidas")
-        tbCarpetasAvisoSteam.Text = recursos.GetString("Steam Carpetas Aviso")
-        buttonBorrarCarpetasTextoSteam.Text = recursos.GetString("Boton Borrar")
+        'tbDirectoriosSteam.Text = recursos.GetString("Steam Carpetas Añadir")
+        'buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Añadir")
+        'tbCarpetasAñadidasSteam.Text = recursos.GetString("Carpetas Añadidas")
+        'tbCarpetasAvisoSteam.Text = recursos.GetString("Steam Carpetas Aviso")
+        'buttonBorrarCarpetasTextoSteam.Text = recursos.GetString("Boton Borrar")
 
         '--------------------------------------------------------
 
-        GridVisibilidad(gridTilesSteam, botonTiles, recursos.GetString("Tiles"))
+        GridVisibilidad(gridTiles, recursos.GetString("Tiles"))
         Steam.Generar(False)
         Config.Generar()
 
     End Sub
 
-    Private Sub GridVisibilidad(grid As Grid, boton As Button, seccion As String)
+    Private Sub GridVisibilidad(grid As Grid, tag As String)
 
-        tbTitulo.Text = "Steam Tiles (" + SystemInformation.ApplicationVersion.Major.ToString + "." + SystemInformation.ApplicationVersion.Minor.ToString + "." + SystemInformation.ApplicationVersion.Build.ToString + "." + SystemInformation.ApplicationVersion.Revision.ToString + ") - " + seccion
+        tbTitulo.Text = "Steam Tiles (" + SystemInformation.ApplicationVersion.Major.ToString + "." + SystemInformation.ApplicationVersion.Minor.ToString + "." + SystemInformation.ApplicationVersion.Build.ToString + "." + SystemInformation.ApplicationVersion.Revision.ToString + ") - " + tag
 
-        gridTilesSteam.Visibility = Visibility.Collapsed
+        gridTiles.Visibility = Visibility.Collapsed
         gridConfig.Visibility = Visibility.Collapsed
+        gridMasCosas.Visibility = Visibility.Collapsed
 
         grid.Visibility = Visibility.Visible
-
-        If gridTilesSteam.Visibility = Visibility.Visible Then
-            If gridAñadirTiles.Visibility = Visibility.Collapsed Then
-                If panelAvisoNoJuegosSteam.Visibility = Visibility.Collapsed Then
-                    popupAvisoSeleccionar.IsOpen = True
-                End If
-            End If
-        End If
-
-        botonTiles.Background = New SolidColorBrush(Colors.Transparent)
-        botonConfig.Background = New SolidColorBrush(Colors.Transparent)
-
-        If Not boton Is Nothing Then
-            boton.Background = New SolidColorBrush(Colors.SlateGray)
-        End If
-
-    End Sub
-
-    Private Sub BotonTiles_Click(sender As Object, e As RoutedEventArgs) Handles botonTiles.Click
-
-        Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
-        GridVisibilidad(gridTilesSteam, botonTiles, recursos.GetString("Tiles"))
-
-    End Sub
-
-    Private Sub BotonConfig_Click(sender As Object, e As RoutedEventArgs) Handles botonConfig.Click
-
-        Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
-        GridVisibilidad(gridConfig, botonConfig, recursos.GetString("Boton Config"))
-        GridConfigVisibilidad(gridConfigSteam, buttonConfigSteam)
-
-    End Sub
-
-    Private Async Sub BotonVotar_Click(sender As Object, e As RoutedEventArgs) Handles botonVotar.Click
-
-        Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
-
-    End Sub
-
-    Private Sub BotonMasCosas_Click(sender As Object, e As RoutedEventArgs) Handles botonMasCosas.Click
-
-        If popupMasCosas.IsOpen = True Then
-            botonMasCosas.Background = New SolidColorBrush(Colors.Transparent)
-            popupMasCosas.IsOpen = False
-        Else
-            botonMasCosas.Background = New SolidColorBrush(Colors.SlateGray)
-            popupMasCosas.IsOpen = True
-        End If
-
-    End Sub
-
-    Private Sub PopupMasCosas_LayoutUpdated(sender As Object, e As Object) Handles popupMasCosas.LayoutUpdated
-
-        popupMasCosas.Height = spMasCosas.ActualHeight
-
-    End Sub
-
-    Private Async Sub BotonMasApps_Click(sender As Object, e As RoutedEventArgs) Handles botonMasApps.Click
-
-        Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/"))
-
-    End Sub
-
-    Private Async Sub BotonContacto_Click(sender As Object, e As RoutedEventArgs) Handles botonContacto.Click
-
-        Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/contact/"))
-
-    End Sub
-
-    Private Async Sub BotonReportar_Click(sender As Object, e As RoutedEventArgs) Handles botonReportar.Click
-
-        If StoreServicesFeedbackLauncher.IsSupported = True Then
-            Dim ejecutador As StoreServicesFeedbackLauncher = StoreServicesFeedbackLauncher.GetDefault()
-            Await ejecutador.LaunchAsync()
-        Else
-            Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/contact/"))
-        End If
-
-    End Sub
-
-    Private Async Sub BotonCodigoFuente_Click(sender As Object, e As RoutedEventArgs) Handles botonCodigoFuente.Click
-
-        Await Launcher.LaunchUriAsync(New Uri("https://github.com/pepeizq/Steam-Tiles"))
 
     End Sub
 
@@ -163,20 +105,9 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub PopupAvisoSeleccionar_LayoutUpdated(sender As Object, e As Object) Handles popupAvisoSeleccionar.LayoutUpdated
-
-        popupAvisoSeleccionar.Width = panelAvisoSeleccionar.ActualWidth
-        popupAvisoSeleccionar.Height = panelAvisoSeleccionar.ActualHeight
-
-    End Sub
-
     'CONFIG-----------------------------------------------------------------------------
 
     Private Sub GridConfigVisibilidad(grid As Grid, boton As Button)
-
-        If popupAvisoSeleccionar.IsOpen = True Then
-            popupAvisoSeleccionar.IsOpen = False
-        End If
 
         buttonConfigSteam.Background = New SolidColorBrush(Colors.SlateGray)
 
@@ -235,6 +166,49 @@ Public NotInheritable Class MainPage
     Private Sub ButtonBorrarCarpetasSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonBorrarCarpetasSteam.Click
 
         Steam.Borrar()
+
+    End Sub
+
+    'MASCOSAS-----------------------------------------
+
+    Private Async Sub LvMasCosasItemClick(sender As Object, args As ItemClickEventArgs)
+
+        Dim sp As StackPanel = args.ClickedItem
+
+        If sp.Tag.ToString = 0 Then
+
+            Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
+
+        ElseIf sp.Tag.ToString = 1 Then
+
+            wvMasCosas.Navigate(New Uri("https://pepeizqapps.com/"))
+
+        ElseIf sp.Tag.ToString = 2 Then
+
+            wvMasCosas.Navigate(New Uri("https://pepeizqapps.com/contact/"))
+
+        ElseIf sp.Tag.ToString = 3 Then
+
+            If StoreServicesFeedbackLauncher.IsSupported = True Then
+                Dim ejecutador As StoreServicesFeedbackLauncher = StoreServicesFeedbackLauncher.GetDefault()
+                Await ejecutador.LaunchAsync()
+            Else
+                wvMasCosas.Navigate(New Uri("https://pepeizqapps.com/contact/"))
+            End If
+
+        ElseIf sp.Tag.ToString = 4 Then
+
+            wvMasCosas.Navigate(New Uri("https://poeditor.com/join/project/YaZAR0uIW4"))
+
+        ElseIf sp.Tag.ToString = 5 Then
+
+            wvMasCosas.Navigate(New Uri("https://github.com/pepeizq/Steam-Tiles"))
+
+        ElseIf sp.Tag.ToString = 6 Then
+
+            wvMasCosas.Navigate(New Uri("https://pepeizqapps.com/thanks/"))
+
+        End If
 
     End Sub
 
