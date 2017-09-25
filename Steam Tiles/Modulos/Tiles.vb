@@ -68,9 +68,9 @@ Module Tiles
             .BackgroundImage = fondoImagenIcon
         }
 
-        If Not imagenDRM Is Nothing Then
-            contenidoSmall.Children.Add(imagenDRM)
-        End If
+        'If Not imagenDRM Is Nothing Then
+        '    contenidoSmall.Children.Add(imagenDRM)
+        'End If
 
         Dim tileSmall As TileBinding = New TileBinding With {
             .Content = contenidoSmall

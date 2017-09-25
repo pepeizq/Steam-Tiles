@@ -53,7 +53,7 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Grid Grid.Row="0" Margin="10">
+                        <Grid Grid.Row="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
@@ -63,15 +63,12 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <controls:DropShadowPanel Grid.Column="0" Margin="2"
-                                                  Color="Black" BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
-                                <Button x:Name="botonAñadirTile" Padding="15,10" Background="SlateGray">
-                                    <StackPanel Orientation="Horizontal">
-                                        <SymbolIcon Margin="0,0,10,0" VerticalAlignment="Center" Symbol="Add" Foreground="White"/>
-                                        <TextBlock x:Name="botonAñadirTileTexto" Foreground="White"/>
-                                    </StackPanel>
-                                </Button>
-                            </controls:DropShadowPanel>
+                            <Button x:Name="botonAñadirTile" Grid.Column="0" Padding="15,10" Background="{StaticResource ColorSecundario}">
+                                <StackPanel Orientation="Horizontal">
+                                    <SymbolIcon Margin="0,0,10,0" VerticalAlignment="Center" Symbol="Add" Foreground="White"/>
+                                    <TextBlock x:Uid="AddTile" Foreground="White"/>
+                                </StackPanel>
+                            </Button>
 
                             <Border Grid.Column="1" Margin="15,0,5,0" BorderThickness="1" BorderBrush="Black" Width="129" Height="49" VerticalAlignment="Center">
                                 <controls:ImageEx x:Name="imageJuegoSeleccionado" Stretch="UniformToFill" IsCacheEnabled="True"/>
@@ -79,15 +76,18 @@
 
                             <TextBlock x:Name="tbJuegoSeleccionado" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
 
-                            <CheckBox x:Name="cbTilesTitulo" Grid.Column="3" VerticalAlignment="Center" Margin="10,0" MinWidth="0"/>
-                            <CheckBox x:Name="cbTilesIconos" Grid.Column="4" VerticalAlignment="Center" Margin="10,0" MinWidth="0"/>
+                            <CheckBox x:Name="cbTilesTitulo" Grid.Column="3" VerticalAlignment="Center" Margin="10,0" MinWidth="0">
+                                <CheckBox.Content>
+                                    <TextBlock x:Uid="TileTitle"/>
+                                </CheckBox.Content>
+                            </CheckBox>
+                            <CheckBox x:Name="cbTilesIconos" Grid.Column="4" VerticalAlignment="Center" Margin="10,0" MinWidth="0">
+                                <CheckBox.Content>
+                                    <TextBlock x:Uid="TileIcon"/>
+                                </CheckBox.Content>
+                            </CheckBox>
+                            
                             <ComboBox x:Name="cbTilesIconosLista" Grid.Column="5" VerticalAlignment="Center" Margin="5,0" Visibility="Collapsed" Width="40" Padding="5,0,0,0">
-                                <ComboBox.Transitions>
-                                    <TransitionCollection>
-                                        <PaneThemeTransition Edge="Top"/>
-                                    </TransitionCollection>
-                                </ComboBox.Transitions>
-
                                 <ComboBox.ItemContainerStyle>
                                     <Style TargetType="ComboBoxItem">
                                         <Setter Property="Width" Value="70"/>
@@ -109,12 +109,27 @@
                             </ComboBox>
                         </Grid>
 
-                        <Border Grid.Row="1" BorderThickness="1" BorderBrush="SlateGray" VerticalAlignment="Bottom" Margin="10,0"/>
+                        <Border Grid.Row="1" BorderThickness="1" BorderBrush="SlateGray" VerticalAlignment="Bottom" Margin="0,10"/>
+                    </Grid>
+
+                    <Grid x:Name="gridSeleccionarJuego" Grid.Row="0" Visibility="Collapsed">
+                        <Grid.ChildrenTransitions>
+                            <TransitionCollection>
+                                <PaneThemeTransition Edge="Top"/>
+                            </TransitionCollection>
+                        </Grid.ChildrenTransitions>
+
+                        <controls:DropShadowPanel Margin="10,0,10,10" Color="Black" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
+                            <Grid Padding="10" Background="IndianRed">
+                                <TextBlock x:Uid="SelectGame" TextWrapping="Wrap" Foreground="White"/>
+                            </Grid>
+                        </controls:DropShadowPanel>
                     </Grid>
 
                     <controls:AdaptiveGridView x:Name="gridViewTilesSteam" Grid.Row="1"
                                        IsItemClickEnabled="True" DesiredWidth="230" ItemHeight="107" 
-                                       animations:ReorderGridAnimation.Duration="250" Margin="10,10,0,0">
+                                       animations:ReorderGridAnimation.Duration="250">
                         <controls:AdaptiveGridView.ItemContainerStyle>
                             <Style TargetType="GridViewItem">
                                 <Setter Property="Margin" Value="1"/>
@@ -122,10 +137,10 @@
                         </controls:AdaptiveGridView.ItemContainerStyle>
                     </controls:AdaptiveGridView>
 
-                    <controls:DropShadowPanel x:Name="panelAvisoNoJuegosSteam" Grid.Row="1" Margin="10" Color="Black" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    <controls:DropShadowPanel x:Name="panelAvisoNoJuegos" Grid.Row="1" Margin="10" Color="Black" HorizontalAlignment="Center" VerticalAlignment="Center"
                                                   BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5" Visibility="Collapsed">
                         <Grid Padding="10" Background="IndianRed">
-                            <TextBlock x:Name="tbNoJuegosSteam" TextWrapping="Wrap" Foreground="White"/>
+                            <TextBlock x:Uid="NoGamesDetected" TextWrapping="Wrap" Foreground="White"/>
                         </Grid>
                     </controls:DropShadowPanel>
 
@@ -133,79 +148,56 @@
                 </Grid>
 
                 <Grid x:Name="gridConfig" Visibility="Collapsed">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                    <ScrollViewer>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Tiles" Margin="10,5" FontSize="16"/>
+                            <Rectangle HorizontalAlignment="Left" Fill="Black" Height="1" Margin="5" Width="400"/>
 
-                    <controls:DropShadowPanel Grid.Column="0" Margin="10" VerticalAlignment="Top" Color="Black"
-                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
-                        <StackPanel Background="SlateGray">
-                            <Button x:Name="buttonConfigSteam" Padding="10,15" Background="Transparent" HorizontalContentAlignment="Left" Width="200" Foreground="White">
-                                <Button.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <controls:ImageEx Margin="10,0" Source="Assets\steam_logo.png" Width="20" Height="20"/>
-                                        <TextBlock Text="Steam"/>
-                                    </StackPanel>
-                                </Button.Content>
-                            </Button>
-                        </StackPanel>
-                    </controls:DropShadowPanel>
-
-                    <Grid x:Name="gridConfigSteam" Grid.Column="1" Visibility="Collapsed">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <Grid Grid.Row="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <controls:DropShadowPanel Grid.Column="0" Margin="10" Color="Black" BlurRadius="4" ShadowOpacity="0.5" 
-                                                  OffsetZ="5">
-                                <Button x:Name="buttonAñadirCarpetaSteam" Padding="10" Background="SlateGray">
-                                    <StackPanel Orientation="Horizontal">
-                                        <SymbolIcon Symbol="Add" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                                        <TextBlock x:Name="buttonAñadirCarpetaSteamTexto" Foreground="White"/>
-                                    </StackPanel>
-                                </Button>
-                            </controls:DropShadowPanel>
-
-                            <TextBlock x:Name="tbDirectoriosSteam" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
-                        </Grid>
-                        <TextBlock x:Name="tbCarpetasAñadidasSteam" Grid.Row="1" Margin="10"/>
-                        <TextBlock x:Name="tbCarpetasDetectadasSteam" Grid.Row="2" Margin="10"/>
-
-                        <controls:DropShadowPanel Grid.Row="3" Margin="10" Color="Black" BlurRadius="4" ShadowOpacity="0.5" 
-                                                  OffsetZ="5">
-                            <Button x:Name="buttonBorrarCarpetasSteam" Padding="10" Background="SlateGray">
-                                <StackPanel Orientation="Horizontal" >
-                                    <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                                    <TextBlock x:Name="buttonBorrarCarpetasTextoSteam" Foreground="White"/>
-                                </StackPanel>
-                            </Button>
-                        </controls:DropShadowPanel>
-
-                        <controls:DropShadowPanel Grid.Row="4" Margin="10" Color="Black" HorizontalAlignment="Left"
-                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
-                            <Grid Padding="10" Background="IndianRed">
+                            <Grid Grid.Row="0" Margin="10,5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" Foreground="White"/>
-                                <TextBlock x:Name="tbCarpetasAvisoSteam" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
-                            </Grid>
-                        </controls:DropShadowPanel>
+                                <controls:DropShadowPanel Grid.Column="0" Color="Black" BlurRadius="4" ShadowOpacity="0.5" 
+                                                  OffsetZ="5">
+                                    <Button x:Name="buttonAñadirCarpetaSteam" Padding="10" Background="SlateGray">
+                                        <StackPanel Orientation="Horizontal">
+                                            <SymbolIcon Symbol="NewFolder" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
+                                            <TextBlock x:Uid="ConfigSteamAddFolder" Foreground="White"/>
+                                        </StackPanel>
+                                    </Button>
+                                </controls:DropShadowPanel>
 
-                    </Grid>
+                                <TextBlock x:Uid="ConfigSteamFolderMessage" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                            </Grid>
+                            <TextBlock x:Uid="ConfigSteamFoldersAdded" Margin="10,5"/>
+                            <TextBlock x:Name="tbCarpetasDetectadasSteam" Margin="10,5"/>
+
+                            <controls:DropShadowPanel Margin="10,25,10,5" Color="Black" BlurRadius="4" ShadowOpacity="0.5" 
+                                                  OffsetZ="5">
+                                <Button x:Name="buttonBorrarCarpetasSteam" Padding="10" Background="SlateGray">
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Uid="ConfigSteamDeleteFolders" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
+                            </controls:DropShadowPanel>
+
+                            <controls:DropShadowPanel Margin="10,5" Color="Black" HorizontalAlignment="Left"
+                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
+                                <Grid Padding="10" Background="IndianRed">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" Foreground="White"/>
+                                    <TextBlock x:Uid="ConfigSteamFoldersWarning" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
+                                </Grid>
+                            </controls:DropShadowPanel>
+                        </StackPanel> 
+                    </ScrollViewer> 
                 </Grid>
 
                 <Grid x:Name="gridMasCosas" Visibility="Collapsed">

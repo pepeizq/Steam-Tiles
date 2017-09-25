@@ -117,11 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddTile.Text" xml:space="preserve">
+    <value>Add Tile</value>
+  </data>
   <data name="Config" xml:space="preserve">
     <value>Configuration</value>
   </data>
+  <data name="ConfigSteamAddFolder.Text" xml:space="preserve">
+    <value>Add Folder</value>
+  </data>
+  <data name="ConfigSteamDeleteFolders.Text" xml:space="preserve">
+    <value>Delete Folders</value>
+  </data>
+  <data name="ConfigSteamFolderMessage.Text" xml:space="preserve">
+    <value>Add your Steam folder following this example: C:\Steam\steamapps</value>
+  </data>
+  <data name="ConfigSteamFoldersAdded.Text" xml:space="preserve">
+    <value>Folders added:</value>
+  </data>
+  <data name="ConfigSteamFoldersWarning.Text" xml:space="preserve">
+    <value>Advice: If you have installed games in different hard drives add the steamapps folder of each hard drive.</value>
+  </data>
   <data name="Contact.Text" xml:space="preserve">
     <value>Contact</value>
+  </data>
+  <data name="ErrorSteam1" xml:space="preserve">
+    <value>No games detected. Remember select the folder steamapps inside of Steam.</value>
+  </data>
+  <data name="GamesDetected" xml:space="preserve">
+    <value>games detected</value>
   </data>
   <data name="HelpTranslate.Text" xml:space="preserve">
     <value>Help to Translate</value>
@@ -129,11 +153,20 @@
   <data name="MoreThings" xml:space="preserve">
     <value>More Things</value>
   </data>
+  <data name="NoFoldersDetected" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="NoGamesDetected.Text" xml:space="preserve">
+    <value>No games detected, go to Configuration</value>
+  </data>
   <data name="OtherApps.Text" xml:space="preserve">
     <value>Other Apps</value>
   </data>
   <data name="ReportBug.Text" xml:space="preserve">
     <value>Report a Bug</value>
+  </data>
+  <data name="SelectGame.Text" xml:space="preserve">
+    <value>Select a game</value>
   </data>
   <data name="SourceCode.Text" xml:space="preserve">
     <value>Source Code</value>
@@ -141,8 +174,14 @@
   <data name="ThanksTo.Text" xml:space="preserve">
     <value>Thanks to</value>
   </data>
+  <data name="TileIcon.Text" xml:space="preserve">
+    <value>Add icon</value>
+  </data>
   <data name="Tiles" xml:space="preserve">
     <value>Tiles</value>
+  </data>
+  <data name="TileTitle.Text" xml:space="preserve">
+    <value>Add title</value>
   </data>
   <data name="VoteApp.Text" xml:space="preserve">
     <value>Vote the App</value>

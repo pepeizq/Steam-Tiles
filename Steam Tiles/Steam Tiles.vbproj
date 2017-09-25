@@ -113,8 +113,6 @@
     <None Include="Steam Tiles_TemporaryKey.pfx" />
     <PRIResource Include="Strings\es-ES\Resources.resw" />
     <PRIResource Include="Strings\en-US\Resources.resw" />
-    <PRIResource Include="Strings\es-ES\Resources_viejo.resw" />
-    <PRIResource Include="Strings\en-US\Resources_viejo.resw" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.vb">

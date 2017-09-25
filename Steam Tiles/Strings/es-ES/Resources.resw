@@ -117,11 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddTile.Text" xml:space="preserve">
+    <value>Añadir Tile</value>
+  </data>
   <data name="Config" xml:space="preserve">
     <value>Configuración</value>
   </data>
+  <data name="ConfigSteamAddFolder.Text" xml:space="preserve">
+    <value>Añadir Carpeta</value>
+  </data>
+  <data name="ConfigSteamDeleteFolders.Text" xml:space="preserve">
+    <value>Borrar Carpetas</value>
+  </data>
+  <data name="ConfigSteamFolderMessage.Text" xml:space="preserve">
+    <value>Añade la carpeta de Steam siguiendo este ejemplo: C:\Steam\steamapps</value>
+  </data>
+  <data name="ConfigSteamFoldersAdded.Text" xml:space="preserve">
+    <value>Carpetas añadidas:</value>
+  </data>
+  <data name="ConfigSteamFoldersWarning.Text" xml:space="preserve">
+    <value>Aviso: Si tienes juegos instalados en diferentes discos duros hay que añadir la carpeta steamapps de cada disco duro.</value>
+  </data>
   <data name="Contact.Text" xml:space="preserve">
     <value>Contactar</value>
+  </data>
+  <data name="ErrorSteam1" xml:space="preserve">
+    <value>No se han detectado juegos. Recuerda seleccionar la carpeta steamapps dentro de Steam.</value>
+  </data>
+  <data name="GamesDetected" xml:space="preserve">
+    <value>juegos detectados</value>
   </data>
   <data name="HelpTranslate.Text" xml:space="preserve">
     <value>Ayuda a Traducir</value>
@@ -129,11 +153,20 @@
   <data name="MoreThings" xml:space="preserve">
     <value>Más Cosas</value>
   </data>
+  <data name="NoFoldersDetected" xml:space="preserve">
+    <value>Ninguna</value>
+  </data>
+  <data name="NoGamesDetected.Text" xml:space="preserve">
+    <value>No se han detectado juegos, ve a Configuración</value>
+  </data>
   <data name="OtherApps.Text" xml:space="preserve">
     <value>Otras Apps</value>
   </data>
   <data name="ReportBug.Text" xml:space="preserve">
     <value>Informa de un Fallo</value>
+  </data>
+  <data name="SelectGame.Text" xml:space="preserve">
+    <value>Selecciona un juego</value>
   </data>
   <data name="SourceCode.Text" xml:space="preserve">
     <value>Código Fuente</value>
@@ -141,8 +174,14 @@
   <data name="ThanksTo.Text" xml:space="preserve">
     <value>Agradecimientos</value>
   </data>
+  <data name="TileIcon.Text" xml:space="preserve">
+    <value>Añadir icono</value>
+  </data>
   <data name="Tiles" xml:space="preserve">
     <value>Tiles</value>
+  </data>
+  <data name="TileTitle.Text" xml:space="preserve">
+    <value>Añadir titulo</value>
   </data>
   <data name="VoteApp.Text" xml:space="preserve">
     <value>Vota la App</value>

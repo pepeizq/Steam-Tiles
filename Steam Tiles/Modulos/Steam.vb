@@ -13,11 +13,11 @@ Module Steam
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        Dim buttonAñadir As Button = pagina.FindName("buttonAñadirCarpetaSteam")
-        buttonAñadir.IsEnabled = False
+        Dim botonAñadir As Button = pagina.FindName("buttonAñadirCarpetaSteam")
+        botonAñadir.IsEnabled = False
 
-        Dim buttonBorrar As Button = pagina.FindName("buttonBorrarCarpetasSteam")
-        buttonBorrar.IsEnabled = False
+        Dim botonBorrar As Button = pagina.FindName("buttonBorrarCarpetasSteam")
+        botonBorrar.IsEnabled = False
 
         Dim pr As ProgressRing = pagina.FindName("prTilesSteam")
         pr.Visibility = Visibility.Visible
@@ -76,7 +76,7 @@ Module Steam
         End If
 
         If tbCarpetas.Text = Nothing Then
-            tbCarpetas.Text = recursos.GetString("Ninguna")
+            tbCarpetas.Text = recursos.GetString("NoFoldersDetected")
         Else
             tbCarpetas.Text = tbCarpetas.Text.Trim
         End If
@@ -236,10 +236,13 @@ Module Steam
             h += 1
         End While
 
-        Dim panelAvisoNoJuegosSteam As DropShadowPanel = pagina.FindName("panelAvisoNoJuegosSteam")
+        Dim panelAvisoNoJuegos As DropShadowPanel = pagina.FindName("panelAvisoNoJuegos")
+        Dim gridSeleccionar As Grid = pagina.FindName("gridSeleccionarJuego")
 
         If listaFinal.Count > 0 Then
-            panelAvisoNoJuegosSteam.Visibility = Visibility.Collapsed
+            panelAvisoNoJuegos.Visibility = Visibility.Collapsed
+            gridSeleccionar.Visibility = Visibility.Visible
+
             listaFinal.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
 
             gv.Items.Clear()
@@ -280,18 +283,19 @@ Module Steam
             Next
 
             If boolBuscarCarpeta = True Then
-                Toast("Steam Tiles", listaFinal.Count.ToString + " " + recursos.GetString("Juegos Detectados"))
+                Toast(listaFinal.Count.ToString + " " + recursos.GetString("GamesDetected"), Nothing)
             End If
         Else
-            panelAvisoNoJuegosSteam.Visibility = Visibility.Visible
+            panelAvisoNoJuegos.Visibility = Visibility.Visible
+            gridSeleccionar.Visibility = Visibility.Collapsed
 
             If boolBuscarCarpeta = True Then
-                Toast("Steam Tiles", recursos.GetString("Fallo1"))
+                Toast(recursos.GetString("ErrorSteam1"), Nothing)
             End If
         End If
 
-        buttonAñadir.IsEnabled = True
-        buttonBorrar.IsEnabled = True
+        botonAñadir.IsEnabled = True
+        botonBorrar.IsEnabled = True
         pr.Visibility = Visibility.Collapsed
 
     End Sub
@@ -310,11 +314,11 @@ Module Steam
             botonJuego.BorderThickness = New Thickness(1, 1, 1, 1)
             botonJuego.BorderBrush = New SolidColorBrush(Colors.Black)
 
-            Dim popupAviso As Popup = pagina.FindName("popupAvisoSeleccionar")
-            popupAviso.IsOpen = True
-
             Dim grid As Grid = pagina.FindName("gridAñadirTiles")
             grid.Visibility = Visibility.Collapsed
+
+            Dim gridSeleccionar As Grid = pagina.FindName("gridSeleccionarJuego")
+            gridSeleccionar.Visibility = Visibility.Visible
         Else
             For Each item In gv.Items
                 Dim itemBoton As Button = item
@@ -337,11 +341,11 @@ Module Steam
             Dim tbJuegoSeleccionado As TextBlock = pagina.FindName("tbJuegoSeleccionado")
             tbJuegoSeleccionado.Text = juego.Titulo
 
-            Dim popupAviso As Popup = pagina.FindName("popupAvisoSeleccionar")
-            popupAviso.IsOpen = False
+            Dim gridAñadir As Grid = pagina.FindName("gridAñadirTiles")
+            gridAñadir.Visibility = Visibility.Visible
 
-            Dim grid As Grid = pagina.FindName("gridAñadirTiles")
-            grid.Visibility = Visibility.Visible
+            Dim gridSeleccionar As Grid = pagina.FindName("gridSeleccionarJuego")
+            gridSeleccionar.Visibility = Visibility.Collapsed
         End If
 
     End Sub
@@ -358,7 +362,7 @@ Module Steam
         Dim pagina As Page = frame.Content
         Dim tbCarpetas As TextBlock = pagina.FindName("tbCarpetasDetectadasSteam")
 
-        tbCarpetas.Text = recursos.GetString("Ninguna")
+        tbCarpetas.Text = recursos.GetString("NoFoldersDetected")
 
         Dim gv As GridView = pagina.FindName("gridViewTilesSteam")
         gv.Items.Clear()

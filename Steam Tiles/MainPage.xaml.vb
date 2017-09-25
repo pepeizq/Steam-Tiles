@@ -52,33 +52,9 @@ Public NotInheritable Class MainPage
 
         Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
 
-        'botonTilesTexto.Text = recursos.GetString("Tiles")
-        'botonConfigTexto.Text = recursos.GetString("Boton Config")
-        'botonVotarTexto.Text = recursos.GetString("Boton Votar")
-        'botonMasCosasTexto.Text = recursos.GetString("Boton Cosas")
-
-        'botonMasAppsTexto.Text = recursos.GetString("Boton Web")
-        'botonContactoTexto.Text = recursos.GetString("Boton Contacto")
-        'botonReportarTexto.Text = recursos.GetString("Boton Reportar")
-        'botonCodigoFuenteTexto.Text = recursos.GetString("Boton Codigo Fuente")
-
-        'tbNoJuegosSteam.Text = recursos.GetString("No Config")
-        'tbAvisoSeleccionar.Text = recursos.GetString("Seleccionar")
-
-        'botonAñadirTileTexto.Text = recursos.GetString("Añadir Tile")
-
-        'cbTilesTitulo.Content = recursos.GetString("Tile Titulo")
-        'cbTilesIconos.Content = recursos.GetString("Tile Logo")
-
-        'tbDirectoriosSteam.Text = recursos.GetString("Steam Carpetas Añadir")
-        'buttonAñadirCarpetaSteamTexto.Text = recursos.GetString("Boton Añadir")
-        'tbCarpetasAñadidasSteam.Text = recursos.GetString("Carpetas Añadidas")
-        'tbCarpetasAvisoSteam.Text = recursos.GetString("Steam Carpetas Aviso")
-        'buttonBorrarCarpetasTextoSteam.Text = recursos.GetString("Boton Borrar")
-
-        '--------------------------------------------------------
-
         GridVisibilidad(gridTiles, recursos.GetString("Tiles"))
+        nvPrincipal.IsPaneOpen = False
+
         Steam.Generar(False)
         Config.Generar()
 
@@ -102,26 +78,6 @@ Public NotInheritable Class MainPage
 
         Dim tile As Tile = botonAñadirTile.Tag
         Tiles.Generar(tile)
-
-    End Sub
-
-    'CONFIG-----------------------------------------------------------------------------
-
-    Private Sub GridConfigVisibilidad(grid As Grid, boton As Button)
-
-        buttonConfigSteam.Background = New SolidColorBrush(Colors.SlateGray)
-
-        boton.Background = New SolidColorBrush(Colors.DimGray)
-
-        gridConfigSteam.Visibility = Visibility.Collapsed
-
-        grid.Visibility = Visibility.Visible
-
-    End Sub
-
-    Private Sub ButtonConfigSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonConfigSteam.Click
-
-        GridConfigVisibilidad(gridConfigSteam, buttonConfigSteam)
 
     End Sub
 
