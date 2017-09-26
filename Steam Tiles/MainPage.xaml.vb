@@ -111,15 +111,15 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    'CONFIGSTEAM-----------------------------------------------------------------------------
+    'CONFIG-----------------------------------------------------------------------------
 
-    Private Sub ButtonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonAñadirCarpetaSteam.Click
+    Private Sub BotonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles botonAñadirCarpetaSteam.Click
 
         Steam.Generar(True)
 
     End Sub
 
-    Private Sub ButtonBorrarCarpetasSteam_Click(sender As Object, e As RoutedEventArgs) Handles buttonBorrarCarpetasSteam.Click
+    Private Sub BotonBorrarCarpetasSteam_Click(sender As Object, e As RoutedEventArgs) Handles botonBorrarCarpetasSteam.Click
 
         Steam.Borrar()
 

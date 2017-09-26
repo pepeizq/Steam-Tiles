@@ -13,10 +13,10 @@ Module Steam
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        Dim botonAñadir As Button = pagina.FindName("buttonAñadirCarpetaSteam")
+        Dim botonAñadir As Button = pagina.FindName("botonAñadirCarpetaSteam")
         botonAñadir.IsEnabled = False
 
-        Dim botonBorrar As Button = pagina.FindName("buttonBorrarCarpetasSteam")
+        Dim botonBorrar As Button = pagina.FindName("botonBorrarCarpetasSteam")
         botonBorrar.IsEnabled = False
 
         Dim pr As ProgressRing = pagina.FindName("prTilesSteam")
