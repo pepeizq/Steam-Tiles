@@ -15,7 +15,7 @@
 
         <Color x:Key="ColorPrimario">DimGray</Color>
         <Color x:Key="ColorSecundario">SlateGray</Color>
-        <Color x:Key="ColorTerciario">Silver</Color>
+        <Color x:Key="ColorTerciario">#a6a6a6</Color>
 
         <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent"/>
         <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="{StaticResource ColorPrimario}"/>
