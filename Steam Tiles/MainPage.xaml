@@ -101,11 +101,11 @@
                                     </TransitionCollection>
                                 </ComboBox.ItemContainerTransitions>
 
-                                <controls:ImageEx Source="Assets/steam_logo_mini1.png" Width="16" Height="16"/>
-                                <controls:ImageEx Source="Assets/steam_logo_mini2.png" Width="16" Height="16"/>
-                                <controls:ImageEx Source="Assets/steam_logo_mini3.png" Width="16" Height="16"/>
-                                <controls:ImageEx Source="Assets/steam_logo_mini4.png" Width="16" Height="16"/>
-                                <controls:ImageEx Source="Assets/steam_logo_mini5.png" Width="16" Height="16"/>
+                                <controls:ImageEx Source="Assets/steam_logo_mini1.png" Width="16" Height="16" IsCacheEnabled="True"/>
+                                <controls:ImageEx Source="Assets/steam_logo_mini2.png" Width="16" Height="16" IsCacheEnabled="True"/>
+                                <controls:ImageEx Source="Assets/steam_logo_mini3.png" Width="16" Height="16" IsCacheEnabled="True"/>
+                                <controls:ImageEx Source="Assets/steam_logo_mini4.png" Width="16" Height="16" IsCacheEnabled="True"/>
+                                <controls:ImageEx Source="Assets/steam_logo_mini5.png" Width="16" Height="16" IsCacheEnabled="True"/>
                             </ComboBox>
                         </Grid>
 
