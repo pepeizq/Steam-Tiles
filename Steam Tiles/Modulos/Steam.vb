@@ -327,7 +327,7 @@ Module Steam
             Next
 
             botonJuego.BorderThickness = New Thickness(6, 6, 6, 6)
-            botonJuego.BorderBrush = New SolidColorBrush(Colors.DimGray)
+            botonJuego.BorderBrush = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
 
             Dim botonAñadirTile As Button = pagina.FindName("botonAñadirTile")
             Dim juego As Tile = botonJuego.Tag
