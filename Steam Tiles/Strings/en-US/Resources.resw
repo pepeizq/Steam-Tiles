@@ -186,4 +186,34 @@
   <data name="VoteApp.Text" xml:space="preserve">
     <value>Vote the App</value>
   </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change Folder</value>
+  </data>
+  <data name="ConfigBlizzardFolderMessage.Text" xml:space="preserve">
+    <value>Add the folder where are installed your Blizzard games:</value>
+  </data>
+  <data name="ConfigGOGFolderMessage.Text" xml:space="preserve">
+    <value>Add your GOG Galaxy folder following this example: C:\GalaxyClient\Games</value>
+  </data>
+  <data name="ConfigGOGFoldersWarning.Text" xml:space="preserve">
+    <value>Because the way GOG Galaxy works the app will open the gameview of the game, not the executable</value>
+  </data>
+  <data name="ConfigTwitchFolderMessage.Text" xml:space="preserve">
+    <value>Add the folder C:\Users\[Your User]\AppData\Roaming\Twitch</value>
+  </data>
+  <data name="DescriptionStoreBlizzard" xml:space="preserve">
+    <value>Add Tiles of your Blizzard App games in the Start Menu of Windows 10.</value>
+  </data>
+  <data name="DescriptionStoreGOG" xml:space="preserve">
+    <value>Add Tiles of your GOG Galaxy games in the Start Menu of Windows 10.</value>
+  </data>
+  <data name="DescriptionStoreOrigin" xml:space="preserve">
+    <value>Add Tiles in the Start Menu of Windows 10 for your Origin games.</value>
+  </data>
+  <data name="DescriptionStoreSteam" xml:space="preserve">
+    <value>Add Tiles in the Start Menu of Windows 10 for your Steam games.</value>
+  </data>
+  <data name="DescriptionStoreTwitch" xml:space="preserve">
+    <value>Add Tiles in the Start Menu of Windows 10 for your Twitch Desktop App games.</value>
+  </data>
 </root>
