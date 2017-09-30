@@ -154,7 +154,7 @@ Public NotInheritable Class MainPage
 
         ElseIf sp.Tag.ToString = 4 Then
 
-            wvMasCosas.Navigate(New Uri("https://poeditor.com/join/project/YaZAR0uIW4"))
+            wvMasCosas.Navigate(New Uri("https://poeditor.com/join/project/aKmScyB4QT"))
 
         ElseIf sp.Tag.ToString = 5 Then
 
