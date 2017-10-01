@@ -148,7 +148,8 @@ Module Steam
                         i = 0
                         If gv.Items.Count > 0 Then
                             While i < gv.Items.Count
-                                Dim tile As Tile = gv.Items(i)
+                                Dim boton As Button = gv.Items(i)
+                                Dim tile As Tile = boton.Tag
 
                                 listaTemp.Add(tile.Titulo + "/*/" + tile.ID)
                                 i += 1
