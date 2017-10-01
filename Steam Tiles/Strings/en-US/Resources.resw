@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddTile.Text" xml:space="preserve">
-    <value>Add Tile</value>
+    <value>Pin Tile</value>
   </data>
   <data name="Config" xml:space="preserve">
     <value>Configuration</value>
