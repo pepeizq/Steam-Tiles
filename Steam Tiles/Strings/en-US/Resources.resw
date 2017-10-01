@@ -202,18 +202,18 @@
     <value>Add the folder C:\Users\[Your User]\AppData\Roaming\Twitch</value>
   </data>
   <data name="DescriptionStoreBlizzard" xml:space="preserve">
-    <value>Add Tiles of your Blizzard App games in the Start Menu of Windows 10.</value>
+    <value>Pin Tiles in the Start Menu of Windows 10 for your Blizzard games.</value>
   </data>
   <data name="DescriptionStoreGOG" xml:space="preserve">
-    <value>Add Tiles of your GOG Galaxy games in the Start Menu of Windows 10.</value>
+    <value>Pin Tiles in the Start Menu of Windows 10 for your GOG Galaxy games.</value>
   </data>
   <data name="DescriptionStoreOrigin" xml:space="preserve">
-    <value>Add Tiles in the Start Menu of Windows 10 for your Origin games.</value>
+    <value>Pin Tiles in the Start Menu of Windows 10 for your Origin games.</value>
   </data>
   <data name="DescriptionStoreSteam" xml:space="preserve">
-    <value>Add Tiles in the Start Menu of Windows 10 for your Steam games.</value>
+    <value>Pin Tiles in the Start Menu of Windows 10 for your Steam games.</value>
   </data>
   <data name="DescriptionStoreTwitch" xml:space="preserve">
-    <value>Add Tiles in the Start Menu of Windows 10 for your Twitch Desktop App games.</value>
+    <value>Pin Tiles in the Start Menu of Windows 10 for your Twitch Desktop App games.</value>
   </data>
 </root>
