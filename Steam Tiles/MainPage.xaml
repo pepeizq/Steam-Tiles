@@ -42,12 +42,6 @@
                     </Grid.RowDefinitions>
 
                     <Grid x:Name="gridAñadirTiles" Grid.Row="0" Visibility="Collapsed">
-                        <Grid.ChildrenTransitions>
-                            <TransitionCollection>
-                                <PaneThemeTransition Edge="Top"/>
-                            </TransitionCollection>
-                        </Grid.ChildrenTransitions>
-
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -74,7 +68,7 @@
                                 <controls:ImageEx x:Name="imageJuegoSeleccionado" Stretch="UniformToFill" IsCacheEnabled="True"/>
                             </Border>
 
-                            <TextBlock x:Name="tbJuegoSeleccionado" Grid.Column="2" VerticalAlignment="Center" Margin="5,0"/>
+                            <TextBlock x:Name="tbJuegoSeleccionado" Grid.Column="2" VerticalAlignment="Center" Margin="5,0" TextWrapping="Wrap"/>
 
                             <CheckBox x:Name="cbTilesTitulo" Grid.Column="3" VerticalAlignment="Center" Margin="10,0" MinWidth="0">
                                 <CheckBox.Content>

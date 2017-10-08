@@ -3,6 +3,7 @@ Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
 Imports Windows.UI
+Imports Windows.UI.Xaml.Media.Animation
 
 Module Steam
 
@@ -344,6 +345,14 @@ Module Steam
 
             Dim gridAñadir As Grid = pagina.FindName("gridAñadirTiles")
             gridAñadir.Visibility = Visibility.Visible
+
+            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("tile", botonJuego)
+
+            Dim animacion As ConnectedAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("tile")
+
+            If Not animacion Is Nothing Then
+                animacion.TryStart(gridAñadir)
+            End If
 
             Dim gridSeleccionar As Grid = pagina.FindName("gridSeleccionarJuego")
             gridSeleccionar.Visibility = Visibility.Collapsed
