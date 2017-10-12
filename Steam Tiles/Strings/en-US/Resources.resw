@@ -159,8 +159,8 @@
   <data name="NoGamesDetected.Text" xml:space="preserve">
     <value>No games detected, go to Configuration</value>
   </data>
-  <data name="OtherApps.Text" xml:space="preserve">
-    <value>Other Apps</value>
+  <data name="MoreApps.Text" xml:space="preserve">
+    <value>More Apps</value>
   </data>
   <data name="ReportBug.Text" xml:space="preserve">
     <value>Report a Bug</value>
