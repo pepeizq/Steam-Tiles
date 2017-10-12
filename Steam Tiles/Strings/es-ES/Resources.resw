@@ -171,9 +171,6 @@
   <data name="SourceCode.Text" xml:space="preserve">
     <value>Código Fuente</value>
   </data>
-  <data name="ThanksTo.Text" xml:space="preserve">
-    <value>Agradecimientos</value>
-  </data>
   <data name="TileIcon.Text" xml:space="preserve">
     <value>Añadir icono</value>
   </data>
@@ -215,5 +212,8 @@
   </data>
   <data name="DescriptionStoreTwitch" xml:space="preserve">
     <value>Añade Tiles en el menú de Inicio de Windows 10 para tus juegos de Twitch Desktop App.</value>
+  </data>
+  <data name="Updates.Text" xml:space="preserve">
+    <value>Actualizaciones</value>
   </data>
 </root>

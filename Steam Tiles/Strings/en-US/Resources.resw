@@ -171,9 +171,6 @@
   <data name="SourceCode.Text" xml:space="preserve">
     <value>Source Code</value>
   </data>
-  <data name="ThanksTo.Text" xml:space="preserve">
-    <value>Thanks to</value>
-  </data>
   <data name="TileIcon.Text" xml:space="preserve">
     <value>Add icon</value>
   </data>
@@ -215,5 +212,8 @@
   </data>
   <data name="DescriptionStoreTwitch" xml:space="preserve">
     <value>Pin Tiles in the Start Menu of Windows 10 for your Twitch Desktop App games.</value>
+  </data>
+  <data name="Updates.Text" xml:space="preserve">
+    <value>Updates</value>
   </data>
 </root>
