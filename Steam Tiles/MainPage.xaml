@@ -139,7 +139,7 @@
                 <Grid x:Name="gridConfig" Visibility="Collapsed">
                     <ScrollViewer>
                         <StackPanel Orientation="Vertical">
-                            <Grid Width="500" HorizontalAlignment="Left" Margin="5,5,10,10" Padding="10" Background="{StaticResource GridTituloBackground}">
+                            <Grid x:Name="gridConfigTiles" Width="500" HorizontalAlignment="Left" Margin="5,5,10,10" Padding="10" Background="{StaticResource GridTituloBackground}">
                                 <TextBlock Text="Tiles" FontSize="16" Foreground="White"/>
                             </Grid>
 

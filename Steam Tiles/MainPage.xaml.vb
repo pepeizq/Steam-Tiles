@@ -58,6 +58,15 @@ Public NotInheritable Class MainPage
         Steam.Generar(False)
         Config.Generar()
 
+        '--------------------------------------------------------
+
+        Dim transpariencia As New UISettings
+        Dim boolTranspariencia As Boolean = transpariencia.AdvancedEffectsEnabled
+
+        If boolTranspariencia = False Then
+            gridConfigTiles.Background = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
+        End If
+
     End Sub
 
     Private Sub GridVisibilidad(grid As Grid, tag As String)
