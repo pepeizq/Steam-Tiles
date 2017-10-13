@@ -216,4 +216,7 @@
   <data name="Updates.Text" xml:space="preserve">
     <value>Updates</value>
   </data>
+  <data name="ConfigOriginFolderMessage.Text" xml:space="preserve">
+    <value>Add the folder C: \ ProgramData \ Origin \ LocalContent (it can be hidden)</value>
+  </data>
 </root>
