@@ -43,7 +43,7 @@
 
                     <Grid x:Name="gridAñadirTiles" Grid.Row="0" Visibility="Collapsed" Padding="10,15" Margin="-10">
                         <Grid.Background>
-                            <SolidColorBrush Color="#cccccc"/>
+                            <SolidColorBrush Color="{StaticResource ColorCuarto}"/>
                         </Grid.Background>
 
                         <Grid.ColumnDefinitions>
@@ -139,10 +139,15 @@
                 <Grid x:Name="gridConfig" Visibility="Collapsed">
                     <ScrollViewer>
                         <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Tiles" Margin="10,5" FontSize="16"/>
-                            <Rectangle HorizontalAlignment="Left" Fill="Black" Height="1" Margin="5" Width="400"/>
+                            <Grid Width="500" HorizontalAlignment="Left" Margin="5,5,10,10" Padding="10">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="{StaticResource ColorCuarto}"/>
+                                </Grid.Background>
 
-                            <Grid Grid.Row="0" Margin="10,5">
+                                <TextBlock Text="Tiles" FontSize="16"/>
+                            </Grid>
+
+                            <Grid Margin="10,5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
