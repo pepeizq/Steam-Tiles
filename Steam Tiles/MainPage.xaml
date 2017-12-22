@@ -119,11 +119,6 @@
                     <controls:AdaptiveGridView x:Name="gridViewTilesSteam" Grid.Row="1" Margin="0,20,0,0"
                                        IsItemClickEnabled="True" DesiredWidth="230" ItemHeight="107" 
                                        animations:ReorderGridAnimation.Duration="250">
-                        <controls:AdaptiveGridView.ItemContainerStyle>
-                            <Style TargetType="GridViewItem">
-                                <Setter Property="Margin" Value="1"/>
-                            </Style>
-                        </controls:AdaptiveGridView.ItemContainerStyle>
                     </controls:AdaptiveGridView>
 
                     <controls:DropShadowPanel x:Name="panelAvisoNoJuegos" Grid.Row="1" Margin="10" Color="Black" HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -203,12 +198,6 @@
                                     <StackPanel Orientation="Horizontal" Tag="1">
                                         <controls:ImageEx Source="Assets\MasCosas\pepeizq.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
                                         <TextBlock x:Uid="MoreApps" Foreground="White" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                                <ListViewItem x:Name="lvMasCosasActualizaciones" Background="{StaticResource BrushSecundario}" Margin="0,0,0,30">
-                                    <StackPanel Orientation="Horizontal" Tag="2">
-                                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72C;" Foreground="White" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                        <TextBlock x:Uid="Updates" Foreground="White" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </ListViewItem>
                                 <ListViewItem x:Name="lvMasCosasContacto" Background="{StaticResource BrushSecundario}" Margin="0,0,0,5">
