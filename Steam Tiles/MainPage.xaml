@@ -21,7 +21,7 @@
         <NavigationView x:Name="nvPrincipal" Grid.Row="1" Loaded="Nv_Loaded" ItemInvoked="Nv_ItemInvoked"
                         OpenPaneLength="200" AlwaysShowHeader="False" IsSettingsVisible="False">
 
-            <Grid Padding="10">
+            <Grid>
                 <Grid.Transitions>
                     <TransitionCollection>
                         <EdgeUIThemeTransition Edge="Bottom"/>
@@ -35,7 +35,7 @@
                     </LinearGradientBrush>
                 </Grid.Background>
 
-                <Grid x:Name="gridTiles" Visibility="Collapsed">
+                <Grid x:Name="gridTiles" Visibility="Collapsed" Padding="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
@@ -131,55 +131,66 @@
                     <ProgressRing x:Name="prTilesSteam" Grid.Row="1" IsActive="True" Width="64" Height="64" Foreground="{StaticResource BrushSecundario}" Visibility="Collapsed"/>
                 </Grid>
 
-                <Grid x:Name="gridConfig" Visibility="Collapsed">
+                <Grid x:Name="gridConfig" Visibility="Collapsed" Background="{StaticResource GridAcrilico}">
                     <ScrollViewer>
-                        <StackPanel Orientation="Vertical">
-                            <Grid x:Name="gridConfigTiles" Width="500" HorizontalAlignment="Left" Margin="5,5,10,10" Padding="10" Background="{StaticResource GridTituloBackground}">
-                                <TextBlock Text="Tiles" FontSize="16" Foreground="White"/>
-                            </Grid>
+                        <StackPanel Orientation="Vertical" Width="700" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <StackPanel Orientation="Vertical" Margin="40,20" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1">
+                                <StackPanel.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Color="#FFE4E4E4" Offset="0.5" />
+                                        <GradientStop Color="#FFBFBFBF" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </StackPanel.Background>
 
-                            <Grid Margin="10,5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Button x:Name="botonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="{StaticResource BrushSecundario}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <SymbolIcon Symbol="NewFolder" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                                        <TextBlock x:Uid="ConfigSteamAddFolder" Foreground="White"/>
-                                    </StackPanel>
-                                </Button>
-
-                                <TextBlock x:Uid="ConfigSteamFolderMessage" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
-                            </Grid>
-                            <TextBlock x:Uid="ConfigSteamFoldersAdded" Margin="15,5"/>
-                            <TextBlock x:Name="tbCarpetasDetectadasSteam" Margin="15,5"/>
-
-                            <Button x:Name="botonBorrarCarpetasSteam" Margin="10,25,10,5" Padding="10" Background="{StaticResource BrushSecundario}">
-                                <StackPanel Orientation="Horizontal">
-                                    <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                                    <TextBlock x:Uid="ConfigSteamDeleteFolders" Foreground="White"/>
-                                </StackPanel>
-                            </Button>
-
-                            <controls:DropShadowPanel Margin="10,5" Color="Black" HorizontalAlignment="Left"
-                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
-                                <Grid Padding="10" Background="IndianRed">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-
-                                    <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" Foreground="White"/>
-                                    <TextBlock x:Uid="ConfigSteamFoldersWarning" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
+                                <Grid x:Name="gridConfigTiles" HorizontalAlignment="Stretch" Padding="10" Background="{StaticResource GridTituloBackground}">
+                                    <TextBlock Text="Tiles" FontSize="16" Foreground="White" Margin="5,0,0,0"/>
                                 </Grid>
-                            </controls:DropShadowPanel>
+
+                                <StackPanel Orientation="Vertical" Padding="15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Button x:Name="botonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="{StaticResource BrushSecundario}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <SymbolIcon Symbol="NewFolder" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
+                                                <TextBlock x:Uid="ConfigSteamAddFolder" Foreground="White"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <TextBlock x:Uid="ConfigSteamFolderMessage" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                                    </Grid>
+                                    <TextBlock x:Uid="ConfigSteamFoldersAdded" Margin="0,15,0,5"/>
+                                    <TextBlock x:Name="tbCarpetasDetectadasSteam"/>
+
+                                    <Button x:Name="botonBorrarCarpetasSteam" Margin="0,25,0,10" Padding="10" Background="{StaticResource BrushSecundario}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
+                                            <TextBlock x:Uid="ConfigSteamDeleteFolders" Foreground="White"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <controls:DropShadowPanel Color="Black" HorizontalAlignment="Left"
+                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
+                                        <Grid Padding="10" Background="IndianRed">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" Foreground="White"/>
+                                            <TextBlock x:Uid="ConfigSteamFoldersWarning" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
+                                        </Grid>
+                                    </controls:DropShadowPanel>
+                                </StackPanel>
+                            </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
 
-                <Grid x:Name="gridMasCosas" Visibility="Collapsed">
+                <Grid x:Name="gridMasCosas" Visibility="Collapsed" Background="{StaticResource GridAcrilico}">
                     <ScrollViewer>
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -187,51 +198,60 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <ListView Grid.Column="0" IsItemClickEnabled="True" ItemClick="LvMasCosasItemClick">
-                                <ListViewItem Background="{StaticResource BrushSecundario}" Margin="0,0,0,30">
-                                    <StackPanel Orientation="Horizontal" Tag="0">
-                                        <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8E1;" Foreground="White" Margin="0,0,10,0" VerticalAlignment="Center"/>
-                                        <TextBlock x:Uid="VoteApp" Foreground="White" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                                <ListViewItem x:Name="lvMasCosasMasApps" Background="{StaticResource BrushSecundario}" Margin="0,0,0,5">
-                                    <StackPanel Orientation="Horizontal" Tag="1">
-                                        <controls:ImageEx Source="Assets\MasCosas\pepeizq.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
-                                        <TextBlock x:Uid="MoreApps" Foreground="White" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                                <ListViewItem x:Name="lvMasCosasContacto" Background="{StaticResource BrushSecundario}" Margin="0,0,0,5">
-                                    <StackPanel Orientation="Horizontal" Tag="3">
-                                        <controls:ImageEx Source="Assets\MasCosas\contacto.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
-                                        <TextBlock x:Uid="Contact" Foreground="White" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                                <ListViewItem x:Name="lvMasCosasReportarFallo" Background="{StaticResource BrushSecundario}" Margin="0,0,0,30">
-                                    <StackPanel Orientation="Horizontal" Tag="4">
-                                        <controls:ImageEx Source="Assets\MasCosas\feedback.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
-                                        <TextBlock x:Uid="ReportBug" Foreground="White" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                                <ListViewItem x:Name="lvMasCosasTraduccion" Background="{StaticResource BrushSecundario}" Margin="0,0,0,5">
-                                    <StackPanel Orientation="Horizontal" Tag="5">
-                                        <controls:ImageEx Source="Assets\MasCosas\poeditor.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
-                                        <TextBlock x:Uid="HelpTranslate" Foreground="White" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                                <ListViewItem x:Name="lvMasCosasCodigoFuente" Background="{StaticResource BrushSecundario}">
-                                    <StackPanel Orientation="Horizontal" Tag="6">
-                                        <controls:ImageEx Source="Assets\MasCosas\github.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
-                                        <TextBlock x:Uid="SourceCode" Foreground="White" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </ListViewItem>
-                            </ListView>
+                            <StackPanel Grid.Column="0" Orientation="Vertical" Margin="20" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="15" VerticalAlignment="Top">
+                                <StackPanel.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Color="#FFE4E4E4" Offset="0.5" />
+                                        <GradientStop Color="#FFBFBFBF" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </StackPanel.Background>
 
-                            <Grid Grid.Column="1" Margin="10,0,0,0">
+                                <ListView IsItemClickEnabled="True" ItemClick="LvMasCosasItemClick">
+                                    <ListViewItem Background="{StaticResource BrushSecundario}" Margin="0,0,0,30">
+                                        <StackPanel Orientation="Horizontal" Tag="0">
+                                            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE8E1;" Foreground="White" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                                            <TextBlock x:Uid="VoteApp" Foreground="White" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </ListViewItem>
+                                    <ListViewItem x:Name="lvMasCosasMasApps" Background="{StaticResource BrushSecundario}" Margin="0,0,0,5">
+                                        <StackPanel Orientation="Horizontal" Tag="1">
+                                            <controls:ImageEx Source="Assets\MasCosas\pepeizq.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
+                                            <TextBlock x:Uid="MoreApps" Foreground="White" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </ListViewItem>
+                                    <ListViewItem x:Name="lvMasCosasContacto" Background="{StaticResource BrushSecundario}" Margin="0,0,0,5">
+                                        <StackPanel Orientation="Horizontal" Tag="3">
+                                            <controls:ImageEx Source="Assets\MasCosas\contacto.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
+                                            <TextBlock x:Uid="Contact" Foreground="White" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </ListViewItem>
+                                    <ListViewItem x:Name="lvMasCosasReportarFallo" Background="{StaticResource BrushSecundario}" Margin="0,0,0,30">
+                                        <StackPanel Orientation="Horizontal" Tag="4">
+                                            <controls:ImageEx Source="Assets\MasCosas\feedback.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
+                                            <TextBlock x:Uid="ReportBug" Foreground="White" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </ListViewItem>
+                                    <ListViewItem x:Name="lvMasCosasTraduccion" Background="{StaticResource BrushSecundario}" Margin="0,0,0,5">
+                                        <StackPanel Orientation="Horizontal" Tag="5">
+                                            <controls:ImageEx Source="Assets\MasCosas\poeditor.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
+                                            <TextBlock x:Uid="HelpTranslate" Foreground="White" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </ListViewItem>
+                                    <ListViewItem x:Name="lvMasCosasCodigoFuente" Background="{StaticResource BrushSecundario}">
+                                        <StackPanel Orientation="Horizontal" Tag="6">
+                                            <controls:ImageEx Source="Assets\MasCosas\github.png" Margin="0,0,10,0" Width="15" Height="15" IsCacheEnabled="True" VerticalAlignment="Center"/>
+                                            <TextBlock x:Uid="SourceCode" Foreground="White" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </ListViewItem>
+                                </ListView>
+                            </StackPanel>
+
+                            <Grid Grid.Column="1" Margin="20">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-                                
+
                                 <ProgressBar x:Name="pbMasCosas" Grid.Row="0" Foreground="{StaticResource BrushSecundario}" Visibility="Collapsed" Height="20" IsIndeterminate="True"/>
                                 <WebView x:Name="wvMasCosas" Grid.Row="1"/>
                             </Grid>

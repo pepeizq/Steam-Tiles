@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddTile.Text" xml:space="preserve">
+    <value>固定磁贴</value>
+  </data>
+  <data name="Config" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="ConfigSteamAddFolder.Text" xml:space="preserve">
+    <value>添加文件夹</value>
+  </data>
+  <data name="ConfigSteamDeleteFolders.Text" xml:space="preserve">
+    <value>删除文件夹</value>
+  </data>
+  <data name="ConfigSteamFolderMessage.Text" xml:space="preserve">
+    <value>添加你的游戏目录，例如：C:\Steam\steamapps</value>
+  </data>
+  <data name="ConfigSteamFoldersAdded.Text" xml:space="preserve">
+    <value>已添加文件夹</value>
+  </data>
+  <data name="ConfigSteamFoldersWarning.Text" xml:space="preserve">
+    <value>提示：如果你将游戏安装到了多个目录，请分别添加每个目录。</value>
+  </data>
+  <data name="Contact.Text" xml:space="preserve">
+    <value>联系我</value>
+  </data>
+  <data name="ErrorSteam1" xml:space="preserve">
+    <value>未检测到游戏，请务必添加steamapps目录。</value>
+  </data>
+  <data name="GamesDetected" xml:space="preserve">
+    <value>检测到游戏</value>
+  </data>
+  <data name="HelpTranslate.Text" xml:space="preserve">
+    <value>贡献翻译</value>
+  </data>
+  <data name="MoreThings" xml:space="preserve">
+    <value>更多</value>
+  </data>
+  <data name="NoFoldersDetected" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="NoGamesDetected.Text" xml:space="preserve">
+    <value>未检测到游戏，请前往设置页面</value>
+  </data>
+  <data name="ReportBug.Text" xml:space="preserve">
+    <value>提交Bug</value>
+  </data>
+  <data name="SelectGame.Text" xml:space="preserve">
+    <value>选择一个游戏</value>
+  </data>
+  <data name="SourceCode.Text" xml:space="preserve">
+    <value>查看源代码</value>
+  </data>
+  <data name="TileIcon.Text" xml:space="preserve">
+    <value>添加图标</value>
+  </data>
+  <data name="Tiles" xml:space="preserve">
+    <value>磁贴</value>
+  </data>
+  <data name="TileTitle.Text" xml:space="preserve">
+    <value>添加标题</value>
+  </data>
+  <data name="VoteApp.Text" xml:space="preserve">
+    <value>在商店评分</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>更改目录</value>
+  </data>
+  <data name="ConfigBlizzardFolderMessage.Text" xml:space="preserve">
+    <value>添加你安装暴雪公司游戏的目录</value>
+  </data>
+  <data name="ConfigGOGFolderMessage.Text" xml:space="preserve">
+    <value>添加GOG Galaxy客户端的目录，例如：C:\GalaxyClient\Games</value>
+  </data>
+  <data name="ConfigGOGFoldersWarning.Text" xml:space="preserve">
+    <value>因为GOG Galaxy客户端与本软件的兼容性问题，本软件将打开游戏的详情页面，而不是直接打开游戏。</value>
+  </data>
+  <data name="ConfigTwitchFolderMessage.Text" xml:space="preserve">
+    <value>按照下面的例子添加目录：C:\Users\[你的用户名]\AppData\Roaming\Twitch</value>
+  </data>
+  <data name="DescriptionStoreBlizzard" xml:space="preserve">
+    <value>将你的暴雪游戏以磁贴方式固定到开始菜单</value>
+  </data>
+  <data name="DescriptionStoreGOG" xml:space="preserve">
+    <value>将你的GOG游戏以磁贴方式固定到开始菜单</value>
+  </data>
+  <data name="DescriptionStoreOrigin" xml:space="preserve">
+    <value>将你的Origin游戏以磁贴方式固定到开始菜单</value>
+  </data>
+  <data name="DescriptionStoreSteam" xml:space="preserve">
+    <value>将你的Steam游戏以磁贴方式固定到开始菜单</value>
+  </data>
+  <data name="DescriptionStoreTwitch" xml:space="preserve">
+    <value>将你的Twitch游戏以磁贴方式固定到开始菜单</value>
+  </data>
+  <data name="MoreApps.Text" xml:space="preserve">
+    <value>更多应用</value>
+  </data>
+  <data name="Updates.Text" xml:space="preserve">
+    <value>更新日志</value>
+  </data>
+  <data name="ConfigOriginFolderMessage.Text" xml:space="preserve">
+    <value>添加目录C:\ProgramData\Origin\LocalContent（这个文件夹可能是隐藏文件夹）</value>
+  </data>
+</root>

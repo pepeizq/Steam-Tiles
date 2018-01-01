@@ -30,6 +30,7 @@
         <AcrylicBrush x:Key="GridTituloBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".7"/>
         <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".7"/>
         <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".7"/>
+        <AcrylicBrush x:Key="GridAcrilico" BackgroundSource="Backdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".1"/>
 
         <SolidColorBrush x:Key="BrushSecundario" Color="{StaticResource ColorSecundario}"/>
     </Application.Resources>

@@ -156,8 +156,12 @@ Module Tiles
         Dim descargador As BackgroundDownloader = New BackgroundDownloader()
 
         If Not uri = Nothing Then
-            Dim descarga As DownloadOperation = descargador.CreateDownload(uri, ficheroImagen)
-            Await descarga.StartAsync
+            Try
+                Dim descarga As DownloadOperation = descargador.CreateDownload(uri, ficheroImagen)
+                Await descarga.StartAsync
+            Catch ex As Exception
+
+            End Try
         End If
 
     End Sub
