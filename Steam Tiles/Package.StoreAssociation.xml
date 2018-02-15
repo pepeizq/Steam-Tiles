@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <StoreAssociation xmlns="http://schemas.microsoft.com/appx/2010/storeassociation">
   <Publisher>CN=C91088FC-231C-4E13-86D1-5F9658173DA7</Publisher>
-  <PublisherDisplayName>pepeizq</PublisherDisplayName>
+  <PublisherDisplayName>pepeizq's apps</PublisherDisplayName>
   <GeneratePackageHash>http://www.w3.org/2001/04/xmlenc#sha256</GeneratePackageHash>
   <SupportedLocales>
     <Language Code="af" InMinimumRequirementSet="true" />
@@ -358,7 +358,7 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>pepeizq.SteamTiles</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.19563A9081E52</MainPackageIdentityName>
     <ReservedNames>
       <ReservedName>Steam Tiles</ReservedName>
     </ReservedNames>
@@ -373,11 +373,15 @@
     <MainPackageIdentityName>5078pepeizq.GamersGate</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.GOGTiles</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.OfertasdeunPanda-AplicacinOficial</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.HoriginTiles</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.OriginTiles</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.20054F14ADAAA</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.SteamBridge</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.SteamCategories</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.SteamDeals</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.SteamAchievementsEnhanced</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.SteamSkins</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.TwitchTiles</MainPackageIdentityName>
   </AccountPackageIdentityNames>
   <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH51SB3" />
 </StoreAssociation>

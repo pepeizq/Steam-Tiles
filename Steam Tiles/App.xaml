@@ -27,7 +27,7 @@
         <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="{StaticResource ColorPrimario}"/>
         <SolidColorBrush x:Key="SystemControlForegroundAccentBrush" Color="{StaticResource ColorTerciario}" />
 
-        <AcrylicBrush x:Key="GridTituloBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".7"/>
+        <AcrylicBrush x:Key="GridTituloBackground" BackgroundSource="Backdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".7"/>
         <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".7"/>
         <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".7"/>
         <AcrylicBrush x:Key="GridAcrilico" BackgroundSource="Backdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".1"/>
