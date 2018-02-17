@@ -219,4 +219,10 @@
   <data name="ConfigOriginFolderMessage.Text" xml:space="preserve">
     <value>Add the folder C: \ ProgramData \ Origin \ LocalContent (it can be hidden)</value>
   </data>
+  <data name="GameSelectedTiles.Text" xml:space="preserve">
+    <value>Images to include in the Tile of this game:</value>
+  </data>
+  <data name="TooltipChangeImage.Text" xml:space="preserve">
+    <value>You can change an image of the Tile by clicking on it</value>
+  </data>
 </root>

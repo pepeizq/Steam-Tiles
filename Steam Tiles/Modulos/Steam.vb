@@ -3,6 +3,7 @@ Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
 Imports Windows.UI
+Imports Windows.UI.Core
 Imports Windows.UI.Xaml.Media.Animation
 
 Module Steam
@@ -220,11 +221,10 @@ Module Steam
                                     End While
 
                                     If tituloBool = False Then
-                                        Dim imagenWide As Uri = New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
-                                        Dim imagenLarge As Uri = New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/page_bg_generated_v6b.jpg", UriKind.RelativeOrAbsolute)
+                                        Dim imagenAncha As Uri = New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
+                                        Dim imagenGrande As Uri = New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/capsule_616x353.jpg", UriKind.RelativeOrAbsolute)
 
-                                        Dim juego As New Tile(titulo, id, New Uri("steam://rungameid/" + id), imagenWide, imagenLarge, "Steam", Nothing)
-                                        juego.Tile = juego
+                                        Dim juego As New Tile(titulo, id, New Uri("steam://rungameid/" + id), Nothing, Nothing, imagenAncha, imagenGrande)
 
                                         listaFinal.Add(juego)
                                     End If
@@ -255,7 +255,7 @@ Module Steam
                 Dim imagen As New ImageEx
 
                 Try
-                    imagen.Source = New BitmapImage(juego.ImagenWide)
+                    imagen.Source = New BitmapImage(juego.ImagenAncha)
                 Catch ex As Exception
 
                 End Try
@@ -280,6 +280,8 @@ Module Steam
                 ToolTipService.SetPlacement(boton, PlacementMode.Mouse)
 
                 AddHandler boton.Click, AddressOf BotonTile_Click
+                AddHandler boton.PointerEntered, AddressOf UsuarioEntraBoton
+                AddHandler boton.PointerExited, AddressOf UsuarioSaleBoton
 
                 gv.Items.Add(boton)
             Next
@@ -302,68 +304,87 @@ Module Steam
 
     End Sub
 
-    Private Sub BotonTile_Click(sender As Object, e As RoutedEventArgs)
+    Private Async Sub BotonTile_Click(sender As Object, e As RoutedEventArgs)
 
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        Dim tbTitulo As TextBlock = pagina.FindName("tbTitulo")
-
-        Dim gv As GridView = pagina.FindName("gridViewTilesSteam")
-
         Dim botonJuego As Button = e.OriginalSource
+        Dim juego As Tile = botonJuego.Tag
 
-        Dim borde As Thickness = New Thickness(6, 6, 6, 6)
-        If botonJuego.BorderThickness = borde Then
-            botonJuego.BorderThickness = New Thickness(1, 1, 1, 1)
-            botonJuego.BorderBrush = New SolidColorBrush(Colors.Black)
+        Dim botonAñadirTile As Button = pagina.FindName("botonAñadirTile")
+        botonAñadirTile.Tag = juego
 
-            Dim grid As Grid = pagina.FindName("gridAñadirTiles")
-            grid.Visibility = Visibility.Collapsed
+        Dim imageJuegoSeleccionado As ImageEx = pagina.FindName("imagenJuegoSeleccionado")
+        Dim imagenCapsula As String = juego.ImagenAncha.ToString
+        imagenCapsula = imagenCapsula.Replace("header.jpg", "capsule_184x69.jpg")
+        imageJuegoSeleccionado.Source = New BitmapImage(New Uri(imagenCapsula))
 
-            Dim gridSeleccionar As Grid = pagina.FindName("gridSeleccionarJuego")
-            gridSeleccionar.Visibility = Visibility.Visible
+        Dim tbJuegoSeleccionado As TextBlock = pagina.FindName("tbJuegoSeleccionado")
+        tbJuegoSeleccionado.Text = juego.Titulo
 
-            Dim recursos As New Resources.ResourceLoader()
-            tbTitulo.Text = Package.Current.DisplayName + " (" + Package.Current.Id.Version.Major.ToString + "." + Package.Current.Id.Version.Minor.ToString + "." + Package.Current.Id.Version.Build.ToString + "." + Package.Current.Id.Version.Revision.ToString + ") - " + recursos.GetString("Tiles")
-        Else
-            For Each item In gv.Items
-                Dim itemBoton As Button = item
-                itemBoton.BorderThickness = New Thickness(1, 1, 1, 1)
-                itemBoton.BorderBrush = New SolidColorBrush(Colors.Black)
-            Next
+        Dim gridAñadir As Grid = pagina.FindName("gridAñadirTile")
+        gridAñadir.Visibility = Visibility.Visible
 
-            botonJuego.BorderThickness = New Thickness(6, 6, 6, 6)
-            botonJuego.BorderBrush = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
+        ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("tile", botonJuego)
 
-            Dim botonAñadirTile As Button = pagina.FindName("botonAñadirTile")
-            Dim juego As Tile = botonJuego.Tag
-            botonAñadirTile.Tag = juego
+        Dim animacion As ConnectedAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("tile")
 
-            Dim imageJuegoSeleccionado As ImageEx = pagina.FindName("imageJuegoSeleccionado")
-            Dim imagenCapsula As String = juego.ImagenWide.ToString
-            imagenCapsula = imagenCapsula.Replace("header.jpg", "capsule_184x69.jpg")
-            imageJuegoSeleccionado.Source = New BitmapImage(New Uri(imagenCapsula))
-
-            Dim tbJuegoSeleccionado As TextBlock = pagina.FindName("tbJuegoSeleccionado")
-            tbJuegoSeleccionado.Text = juego.Titulo
-
-            Dim gridAñadir As Grid = pagina.FindName("gridAñadirTiles")
-            gridAñadir.Visibility = Visibility.Visible
-
-            ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("tile", botonJuego)
-
-            Dim animacion As ConnectedAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("tile")
-
-            If Not animacion Is Nothing Then
-                animacion.TryStart(gridAñadir)
-            End If
-
-            Dim gridSeleccionar As Grid = pagina.FindName("gridSeleccionarJuego")
-            gridSeleccionar.Visibility = Visibility.Collapsed
-
-            tbTitulo.Text = Package.Current.DisplayName + " (" + Package.Current.Id.Version.Major.ToString + "." + Package.Current.Id.Version.Minor.ToString + "." + Package.Current.Id.Version.Build.ToString + "." + Package.Current.Id.Version.Revision.ToString + ") - " + juego.Titulo
+        If Not animacion Is Nothing Then
+            animacion.TryStart(gridAñadir)
         End If
+
+        Dim tbTitulo As TextBlock = pagina.FindName("tbTitulo")
+        tbTitulo.Text = Package.Current.DisplayName + " (" + Package.Current.Id.Version.Major.ToString + "." + Package.Current.Id.Version.Minor.ToString + "." + Package.Current.Id.Version.Build.ToString + "." + Package.Current.Id.Version.Revision.ToString + ") - " + juego.Titulo
+
+        '---------------------------------------------
+
+        juego.ImagenPequeña = Await SacarIcono(juego.ID)
+
+        Dim imagenPequeña As ImageEx = pagina.FindName("imagenTilePequeña")
+        imagenPequeña.Source = juego.ImagenPequeña
+        imagenPequeña.Visibility = Visibility.Visible
+
+        Dim tbPequeña As TextBlock = pagina.FindName("tbTilePequeña")
+        tbPequeña.Visibility = Visibility.Collapsed
+
+        '---------------------------------------------
+
+        Dim imagenMediana As ImageEx = pagina.FindName("imagenTileMediana")
+        imagenMediana.Visibility = Visibility.Collapsed
+
+        Dim tbMediana As TextBlock = pagina.FindName("tbTileMediana")
+        tbMediana.Visibility = Visibility.Visible
+
+        '---------------------------------------------
+
+        Dim imagenAncha As ImageEx = pagina.FindName("imagenTileAncha")
+        imagenAncha.Source = juego.ImagenAncha
+        imagenAncha.Visibility = Visibility.Visible
+
+        Dim tbAncha As TextBlock = pagina.FindName("tbTileAncha")
+        tbAncha.Visibility = Visibility.Collapsed
+
+        '---------------------------------------------
+
+        Dim imagenGrande As ImageEx = pagina.FindName("imagenTileGrande")
+        imagenGrande.Source = juego.ImagenGrande
+        imagenGrande.Visibility = Visibility.Visible
+
+        Dim tbGrande As TextBlock = pagina.FindName("tbTileGrande")
+        tbGrande.Visibility = Visibility.Collapsed
+
+    End Sub
+
+    Private Sub UsuarioEntraBoton(sender As Object, e As PointerRoutedEventArgs)
+
+        Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
+
+    End Sub
+
+    Private Sub UsuarioSaleBoton(sender As Object, e As PointerRoutedEventArgs)
+
+        Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Arrow, 1)
 
     End Sub
 

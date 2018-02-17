@@ -1,8 +1,12 @@
 ﻿Imports Microsoft.Services.Store.Engagement
+Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.ApplicationModel.Core
 Imports Windows.Storage
+Imports Windows.Storage.Pickers
+Imports Windows.Storage.Streams
 Imports Windows.System
 Imports Windows.UI
+Imports Windows.UI.Core
 
 Public NotInheritable Class MainPage
     Inherits Page
@@ -60,6 +64,36 @@ Public NotInheritable Class MainPage
 
         '--------------------------------------------------------
 
+        AddHandler botonAñadirTile.PointerEntered, AddressOf UsuarioEntraBoton
+        AddHandler botonAñadirTile.PointerExited, AddressOf UsuarioSaleBoton
+        AddHandler cbTilesTitulo.PointerEntered, AddressOf UsuarioEntraBoton
+        AddHandler cbTilesTitulo.PointerExited, AddressOf UsuarioSaleBoton
+        AddHandler cbTilesIconos.PointerEntered, AddressOf UsuarioEntraBoton
+        AddHandler cbTilesIconos.PointerExited, AddressOf UsuarioSaleBoton
+
+        AddHandler botonImagenTilePequeña.Click, AddressOf UsuarioClickeaImagen
+        AddHandler botonImagenTilePequeña.PointerEntered, AddressOf UsuarioEntraBoton
+        AddHandler botonImagenTilePequeña.PointerExited, AddressOf UsuarioSaleBoton
+
+        AddHandler botonImagenTileMediana.Click, AddressOf UsuarioClickeaImagen
+        AddHandler botonImagenTileMediana.PointerEntered, AddressOf UsuarioEntraBoton
+        AddHandler botonImagenTileMediana.PointerExited, AddressOf UsuarioSaleBoton
+
+        AddHandler botonImagenTileAncha.Click, AddressOf UsuarioClickeaImagen
+        AddHandler botonImagenTileAncha.PointerEntered, AddressOf UsuarioEntraBoton
+        AddHandler botonImagenTileAncha.PointerExited, AddressOf UsuarioSaleBoton
+
+        AddHandler botonImagenTileGrande.Click, AddressOf UsuarioClickeaImagen
+        AddHandler botonImagenTileGrande.PointerEntered, AddressOf UsuarioEntraBoton
+        AddHandler botonImagenTileGrande.PointerExited, AddressOf UsuarioSaleBoton
+
+        AddHandler botonAñadirCarpetaSteam.PointerEntered, AddressOf UsuarioEntraBoton
+        AddHandler botonAñadirCarpetaSteam.PointerExited, AddressOf UsuarioSaleBoton
+        AddHandler botonBorrarCarpetasSteam.PointerEntered, AddressOf UsuarioEntraBoton
+        AddHandler botonBorrarCarpetasSteam.PointerExited, AddressOf UsuarioSaleBoton
+
+        '--------------------------------------------------------
+
         Dim transpariencia As New UISettings
         AddHandler transpariencia.AdvancedEffectsEnabledChanged, AddressOf TransparienciaEfectosCambia
 
@@ -68,10 +102,12 @@ Public NotInheritable Class MainPage
     Private Sub TransparienciaEfectosCambia(sender As UISettings, e As Object)
 
         If sender.AdvancedEffectsEnabled = True Then
+            gridAñadirTile.Background = New SolidColorBrush(App.Current.Resources("GridAcrilico"))
             gridConfig.Background = New SolidColorBrush(App.Current.Resources("GridAcrilico"))
             gridConfigTiles.Background = New SolidColorBrush(App.Current.Resources("GridTituloBackground"))
             gridMasCosas.Background = New SolidColorBrush(App.Current.Resources("GridAcrilico"))
         Else
+            gridAñadirTile.Background = New SolidColorBrush(Colors.LightGray)
             gridConfig.Background = New SolidColorBrush(Colors.LightGray)
             gridConfigTiles.Background = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
             gridMasCosas.Background = New SolidColorBrush(Colors.LightGray)
@@ -83,10 +119,23 @@ Public NotInheritable Class MainPage
 
         tbTitulo.Text = Package.Current.DisplayName + " (" + Package.Current.Id.Version.Major.ToString + "." + Package.Current.Id.Version.Minor.ToString + "." + Package.Current.Id.Version.Build.ToString + "." + Package.Current.Id.Version.Revision.ToString + ") - " + tag
 
+        gridAñadirTile.Visibility = Visibility.Collapsed
         gridConfig.Visibility = Visibility.Collapsed
         gridMasCosas.Visibility = Visibility.Collapsed
 
         grid.Visibility = Visibility.Visible
+
+    End Sub
+
+    Private Sub UsuarioEntraBoton(sender As Object, e As PointerRoutedEventArgs)
+
+        Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
+
+    End Sub
+
+    Private Sub UsuarioSaleBoton(sender As Object, e As PointerRoutedEventArgs)
+
+        Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Arrow, 1)
 
     End Sub
 
@@ -96,6 +145,50 @@ Public NotInheritable Class MainPage
 
         Dim tile As Tile = botonAñadirTile.Tag
         Tiles.Generar(tile)
+
+    End Sub
+
+    Private Async Sub UsuarioClickeaImagen(sender As Object, e As RoutedEventArgs)
+
+        Dim ficheroPicker As New FileOpenPicker
+        ficheroPicker.FileTypeFilter.Add(".png")
+        ficheroPicker.ViewMode = PickerViewMode.List
+
+        Dim ficheroImagen As StorageFile = Await ficheroPicker.PickSingleFileAsync
+
+        Dim boton As Button = sender
+        Dim grid As Grid = boton.Content
+
+        Dim vb As Viewbox = Nothing
+        Dim imagen As ImageEx = Nothing
+
+        If TypeOf grid.Children(0) Is Viewbox Then
+            vb = grid.Children(0)
+            imagen = vb.Child
+        End If
+
+        If TypeOf grid.Children(0) Is ImageEx Then
+            imagen = grid.Children(0)
+        End If
+
+        Dim tb As TextBlock = grid.Children(1)
+
+        Dim bitmap As New BitmapImage
+
+        Try
+            imagen.Visibility = Visibility.Visible
+            tb.Visibility = Visibility.Collapsed
+
+            Dim stream As FileRandomAccessStream = Await ficheroImagen.OpenAsync(FileAccessMode.Read)
+            bitmap.SetSource(stream)
+
+            imagen.Source = bitmap
+            imagen.Tag = ficheroImagen
+        Catch ex As Exception
+            imagen.Visibility = Visibility.Collapsed
+            imagen.Source = Nothing
+            tb.Visibility = Visibility.Visible
+        End Try
 
     End Sub
 

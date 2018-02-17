@@ -40,67 +40,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
-                    <Grid x:Name="gridAñadirTiles" Grid.Row="0" Visibility="Collapsed" Padding="10,15" Margin="-10">
-                        <Grid.Background>
-                            <SolidColorBrush Color="{StaticResource ColorCuarto}"/>
-                        </Grid.Background>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Button x:Name="botonAñadirTile" Grid.Column="0" Padding="15,10" Background="{StaticResource BrushSecundario}">
-                            <StackPanel Orientation="Horizontal">
-                                <SymbolIcon Margin="0,0,10,0" VerticalAlignment="Center" Symbol="Add" Foreground="White"/>
-                                <TextBlock x:Uid="AddTile" Foreground="White"/>
-                            </StackPanel>
-                        </Button>
-
-                        <Border Grid.Column="1" Margin="15,0,5,0" BorderThickness="1" BorderBrush="Black" Width="112" Height="40" VerticalAlignment="Center">
-                            <controls:ImageEx x:Name="imageJuegoSeleccionado" Stretch="UniformToFill" IsCacheEnabled="True"/>
-                        </Border>
-
-                        <TextBlock x:Name="tbJuegoSeleccionado" Grid.Column="2" VerticalAlignment="Center" Margin="5,0" TextWrapping="Wrap"/>
-
-                        <CheckBox x:Name="cbTilesTitulo" Grid.Column="3" VerticalAlignment="Center" Margin="10,0" MinWidth="0">
-                            <CheckBox.Content>
-                                <TextBlock x:Uid="TileTitle"/>
-                            </CheckBox.Content>
-                        </CheckBox>
-                        <CheckBox x:Name="cbTilesIconos" Grid.Column="4" VerticalAlignment="Center" Margin="10,0" MinWidth="0">
-                            <CheckBox.Content>
-                                <TextBlock x:Uid="TileIcon"/>
-                            </CheckBox.Content>
-                        </CheckBox>
-
-                        <ComboBox x:Name="cbTilesIconosLista" Grid.Column="5" VerticalAlignment="Center" Margin="5,0" Visibility="Collapsed" Width="40" Padding="5,0,0,0">
-                            <ComboBox.ItemContainerStyle>
-                                <Style TargetType="ComboBoxItem">
-                                    <Setter Property="Width" Value="70"/>
-                                    <Setter Property="Margin" Value="0"/>
-                                </Style>
-                            </ComboBox.ItemContainerStyle>
-
-                            <ComboBox.ItemContainerTransitions>
-                                <TransitionCollection>
-                                    <PaneThemeTransition Edge="Top"/>
-                                </TransitionCollection>
-                            </ComboBox.ItemContainerTransitions>
-
-                            <controls:ImageEx Source="Assets/steam_logo_mini1.png" Width="16" Height="16" IsCacheEnabled="True"/>
-                            <controls:ImageEx Source="Assets/steam_logo_mini2.png" Width="16" Height="16" IsCacheEnabled="True"/>
-                            <controls:ImageEx Source="Assets/steam_logo_mini3.png" Width="16" Height="16" IsCacheEnabled="True"/>
-                            <controls:ImageEx Source="Assets/steam_logo_mini4.png" Width="16" Height="16" IsCacheEnabled="True"/>
-                            <controls:ImageEx Source="Assets/steam_logo_mini5.png" Width="16" Height="16" IsCacheEnabled="True"/>
-                        </ComboBox>
-                    </Grid>
-
+                  
                     <Grid x:Name="gridSeleccionarJuego" Grid.Row="0" Visibility="Collapsed">
                         <Grid.ChildrenTransitions>
                             <TransitionCollection>
@@ -129,6 +69,132 @@
                     </controls:DropShadowPanel>
 
                     <ProgressRing x:Name="prTilesSteam" Grid.Row="1" IsActive="True" Width="64" Height="64" Foreground="{StaticResource BrushSecundario}" Visibility="Collapsed"/>
+                </Grid>
+
+                <Grid x:Name="gridAñadirTile" Visibility="Collapsed" Background="{StaticResource GridAcrilico}">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1">
+                            <StackPanel.Background>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#FFE4E4E4" Offset="0.5" />
+                                    <GradientStop Color="#FFBFBFBF" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </StackPanel.Background>
+
+                            <StackPanel Orientation="Horizontal" Padding="20,15">
+                                <Border BorderThickness="1" BorderBrush="{StaticResource BrushSecundario}" Width="112" Height="40" VerticalAlignment="Center">
+                                    <controls:ImageEx x:Name="imagenJuegoSeleccionado" Stretch="UniformToFill" IsCacheEnabled="True"/>
+                                </Border>
+
+                                <TextBlock x:Name="tbJuegoSeleccionado" VerticalAlignment="Center" Margin="10,0" TextWrapping="Wrap"/>
+                            </StackPanel>
+
+                            <Grid Padding="20,10" Background="{StaticResource BrushCuarto}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button x:Name="botonAñadirTile" Grid.Column="0" Padding="15,10" Background="{StaticResource BrushSecundario}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <SymbolIcon Margin="0,0,10,0" VerticalAlignment="Center" Symbol="Add" Foreground="White"/>
+                                        <TextBlock x:Uid="AddTile" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <CheckBox x:Name="cbTilesTitulo" VerticalAlignment="Center" Margin="10,0" MinWidth="0">
+                                        <CheckBox.Content>
+                                            <TextBlock x:Uid="TileTitle"/>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+                                    <CheckBox x:Name="cbTilesIconos" VerticalAlignment="Center" Margin="10,0" MinWidth="0">
+                                        <CheckBox.Content>
+                                            <TextBlock x:Uid="TileIcon"/>
+                                        </CheckBox.Content>
+                                    </CheckBox>
+
+                                    <ComboBox x:Name="cbTilesIconosLista" VerticalAlignment="Center" Margin="5,0" Visibility="Collapsed" Width="40" Padding="5,0,0,0">
+                                        <ComboBox.ItemContainerStyle>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Width" Value="70"/>
+                                                <Setter Property="Margin" Value="0"/>
+                                            </Style>
+                                        </ComboBox.ItemContainerStyle>
+
+                                        <ComboBox.ItemContainerTransitions>
+                                            <TransitionCollection>
+                                                <PaneThemeTransition Edge="Top"/>
+                                            </TransitionCollection>
+                                        </ComboBox.ItemContainerTransitions>
+
+                                        <controls:ImageEx Source="Assets/steam_logo_mini1.png" Width="16" Height="16" IsCacheEnabled="True"/>
+                                        <controls:ImageEx Source="Assets/steam_logo_mini2.png" Width="16" Height="16" IsCacheEnabled="True"/>
+                                        <controls:ImageEx Source="Assets/steam_logo_mini3.png" Width="16" Height="16" IsCacheEnabled="True"/>
+                                        <controls:ImageEx Source="Assets/steam_logo_mini4.png" Width="16" Height="16" IsCacheEnabled="True"/>
+                                        <controls:ImageEx Source="Assets/steam_logo_mini5.png" Width="16" Height="16" IsCacheEnabled="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </Grid>
+
+                            <StackPanel Orientation="Vertical" Padding="20">
+                                <Grid Margin="0,0,0,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock x:Uid="GameSelectedTiles" Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                    <TextBlock Grid.Column="1" FontFamily="Segoe MDL2 Assets" Text="&#59718;" Foreground="{StaticResource BrushSecundario}" FontSize="28">
+                                         <ToolTipService.ToolTip>
+                                             <TextBlock x:Uid="TooltipChangeImage" TextWrapping="Wrap" FontSize="15"/>
+                                         </ToolTipService.ToolTip> 
+                                    </TextBlock> 
+                                </Grid>
+                                
+                                <StackPanel Orientation="Horizontal">
+                                    <Button x:Name="botonImagenTilePequeña" Width="71" Height="71" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0">
+                                        <Button.Content>
+                                            <Grid>
+                                                <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" Stretch="UniformToFill"/>
+                                                <TextBlock x:Name="tbTilePequeña" FontFamily="Segoe MDL2 Assets" Text="&#59166;" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+
+                                    <Button x:Name="botonImagenTileMediana" Width="150" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0">
+                                        <Button.Content>
+                                            <Grid>
+                                                <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True" Stretch="UniformToFill"/>
+                                                <TextBlock x:Name="tbTileMediana" FontFamily="Segoe MDL2 Assets" Text="&#59166;" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+
+                                    <Button x:Name="botonImagenTileAncha" Width="310" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0">
+                                        <Button.Content>
+                                            <Grid>
+                                                <controls:ImageEx x:Name="imagenTileAncha" IsCacheEnabled="True" Stretch="UniformToFill"/>
+                                                <TextBlock x:Name="tbTileAncha" FontFamily="Segoe MDL2 Assets" Text="&#59166;" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+
+                                    <Button x:Name="botonImagenTileGrande" Width="310" Height="310" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top">
+                                        <Button.Content>
+                                            <Grid>
+                                                <Viewbox Stretch="UniformToFill" StretchDirection="DownOnly" HorizontalAlignment="Center">
+                                                    <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" Stretch="None"/>
+                                                </Viewbox>
+                                                
+                                                <TextBlock x:Name="tbTileGrande" FontFamily="Segoe MDL2 Assets" Text="&#59166;" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
                 </Grid>
 
                 <Grid x:Name="gridConfig" Visibility="Collapsed" Background="{StaticResource GridAcrilico}">
