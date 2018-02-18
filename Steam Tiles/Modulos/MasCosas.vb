@@ -216,11 +216,11 @@ Module MasCosas
 
         ElseIf sp.Tag.ToString = 2 Then
 
-            NavegarMasCosas(lv, sp.Tag, "https://pepeizqapps.com/")
+            Navegar(lv, sp.Tag, "https://pepeizqapps.com/")
 
         ElseIf sp.Tag.ToString = 3 Then
 
-            NavegarMasCosas(lv, sp.Tag, "https://pepeizqapps.com/contact/")
+            Navegar(lv, sp.Tag, "https://pepeizqapps.com/contact/")
 
         ElseIf sp.Tag.ToString = 4 Then
 
@@ -228,22 +228,22 @@ Module MasCosas
                 Dim ejecutador As StoreServicesFeedbackLauncher = StoreServicesFeedbackLauncher.GetDefault()
                 Await ejecutador.LaunchAsync()
             Else
-                NavegarMasCosas(lv, sp.Tag, "https://pepeizqapps.com/contact/")
+                Navegar(lv, sp.Tag, "https://pepeizqapps.com/contact/")
             End If
 
         ElseIf sp.Tag.ToString = 5 Then
 
-            NavegarMasCosas(lv, sp.Tag, traduccion)
+            Navegar(lv, sp.Tag, traduccion)
 
         ElseIf sp.Tag.ToString = 6 Then
 
-            NavegarMasCosas(lv, sp.Tag, codigoFuente)
+            Navegar(lv, sp.Tag, codigoFuente)
 
         End If
 
     End Sub
 
-    Public Sub NavegarMasCosas(lv As ListView, tag As String, url As String)
+    Public Sub Navegar(lv As ListView, tag As String, url As String)
 
         For Each item As ListViewItem In lv.Items
             Dim sp As StackPanel = item.Content

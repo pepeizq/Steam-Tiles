@@ -38,7 +38,7 @@ Public NotInheritable Class MainPage
             Dim sp As StackPanel = gridRelleno.Children(0)
             Dim lv As ListView = sp.Children(0)
 
-            NavegarMasCosas(lv, "2", "https://pepeizqapps.com/")
+            MasCosas.Navegar(lv, "2", "https://pepeizqapps.com/")
         End If
 
     End Sub
