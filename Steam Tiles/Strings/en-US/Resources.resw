@@ -138,7 +138,7 @@
   <data name="ConfigSteamFoldersWarning.Text" xml:space="preserve">
     <value>Advice: If you have installed games in different hard drives add the steamapps folder of each hard drive.</value>
   </data>
-  <data name="Contact.Text" xml:space="preserve">
+  <data name="MoreThings_Contact" xml:space="preserve">
     <value>Contact</value>
   </data>
   <data name="ErrorSteam1" xml:space="preserve">
@@ -147,10 +147,10 @@
   <data name="GamesDetected" xml:space="preserve">
     <value>games detected</value>
   </data>
-  <data name="HelpTranslate.Text" xml:space="preserve">
+  <data name="MoreThings_HelpTranslate" xml:space="preserve">
     <value>Help to Translate</value>
   </data>
-  <data name="MoreThings" xml:space="preserve">
+  <data name="MoreThings_MoreApps" xml:space="preserve">
     <value>More Things</value>
   </data>
   <data name="NoFoldersDetected" xml:space="preserve">
@@ -159,16 +159,16 @@
   <data name="NoGamesDetected.Text" xml:space="preserve">
     <value>No games detected, go to Configuration</value>
   </data>
-  <data name="MoreApps.Text" xml:space="preserve">
+  <data name="MoreApps" xml:space="preserve">
     <value>More Apps</value>
   </data>
-  <data name="ReportBug.Text" xml:space="preserve">
+  <data name="MoreThings_ReportBug" xml:space="preserve">
     <value>Report a Bug</value>
   </data>
   <data name="SelectGame.Text" xml:space="preserve">
     <value>Select a game</value>
   </data>
-  <data name="SourceCode.Text" xml:space="preserve">
+  <data name="MoreThings_SourceCode" xml:space="preserve">
     <value>Source Code</value>
   </data>
   <data name="TileIcon.Text" xml:space="preserve">
@@ -180,7 +180,7 @@
   <data name="TileTitle.Text" xml:space="preserve">
     <value>Add title</value>
   </data>
-  <data name="VoteApp.Text" xml:space="preserve">
+  <data name="MoreThings_VoteApp" xml:space="preserve">
     <value>Vote the App</value>
   </data>
   <data name="Change" xml:space="preserve">
@@ -224,5 +224,8 @@
   </data>
   <data name="TooltipChangeImage.Text" xml:space="preserve">
     <value>You can change an image of the Tile by clicking on it</value>
+  </data>
+  <data name="MoreThings_Back" xml:space="preserve">
+    <value>Back</value>
   </data>
 </root>

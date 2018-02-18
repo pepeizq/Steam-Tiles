@@ -1,10 +1,8 @@
-﻿Imports Microsoft.Services.Store.Engagement
-Imports Microsoft.Toolkit.Uwp.UI.Controls
+﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.ApplicationModel.Core
 Imports Windows.Storage
 Imports Windows.Storage.Pickers
 Imports Windows.Storage.Streams
-Imports Windows.System
 Imports Windows.UI
 Imports Windows.UI.Core
 
@@ -24,7 +22,7 @@ Public NotInheritable Class MainPage
 
     Private Sub Nv_ItemInvoked(sender As NavigationView, args As NavigationViewItemInvokedEventArgs)
 
-        Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
+        Dim recursos As New Resources.ResourceLoader()
 
         Dim item As TextBlock = args.InvokedItem
 
@@ -34,7 +32,13 @@ Public NotInheritable Class MainPage
             GridVisibilidad(gridConfig, item.Text)
         ElseIf item.Text = recursos.GetString("MoreThings") Then
             GridVisibilidad(gridMasCosas, item.Text)
-            NavegarMasCosas(lvMasCosasMasApps, "https://pepeizqapps.com/")
+
+            Dim sv As ScrollViewer = gridMasCosas.children(0)
+            Dim gridRelleno As Grid = sv.Content
+            Dim sp As StackPanel = gridRelleno.Children(0)
+            Dim lv As ListView = sp.Children(0)
+
+            NavegarMasCosas(lv, "2", "https://pepeizqapps.com/")
         End If
 
     End Sub
@@ -61,6 +65,7 @@ Public NotInheritable Class MainPage
 
         Steam.Generar(False)
         Config.Generar()
+        MasCosas.Generar()
 
         '--------------------------------------------------------
 
@@ -95,6 +100,13 @@ Public NotInheritable Class MainPage
         '--------------------------------------------------------
 
         Dim transpariencia As New UISettings
+
+        If transpariencia.AdvancedEffectsEnabled = True Then
+            TransparienciaEfectosFinal(True)
+        Else
+            TransparienciaEfectosFinal(False)
+        End If
+
         AddHandler transpariencia.AdvancedEffectsEnabledChanged, AddressOf TransparienciaEfectosCambia
 
     End Sub
@@ -102,16 +114,28 @@ Public NotInheritable Class MainPage
     Private Sub TransparienciaEfectosCambia(sender As UISettings, e As Object)
 
         If sender.AdvancedEffectsEnabled = True Then
-            gridAñadirTile.Background = New SolidColorBrush(App.Current.Resources("GridAcrilico"))
-            gridConfig.Background = New SolidColorBrush(App.Current.Resources("GridAcrilico"))
-            gridConfigTiles.Background = New SolidColorBrush(App.Current.Resources("GridTituloBackground"))
-            gridMasCosas.Background = New SolidColorBrush(App.Current.Resources("GridAcrilico"))
+            TransparienciaEfectosFinal(True)
         Else
-            gridAñadirTile.Background = New SolidColorBrush(Colors.LightGray)
-            gridConfig.Background = New SolidColorBrush(Colors.LightGray)
-            gridConfigTiles.Background = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
-            gridMasCosas.Background = New SolidColorBrush(Colors.LightGray)
+            TransparienciaEfectosFinal(False)
         End If
+
+    End Sub
+
+    Private Async Sub TransparienciaEfectosFinal(estado As Boolean)
+
+        Await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, Sub()
+                                                                     If estado = True Then
+                                                                         gridAñadirTile.Background = App.Current.Resources("GridAcrilico")
+                                                                         gridConfig.Background = App.Current.Resources("GridAcrilico")
+                                                                         gridConfigTiles.Background = App.Current.Resources("GridTituloBackground")
+                                                                         gridMasCosas.Background = App.Current.Resources("GridAcrilico")
+                                                                     Else
+                                                                         gridAñadirTile.Background = New SolidColorBrush(Colors.LightGray)
+                                                                         gridConfig.Background = New SolidColorBrush(Colors.LightGray)
+                                                                         gridConfigTiles.Background = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
+                                                                         gridMasCosas.Background = New SolidColorBrush(Colors.LightGray)
+                                                                     End If
+                                                                 End Sub)
 
     End Sub
 
@@ -233,67 +257,6 @@ Public NotInheritable Class MainPage
     Private Sub BotonBorrarCarpetasSteam_Click(sender As Object, e As RoutedEventArgs) Handles botonBorrarCarpetasSteam.Click
 
         Steam.Borrar()
-
-    End Sub
-
-    'MASCOSAS-----------------------------------------
-
-    Private Async Sub LvMasCosasItemClick(sender As Object, args As ItemClickEventArgs)
-
-        Dim sp As StackPanel = args.ClickedItem
-
-        If sp.Tag.ToString = 0 Then
-
-            Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
-
-        ElseIf sp.Tag.ToString = 1 Then
-
-            NavegarMasCosas(lvMasCosasMasApps, "https://pepeizqapps.com/")
-
-        ElseIf sp.Tag.ToString = 3 Then
-
-            NavegarMasCosas(lvMasCosasContacto, "https://pepeizqapps.com/contact/")
-
-        ElseIf sp.Tag.ToString = 4 Then
-
-            If StoreServicesFeedbackLauncher.IsSupported = True Then
-                Dim ejecutador As StoreServicesFeedbackLauncher = StoreServicesFeedbackLauncher.GetDefault()
-                Await ejecutador.LaunchAsync()
-            Else
-                NavegarMasCosas(lvMasCosasReportarFallo, "https://pepeizqapps.com/contact/")
-            End If
-
-        ElseIf sp.Tag.ToString = 5 Then
-
-            NavegarMasCosas(lvMasCosasTraduccion, "https://poeditor.com/join/project/aKmScyB4QT")
-
-        ElseIf sp.Tag.ToString = 6 Then
-
-            NavegarMasCosas(lvMasCosasCodigoFuente, "https://github.com/pepeizq/Steam-Tiles")
-
-        End If
-
-    End Sub
-
-    Private Sub NavegarMasCosas(lvItem As ListViewItem, url As String)
-
-        lvMasCosasMasApps.Background = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
-        lvMasCosasContacto.Background = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
-        lvMasCosasReportarFallo.Background = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
-        lvMasCosasTraduccion.Background = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
-        lvMasCosasCodigoFuente.Background = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
-
-        lvItem.Background = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
-
-        pbMasCosas.Visibility = Visibility.Visible
-
-        wvMasCosas.Navigate(New Uri(url))
-
-    End Sub
-
-    Private Sub WvMasCosas_NavigationCompleted(sender As WebView, args As WebViewNavigationCompletedEventArgs) Handles wvMasCosas.NavigationCompleted
-
-        pbMasCosas.Visibility = Visibility.Collapsed
 
     End Sub
 

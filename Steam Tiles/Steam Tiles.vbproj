@@ -122,6 +122,7 @@
     <Compile Include="Clases\Tile.vb" />
     <Compile Include="Modulos\Config.vb" />
     <Compile Include="Modulos\Decompiladores.vb" />
+    <Compile Include="Modulos\MasCosas.vb" />
     <Compile Include="Modulos\NavigationViewItems.vb" />
     <Compile Include="Modulos\Notificaciones.vb" />
     <Compile Include="Modulos\Steam.vb" />
@@ -188,9 +189,9 @@
     <Content Include="Assets\Logos\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Logos\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\MasCosas\contacto.png" />
+    <Content Include="Assets\MasCosas\pepeizq.png" />
     <Content Include="Assets\MasCosas\feedback.png" />
     <Content Include="Assets\MasCosas\github.png" />
-    <Content Include="Assets\MasCosas\pepeizq.png" />
     <Content Include="Assets\MasCosas\poeditor.png" />
     <Content Include="Assets\steam_logo_mini3.png" />
     <Content Include="Assets\steam_logo_mini2.png" />

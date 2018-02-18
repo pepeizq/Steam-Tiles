@@ -138,7 +138,7 @@
   <data name="ConfigSteamFoldersWarning.Text" xml:space="preserve">
     <value>Aviso: Si tienes juegos instalados en diferentes discos duros hay que añadir la carpeta steamapps de cada disco duro.</value>
   </data>
-  <data name="Contact.Text" xml:space="preserve">
+  <data name="MoreThings_Contact" xml:space="preserve">
     <value>Contactar</value>
   </data>
   <data name="ErrorSteam1" xml:space="preserve">
@@ -147,10 +147,10 @@
   <data name="GamesDetected" xml:space="preserve">
     <value>juegos detectados</value>
   </data>
-  <data name="HelpTranslate.Text" xml:space="preserve">
+  <data name="MoreThings_HelpTranslate" xml:space="preserve">
     <value>Ayuda a Traducir</value>
   </data>
-  <data name="MoreThings" xml:space="preserve">
+  <data name="MoreThings_MoreApps" xml:space="preserve">
     <value>Más Cosas</value>
   </data>
   <data name="NoFoldersDetected" xml:space="preserve">
@@ -159,16 +159,16 @@
   <data name="NoGamesDetected.Text" xml:space="preserve">
     <value>No se han detectado juegos, ve a Configuración</value>
   </data>
-  <data name="MoreApps.Text" xml:space="preserve">
+  <data name="MoreApps" xml:space="preserve">
     <value>Más Apps</value>
   </data>
-  <data name="ReportBug.Text" xml:space="preserve">
+  <data name="MoreThings_ReportBug" xml:space="preserve">
     <value>Informa de un Fallo</value>
   </data>
   <data name="SelectGame.Text" xml:space="preserve">
     <value>Selecciona un juego</value>
   </data>
-  <data name="SourceCode.Text" xml:space="preserve">
+  <data name="MoreThings_SourceCode" xml:space="preserve">
     <value>Código Fuente</value>
   </data>
   <data name="TileIcon.Text" xml:space="preserve">
@@ -180,7 +180,7 @@
   <data name="TileTitle.Text" xml:space="preserve">
     <value>Añadir titulo</value>
   </data>
-  <data name="VoteApp.Text" xml:space="preserve">
+  <data name="MoreThings_VoteApp" xml:space="preserve">
     <value>Vota la App</value>
   </data>
   <data name="Change" xml:space="preserve">
@@ -224,5 +224,8 @@
   </data>
   <data name="TooltipChangeImage.Text" xml:space="preserve">
     <value>Puedes cambiar una imagen de la Tile pinchando en ella</value>
+  </data>
+  <data name="MoreThings_Back" xml:space="preserve">
+    <value>Volver</value>
   </data>
 </root>

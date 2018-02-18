@@ -138,7 +138,7 @@
   <data name="ConfigSteamFoldersWarning.Text" xml:space="preserve">
     <value>提示：如果你将游戏安装到了多个目录，请分别添加每个目录。</value>
   </data>
-  <data name="Contact.Text" xml:space="preserve">
+  <data name="MoreThings_Contact" xml:space="preserve">
     <value>联系我</value>
   </data>
   <data name="ErrorSteam1" xml:space="preserve">
@@ -147,7 +147,7 @@
   <data name="GamesDetected" xml:space="preserve">
     <value>检测到游戏</value>
   </data>
-  <data name="HelpTranslate.Text" xml:space="preserve">
+  <data name="MoreThings_HelpTranslate" xml:space="preserve">
     <value>贡献翻译</value>
   </data>
   <data name="MoreThings" xml:space="preserve">
@@ -159,13 +159,13 @@
   <data name="NoGamesDetected.Text" xml:space="preserve">
     <value>未检测到游戏，请前往设置页面</value>
   </data>
-  <data name="ReportBug.Text" xml:space="preserve">
+  <data name="MoreThings_ReportBug" xml:space="preserve">
     <value>提交Bug</value>
   </data>
   <data name="SelectGame.Text" xml:space="preserve">
     <value>选择一个游戏</value>
   </data>
-  <data name="SourceCode.Text" xml:space="preserve">
+  <data name="MoreThings_SourceCode" xml:space="preserve">
     <value>查看源代码</value>
   </data>
   <data name="TileIcon.Text" xml:space="preserve">
@@ -177,7 +177,7 @@
   <data name="TileTitle.Text" xml:space="preserve">
     <value>添加标题</value>
   </data>
-  <data name="VoteApp.Text" xml:space="preserve">
+  <data name="MoreThings_VoteApp" xml:space="preserve">
     <value>在商店评分</value>
   </data>
   <data name="Change" xml:space="preserve">
@@ -210,7 +210,7 @@
   <data name="DescriptionStoreTwitch" xml:space="preserve">
     <value>将你的Twitch游戏以磁贴方式固定到开始菜单</value>
   </data>
-  <data name="MoreApps.Text" xml:space="preserve">
+  <data name="MoreThings_MoreApps" xml:space="preserve">
     <value>更多应用</value>
   </data>
   <data name="Updates.Text" xml:space="preserve">
