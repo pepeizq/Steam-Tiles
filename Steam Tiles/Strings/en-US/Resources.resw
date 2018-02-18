@@ -151,16 +151,13 @@
     <value>Help to Translate</value>
   </data>
   <data name="MoreThings_MoreApps" xml:space="preserve">
-    <value>More Things</value>
+    <value>More Apps</value>
   </data>
   <data name="NoFoldersDetected" xml:space="preserve">
     <value>None</value>
   </data>
   <data name="NoGamesDetected.Text" xml:space="preserve">
     <value>No games detected, go to Configuration</value>
-  </data>
-  <data name="MoreApps" xml:space="preserve">
-    <value>More Apps</value>
   </data>
   <data name="MoreThings_ReportBug" xml:space="preserve">
     <value>Report a Bug</value>
@@ -227,5 +224,8 @@
   </data>
   <data name="MoreThings_Back" xml:space="preserve">
     <value>Back</value>
+  </data>
+  <data name="MoreThings" xml:space="preserve">
+    <value>More Things</value>
   </data>
 </root>

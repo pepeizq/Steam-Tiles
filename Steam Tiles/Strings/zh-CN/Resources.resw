@@ -150,7 +150,7 @@
   <data name="MoreThings_HelpTranslate" xml:space="preserve">
     <value>贡献翻译</value>
   </data>
-  <data name="MoreThings" xml:space="preserve">
+  <data name="MoreThings_MoreApps" xml:space="preserve">
     <value>更多</value>
   </data>
   <data name="NoFoldersDetected" xml:space="preserve">
@@ -210,7 +210,7 @@
   <data name="DescriptionStoreTwitch" xml:space="preserve">
     <value>将你的Twitch游戏以磁贴方式固定到开始菜单</value>
   </data>
-  <data name="MoreThings_MoreApps" xml:space="preserve">
+  <data name="MoreThings" xml:space="preserve">
     <value>更多应用</value>
   </data>
   <data name="Updates.Text" xml:space="preserve">

@@ -100,24 +100,14 @@ Public NotInheritable Class MainPage
         '--------------------------------------------------------
 
         Dim transpariencia As New UISettings
-
-        If transpariencia.AdvancedEffectsEnabled = True Then
-            TransparienciaEfectosFinal(True)
-        Else
-            TransparienciaEfectosFinal(False)
-        End If
-
+        TransparienciaEfectosFinal(transpariencia.AdvancedEffectsEnabled)
         AddHandler transpariencia.AdvancedEffectsEnabledChanged, AddressOf TransparienciaEfectosCambia
 
     End Sub
 
     Private Sub TransparienciaEfectosCambia(sender As UISettings, e As Object)
 
-        If sender.AdvancedEffectsEnabled = True Then
-            TransparienciaEfectosFinal(True)
-        Else
-            TransparienciaEfectosFinal(False)
-        End If
+        TransparienciaEfectosFinal(sender.AdvancedEffectsEnabled)
 
     End Sub
 

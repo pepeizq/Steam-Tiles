@@ -151,7 +151,7 @@
     <value>Ayuda a Traducir</value>
   </data>
   <data name="MoreThings_MoreApps" xml:space="preserve">
-    <value>Más Cosas</value>
+    <value>Más Apps</value>
   </data>
   <data name="NoFoldersDetected" xml:space="preserve">
     <value>Ninguna</value>
@@ -159,8 +159,8 @@
   <data name="NoGamesDetected.Text" xml:space="preserve">
     <value>No se han detectado juegos, ve a Configuración</value>
   </data>
-  <data name="MoreApps" xml:space="preserve">
-    <value>Más Apps</value>
+  <data name="MoreThings" xml:space="preserve">
+    <value>Más Cosas</value>
   </data>
   <data name="MoreThings_ReportBug" xml:space="preserve">
     <value>Informa de un Fallo</value>
