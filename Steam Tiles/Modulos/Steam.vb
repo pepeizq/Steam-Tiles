@@ -315,10 +315,10 @@ Module Steam
         Dim botonAñadirTile As Button = pagina.FindName("botonAñadirTile")
         botonAñadirTile.Tag = juego
 
-        Dim imageJuegoSeleccionado As ImageEx = pagina.FindName("imagenJuegoSeleccionado")
+        Dim imagenJuegoSeleccionado As ImageEx = pagina.FindName("imagenJuegoSeleccionado")
         Dim imagenCapsula As String = juego.ImagenAncha.ToString
         imagenCapsula = imagenCapsula.Replace("header.jpg", "capsule_184x69.jpg")
-        imageJuegoSeleccionado.Source = New BitmapImage(New Uri(imagenCapsula))
+        imagenJuegoSeleccionado.Source = New BitmapImage(New Uri(imagenCapsula))
 
         Dim tbJuegoSeleccionado As TextBlock = pagina.FindName("tbJuegoSeleccionado")
         tbJuegoSeleccionado.Text = juego.Titulo
