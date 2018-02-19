@@ -342,11 +342,16 @@ Module Steam
         juego.ImagenPequeña = Await SacarIcono(juego.ID)
 
         Dim imagenPequeña As ImageEx = pagina.FindName("imagenTilePequeña")
-        imagenPequeña.Source = juego.ImagenPequeña
-        imagenPequeña.Visibility = Visibility.Visible
-
         Dim tbPequeña As TextBlock = pagina.FindName("tbTilePequeña")
-        tbPequeña.Visibility = Visibility.Collapsed
+
+        If Not juego.ImagenPequeña = Nothing Then
+            imagenPequeña.Source = juego.ImagenPequeña
+            imagenPequeña.Visibility = Visibility.Visible
+            tbPequeña.Visibility = Visibility.Collapsed
+        Else
+            imagenPequeña.Visibility = Visibility.Collapsed
+            tbPequeña.Visibility = Visibility.Visible
+        End If
 
         '---------------------------------------------
 
