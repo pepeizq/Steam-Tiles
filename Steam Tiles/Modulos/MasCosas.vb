@@ -1,5 +1,4 @@
 ﻿Imports Microsoft.Services.Store.Engagement
-Imports Microsoft.Toolkit.Uwp.Helpers
 Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.System
 Imports Windows.UI
@@ -10,7 +9,6 @@ Module MasCosas
     Dim volver As Boolean = False
     Dim traduccion As String = "https://poeditor.com/join/project/aKmScyB4QT"
     Dim codigoFuente As String = "https://github.com/pepeizq/Steam-Tiles"
-    Dim gridPrincipalNombre As String = "gridTiles"
 
     Public Sub Generar()
 
@@ -206,9 +204,6 @@ Module MasCosas
 
             Dim gridCosas As Grid = pagina.FindName("gridMasCosas")
             gridCosas.Visibility = Visibility.Collapsed
-
-            Dim gridPrincipal As Grid = pagina.FindName(gridPrincipalNombre)
-            gridPrincipal.Visibility = Visibility.Visible
 
         ElseIf sp.Tag.ToString = 1 Then
 
