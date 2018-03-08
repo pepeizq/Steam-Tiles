@@ -15,7 +15,22 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="gridTitulo" Grid.Row="0" Background="{StaticResource GridTituloBackground}">
-            <TextBlock x:Name="tbTitulo" Margin="50,0,0,0" FontSize="13" Foreground="White" VerticalAlignment="Center"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="tbTitulo" Grid.Column="0" Margin="50,0,0,0" FontSize="13" Foreground="White" VerticalAlignment="Center"/>
+
+            <Button x:Name="botonMasCosas" Grid.Column="1" BorderThickness="0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                <Button.Content>
+                    <FontIcon Glyph="&#57361;" FontFamily="Segoe MDL2 Assets" Foreground="White" Margin="10,5" FontSize="15"/>
+                </Button.Content>
+
+                <Button.Flyout>
+                    <MenuFlyout x:Name="botonMasCosasMenu"/>
+                </Button.Flyout>
+            </Button>
         </Grid>
 
         <NavigationView x:Name="nvPrincipal" Grid.Row="1" Loaded="Nv_Loaded" ItemInvoked="Nv_ItemInvoked"
@@ -95,7 +110,7 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Button x:Name="botonAñadirTile" Grid.Column="0" Padding="15,10" Background="{StaticResource BrushSecundario}">
+                                <Button x:Name="botonAñadirTile" Grid.Column="0" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                     <StackPanel Orientation="Horizontal">
                                         <SymbolIcon Margin="0,0,10,0" VerticalAlignment="Center" Symbol="Add" Foreground="White"/>
                                         <TextBlock x:Uid="AddTile" Foreground="White"/>
@@ -103,12 +118,12 @@
                                 </Button>
 
                                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                                    <CheckBox x:Name="cbTilesTitulo" VerticalAlignment="Center" Margin="10,0" MinWidth="0">
+                                    <CheckBox x:Name="cbTilesTitulo" VerticalAlignment="Center" Margin="10,0" MinWidth="0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                         <CheckBox.Content>
                                             <TextBlock x:Uid="TileTitle"/>
                                         </CheckBox.Content>
                                     </CheckBox>
-                                    <CheckBox x:Name="cbTilesIconos" VerticalAlignment="Center" Margin="10,0" MinWidth="0">
+                                    <CheckBox x:Name="cbTilesIconos" VerticalAlignment="Center" Margin="10,0" MinWidth="0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                         <CheckBox.Content>
                                             <TextBlock x:Uid="TileIcon"/>
                                         </CheckBox.Content>
@@ -153,7 +168,7 @@
                                 </Grid>
                                 
                                 <StackPanel Orientation="Horizontal">
-                                    <Button x:Name="botonImagenTilePequeña" Width="71" Height="71" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0">
+                                    <Button x:Name="botonImagenTilePequeña" Width="71" Height="71" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton" Click="UsuarioClickeaImagen">
                                         <Button.Content>
                                             <Grid>
                                                 <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" Stretch="UniformToFill"/>
@@ -162,7 +177,7 @@
                                         </Button.Content>
                                     </Button>
 
-                                    <Button x:Name="botonImagenTileMediana" Width="150" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0">
+                                    <Button x:Name="botonImagenTileMediana" Width="150" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton" Click="UsuarioClickeaImagen">
                                         <Button.Content>
                                             <Grid>
                                                 <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True" Stretch="UniformToFill"/>
@@ -171,7 +186,7 @@
                                         </Button.Content>
                                     </Button>
 
-                                    <Button x:Name="botonImagenTileAncha" Width="310" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0">
+                                    <Button x:Name="botonImagenTileAncha" Width="310" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton" Click="UsuarioClickeaImagen">
                                         <Button.Content>
                                             <Grid>
                                                 <controls:ImageEx x:Name="imagenTileAncha" IsCacheEnabled="True" Stretch="UniformToFill"/>
@@ -180,7 +195,7 @@
                                         </Button.Content>
                                     </Button>
 
-                                    <Button x:Name="botonImagenTileGrande" Width="310" Height="310" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top">
+                                    <Button x:Name="botonImagenTileGrande" Width="310" Height="310" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton" Click="UsuarioClickeaImagen">
                                         <Button.Content>
                                             <Grid>
                                                 <Viewbox Stretch="UniformToFill" StretchDirection="DownOnly" HorizontalAlignment="Center">
@@ -219,7 +234,7 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Button x:Name="botonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="{StaticResource BrushSecundario}">
+                                        <Button x:Name="botonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                             <StackPanel Orientation="Horizontal">
                                                 <SymbolIcon Symbol="NewFolder" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
                                                 <TextBlock x:Uid="ConfigSteamAddFolder" Foreground="White"/>
@@ -231,7 +246,7 @@
                                     <TextBlock x:Uid="ConfigSteamFoldersAdded" Margin="0,15,0,5"/>
                                     <TextBlock x:Name="tbCarpetasDetectadasSteam"/>
 
-                                    <Button x:Name="botonBorrarCarpetasSteam" Margin="0,25,0,10" Padding="10" Background="{StaticResource BrushSecundario}">
+                                    <Button x:Name="botonBorrarCarpetasSteam" Margin="0,25,0,10" Padding="10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                         <StackPanel Orientation="Horizontal">
                                             <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
                                             <TextBlock x:Uid="ConfigSteamDeleteFolders" Foreground="White"/>
