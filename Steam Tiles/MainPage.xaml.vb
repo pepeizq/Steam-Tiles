@@ -1,5 +1,4 @@
 ﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
-Imports Windows.ApplicationModel.Core
 Imports Windows.Storage
 Imports Windows.Storage.Pickers
 Imports Windows.Storage.Streams
