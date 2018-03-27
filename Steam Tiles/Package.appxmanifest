@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap5="http://schemas.microsoft.com/appx/manifest/uap/windows10/5" IgnorableNamespaces="uap mp uap5">
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
   <Identity Name="5078pepeizq.19563A9081E52" Publisher="CN=C91088FC-231C-4E13-86D1-5F9658173DA7" Version="2.2.4.0" />
   <mp:PhoneIdentity PhoneProductId="86a2c0ec-5cdd-45bc-916b-08e712c09234" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
@@ -23,7 +23,7 @@
             <uap:ShowOn Tile="square310x310Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="assets\Logos\SplashScreen.png" BackgroundColor="dimGray" uap5:Optional="true" />
+        <uap:SplashScreen Image="assets\Logos\SplashScreen.png" BackgroundColor="dimGray" />
         <uap:LockScreen BadgeLogo="assets\Logos\Badge.png" Notification="badge" />
       </uap:VisualElements>
     </Application>
