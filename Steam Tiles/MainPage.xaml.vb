@@ -45,7 +45,7 @@ Public NotInheritable Class MainPage
         nvPrincipal.IsPaneOpen = False
 
         Steam.Generar(False)
-        Config.Generar()
+        Configuracion.Iniciar()
 
         '--------------------------------------------------------
 
@@ -160,29 +160,25 @@ Public NotInheritable Class MainPage
 
     Private Sub CbTilesTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Checked
 
-        ApplicationData.Current.LocalSettings.Values("titulotile") = "on"
-        Config.Generar()
+        Configuracion.MostrarTitulo(True)
 
     End Sub
 
     Private Sub CbTilesTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Unchecked
 
-        ApplicationData.Current.LocalSettings.Values("titulotile") = "off"
-        Config.Generar()
+        Configuracion.MostrarTitulo(False)
 
     End Sub
 
     Private Sub CbTilesIconos_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesIconos.Checked
 
-        ApplicationData.Current.LocalSettings.Values("logotile") = "on"
-        Config.Generar()
+        Configuracion.MostrarDRM(True)
 
     End Sub
 
     Private Sub CbTilesIconos_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesIconos.Unchecked
 
-        ApplicationData.Current.LocalSettings.Values("logotile") = "off"
-        Config.Generar()
+        Configuracion.MostrarDRM(False)
 
     End Sub
 

@@ -26,18 +26,15 @@ Module Steam
 
         Dim gv As GridView = pagina.FindName("gridViewTilesSteam")
 
-        Dim tbCarpetas As TextBlock = pagina.FindName("tbCarpetasDetectadasSteam")
+        Dim spCarpetas As StackPanel = pagina.FindName("spCarpetasDetectadas")
+        spCarpetas.Children.Clear()
 
-        If Not tbCarpetas.Text = Nothing Then
-            tbCarpetas.Text = ""
-        End If
-
-        Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
+        Dim recursos As New Resources.ResourceLoader()
         Dim numCarpetas As ApplicationDataContainer = ApplicationData.Current.LocalSettings
 
         If boolBuscarCarpeta = True Then
             Try
-                Dim picker As FolderPicker = New FolderPicker()
+                Dim picker As New FolderPicker()
 
                 picker.FileTypeFilter.Add("*")
                 picker.ViewMode = PickerViewMode.List
@@ -47,17 +44,25 @@ Module Steam
 
                 Dim i As Integer = 0
                 While i < (numCarpetas.Values("numCarpetas") + 1)
-
                     Try
                         carpetaTemp = Await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(clave + i.ToString)
-                        tbCarpetas.Text = tbCarpetas.Text + carpetaTemp.Path + Environment.NewLine
+
+                        Dim tb As New TextBlock With {
+                            .Text = carpetaTemp.Path
+                        }
+
+                        spCarpetas.Children.Add(tb)
                     Catch ex As Exception
                         StorageApplicationPermissions.FutureAccessList.AddOrReplace(clave + i.ToString, carpeta)
                         numCarpetas.Values("numCarpetas") = i + 1
-                        tbCarpetas.Text = tbCarpetas.Text + carpeta.Path + Environment.NewLine
+
+                        Dim tb As New TextBlock With {
+                            .Text = carpeta.Path
+                        }
+
+                        spCarpetas.Children.Add(tb)
                         Exit While
                     End Try
-
                     i += 1
                 End While
 
@@ -69,7 +74,12 @@ Module Steam
             While i < (numCarpetas.Values("numCarpetas") + 1)
                 Try
                     Dim carpetaTemp As StorageFolder = Await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(clave + i.ToString)
-                    tbCarpetas.Text = tbCarpetas.Text + carpetaTemp.Path + Environment.NewLine
+
+                    Dim tb As New TextBlock With {
+                        .Text = carpetaTemp.Path
+                    }
+
+                    spCarpetas.Children.Add(tb)
                 Catch ex As Exception
 
                 End Try
@@ -77,16 +87,18 @@ Module Steam
             End While
         End If
 
-        If tbCarpetas.Text = Nothing Then
-            tbCarpetas.Text = recursos.GetString("NoFoldersDetected")
-        Else
-            tbCarpetas.Text = tbCarpetas.Text.Trim
+        If spCarpetas.Children.Count = 0 Then
+            Dim tb As New TextBlock With {
+                .Text = recursos.GetString("NoFoldersDetected")
+            }
+
+            spCarpetas.Children.Add(tb)
         End If
 
         '-------------------------------------------------------------
 
         Dim listaTemp As New List(Of String)
-        Dim listaFinal As List(Of Tile) = New List(Of Tile)
+        Dim listaFinal As New List(Of Tile)
 
         Dim h As Integer = 0
         While h < numCarpetas.Values("numCarpetas") + 1
@@ -221,8 +233,8 @@ Module Steam
                                     End While
 
                                     If tituloBool = False Then
-                                        Dim imagenAncha As Uri = New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
-                                        Dim imagenGrande As Uri = New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/capsule_616x353.jpg", UriKind.RelativeOrAbsolute)
+                                        Dim imagenAncha As New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
+                                        Dim imagenGrande As New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/capsule_616x353.jpg", UriKind.RelativeOrAbsolute)
 
                                         Dim juego As New Tile(titulo, id, New Uri("steam://rungameid/" + id), Nothing, Nothing, imagenAncha, imagenGrande)
 
@@ -397,15 +409,20 @@ Module Steam
 
         StorageApplicationPermissions.FutureAccessList.Clear()
 
-        Dim recursos As Resources.ResourceLoader = New Resources.ResourceLoader()
+        Dim recursos As New Resources.ResourceLoader()
         Dim numCarpetas As ApplicationDataContainer = ApplicationData.Current.LocalSettings
         numCarpetas.Values("numCarpetas") = 0
 
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
-        Dim tbCarpetas As TextBlock = pagina.FindName("tbCarpetasDetectadasSteam")
+        Dim spCarpetas As StackPanel = pagina.FindName("spCarpetasDetectadas")
+        spCarpetas.Children.Clear()
 
-        tbCarpetas.Text = recursos.GetString("NoFoldersDetected")
+        Dim tb As New TextBlock With {
+            .Text = recursos.GetString("NoFoldersDetected")
+        }
+
+        spCarpetas.Children.Add(tb)
 
         Dim gv As GridView = pagina.FindName("gridViewTilesSteam")
         gv.Items.Clear()

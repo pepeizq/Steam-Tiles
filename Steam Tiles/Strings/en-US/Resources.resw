@@ -123,19 +123,19 @@
   <data name="Config" xml:space="preserve">
     <value>Configuration</value>
   </data>
-  <data name="ConfigSteamAddFolder.Text" xml:space="preserve">
+  <data name="ConfigAddFolder.Text" xml:space="preserve">
     <value>Add Folder</value>
   </data>
-  <data name="ConfigSteamDeleteFolders.Text" xml:space="preserve">
+  <data name="ConfigDeleteFolders.Text" xml:space="preserve">
     <value>Delete Folders</value>
   </data>
-  <data name="ConfigSteamFolderMessage.Text" xml:space="preserve">
+  <data name="ConfigFolderMessage.Text" xml:space="preserve">
     <value>Add your Steam folder following this example: C:\Steam\steamapps</value>
   </data>
-  <data name="ConfigSteamFoldersAdded.Text" xml:space="preserve">
+  <data name="ConfigFoldersAdded.Text" xml:space="preserve">
     <value>Folders added:</value>
   </data>
-  <data name="ConfigSteamFoldersWarning.Text" xml:space="preserve">
+  <data name="ConfigFoldersWarning.Text" xml:space="preserve">
     <value>Advice: If you have installed games in different hard drives add the steamapps folder of each hard drive.</value>
   </data>
   <data name="MoreThings_Contact" xml:space="preserve">
@@ -183,38 +183,8 @@
   <data name="Change" xml:space="preserve">
     <value>Change Folder</value>
   </data>
-  <data name="ConfigBlizzardFolderMessage.Text" xml:space="preserve">
-    <value>Add the folder where are installed your Blizzard games:</value>
-  </data>
-  <data name="ConfigGOGFolderMessage.Text" xml:space="preserve">
-    <value>Add your GOG Galaxy folder following this example: C:\GalaxyClient\Games</value>
-  </data>
-  <data name="ConfigGOGFoldersWarning.Text" xml:space="preserve">
-    <value>Because the way GOG Galaxy works the app will open the gameview of the game, not the executable</value>
-  </data>
-  <data name="ConfigTwitchFolderMessage.Text" xml:space="preserve">
-    <value>Add the folder C:\Users\[Your User]\AppData\Roaming\Twitch</value>
-  </data>
-  <data name="DescriptionStoreBlizzard" xml:space="preserve">
-    <value>Pin Tiles in the Start Menu of Windows 10 for your Blizzard games.</value>
-  </data>
-  <data name="DescriptionStoreGOG" xml:space="preserve">
-    <value>Pin Tiles in the Start Menu of Windows 10 for your GOG Galaxy games.</value>
-  </data>
-  <data name="DescriptionStoreOrigin" xml:space="preserve">
-    <value>Pin Tiles in the Start Menu of Windows 10 for your Origin games.</value>
-  </data>
-  <data name="DescriptionStoreSteam" xml:space="preserve">
+  <data name="StoreDescription" xml:space="preserve">
     <value>Pin Tiles in the Start Menu of Windows 10 for your Steam games.</value>
-  </data>
-  <data name="DescriptionStoreTwitch" xml:space="preserve">
-    <value>Pin Tiles in the Start Menu of Windows 10 for your Twitch Desktop App games.</value>
-  </data>
-  <data name="Updates.Text" xml:space="preserve">
-    <value>Updates</value>
-  </data>
-  <data name="ConfigOriginFolderMessage.Text" xml:space="preserve">
-    <value>Add the folder C: \ ProgramData \ Origin \ LocalContent (it can be hidden)</value>
   </data>
   <data name="GameSelectedTiles.Text" xml:space="preserve">
     <value>Images to include in the Tile of this game:</value>
@@ -227,5 +197,8 @@
   </data>
   <data name="MoreThings" xml:space="preserve">
     <value>More Things</value>
+  </data>
+  <data name="StoreTags" xml:space="preserve">
+    <value>Steam;Start Menu;Tile;Tiles;Games;Windows</value>
   </data>
 </root>

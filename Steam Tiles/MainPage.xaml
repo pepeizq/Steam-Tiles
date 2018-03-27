@@ -2,8 +2,11 @@
     x:Class="Steam_Tiles.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+    xmlns:fa="using:FontAwesome.UWP"
+    
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="Page_Loaded">
@@ -237,35 +240,33 @@
                                         <Button x:Name="botonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                             <StackPanel Orientation="Horizontal">
                                                 <SymbolIcon Symbol="NewFolder" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                                                <TextBlock x:Uid="ConfigSteamAddFolder" Foreground="White"/>
+                                                <TextBlock x:Uid="ConfigAddFolder" Foreground="White"/>
                                             </StackPanel>
                                         </Button>
 
-                                        <TextBlock x:Uid="ConfigSteamFolderMessage" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
+                                        <TextBlock x:Uid="ConfigFolderMessage" Grid.Column="1" VerticalAlignment="Center" Margin="10,0,0,0" TextWrapping="Wrap"/>
                                     </Grid>
-                                    <TextBlock x:Uid="ConfigSteamFoldersAdded" Margin="0,15,0,5"/>
-                                    <TextBlock x:Name="tbCarpetasDetectadasSteam"/>
+                                    <TextBlock x:Uid="ConfigFoldersAdded" Margin="0,15,0,5"/>
 
-                                    <Button x:Name="botonBorrarCarpetasSteam" Margin="0,25,0,10" Padding="10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                    <StackPanel x:Name="spCarpetasDetectadas" Orientation="Vertical"/>
+
+                                    <Button x:Name="botonBorrarCarpetasSteam" Margin="0,25,0,0" Padding="10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                         <StackPanel Orientation="Horizontal">
                                             <SymbolIcon Symbol="Delete" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                                            <TextBlock x:Uid="ConfigSteamDeleteFolders" Foreground="White"/>
+                                            <TextBlock x:Uid="ConfigDeleteFolders" Foreground="White"/>
                                         </StackPanel>
                                     </Button>
-
-                                    <controls:DropShadowPanel Color="Black" HorizontalAlignment="Left"
-                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5">
-                                        <Grid Padding="10" Background="IndianRed">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" Foreground="White"/>
-                                            <TextBlock x:Uid="ConfigSteamFoldersWarning" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
-                                        </Grid>
-                                    </controls:DropShadowPanel>
                                 </StackPanel>
+
+                                <Grid Padding="15" Background="IndianRed">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                   
+                                    <SymbolIcon Grid.Column="0" Symbol="Important" VerticalAlignment="Center" Foreground="White"/>
+                                    <TextBlock x:Uid="ConfigFoldersWarning" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
+                                </Grid>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
