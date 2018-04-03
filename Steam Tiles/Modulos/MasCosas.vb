@@ -22,17 +22,27 @@ Module MasCosas
 
         Dim coreBarra As CoreApplicationViewTitleBar = CoreApplication.GetCurrentView.TitleBar
         coreBarra.ExtendViewIntoTitleBar = True
-        Window.Current.SetTitleBar(tbTitulo)
 
         Dim barra As ApplicationViewTitleBar = ApplicationView.GetForCurrentView().TitleBar
         barra.ButtonBackgroundColor = Colors.Transparent
         barra.ButtonForegroundColor = Colors.White
         barra.ButtonInactiveBackgroundColor = Colors.Transparent
 
-        Dim botonCosas As Button = pagina.FindName("botonMasCosas")
-        botonCosas.Margin = New Thickness(0, 0, coreBarra.SystemOverlayRightInset + 200, 0)
+        Dim iconoMasCosas As New FontAwesome.UWP.FontAwesome With {
+            .Icon = FontAwesomeIcon.Cube
+        }
+
+        Dim tbMasCosas As New TextBlock With {
+            .Text = recursos.GetString("MoreThings"),
+            .Foreground = New SolidColorBrush(Colors.White)
+        }
+
+        Dim itemMasCosas As NavigationViewItem = pagina.FindName("itemMasCosas")
+        itemMasCosas.Icon = iconoMasCosas
+        itemMasCosas.Content = tbMasCosas
 
         Dim menu As MenuFlyout = pagina.FindName("botonMasCosasMenu")
+        menu.Placement = FlyoutPlacementMode.Top
 
         Dim iconoVotar As New FontAwesome.UWP.FontAwesome With {
             .Icon = FontAwesomeIcon.ThumbsOutlineUp
@@ -134,100 +144,6 @@ Module MasCosas
             menu.Items.Add(menuItemCodigoFuente)
         End If
 
-        '--------------------------------------
-
-        Dim gridCosas As Grid = pagina.FindName("gridMasCosas")
-
-        Dim row1 As New RowDefinition
-        Dim row2 As New RowDefinition
-        Dim row3 As New RowDefinition
-
-        row1.Height = New GridLength(1, GridUnitType.Auto)
-        row2.Height = New GridLength(1, GridUnitType.Star)
-        row3.Height = New GridLength(1, GridUnitType.Auto)
-
-        gridCosas.RowDefinitions.Add(row1)
-        gridCosas.RowDefinitions.Add(row2)
-        gridCosas.RowDefinitions.Add(row3)
-
-        Dim gridSuperior As New Grid
-        gridSuperior.SetValue(Grid.RowProperty, 0)
-        gridSuperior.Padding = New Thickness(10, 10, 10, 10)
-
-        Dim col1 As New ColumnDefinition
-        Dim col2 As New ColumnDefinition
-
-        col1.Width = New GridLength(1, GridUnitType.Auto)
-        col2.Width = New GridLength(1, GridUnitType.Star)
-
-        gridSuperior.ColumnDefinitions.Add(col1)
-        gridSuperior.ColumnDefinitions.Add(col2)
-
-        Dim simboloBotonCerrar As New SymbolIcon With {
-            .Symbol = Symbol.Cancel,
-            .Foreground = New SolidColorBrush(Colors.White)
-        }
-
-        Dim botonCerrar As New Button With {
-            .Background = New SolidColorBrush(App.Current.Resources("ColorSecundario")),
-            .Padding = New Thickness(10, 10, 10, 10),
-            .Content = simboloBotonCerrar,
-            .BorderBrush = New SolidColorBrush(App.Current.Resources("ColorPrimario")),
-            .BorderThickness = New Thickness(1, 1, 1, 1),
-            .Margin = New Thickness(0, 0, 10, 0)
-        }
-
-        AddHandler botonCerrar.Click, AddressOf BotonCerrarClick
-        AddHandler botonCerrar.PointerEntered, AddressOf UsuarioEntraBoton
-        AddHandler botonCerrar.PointerExited, AddressOf UsuarioSaleBoton
-
-        botonCerrar.SetValue(Grid.ColumnProperty, 0)
-        gridSuperior.Children.Add(botonCerrar)
-
-        Dim tbUrl As New TextBox With {
-            .Padding = New Thickness(10, 10, 10, 10),
-            .Name = "tbMasCosasUrl",
-            .BorderBrush = New SolidColorBrush(App.Current.Resources("ColorPrimario")),
-            .BorderThickness = New Thickness(1, 1, 1, 1)
-        }
-
-        tbUrl.SetValue(Grid.ColumnProperty, 1)
-
-        gridSuperior.Children.Add(tbUrl)
-
-        gridCosas.Children.Add(gridSuperior)
-
-        Dim gridPb As New Grid With {
-            .Name = "gridPbMasCosas",
-            .Background = New SolidColorBrush(Colors.LightGray),
-            .Visibility = Visibility.Collapsed,
-            .Height = 25,
-            .HorizontalAlignment = HorizontalAlignment.Center,
-            .Width = 300,
-            .Margin = New Thickness(0, 0, 0, 10)
-        }
-
-        gridPb.SetValue(Grid.RowProperty, 2)
-
-        Dim pb As New ProgressBar With {
-           .Foreground = New SolidColorBrush(App.Current.Resources("ColorSecundario")),
-           .IsIndeterminate = True,
-           .VerticalAlignment = VerticalAlignment.Center
-        }
-
-        gridPb.Children.Add(pb)
-        gridCosas.Children.Add(gridPb)
-
-        Dim wv As New WebView With {
-            .Name = "wvMasCosas",
-            .Margin = New Thickness(10, 10, 10, 10)
-        }
-
-        wv.SetValue(Grid.RowProperty, 1)
-        AddHandler wv.NavigationStarting, AddressOf WvNavigationStarting
-        AddHandler wv.NavigationCompleted, AddressOf WvNavigationCompleted
-        gridCosas.Children.Add(wv)
-
     End Sub
 
     Private Async Sub MenuItemVotarClick(sender As Object, e As RoutedEventArgs)
@@ -236,29 +152,15 @@ Module MasCosas
 
     End Sub
 
-    Private Sub MenuItemMasAppsClick(sender As Object, e As RoutedEventArgs)
+    Private Async Sub MenuItemMasAppsClick(sender As Object, e As RoutedEventArgs)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
-
-        Dim gridCosas As Grid = pagina.FindName("gridMasCosas")
-        gridCosas.Visibility = Visibility.Visible
-
-        Dim wvCosas As WebView = pagina.FindName("wvMasCosas")
-        wvCosas.Navigate(New Uri("https://pepeizqapps.com/"))
+        Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/"))
 
     End Sub
 
-    Private Sub MenuItemContactoClick(sender As Object, e As RoutedEventArgs)
+    Private Async Sub MenuItemContactoClick(sender As Object, e As RoutedEventArgs)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
-
-        Dim gridCosas As Grid = pagina.FindName("gridMasCosas")
-        gridCosas.Visibility = Visibility.Visible
-
-        Dim wvCosas As WebView = pagina.FindName("wvMasCosas")
-        wvCosas.Navigate(New Uri("https://pepeizqapps.com/contact/"))
+        Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/contact/"))
 
     End Sub
 
@@ -268,74 +170,20 @@ Module MasCosas
             Dim ejecutador As StoreServicesFeedbackLauncher = StoreServicesFeedbackLauncher.GetDefault()
             Await ejecutador.LaunchAsync()
         Else
-            Dim frame As Frame = Window.Current.Content
-            Dim pagina As Page = frame.Content
-
-            Dim gridCosas As Grid = pagina.FindName("gridMasCosas")
-            gridCosas.Visibility = Visibility.Visible
-
-            Dim wvCosas As WebView = pagina.FindName("wvMasCosas")
-            wvCosas.Navigate(New Uri("https://pepeizqapps.com/contact/"))
+            Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/contact/"))
         End If
 
     End Sub
 
-    Private Sub MenuItemTraducirClick(sender As Object, e As RoutedEventArgs)
+    Private Async Sub MenuItemTraducirClick(sender As Object, e As RoutedEventArgs)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
-
-        Dim gridCosas As Grid = pagina.FindName("gridMasCosas")
-        gridCosas.Visibility = Visibility.Visible
-
-        Dim wvCosas As WebView = pagina.FindName("wvMasCosas")
-        wvCosas.Navigate(New Uri(traduccion))
+        Await Launcher.LaunchUriAsync(New Uri(traduccion))
 
     End Sub
 
-    Private Sub MenuItemCodigoFuenteClick(sender As Object, e As RoutedEventArgs)
+    Private Async Sub MenuItemCodigoFuenteClick(sender As Object, e As RoutedEventArgs)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
-
-        Dim gridCosas As Grid = pagina.FindName("gridMasCosas")
-        gridCosas.Visibility = Visibility.Visible
-
-        Dim wvCosas As WebView = pagina.FindName("wvMasCosas")
-        wvCosas.Navigate(New Uri(codigoFuente))
-
-    End Sub
-
-    Private Sub BotonCerrarClick(sender As Object, e As RoutedEventArgs)
-
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
-
-        Dim gridCosas As Grid = pagina.FindName("gridMasCosas")
-        gridCosas.Visibility = Visibility.Collapsed
-
-    End Sub
-
-    Private Sub WvNavigationStarting(sender As WebView, args As WebViewNavigationStartingEventArgs)
-
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
-
-        Dim tb As TextBox = pagina.FindName("tbMasCosasUrl")
-        tb.Text = args.Uri.OriginalString
-
-        Dim gridPb As Grid = pagina.FindName("gridPbMasCosas")
-        gridPb.Visibility = Visibility.Visible
-
-    End Sub
-
-    Private Sub WvNavigationCompleted(sender As WebView, args As WebViewNavigationCompletedEventArgs)
-
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
-
-        Dim gridPb As Grid = pagina.FindName("gridPbMasCosas")
-        gridPb.Visibility = Visibility.Collapsed
+        Await Launcher.LaunchUriAsync(New Uri(codigoFuente))
 
     End Sub
 

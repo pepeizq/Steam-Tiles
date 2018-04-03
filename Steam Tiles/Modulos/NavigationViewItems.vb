@@ -1,18 +1,23 @@
-﻿Imports Windows.UI
+﻿Imports FontAwesome.UWP
+Imports Windows.UI
 Imports Windows.UI.Core
 
 Module NavigationViewItems
 
-    Public Function Generar(titulo As String, simbolo As SymbolIcon, tag As String)
+    Public Function Generar(titulo As String, simbolo As FontAwesomeIcon, tag As String)
 
         Dim tb As New TextBlock With {
             .Text = titulo,
             .Foreground = New SolidColorBrush(Colors.White)
         }
 
+        Dim icono As New FontAwesome.UWP.FontAwesome With {
+            .Icon = simbolo
+        }
+
         Dim item As New NavigationViewItem With {
             .Content = tb,
-            .Icon = simbolo,
+            .Icon = icono,
             .Foreground = New SolidColorBrush(Colors.White),
             .Tag = tag
         }

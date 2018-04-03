@@ -1,4 +1,5 @@
-﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
+﻿Imports FontAwesome.UWP
+Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.Storage
 Imports Windows.Storage.Pickers
 Imports Windows.Storage.Streams
@@ -12,9 +13,9 @@ Public NotInheritable Class MainPage
 
         Dim recursos As New Resources.ResourceLoader()
 
-        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Tiles"), New SymbolIcon(Symbol.Home), 0))
+        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Tiles"), FontAwesomeIcon.Home, 0))
         nvPrincipal.MenuItems.Add(New NavigationViewItemSeparator)
-        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Config"), New SymbolIcon(Symbol.Setting), 1))
+        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Config"), FontAwesomeIcon.Cog, 1))
 
     End Sub
 
@@ -24,11 +25,19 @@ Public NotInheritable Class MainPage
 
         Dim item As TextBlock = args.InvokedItem
 
-        If item.Text = recursos.GetString("Tiles") Then
-            GridVisibilidad(gridTiles, item.Text)
-        ElseIf item.Text = recursos.GetString("Config") Then
-            GridVisibilidad(gridConfig, item.Text)
+        If Not item Is Nothing Then
+            If item.Text = recursos.GetString("Tiles") Then
+                GridVisibilidad(gridTiles, item.Text)
+            ElseIf item.Text = recursos.GetString("Config") Then
+                GridVisibilidad(gridConfig, item.Text)
+            End If
         End If
+
+    End Sub
+
+    Private Sub Nv_ItemFlyout(sender As NavigationViewItem, args As TappedRoutedEventArgs)
+
+        FlyoutBase.ShowAttachedFlyout(sender)
 
     End Sub
 
@@ -68,12 +77,10 @@ Public NotInheritable Class MainPage
                                                                        gridAñadirTile.Background = App.Current.Resources("GridAcrilico")
                                                                        gridConfig.Background = App.Current.Resources("GridAcrilico")
                                                                        gridConfigTiles.Background = App.Current.Resources("GridTituloBackground")
-                                                                       gridMasCosas.Background = App.Current.Resources("GridAcrilico")
                                                                    Else
                                                                        gridAñadirTile.Background = New SolidColorBrush(Colors.LightGray)
                                                                        gridConfig.Background = New SolidColorBrush(Colors.LightGray)
                                                                        gridConfigTiles.Background = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
-                                                                       gridMasCosas.Background = New SolidColorBrush(Colors.LightGray)
                                                                    End If
                                                                End Sub)
 
@@ -85,7 +92,6 @@ Public NotInheritable Class MainPage
 
         gridAñadirTile.Visibility = Visibility.Collapsed
         gridConfig.Visibility = Visibility.Collapsed
-        gridMasCosas.Visibility = Visibility.Collapsed
 
         grid.Visibility = Visibility.Visible
 

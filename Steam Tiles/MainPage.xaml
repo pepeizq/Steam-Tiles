@@ -18,26 +18,20 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="gridTitulo" Grid.Row="0" Background="{StaticResource GridTituloBackground}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-
-            <TextBlock x:Name="tbTitulo" Grid.Column="0" Margin="50,0,0,0" FontSize="13" Foreground="White" VerticalAlignment="Center"/>
-
-            <Button x:Name="botonMasCosas" Grid.Column="1" BorderThickness="0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton" Style="{StaticResource ButtonRevealStyle}">
-                <Button.Content>
-                    <FontIcon Glyph="&#57361;" FontFamily="Segoe MDL2 Assets" Foreground="White" Margin="10,5" FontSize="15"/>
-                </Button.Content>
-
-                <Button.Flyout>
-                    <MenuFlyout x:Name="botonMasCosasMenu"/>
-                </Button.Flyout>
-            </Button>
+            <TextBlock x:Name="tbTitulo" Margin="50,0,0,0" FontSize="13" Foreground="White" VerticalAlignment="Center"/>
         </Grid>
 
         <NavigationView x:Name="nvPrincipal" Grid.Row="1" Loaded="Nv_Loaded" ItemInvoked="Nv_ItemInvoked"
                         OpenPaneLength="200" AlwaysShowHeader="False" IsSettingsVisible="False">
+            <NavigationView.PaneFooter>
+                <StackPanel Orientation="Vertical">
+                    <NavigationViewItem x:Name="itemMasCosas" Tapped="Nv_ItemFlyout" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                        <FlyoutBase.AttachedFlyout>
+                            <MenuFlyout x:Name="botonMasCosasMenu"/>
+                        </FlyoutBase.AttachedFlyout>
+                    </NavigationViewItem>
+                </StackPanel>
+            </NavigationView.PaneFooter>
 
             <Grid>
                 <Grid.Transitions>
@@ -66,12 +60,9 @@
                             </TransitionCollection>
                         </Grid.ChildrenTransitions>
 
-                        <controls:DropShadowPanel Color="Black" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                                  BlurRadius="4" ShadowOpacity="0.5" OffsetZ="5" Margin="0,15,0,0">
-                            <Grid Padding="10" Background="IndianRed">
-                                <TextBlock x:Uid="SelectGame" TextWrapping="Wrap" Foreground="White"/>
-                            </Grid>
-                        </controls:DropShadowPanel>
+                        <Grid Padding="10" Background="IndianRed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0">
+                            <TextBlock x:Uid="SelectGame" TextWrapping="Wrap" Foreground="White"/>
+                        </Grid>
                     </Grid>
 
                     <controls:AdaptiveGridView x:Name="gridViewTilesSteam" Grid.Row="1" Margin="0,20,0,0"
@@ -163,11 +154,12 @@
                                     </Grid.ColumnDefinitions>
 
                                     <TextBlock x:Uid="GameSelectedTiles" Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                                    <TextBlock Grid.Column="1" FontFamily="Segoe MDL2 Assets" Text="&#59718;" Foreground="{StaticResource BrushSecundario}" FontSize="28">
-                                         <ToolTipService.ToolTip>
-                                             <TextBlock x:Uid="TooltipChangeImage" TextWrapping="Wrap" FontSize="15"/>
-                                         </ToolTipService.ToolTip> 
-                                    </TextBlock> 
+                                    
+                                    <fa:FontAwesome Icon="InfoCircle" Grid.Column="1" Foreground="{StaticResource BrushSecundario}">
+                                        <ToolTipService.ToolTip>
+                                            <TextBlock x:Uid="TooltipChangeImage" TextWrapping="Wrap" FontSize="15"/>
+                                        </ToolTipService.ToolTip>
+                                    </fa:FontAwesome>
                                 </Grid>
                                 
                                 <StackPanel Orientation="Horizontal">
@@ -271,8 +263,6 @@
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
-
-                <Grid x:Name="gridMasCosas" Visibility="Collapsed"/>
             </Grid>
         </NavigationView>
     </Grid>
