@@ -60,7 +60,7 @@
                             </TransitionCollection>
                         </Grid.ChildrenTransitions>
 
-                        <Grid Padding="10" Background="IndianRed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,15,0,0">
+                        <Grid Padding="10" Background="IndianRed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
                             <TextBlock x:Uid="SelectGame" TextWrapping="Wrap" Foreground="White"/>
                         </Grid>
                     </Grid>
