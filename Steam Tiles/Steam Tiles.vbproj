@@ -140,6 +140,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\steam_logo.png" />
     <Content Include="Assets\Logos\AppList.altform-unplated_targetsize-16.png" />
     <Content Include="Assets\Logos\AppList.altform-unplated_targetsize-24.png" />
     <Content Include="Assets\Logos\AppList.altform-unplated_targetsize-256.png" />
@@ -192,7 +193,6 @@
     <Content Include="Assets\Logos\Wide310x150Logo.scale-400.png" />
     <Content Include="Assets\steam_logo_mini3.png" />
     <Content Include="Assets\steam_logo_mini2.png" />
-    <Content Include="Assets\steam_logo.png" />
     <Content Include="Assets\steam_logo_mini1.png" />
     <Content Include="Assets\steam_logo_mini4.png" />
     <Content Include="Assets\steam_logo_mini5.png" />
