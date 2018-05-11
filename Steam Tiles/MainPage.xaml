@@ -106,7 +106,7 @@
 
                                 <Button x:Name="botonAñadirTile" Grid.Column="0" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                     <StackPanel Orientation="Horizontal">
-                                        <SymbolIcon Margin="0,0,10,0" VerticalAlignment="Center" Symbol="Add" Foreground="White"/>
+                                        <fa:FontAwesome Icon="ThumbTack" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
                                         <TextBlock x:Uid="AddTile" Foreground="White"/>
                                     </StackPanel>
                                 </Button>
@@ -163,41 +163,38 @@
                                 </Grid>
                                 
                                 <StackPanel Orientation="Horizontal">
-                                    <Button x:Name="botonImagenTilePequeña" Width="71" Height="71" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton" Click="UsuarioClickeaImagen">
+                                    <Button x:Name="botonImagenTilePequeña" Width="71" Height="71" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton2" PointerExited="UsuarioSaleBoton2" Click="UsuarioClickeaImagen">
                                         <Button.Content>
                                             <Grid>
                                                 <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" Stretch="UniformToFill"/>
-                                                <TextBlock x:Name="tbTilePequeña" FontFamily="Segoe MDL2 Assets" Text="&#59166;" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
+                                                <fa:FontAwesome x:Name="tbTilePequeña" Icon="Search" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
                                             </Grid>
                                         </Button.Content>
                                     </Button>
 
-                                    <Button x:Name="botonImagenTileMediana" Width="150" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton" Click="UsuarioClickeaImagen">
+                                    <Button x:Name="botonImagenTileMediana" Width="150" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton2" PointerExited="UsuarioSaleBoton2" Click="UsuarioClickeaImagen">
                                         <Button.Content>
                                             <Grid>
                                                 <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True" Stretch="UniformToFill"/>
-                                                <TextBlock x:Name="tbTileMediana" FontFamily="Segoe MDL2 Assets" Text="&#59166;" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
+                                                <fa:FontAwesome x:Name="tbTileMediana" Icon="Search" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
                                             </Grid>
                                         </Button.Content>
                                     </Button>
 
-                                    <Button x:Name="botonImagenTileAncha" Width="310" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton" Click="UsuarioClickeaImagen">
+                                    <Button x:Name="botonImagenTileAncha" Width="310" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton2" PointerExited="UsuarioSaleBoton2" Click="UsuarioClickeaImagen">
                                         <Button.Content>
                                             <Grid>
                                                 <controls:ImageEx x:Name="imagenTileAncha" IsCacheEnabled="True" Stretch="UniformToFill"/>
-                                                <TextBlock x:Name="tbTileAncha" FontFamily="Segoe MDL2 Assets" Text="&#59166;" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
+                                                <fa:FontAwesome x:Name="tbTileAncha" Icon="Search" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
                                             </Grid>
                                         </Button.Content>
                                     </Button>
 
-                                    <Button x:Name="botonImagenTileGrande" Width="310" Height="310" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton" Click="UsuarioClickeaImagen">
+                                    <Button x:Name="botonImagenTileGrande" Width="310" Height="310" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" PointerEntered="UsuarioEntraBoton2" PointerExited="UsuarioSaleBoton2" Click="UsuarioClickeaImagen">
                                         <Button.Content>
                                             <Grid>
-                                                <Viewbox Stretch="UniformToFill" StretchDirection="DownOnly" HorizontalAlignment="Center">
-                                                    <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" Stretch="None"/>
-                                                </Viewbox>
-                                                
-                                                <TextBlock x:Name="tbTileGrande" FontFamily="Segoe MDL2 Assets" Text="&#59166;" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
+                                                <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" Stretch="UniformToFill"/>
+                                                <fa:FontAwesome x:Name="tbTileGrande" Icon="Search" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
                                             </Grid>
                                         </Button.Content>
                                     </Button>

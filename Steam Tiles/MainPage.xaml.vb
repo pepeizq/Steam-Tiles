@@ -109,6 +109,34 @@ Public NotInheritable Class MainPage
 
     End Sub
 
+    Private Sub UsuarioEntraBoton2(sender As Object, e As PointerRoutedEventArgs)
+
+        Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
+
+        Dim boton As Button = sender
+        Dim grid As Grid = boton.Content
+        Dim icono As FontAwesome.UWP.FontAwesome = grid.Children(1)
+
+        If icono.Visibility = Visibility.Visible Then
+            icono.Foreground = New SolidColorBrush(Colors.White)
+        End If
+
+    End Sub
+
+    Private Sub UsuarioSaleBoton2(sender As Object, e As PointerRoutedEventArgs)
+
+        Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Arrow, 1)
+
+        Dim boton As Button = sender
+        Dim grid As Grid = boton.Content
+        Dim icono As FontAwesome.UWP.FontAwesome = grid.Children(1)
+
+        If icono.Visibility = Visibility.Visible Then
+            icono.Foreground = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
+        End If
+
+    End Sub
+
     'TILES-----------------------------------------------------------------------------
 
     Private Sub BotonAñadirTile_Click(sender As Object, e As RoutedEventArgs) Handles botonAñadirTile.Click
@@ -141,7 +169,7 @@ Public NotInheritable Class MainPage
             imagen = grid.Children(0)
         End If
 
-        Dim tb As TextBlock = grid.Children(1)
+        Dim tb As FontAwesome.UWP.FontAwesome = grid.Children(1)
 
         Dim bitmap As New BitmapImage
 
