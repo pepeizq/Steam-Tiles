@@ -192,13 +192,25 @@
   <data name="GameSelectedTiles.Text" xml:space="preserve">
     <value>Imágenes para incluir en la Tile de este juego:</value>
   </data>
-  <data name="TooltipChangeImage.Text" xml:space="preserve">
-    <value>Puedes cambiar una imagen de la Tile pinchando en ella</value>
-  </data>
   <data name="MoreThings_Back" xml:space="preserve">
     <value>Volver</value>
   </data>
   <data name="StoreTags" xml:space="preserve">
     <value>Steam;Menu Inicio;Tile;Tiles;Juegos;Windows</value>
+  </data>
+  <data name="TilesPersonalization.Text" xml:space="preserve">
+    <value>Personaliza las Tiles</value>
+  </data>
+  <data name="TileLarge.Text" xml:space="preserve">
+    <value>Tile Grande</value>
+  </data>
+  <data name="TileMedium.Text" xml:space="preserve">
+    <value>Tile Mediana</value>
+  </data>
+  <data name="TileSmall.Text" xml:space="preserve">
+    <value>Tile Pequeña</value>
+  </data>
+  <data name="TileWide.Text" xml:space="preserve">
+    <value>Tile Ancha</value>
   </data>
 </root>

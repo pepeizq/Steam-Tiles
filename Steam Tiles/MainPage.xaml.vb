@@ -3,6 +3,7 @@ Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.Storage
 Imports Windows.Storage.Pickers
 Imports Windows.Storage.Streams
+Imports Windows.System
 Imports Windows.UI
 Imports Windows.UI.Core
 
@@ -230,4 +231,14 @@ Public NotInheritable Class MainPage
 
     End Sub
 
+    Private Sub GridTileMediana_PointerPressed(sender As Object, e As RoutedEventArgs) Handles gridTileMediana.PointerPressed
+
+        Dim mover As New TranslateTransform With {
+            .Y = 1
+        }
+
+        imagenTileMediana.RenderTransform = mover
+
+
+    End Sub
 End Class

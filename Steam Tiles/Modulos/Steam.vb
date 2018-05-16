@@ -237,7 +237,7 @@ Module Steam
                                         Dim imagenAncha As New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
                                         Dim imagenGrande As New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/capsule_616x353.jpg", UriKind.RelativeOrAbsolute)
 
-                                        Dim juego As New Tile(titulo, id, New Uri("steam://rungameid/" + id), Nothing, Nothing, imagenAncha, imagenGrande)
+                                        Dim juego As New Tile(titulo, id, New Uri("steam://rungameid/" + id), Nothing, imagenAncha, imagenAncha, imagenGrande)
 
                                         listaFinal.Add(juego)
                                     End If
@@ -355,24 +355,16 @@ Module Steam
         juego.ImagenPequeña = Await SacarIcono(juego.ID)
 
         Dim imagenPequeña As ImageEx = pagina.FindName("imagenTilePequeña")
-        Dim tbPequeña As FontAwesome.UWP.FontAwesome = pagina.FindName("tbTilePequeña")
 
         If Not juego.ImagenPequeña = Nothing Then
             imagenPequeña.Source = juego.ImagenPequeña
-            imagenPequeña.Visibility = Visibility.Visible
-            tbPequeña.Visibility = Visibility.Collapsed
-        Else
-            imagenPequeña.Visibility = Visibility.Collapsed
-            tbPequeña.Visibility = Visibility.Visible
         End If
 
-        '---------------------------------------------
-
         Dim imagenMediana As ImageEx = pagina.FindName("imagenTileMediana")
-        imagenMediana.Visibility = Visibility.Collapsed
 
-        Dim tbMediana As FontAwesome.UWP.FontAwesome = pagina.FindName("tbTileMediana")
-        tbMediana.Visibility = Visibility.Visible
+        If Not juego.ImagenMediana = Nothing Then
+            imagenMediana.Source = juego.ImagenMediana
+        End If
 
         '---------------------------------------------
 

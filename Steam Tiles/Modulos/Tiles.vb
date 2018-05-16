@@ -15,6 +15,8 @@ Module Tiles
         Dim boton As Button = pagina.FindName("botonAñadirTile")
         boton.IsEnabled = False
 
+
+
         Dim nuevaTile As New SecondaryTile(tile.ID, tile.Titulo, tile.Enlace.ToString, New Uri("ms-appdata:///local/" + tile.ID + "ancha.png", UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
 
         nuevaTile.VisualElements.Wide310x150Logo = New Uri("ms-appdata:///local/" + tile.ID + "ancha.png", UriKind.RelativeOrAbsolute)

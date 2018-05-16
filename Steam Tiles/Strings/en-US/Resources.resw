@@ -189,9 +189,6 @@
   <data name="GameSelectedTiles.Text" xml:space="preserve">
     <value>Images to include in the Tile of this game:</value>
   </data>
-  <data name="TooltipChangeImage.Text" xml:space="preserve">
-    <value>You can change an image of the Tile by clicking on it</value>
-  </data>
   <data name="MoreThings_Back" xml:space="preserve">
     <value>Back</value>
   </data>
@@ -200,5 +197,20 @@
   </data>
   <data name="StoreTags" xml:space="preserve">
     <value>Steam;Start Menu;Tile;Tiles;Games;Windows</value>
+  </data>
+  <data name="TilesPersonalization.Text" xml:space="preserve">
+    <value>Customize the Tiles</value>
+  </data>
+  <data name="TileLarge.Text" xml:space="preserve">
+    <value>Large Tile</value>
+  </data>
+  <data name="TileMedium.Text" xml:space="preserve">
+    <value>Medium Tile</value>
+  </data>
+  <data name="TileSmall.Text" xml:space="preserve">
+    <value>Small Tile</value>
+  </data>
+  <data name="TileWide.Text" xml:space="preserve">
+    <value>Wide Tile</value>
   </data>
 </root>

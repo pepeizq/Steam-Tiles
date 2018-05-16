@@ -147,39 +147,55 @@
                             </Grid>
 
                             <StackPanel Orientation="Vertical" Padding="20">
-                                <Grid Margin="0,0,0,10">
+                                <Grid Margin="0,0,0,20">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock x:Uid="GameSelectedTiles" Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                                    
-                                    <fa:FontAwesome Icon="InfoCircle" Grid.Column="1" Foreground="{StaticResource BrushSecundario}">
-                                        <ToolTipService.ToolTip>
-                                            <TextBlock x:Uid="TooltipChangeImage" TextWrapping="Wrap" FontSize="15"/>
-                                        </ToolTipService.ToolTip>
-                                    </fa:FontAwesome>
-                                </Grid>
-                                
-                                <StackPanel Orientation="Horizontal">
-                                    <Button x:Name="botonImagenTilePequeña" Width="71" Height="71" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton2" PointerExited="UsuarioSaleBoton2" Click="UsuarioClickeaImagen">
-                                        <Button.Content>
-                                            <Grid>
-                                                <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" Stretch="UniformToFill"/>
-                                                <fa:FontAwesome x:Name="tbTilePequeña" Icon="Search" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
-                                            </Grid>
-                                        </Button.Content>
-                                    </Button>
+                                    <fa:FontAwesome Icon="InfoCircle" Grid.Column="0" Foreground="{StaticResource BrushSecundario}" Margin="0,0,10,0"/>
 
-                                    <Button x:Name="botonImagenTileMediana" Width="150" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton2" PointerExited="UsuarioSaleBoton2" Click="UsuarioClickeaImagen">
+                                    <TextBlock x:Uid="TilesPersonalization" Grid.Column="1" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                </Grid>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Padding="15,10" Background="{StaticResource BrushSecundario}">
                                         <Button.Content>
-                                            <Grid>
-                                                <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True" Stretch="UniformToFill"/>
-                                                <fa:FontAwesome x:Name="tbTileMediana" Icon="Search" Foreground="{StaticResource BrushSecundario}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Visibility="Collapsed"/>
-                                            </Grid>
-                                        </Button.Content>
-                                    </Button>
+                                            <TextBlock x:Uid="TileSmall" Foreground="White"/>
+                                        </Button.Content>    
+                                    </Button> 
+
+
+                                </StackPanel> 
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid x:Name="gridTilePequeña" Background="{StaticResource BrushSecundario}" Width="71" Height="71" VerticalAlignment="Top">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <controls:ImageEx x:Name="imagenTilePequeña" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Grid>
+
+                                    <Grid Margin="5,0"/>
+
+                                    <Grid x:Name="gridTileMediana" Background="{StaticResource BrushSecundario}" Width="150" Height="150" VerticalAlignment="Top">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <controls:ImageEx x:Name="imagenTileMediana" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Grid>
+
+                                    <Grid Margin="5,0"/>
 
                                     <Button x:Name="botonImagenTileAncha" Width="310" Height="150" Background="Transparent" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Padding="0" VerticalAlignment="Top" Margin="0,0,10,0" PointerEntered="UsuarioEntraBoton2" PointerExited="UsuarioSaleBoton2" Click="UsuarioClickeaImagen">
                                         <Button.Content>

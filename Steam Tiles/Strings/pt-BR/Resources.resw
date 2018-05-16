@@ -174,9 +174,6 @@
   <data name="GameSelectedTiles.Text" xml:space="preserve">
     <value>Imagens para adicionar no bloco do jogo:</value>
   </data>
-  <data name="TooltipChangeImage.Text" xml:space="preserve">
-    <value>É possível alterar uma imagem de um bloco ao clicá-la</value>
-  </data>
   <data name="MoreThings_Back" xml:space="preserve">
     <value>Voltar</value>
   </data>
