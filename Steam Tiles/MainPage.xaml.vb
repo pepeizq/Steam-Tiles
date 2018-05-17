@@ -147,6 +147,47 @@ Public NotInheritable Class MainPage
 
     End Sub
 
+    Private Sub BotonPersonalizacionTilePequeña_Click(sender As Object, e As RoutedEventArgs) Handles botonPersonalizacionTilePequeña.Click
+
+        GridTileVisibilidad(gridPersonalizacionTilePequeña, botonPersonalizacionTilePequeña)
+
+    End Sub
+
+    Private Sub BotonPersonalizacionTileMediana_Click(sender As Object, e As RoutedEventArgs) Handles botonPersonalizacionTileMediana.Click
+
+        GridTileVisibilidad(gridPersonalizacionTileMediana, botonPersonalizacionTileMediana)
+
+    End Sub
+
+    Private Sub BotonPersonalizacionTileAncha_Click(sender As Object, e As RoutedEventArgs) Handles botonPersonalizacionTileAncha.Click
+
+        GridTileVisibilidad(gridPersonalizacionTileAncha, botonPersonalizacionTileAncha)
+
+    End Sub
+
+    Private Sub BotonPersonalizacionTileGrande_Click(sender As Object, e As RoutedEventArgs) Handles botonPersonalizacionTileGrande.Click
+
+        GridTileVisibilidad(gridPersonalizacionTileGrande, botonPersonalizacionTileGrande)
+
+    End Sub
+
+    Private Sub GridTileVisibilidad(grid As Grid, boton As Button)
+
+        gridPersonalizacionTilePequeña.Visibility = Visibility.Collapsed
+        gridPersonalizacionTileMediana.Visibility = Visibility.Collapsed
+        gridPersonalizacionTileAncha.Visibility = Visibility.Collapsed
+        gridPersonalizacionTileGrande.Visibility = Visibility.Collapsed
+
+        botonPersonalizacionTilePequeña.Background = New SolidColorBrush(App.Current.Resources("ColorTerciario"))
+        botonPersonalizacionTileMediana.Background = New SolidColorBrush(App.Current.Resources("ColorTerciario"))
+        botonPersonalizacionTileAncha.Background = New SolidColorBrush(App.Current.Resources("ColorTerciario"))
+        botonPersonalizacionTileGrande.Background = New SolidColorBrush(App.Current.Resources("ColorTerciario"))
+
+        grid.Visibility = Visibility.Visible
+        boton.Background = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
+
+    End Sub
+
     Private Async Sub UsuarioClickeaImagen(sender As Object, e As RoutedEventArgs)
 
         Dim ficheroPicker As New FileOpenPicker
@@ -231,14 +272,4 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub GridTileMediana_PointerPressed(sender As Object, e As RoutedEventArgs) Handles gridTileMediana.PointerPressed
-
-        Dim mover As New TranslateTransform With {
-            .Y = 1
-        }
-
-        imagenTileMediana.RenderTransform = mover
-
-
-    End Sub
 End Class

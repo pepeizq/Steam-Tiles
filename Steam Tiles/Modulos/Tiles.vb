@@ -1,6 +1,6 @@
 ﻿Imports Microsoft.Toolkit.Uwp.Notifications
 Imports Microsoft.Toolkit.Uwp.UI.Controls
-Imports Windows.Networking.BackgroundTransfer
+Imports Windows.Graphics.Imaging
 Imports Windows.Storage
 Imports Windows.UI.Notifications
 Imports Windows.UI.StartScreen
@@ -15,12 +15,29 @@ Module Tiles
         Dim boton As Button = pagina.FindName("botonAñadirTile")
         boton.IsEnabled = False
 
+        Dim imagenPequeña As Grid = pagina.FindName("gridTilePequeñaGenerar")
+        Dim boolImagenPequeña As Boolean = Await GenerarImagen(imagenPequeña, tile.ID + "pequena.png")
 
+        Dim imagenMediana As Grid = pagina.FindName("gridTileMedianaGenerar")
+        Dim boolImagenMediana As Boolean = Await GenerarImagen(imagenMediana, tile.ID + "mediana.png")
+
+        Dim imagenAncha As Grid = pagina.FindName("gridTileAnchaGenerar")
+        Dim boolImagenAncha As Boolean = Await GenerarImagen(imagenAncha, tile.ID + "ancha.png")
+
+        Dim imagenGrande As Grid = pagina.FindName("gridTileGrandeGenerar")
+        Dim boolImagenGrande As Boolean = Await GenerarImagen(imagenGrande, tile.ID + "grande.png")
+
+        '-----------------------
 
         Dim nuevaTile As New SecondaryTile(tile.ID, tile.Titulo, tile.Enlace.ToString, New Uri("ms-appdata:///local/" + tile.ID + "ancha.png", UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
 
+        nuevaTile.VisualElements.Square71x71Logo = New Uri("ms-appdata:///local/" + tile.ID + "pequena.png", UriKind.RelativeOrAbsolute)
+        nuevaTile.VisualElements.Square150x150Logo = New Uri("ms-appdata:///local/" + tile.ID + "mediana.png", UriKind.RelativeOrAbsolute)
         nuevaTile.VisualElements.Wide310x150Logo = New Uri("ms-appdata:///local/" + tile.ID + "ancha.png", UriKind.RelativeOrAbsolute)
         nuevaTile.VisualElements.Square310x310Logo = New Uri("ms-appdata:///local/" + tile.ID + "grande.png", UriKind.RelativeOrAbsolute)
+
+        nuevaTile.VisualElements.ShowNameOnSquare310x310Logo = True
+        nuevaTile.VisualElements.ForegroundText = ForegroundText.Dark
 
         Await nuevaTile.RequestCreateAsync()
 
@@ -38,20 +55,6 @@ Module Tiles
             Dim imagenIcono As ImageEx = cbIconosLista.SelectedItem
             imagenDRM.Source = imagenIcono.Source
         End If
-
-        '-----------------------
-
-        Dim imagenPequeña As ImageEx = pagina.FindName("imagenTilePequeña")
-        Dim boolImagenPequeña As Boolean = Await DescargaImagen(imagenPequeña, tile.ID + "pequena")
-
-        Dim imagenMediana As ImageEx = pagina.FindName("imagenTileMediana")
-        Dim boolImagenMediana As Boolean = Await DescargaImagen(imagenMediana, tile.ID + "mediana")
-
-        Dim imagenAncha As ImageEx = pagina.FindName("imagenTileAncha")
-        Dim boolImagenAncha As Boolean = Await DescargaImagen(imagenAncha, tile.ID + "ancha")
-
-        Dim imagenGrande As ImageEx = pagina.FindName("imagenTileGrande")
-        Dim boolImagenGrande As Boolean = Await DescargaImagen(imagenGrande, tile.ID + "grande")
 
         '-----------------------
 
@@ -168,7 +171,7 @@ Module Tiles
         Dim notificacion As New TileNotification(contenido.GetXml)
 
         Try
-            TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.ID).Update(notificacion)
+            'TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.ID).Update(notificacion)
         Catch ex As Exception
 
         End Try
@@ -177,32 +180,26 @@ Module Tiles
 
     End Sub
 
-    Public Async Function DescargaImagen(imagen As ImageEx, clave As String) As Task(Of Boolean)
+    Public Async Function GenerarImagen(gridImagen As Grid, clave As String) As Task(Of Boolean)
 
         Dim descargaFinalizada As Boolean = False
 
-        Dim fuente As Object = imagen.Source
+        Dim carpetaInstalacion As StorageFolder = ApplicationData.Current.LocalFolder
+        Dim ficheroImagen As StorageFile = Await carpetaInstalacion.CreateFileAsync(clave, CreationCollisionOption.ReplaceExisting)
 
-        If TypeOf fuente Is Uri Then
-            Dim ficheroImagen As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync(clave + ".png", CreationCollisionOption.ReplaceExisting)
-            Dim descargador As New BackgroundDownloader
+        Dim resultado As New RenderTargetBitmap()
+        Await resultado.RenderAsync(gridImagen)
 
-            Try
-                Dim descarga As DownloadOperation = descargador.CreateDownload(fuente, ficheroImagen)
-                Await descarga.StartAsync
-                descargaFinalizada = True
-            Catch ex As Exception
+        Dim buffer As Streams.IBuffer = Await resultado.GetPixelsAsync
+        Dim pixeles As Byte() = buffer.ToArray
+        Dim rawdpi As DisplayInformation = DisplayInformation.GetForCurrentView()
 
-            End Try
-        End If
+        Using stream As Streams.IRandomAccessStream = Await ficheroImagen.OpenAsync(FileAccessMode.ReadWrite)
+            Dim encoder As BitmapEncoder = Await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream)
+            encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, resultado.PixelWidth, resultado.PixelHeight, rawdpi.RawDpiX, rawdpi.RawDpiY, pixeles)
 
-        If TypeOf fuente Is BitmapImage Then
-            Dim ficheroOrigen As StorageFile = imagen.Tag
-            Dim ficheroNuevo As StorageFile = Await ApplicationData.Current.LocalFolder.CreateFileAsync(clave + ".png", CreationCollisionOption.ReplaceExisting)
-
-            Await ficheroOrigen.CopyAndReplaceAsync(ficheroNuevo)
-            descargaFinalizada = True
-        End If
+            Await encoder.FlushAsync
+        End Using
 
         Return descargaFinalizada
     End Function

@@ -339,6 +339,21 @@ Module Steam
         Dim gridAñadir As Grid = pagina.FindName("gridAñadirTile")
         gridAñadir.Visibility = Visibility.Visible
 
+        Dim gridTilePequeña As Grid = pagina.FindName("gridPersonalizacionTilePequeña")
+        gridTilePequeña.Visibility = Visibility.Collapsed
+
+        Dim gridTileMediana As Grid = pagina.FindName("gridPersonalizacionTileMediana")
+        gridTileMediana.Visibility = Visibility.Collapsed
+
+        Dim gridTileAncha As Grid = pagina.FindName("gridPersonalizacionTileAncha")
+        gridTileAncha.Visibility = Visibility.Visible
+
+        Dim gridTileGrande As Grid = pagina.FindName("gridPersonalizacionTileGrande")
+        gridTileGrande.Visibility = Visibility.Collapsed
+
+        Dim botonTileAncha As Button = pagina.FindName("botonPersonalizacionTileAncha")
+        botonTileAncha.Background = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
+
         ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("tile", botonJuego)
 
         Dim animacion As ConnectedAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("tile")
@@ -354,35 +369,37 @@ Module Steam
 
         juego.ImagenPequeña = Await SacarIcono(juego.ID)
 
-        Dim imagenPequeña As ImageEx = pagina.FindName("imagenTilePequeña")
-
         If Not juego.ImagenPequeña = Nothing Then
-            imagenPequeña.Source = juego.ImagenPequeña
-        End If
+            Dim imagenPequeña1 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
+            Dim imagenPequeña2 As ImageEx = pagina.FindName("imagenTilePequeñaGenerar")
 
-        Dim imagenMediana As ImageEx = pagina.FindName("imagenTileMediana")
+            imagenPequeña1.Source = juego.ImagenPequeña
+            imagenPequeña2.Source = juego.ImagenPequeña
+        End If
 
         If Not juego.ImagenMediana = Nothing Then
-            imagenMediana.Source = juego.ImagenMediana
+            Dim imagenMediana1 As ImageEx = pagina.FindName("imagenTileMedianaEnseñar")
+            Dim imagenMediana2 As ImageEx = pagina.FindName("imagenTileMedianaGenerar")
+
+            imagenMediana1.Source = juego.ImagenMediana
+            imagenMediana2.Source = juego.ImagenMediana
         End If
 
-        '---------------------------------------------
+        If Not juego.ImagenAncha = Nothing Then
+            Dim imagenAncha1 As ImageEx = pagina.FindName("imagenTileAnchaEnseñar")
+            Dim imagenAncha2 As ImageEx = pagina.FindName("imagenTileAnchaGenerar")
 
-        Dim imagenAncha As ImageEx = pagina.FindName("imagenTileAncha")
-        imagenAncha.Source = juego.ImagenAncha
-        imagenAncha.Visibility = Visibility.Visible
+            imagenAncha1.Source = juego.ImagenAncha
+            imagenAncha2.Source = juego.ImagenAncha
+        End If
 
-        Dim tbAncha As FontAwesome.UWP.FontAwesome = pagina.FindName("tbTileAncha")
-        tbAncha.Visibility = Visibility.Collapsed
+        If Not juego.ImagenGrande = Nothing Then
+            Dim imagenGrande1 As ImageEx = pagina.FindName("imagenTileGrandeEnseñar")
+            Dim imagenGrande2 As ImageEx = pagina.FindName("imagenTileGrandeGenerar")
 
-        '---------------------------------------------
-
-        Dim imagenGrande As ImageEx = pagina.FindName("imagenTileGrande")
-        imagenGrande.Source = juego.ImagenGrande
-        imagenGrande.Visibility = Visibility.Visible
-
-        Dim tbGrande As FontAwesome.UWP.FontAwesome = pagina.FindName("tbTileGrande")
-        tbGrande.Visibility = Visibility.Collapsed
+            imagenGrande1.Source = juego.ImagenGrande
+            imagenGrande2.Source = juego.ImagenGrande
+        End If
 
     End Sub
 
