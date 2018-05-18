@@ -339,21 +339,6 @@ Module Steam
         Dim gridAñadir As Grid = pagina.FindName("gridAñadirTile")
         gridAñadir.Visibility = Visibility.Visible
 
-        Dim gridTilePequeña As Grid = pagina.FindName("gridPersonalizacionTilePequeña")
-        gridTilePequeña.Visibility = Visibility.Collapsed
-
-        Dim gridTileMediana As Grid = pagina.FindName("gridPersonalizacionTileMediana")
-        gridTileMediana.Visibility = Visibility.Collapsed
-
-        Dim gridTileAncha As Grid = pagina.FindName("gridPersonalizacionTileAncha")
-        gridTileAncha.Visibility = Visibility.Visible
-
-        Dim gridTileGrande As Grid = pagina.FindName("gridPersonalizacionTileGrande")
-        gridTileGrande.Visibility = Visibility.Collapsed
-
-        Dim botonTileAncha As Button = pagina.FindName("botonPersonalizacionTileAncha")
-        botonTileAncha.Background = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
-
         ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("tile", botonJuego)
 
         Dim animacion As ConnectedAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("tile")

@@ -147,44 +147,15 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub BotonPersonalizacionTilePequeña_Click(sender As Object, e As RoutedEventArgs) Handles botonPersonalizacionTilePequeña.Click
+    Private Sub CbConfigTilePequeñaImagenEstiramiento_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTilePequeñaImagenEstiramiento.SelectionChanged
 
-        GridTileVisibilidad(gridPersonalizacionTilePequeña, botonPersonalizacionTilePequeña)
-
-    End Sub
-
-    Private Sub BotonPersonalizacionTileMediana_Click(sender As Object, e As RoutedEventArgs) Handles botonPersonalizacionTileMediana.Click
-
-        GridTileVisibilidad(gridPersonalizacionTileMediana, botonPersonalizacionTileMediana)
+        Configuracion.TilePequeñaImagenEstiramiento(cbConfigTilePequeñaImagenEstiramiento.SelectedIndex)
 
     End Sub
 
-    Private Sub BotonPersonalizacionTileAncha_Click(sender As Object, e As RoutedEventArgs) Handles botonPersonalizacionTileAncha.Click
+    Private Sub ColorFondoTilePequeña_ColorChanged(sender As ColorPicker, args As ColorChangedEventArgs) Handles colorFondoTilePequeña.ColorChanged
 
-        GridTileVisibilidad(gridPersonalizacionTileAncha, botonPersonalizacionTileAncha)
-
-    End Sub
-
-    Private Sub BotonPersonalizacionTileGrande_Click(sender As Object, e As RoutedEventArgs) Handles botonPersonalizacionTileGrande.Click
-
-        GridTileVisibilidad(gridPersonalizacionTileGrande, botonPersonalizacionTileGrande)
-
-    End Sub
-
-    Private Sub GridTileVisibilidad(grid As Grid, boton As Button)
-
-        gridPersonalizacionTilePequeña.Visibility = Visibility.Collapsed
-        gridPersonalizacionTileMediana.Visibility = Visibility.Collapsed
-        gridPersonalizacionTileAncha.Visibility = Visibility.Collapsed
-        gridPersonalizacionTileGrande.Visibility = Visibility.Collapsed
-
-        botonPersonalizacionTilePequeña.Background = New SolidColorBrush(App.Current.Resources("ColorTerciario"))
-        botonPersonalizacionTileMediana.Background = New SolidColorBrush(App.Current.Resources("ColorTerciario"))
-        botonPersonalizacionTileAncha.Background = New SolidColorBrush(App.Current.Resources("ColorTerciario"))
-        botonPersonalizacionTileGrande.Background = New SolidColorBrush(App.Current.Resources("ColorTerciario"))
-
-        grid.Visibility = Visibility.Visible
-        boton.Background = New SolidColorBrush(App.Current.Resources("ColorSecundario"))
+        Configuracion.TilePequeñaColorFondo(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(colorFondoTilePequeña.Color))
 
     End Sub
 

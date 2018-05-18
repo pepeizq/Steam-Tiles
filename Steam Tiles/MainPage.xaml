@@ -55,7 +55,6 @@
             </Grid.ColumnDefinitions>
 
             <controls:ImageEx x:Name="imagenTileAnchaGenerar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBlock x:Name="tituloTileAnchaGenerar" Grid.Row="0" Grid.Column="0" Text="Euro Truck Simulator 2" FontSize="20" FontWeight="Light" Padding="10,5" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
         </Grid>
 
         <Grid x:Name="gridTileGrandeGenerar" Background="{StaticResource BrushSecundario}" Width="310" Height="310" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -131,7 +130,7 @@
 
                 <Grid x:Name="gridAñadirTile" Visibility="Collapsed">
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1">
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Margin="20">
                             <StackPanel.Background>
                                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                                     <GradientStop Color="#FFE4E4E4" Offset="0.5" />
@@ -207,87 +206,104 @@
                             </Grid>
 
                             <StackPanel Orientation="Vertical" Padding="20">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <Grid x:Name="gridTilePequeñaEnseñar" Background="{StaticResource BrushSecundario}" Width="71" Height="71" VerticalAlignment="Top">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
 
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <Button x:Name="botonPersonalizacionTilePequeña" Padding="15,10" Background="{StaticResource BrushTercero}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <Button.Content>
-                                            <TextBlock x:Uid="TileSmall" Foreground="White"/>
-                                        </Button.Content>
-                                    </Button>
-                                    <Button x:Name="botonPersonalizacionTileMediana" Padding="15,10" Margin="10,0" Background="{StaticResource BrushTercero}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <Button.Content>
-                                            <TextBlock x:Uid="TileMedium" Foreground="White"/>
-                                        </Button.Content>
-                                    </Button>
-                                    <Button x:Name="botonPersonalizacionTileAncha" Padding="15,10" Background="{StaticResource BrushTercero}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <Button.Content>
-                                            <TextBlock x:Uid="TileWide" Foreground="White"/>
-                                        </Button.Content>
-                                    </Button>
-                                    <Button x:Name="botonPersonalizacionTileGrande" Padding="15,10" Margin="10,0,0,0" Background="{StaticResource BrushTercero}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <Button.Content>
-                                            <TextBlock x:Uid="TileLarge" Foreground="White"/>
-                                        </Button.Content>
-                                    </Button>
+                                            <controls:ImageEx x:Name="imagenTilePequeñaEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>
+                                        </Grid>
+                                        <TextBlock Text="71x71" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="10,0"/>
+
+                                    <StackPanel Orientation="Vertical">
+                                        <Grid x:Name="gridTileMedianaEnseñar" Background="{StaticResource BrushSecundario}" Width="150" Height="150" VerticalAlignment="Top">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <controls:ImageEx x:Name="imagenTileMedianaEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="tituloTileAnchaMediana" Grid.Row="0" Grid.Column="0" Text="Euro Truck Simulator 2" FontSize="20" FontWeight="Light" Padding="10,5" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                        </Grid>
+                                        <TextBlock Text="150x150" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="10,0"/>
+
+                                    <StackPanel Orientation="Vertical">
+                                        <Grid x:Name="gridTileAnchaEnseñar" Background="{StaticResource BrushSecundario}" Width="310" Height="150" VerticalAlignment="Top">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <controls:ImageEx x:Name="imagenTileAnchaEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="tituloTileAnchaEnseñar" Grid.Row="0" Grid.Column="0" Text="Euro Truck Simulator 2" FontSize="20" FontWeight="Light" Padding="10,5" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                        </Grid>
+                                        <TextBlock Text="310x150" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="10,0"/>
+
+                                    <StackPanel Orientation="Vertical">
+                                        <Grid x:Name="gridTileGrandeEnseñar" Background="{StaticResource BrushSecundario}" Width="310" Height="310" VerticalAlignment="Top">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <controls:ImageEx x:Name="imagenTileGrandeEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock x:Name="tituloTileGrandeEnseñar" Grid.Row="0" Grid.Column="0" Text="Euro Truck Simulator 2" FontSize="20" FontWeight="Light" Padding="10,5" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                        </Grid>
+                                        <TextBlock Text="310x310" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                    </StackPanel> 
+
                                 </StackPanel>
 
                                 <Grid x:Name="gridPersonalizacionTilePequeña" Padding="20" Background="{StaticResource BrushCuarto}" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Visibility="Collapsed">
-                                    <Grid x:Name="gridTilePequeñaEnseñar" Background="{StaticResource BrushSecundario}" Width="71" Height="71" VerticalAlignment="Top">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="310"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
+                                   
 
-                                        <controls:ImageEx x:Name="imagenTilePequeñaEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>
-                                    </Grid>
+                                    <StackPanel Grid.Column="1" Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                            <TextBlock x:Uid="ConfigTileImageStretch" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                            <ComboBox x:Name="cbConfigTilePequeñaImagenEstiramiento">
+                                                <ComboBoxItem x:Uid="ConfigTileImageStretchNone"/>
+                                                <ComboBoxItem x:Uid="ConfigTileImageStretchUniform"/>
+                                                <ComboBoxItem x:Uid="ConfigTileImageStretchUniformFill"/>
+                                                <ComboBoxItem x:Uid="ConfigTileImageStretchFill"/>
+                                            </ComboBox>
+                                        </StackPanel>
+
+                                        <StackPanel x:Name="spConfigTilePequeñaColorFondo" Orientation="Horizontal" Margin="0,0,0,10">
+                                            <ColorPicker x:Name="colorFondoTilePequeña" IsMoreButtonVisible="True"/>
+                                        </StackPanel>
+                                    </StackPanel> 
                                 </Grid>
 
-                                <Grid x:Name="gridPersonalizacionTileMediana" Padding="20" Background="{StaticResource BrushCuarto}" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Visibility="Collapsed">
-                                    <Grid x:Name="gridTileMedianaEnseñar" Background="{StaticResource BrushSecundario}" Width="150" Height="150" VerticalAlignment="Top">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
 
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <controls:ImageEx x:Name="imagenTileMedianaEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Grid>
-                                </Grid>
-
-                                <Grid x:Name="gridPersonalizacionTileAncha" Padding="20" Background="{StaticResource BrushCuarto}" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Visibility="Collapsed">
-                                    <Grid x:Name="gridTileAnchaEnseñar" Background="{StaticResource BrushSecundario}" Width="310" Height="150" VerticalAlignment="Top">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <controls:ImageEx x:Name="imagenTileAnchaEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        <TextBlock x:Name="tituloTileAnchaEnseñar" Grid.Row="0" Grid.Column="0" Text="Euro Truck Simulator 2" FontSize="20" FontWeight="Light" Padding="10,5" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
-                                    </Grid>
-                                </Grid>
-
-                                <Grid x:Name="gridPersonalizacionTileGrande" Padding="20" Background="{StaticResource BrushCuarto}" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Visibility="Collapsed">
-                                    <Grid x:Name="gridTileGrandeEnseñar" Background="{StaticResource BrushSecundario}" Width="310" Height="310" VerticalAlignment="Top">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <controls:ImageEx x:Name="imagenTileGrandeEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </Grid>
-                                </Grid>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>

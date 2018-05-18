@@ -213,4 +213,19 @@
   <data name="TileWide.Text" xml:space="preserve">
     <value>Wide Tile</value>
   </data>
+  <data name="ConfigTileImageStretch.Text" xml:space="preserve">
+    <value>Image Stretch</value>
+  </data>
+  <data name="ConfigTileImageStretchNone.Content" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="ConfigTileImageStretchUniform.Content" xml:space="preserve">
+    <value>Uniform</value>
+  </data>
+  <data name="ConfigTileImageStretchFill.Content" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="ConfigTileImageStretchUniformFill.Content" xml:space="preserve">
+    <value>Uniform and Fill</value>
+  </data>
 </root>

@@ -36,6 +36,7 @@ Module Tiles
         nuevaTile.VisualElements.Wide310x150Logo = New Uri("ms-appdata:///local/" + tile.ID + "ancha.png", UriKind.RelativeOrAbsolute)
         nuevaTile.VisualElements.Square310x310Logo = New Uri("ms-appdata:///local/" + tile.ID + "grande.png", UriKind.RelativeOrAbsolute)
 
+        nuevaTile.VisualElements.ShowNameOnSquare150x150Logo = True
         nuevaTile.VisualElements.ShowNameOnSquare310x310Logo = True
         nuevaTile.VisualElements.ForegroundText = ForegroundText.Dark
 
