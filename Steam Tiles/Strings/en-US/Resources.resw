@@ -174,9 +174,6 @@
   <data name="Tiles" xml:space="preserve">
     <value>Tiles</value>
   </data>
-  <data name="TileTitle.Text" xml:space="preserve">
-    <value>Add title</value>
-  </data>
   <data name="MoreThings_VoteApp" xml:space="preserve">
     <value>Vote the App</value>
   </data>
@@ -227,5 +224,20 @@
   </data>
   <data name="ConfigTileImageStretchUniformFill.Content" xml:space="preserve">
     <value>Uniform and Fill</value>
+  </data>
+  <data name="Customization" xml:space="preserve">
+    <value>Customization</value>
+  </data>
+  <data name="Back.Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Reset.Text" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ConfigTilesColorBackground.Text" xml:space="preserve">
+    <value>Background Color</value>
+  </data>
+  <data name="ConfigTilesTitle.Text" xml:space="preserve">
+    <value>Title</value>
   </data>
 </root>

@@ -12,25 +12,32 @@ Module Configuracion
             TilePequeñaImagenEstiramiento(ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_estiramiento"))
         End If
 
-        If ApplicationData.Current.LocalSettings.Values("tile_pequeña_color_fondo") Is Nothing Then
-            TilePequeñaColorFondo(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(App.Current.Resources("ColorSecundario")))
+        If ApplicationData.Current.LocalSettings.Values("tiles_color_fondo") Is Nothing Then
+            TilesColorFondo(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(App.Current.Resources("ColorSecundario")))
         Else
-            TilePequeñaColorFondo(ApplicationData.Current.LocalSettings.Values("tile_pequeña_color_fondo"))
+            TilesColorFondo(ApplicationData.Current.LocalSettings.Values("tiles_color_fondo"))
         End If
 
 
 
-        If ApplicationData.Current.LocalSettings.Values("titulo_tile") Is Nothing Then
-            MostrarTitulo(False)
-        Else
-            MostrarTitulo(ApplicationData.Current.LocalSettings.Values("titulo_tile"))
-        End If
 
         If ApplicationData.Current.LocalSettings.Values("drm_tile") Is Nothing Then
             MostrarDRM(False)
         Else
             MostrarDRM(ApplicationData.Current.LocalSettings.Values("drm_tile"))
         End If
+
+    End Sub
+
+    Public Sub Resetear()
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("tiles_color_fondo") = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(App.Current.Resources("ColorSecundario"))
+
+        Dim picker As ColorPicker = pagina.FindName("colorPickerFondoTiles")
+        picker.Color = App.Current.Resources("ColorSecundario")
 
     End Sub
 
@@ -63,33 +70,47 @@ Module Configuracion
 
     End Sub
 
-    Public Sub TilePequeñaColorFondo(color As String)
+    Public Sub TilesColorFondo(color As String)
 
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tile_pequeña_color_fondo") = color
+        ApplicationData.Current.LocalSettings.Values("tiles_color_fondo") = color
 
-        Dim picker As ColorPicker = pagina.FindName("colorFondoTilePequeña")
+        Dim picker As ColorPicker = pagina.FindName("colorPickerFondoTiles")
         picker.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color)
 
         Dim grid1 As Grid = pagina.FindName("gridTilePequeñaEnseñar")
         Dim grid2 As Grid = pagina.FindName("gridTilePequeñaGenerar")
+        Dim grid3 As Grid = pagina.FindName("gridTilePequeñaPersonalizar")
+
+        Dim grid4 As Grid = pagina.FindName("gridTileMedianaEnseñar")
+        Dim grid5 As Grid = pagina.FindName("gridTileMedianaGenerar")
+        Dim grid6 As Grid = pagina.FindName("gridTileMedianaPersonalizar")
+
+        Dim grid7 As Grid = pagina.FindName("gridTileAnchaEnseñar")
+        Dim grid8 As Grid = pagina.FindName("gridTileAnchaGenerar")
+        Dim grid9 As Grid = pagina.FindName("gridTileAnchaPersonalizar")
+
+        Dim grid10 As Grid = pagina.FindName("gridTileGrandeEnseñar")
+        Dim grid11 As Grid = pagina.FindName("gridTileGrandeGenerar")
+        Dim grid12 As Grid = pagina.FindName("gridTileGrandePersonalizar")
 
         grid1.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
         grid2.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        grid3.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
 
-    End Sub
+        grid4.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        grid5.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        grid6.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
 
-    Public Sub MostrarTitulo(estado As Boolean)
+        grid7.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        grid8.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        grid9.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
-
-        ApplicationData.Current.LocalSettings.Values("titulo_tile") = estado
-
-        Dim cb As CheckBox = pagina.FindName("cbTilesTitulo")
-        cb.IsChecked = estado
+        grid10.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        grid11.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        grid12.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
 
     End Sub
 

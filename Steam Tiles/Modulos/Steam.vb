@@ -357,33 +357,41 @@ Module Steam
         If Not juego.ImagenPequeña = Nothing Then
             Dim imagenPequeña1 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
             Dim imagenPequeña2 As ImageEx = pagina.FindName("imagenTilePequeñaGenerar")
+            Dim imagenPequeña3 As ImageEx = pagina.FindName("imagenTilePequeñaPersonalizar")
 
             imagenPequeña1.Source = juego.ImagenPequeña
             imagenPequeña2.Source = juego.ImagenPequeña
+            imagenPequeña3.Source = juego.ImagenPequeña
         End If
 
         If Not juego.ImagenMediana = Nothing Then
             Dim imagenMediana1 As ImageEx = pagina.FindName("imagenTileMedianaEnseñar")
             Dim imagenMediana2 As ImageEx = pagina.FindName("imagenTileMedianaGenerar")
+            Dim imagenMediana3 As ImageEx = pagina.FindName("imagenTileMedianaPersonalizar")
 
             imagenMediana1.Source = juego.ImagenMediana
             imagenMediana2.Source = juego.ImagenMediana
+            imagenMediana3.Source = juego.ImagenMediana
         End If
 
         If Not juego.ImagenAncha = Nothing Then
             Dim imagenAncha1 As ImageEx = pagina.FindName("imagenTileAnchaEnseñar")
             Dim imagenAncha2 As ImageEx = pagina.FindName("imagenTileAnchaGenerar")
+            Dim imagenAncha3 As ImageEx = pagina.FindName("imagenTileAnchaPersonalizar")
 
             imagenAncha1.Source = juego.ImagenAncha
             imagenAncha2.Source = juego.ImagenAncha
+            imagenAncha3.Source = juego.ImagenAncha
         End If
 
         If Not juego.ImagenGrande = Nothing Then
             Dim imagenGrande1 As ImageEx = pagina.FindName("imagenTileGrandeEnseñar")
             Dim imagenGrande2 As ImageEx = pagina.FindName("imagenTileGrandeGenerar")
+            Dim imagenGrande3 As ImageEx = pagina.FindName("imagenTileGrandePersonalizar")
 
             imagenGrande1.Source = juego.ImagenGrande
             imagenGrande2.Source = juego.ImagenGrande
+            imagenGrande3.Source = juego.ImagenGrande
         End If
 
     End Sub

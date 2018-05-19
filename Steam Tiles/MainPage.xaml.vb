@@ -76,10 +76,12 @@ Public NotInheritable Class MainPage
         Await Dispatcher.RunAsync(CoreDispatcherPriority.High, Sub()
                                                                    If estado = True Then
                                                                        gridAñadirTile.Background = App.Current.Resources("GridAcrilico")
+                                                                       gridPersonalizarTiles.Background = App.Current.Resources("GridAcrilico")
                                                                        gridConfig.Background = App.Current.Resources("GridAcrilico")
                                                                        gridConfigTiles.Background = App.Current.Resources("GridTituloBackground")
                                                                    Else
                                                                        gridAñadirTile.Background = New SolidColorBrush(Colors.LightGray)
+                                                                       gridPersonalizarTiles.Background = New SolidColorBrush(Colors.LightGray)
                                                                        gridConfig.Background = New SolidColorBrush(Colors.LightGray)
                                                                        gridConfigTiles.Background = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
                                                                    End If
@@ -92,6 +94,7 @@ Public NotInheritable Class MainPage
         tbTitulo.Text = Package.Current.DisplayName + " (" + Package.Current.Id.Version.Major.ToString + "." + Package.Current.Id.Version.Minor.ToString + "." + Package.Current.Id.Version.Build.ToString + "." + Package.Current.Id.Version.Revision.ToString + ") - " + tag
 
         gridAñadirTile.Visibility = Visibility.Collapsed
+        gridPersonalizarTiles.Visibility = Visibility.Collapsed
         gridConfig.Visibility = Visibility.Collapsed
 
         grid.Visibility = Visibility.Visible
@@ -147,15 +150,35 @@ Public NotInheritable Class MainPage
 
     End Sub
 
+    Private Sub BotonPersonalizarTiles_Click(sender As Object, e As RoutedEventArgs) Handles botonPersonalizarTiles.Click
+
+        gridAñadirTile.Visibility = Visibility.Collapsed
+        gridPersonalizarTiles.Visibility = Visibility.Visible
+
+    End Sub
+
+    Private Sub BotonVolverPersonalizacion_Click(sender As Object, e As RoutedEventArgs) Handles botonVolverPersonalizacion.Click
+
+        gridAñadirTile.Visibility = Visibility.Visible
+        gridPersonalizarTiles.Visibility = Visibility.Collapsed
+
+    End Sub
+
+    Private Sub BotonResetearPersonalizacion_Click(sender As Object, e As RoutedEventArgs) Handles botonResetearPersonalizacion.Click
+
+        Configuracion.Resetear
+
+    End Sub
+
     Private Sub CbConfigTilePequeñaImagenEstiramiento_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTilePequeñaImagenEstiramiento.SelectionChanged
 
         Configuracion.TilePequeñaImagenEstiramiento(cbConfigTilePequeñaImagenEstiramiento.SelectedIndex)
 
     End Sub
 
-    Private Sub ColorFondoTilePequeña_ColorChanged(sender As ColorPicker, args As ColorChangedEventArgs) Handles colorFondoTilePequeña.ColorChanged
+    Private Sub ColorPickerFondoTiles_ColorChanged(sender As ColorPicker, args As ColorChangedEventArgs) Handles colorPickerFondoTiles.ColorChanged
 
-        Configuracion.TilePequeñaColorFondo(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(colorFondoTilePequeña.Color))
+        Configuracion.TilesColorFondo(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(colorPickerFondoTiles.Color))
 
     End Sub
 
@@ -204,18 +227,6 @@ Public NotInheritable Class MainPage
     End Sub
 
     'CONFIGTILES-----------------------------------------------------------------------------
-
-    Private Sub CbTilesTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Checked
-
-        Configuracion.MostrarTitulo(True)
-
-    End Sub
-
-    Private Sub CbTilesTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesTitulo.Unchecked
-
-        Configuracion.MostrarTitulo(False)
-
-    End Sub
 
     Private Sub CbTilesIconos_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesIconos.Checked
 
