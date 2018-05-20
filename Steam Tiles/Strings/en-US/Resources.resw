@@ -240,4 +240,25 @@
   <data name="ConfigTilesTitle.Text" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="Color.Text" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ConfigTileImageBase.Text" xml:space="preserve">
+    <value>Image Base</value>
+  </data>
+  <data name="ConfigTileImageCoordinates.Text" xml:space="preserve">
+    <value>Image Coordinates</value>
+  </data>
+  <data name="ConfigTilesDRM.Text" xml:space="preserve">
+    <value>DRM</value>
+  </data>
+  <data name="Icon.Text" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="Position.Text" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

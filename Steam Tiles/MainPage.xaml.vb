@@ -170,9 +170,93 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub CbConfigTilePequeñaImagenEstiramiento_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTilePequeñaImagenEstiramiento.SelectionChanged
+    Private Sub CbConfigTileAnchaTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaTitulo.Checked
 
-        Configuracion.TilePequeñaImagenEstiramiento(cbConfigTilePequeñaImagenEstiramiento.SelectedIndex)
+        Configuracion.TileAnchaTitulo(cbConfigTileAnchaTitulo.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileAnchaTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaTitulo.Unchecked
+
+        Configuracion.TileAnchaTitulo(cbConfigTileAnchaTitulo.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileGrandeTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeTitulo.Checked
+
+        Configuracion.TileGrandeTitulo(cbConfigTileGrandeTitulo.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileGrandeTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeTitulo.Unchecked
+
+        Configuracion.TileGrandeTitulo(cbConfigTileGrandeTitulo.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileTituloColor_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTileTituloColor.SelectionChanged
+
+        Try
+            Configuracion.TilesColorTitulo(cbConfigTileTituloColor.SelectedIndex)
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub CbConfigTileMedianaDRM_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMedianaDRM.Checked
+
+        Configuracion.TileMedianaDRMMostrar(cbConfigTileMedianaDRM.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileMedianaDRM_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMedianaDRM.Unchecked
+
+        Configuracion.TileMedianaDRMMostrar(cbConfigTileMedianaDRM.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileAnchaDRM_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaDRM.Checked
+
+        Configuracion.TileAnchaDRMMostrar(cbConfigTileAnchaDRM.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileAnchaDRM_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaDRM.Unchecked
+
+        Configuracion.TileAnchaDRMMostrar(cbConfigTileAnchaDRM.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileGrandeDRM_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeDRM.Checked
+
+        Configuracion.TileGrandeDRMMostrar(cbConfigTileGrandeDRM.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileGrandeDRM_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeDRM.Unchecked
+
+        Configuracion.TileGrandeDRMMostrar(cbConfigTileGrandeDRM.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTilesDRMIcono_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTilesDRMIcono.SelectionChanged
+
+        Try
+            Configuracion.TilesDRMIcono(cbConfigTilesDRMIcono.SelectedIndex)
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
+    Private Sub CbConfigTilesDRMPosicion_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTilesDRMPosicion.SelectionChanged
+
+        Try
+            Configuracion.TilesDRMIconoPosicion(cbConfigTilesDRMPosicion.SelectedIndex)
+        Catch ex As Exception
+
+        End Try
 
     End Sub
 
@@ -182,61 +266,63 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Async Sub UsuarioClickeaImagen(sender As Object, e As RoutedEventArgs)
+    Private Sub BotonConfigTilePequeñaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilePequeñaBuscarImagen.Click
 
-        Dim ficheroPicker As New FileOpenPicker
-        ficheroPicker.FileTypeFilter.Add(".png")
-        ficheroPicker.ViewMode = PickerViewMode.List
-
-        Dim ficheroImagen As StorageFile = Await ficheroPicker.PickSingleFileAsync
-
-        Dim boton As Button = sender
-        Dim grid As Grid = boton.Content
-
-        Dim vb As Viewbox = Nothing
-        Dim imagen As ImageEx = Nothing
-
-        If TypeOf grid.Children(0) Is Viewbox Then
-            vb = grid.Children(0)
-            imagen = vb.Child
-        End If
-
-        If TypeOf grid.Children(0) Is ImageEx Then
-            imagen = grid.Children(0)
-        End If
-
-        Dim tb As FontAwesome.UWP.FontAwesome = grid.Children(1)
-
-        Dim bitmap As New BitmapImage
-
-        Try
-            imagen.Visibility = Visibility.Visible
-            tb.Visibility = Visibility.Collapsed
-
-            Dim stream As FileRandomAccessStream = Await ficheroImagen.OpenAsync(FileAccessMode.Read)
-            bitmap.SetSource(stream)
-
-            imagen.Source = bitmap
-            imagen.Tag = ficheroImagen
-        Catch ex As Exception
-            imagen.Visibility = Visibility.Collapsed
-            imagen.Source = Nothing
-            tb.Visibility = Visibility.Visible
-        End Try
+        Configuracion.TilesCambioImagen(imagenTilePequeñaGenerar, imagenTilePequeñaEnseñar, imagenTilePequeñaPersonalizar)
 
     End Sub
 
-    'CONFIGTILES-----------------------------------------------------------------------------
+    Private Sub BotonConfigTileMedianaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileMedianaBuscarImagen.Click
 
-    Private Sub CbTilesIconos_Checked(sender As Object, e As RoutedEventArgs) Handles cbTilesIconos.Checked
-
-        Configuracion.MostrarDRM(True)
+        Configuracion.TilesCambioImagen(imagenTileMedianaGenerar, imagenTileMedianaEnseñar, imagenTileMedianaPersonalizar)
 
     End Sub
 
-    Private Sub CbTilesIconos_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbTilesIconos.Unchecked
+    Private Sub BotonConfigTileAnchaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileAnchaBuscarImagen.Click
 
-        Configuracion.MostrarDRM(False)
+        Configuracion.TilesCambioImagen(imagenTileAnchaGenerar, imagenTileAnchaEnseñar, imagenTileAnchaPersonalizar)
+
+    End Sub
+
+    Private Sub BotonConfigTileGrandeBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileGrandeBuscarImagen.Click
+
+        Configuracion.TilesCambioImagen(imagenTileGrandeGenerar, imagenTileGrandeEnseñar, imagenTileGrandePersonalizar)
+
+    End Sub
+
+    Private Sub CbConfigTilePequeñaImagenEstiramiento_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTilePequeñaImagenEstiramiento.SelectionChanged
+
+        Configuracion.TilePequeñaImagenEstiramiento(cbConfigTilePequeñaImagenEstiramiento.SelectedIndex)
+
+    End Sub
+
+    Private Sub CbConfigTileMedianaImagenEstiramiento_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTileMedianaImagenEstiramiento.SelectionChanged
+
+        Configuracion.TileMedianaImagenEstiramiento(cbConfigTileMedianaImagenEstiramiento.SelectedIndex)
+
+    End Sub
+
+    Private Sub CbConfigTileAnchaImagenEstiramiento_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTileAnchaImagenEstiramiento.SelectionChanged
+
+        Configuracion.TileAnchaImagenEstiramiento(cbConfigTileAnchaImagenEstiramiento.SelectedIndex)
+
+    End Sub
+
+    Private Sub CbConfigTileGrandeImagenEstiramiento_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTileGrandeImagenEstiramiento.SelectionChanged
+
+        Configuracion.TileGrandeImagenEstiramiento(cbConfigTileGrandeImagenEstiramiento.SelectedIndex)
+
+    End Sub
+
+    Private Sub SliderConfigTilePequeñaImagenCoordenadasX_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTilePequeñaImagenCoordenadasX.ValueChanged
+
+        Configuracion.TilePequeñaImagenCoordenadas(sliderConfigTilePequeñaImagenCoordenadasX.Value, sliderConfigTilePequeñaImagenCoordenadasY.Value)
+
+    End Sub
+
+    Private Sub SliderConfigTilePequeñaImagenCoordenadasY_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTilePequeñaImagenCoordenadasY.ValueChanged
+
+        Configuracion.TilePequeñaImagenCoordenadas(sliderConfigTilePequeñaImagenCoordenadasX.Value, sliderConfigTilePequeñaImagenCoordenadasY.Value)
 
     End Sub
 

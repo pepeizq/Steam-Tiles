@@ -16,16 +16,16 @@ Module Tiles
         boton.IsEnabled = False
 
         Dim imagenPequeña As Grid = pagina.FindName("gridTilePequeñaGenerar")
-        Dim boolImagenPequeña As Boolean = Await GenerarImagen(imagenPequeña, tile.ID + "pequena.png")
+        Await GenerarImagen(imagenPequeña, tile.ID + "pequena.png")
 
         Dim imagenMediana As Grid = pagina.FindName("gridTileMedianaGenerar")
-        Dim boolImagenMediana As Boolean = Await GenerarImagen(imagenMediana, tile.ID + "mediana.png")
+        Await GenerarImagen(imagenMediana, tile.ID + "mediana.png")
 
         Dim imagenAncha As Grid = pagina.FindName("gridTileAnchaGenerar")
-        Dim boolImagenAncha As Boolean = Await GenerarImagen(imagenAncha, tile.ID + "ancha.png")
+        Await GenerarImagen(imagenAncha, tile.ID + "ancha.png")
 
         Dim imagenGrande As Grid = pagina.FindName("gridTileGrandeGenerar")
-        Dim boolImagenGrande As Boolean = Await GenerarImagen(imagenGrande, tile.ID + "grande.png")
+        Await GenerarImagen(imagenGrande, tile.ID + "grande.png")
 
         '-----------------------
 
@@ -36,67 +36,59 @@ Module Tiles
         nuevaTile.VisualElements.Wide310x150Logo = New Uri("ms-appdata:///local/" + tile.ID + "ancha.png", UriKind.RelativeOrAbsolute)
         nuevaTile.VisualElements.Square310x310Logo = New Uri("ms-appdata:///local/" + tile.ID + "grande.png", UriKind.RelativeOrAbsolute)
 
-        nuevaTile.VisualElements.ShowNameOnSquare150x150Logo = True
-        nuevaTile.VisualElements.ShowNameOnSquare310x310Logo = True
-        nuevaTile.VisualElements.ForegroundText = ForegroundText.Dark
+        If ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = True Then
+            nuevaTile.VisualElements.ShowNameOnWide310x150Logo = True
+        Else
+            nuevaTile.VisualElements.ShowNameOnWide310x150Logo = False
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = True Then
+            nuevaTile.VisualElements.ShowNameOnSquare310x310Logo = True
+        Else
+            nuevaTile.VisualElements.ShowNameOnSquare310x310Logo = False
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("tiles_color_titulo") = 0 Then
+            nuevaTile.VisualElements.ForegroundText = ForegroundText.Light
+        Else
+            nuevaTile.VisualElements.ForegroundText = ForegroundText.Dark
+        End If
 
         Await nuevaTile.RequestCreateAsync()
 
         '-----------------------
 
-        Dim imagenDRM As AdaptiveImage = Nothing
-
-        If ApplicationData.Current.LocalSettings.Values("drm_tile") = True Then
-            imagenDRM = New AdaptiveImage With {
-                .HintRemoveMargin = True,
-                .HintAlign = AdaptiveImageAlign.Right
-            }
-
-            Dim cbIconosLista As ComboBox = pagina.FindName("cbTilesIconosLista")
-            Dim imagenIcono As ImageEx = cbIconosLista.SelectedItem
-            imagenDRM.Source = imagenIcono.Source
-        End If
-
-        '-----------------------
-
-        Dim contenidoPequeño As New TileBindingContentAdaptive
-
-        If boolImagenPequeña = True Then
-            Dim fondoImagenPequeña As New TileBackgroundImage With {
-                .Source = "ms-appdata:///local/" + tile.ID + "pequena.png",
-                .HintCrop = AdaptiveImageCrop.Default
-            }
-
-            contenidoPequeño = New TileBindingContentAdaptive With {
-                .BackgroundImage = fondoImagenPequeña
-            }
-        End If
-
-        'If Not imagenDRM Is Nothing Then
-        '    contenidoSmall.Children.Add(imagenDRM)
-        'End If
-
-        Dim tilePequeño As New TileBinding With {
-            .Content = contenidoPequeño
+        Dim imagenDRM As New AdaptiveImage With {
+            .HintRemoveMargin = True
         }
+
+        If ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion") = 0 Then
+            imagenDRM.HintAlign = AdaptiveImageAlign.Left
+        Else
+            imagenDRM.HintAlign = AdaptiveImageAlign.Right
+        End If
+
+        Dim cbIconosLista As ComboBox = pagina.FindName("cbConfigTilesDRMIcono")
+        Dim imagenIcono As ImageEx = cbIconosLista.SelectedItem
+        imagenDRM.Source = imagenIcono.Source
 
         '-----------------------
 
         Dim contenidoMediano As New TileBindingContentAdaptive
 
-        If boolImagenMediana = True Then
-            Dim fondoImagenMediano As New TileBackgroundImage With {
-                .Source = "ms-appdata:///local/" + tile.ID + "mediana.png",
-                .HintCrop = AdaptiveImageCrop.Default
-            }
+        Dim fondoImagenMediano As New TileBackgroundImage With {
+            .Source = "ms-appdata:///local/" + tile.ID + "mediana.png",
+            .HintCrop = AdaptiveImageCrop.Default
+        }
 
-            contenidoMediano = New TileBindingContentAdaptive With {
-                .BackgroundImage = fondoImagenMediano
-            }
-        End If
+        contenidoMediano = New TileBindingContentAdaptive With {
+            .BackgroundImage = fondoImagenMediano
+        }
 
-        If Not imagenDRM Is Nothing Then
-            contenidoMediano.Children.Add(imagenDRM)
+        If ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar") = True Then
+            If Not imagenDRM Is Nothing Then
+                contenidoMediano.Children.Add(imagenDRM)
+            End If
         End If
 
         Dim tileMediano As New TileBinding With {
@@ -107,19 +99,19 @@ Module Tiles
 
         Dim contenidoAncho As New TileBindingContentAdaptive
 
-        If boolImagenAncha = True Then
-            Dim fondoImagenAncha As New TileBackgroundImage With {
-                .Source = "ms-appdata:///local/" + tile.ID + "ancha.png",
-                .HintCrop = AdaptiveImageCrop.Default
-            }
+        Dim fondoImagenAncha As New TileBackgroundImage With {
+            .Source = "ms-appdata:///local/" + tile.ID + "ancha.png",
+            .HintCrop = AdaptiveImageCrop.Default
+        }
 
-            contenidoAncho = New TileBindingContentAdaptive With {
-                .BackgroundImage = fondoImagenAncha
-            }
-        End If
+        contenidoAncho = New TileBindingContentAdaptive With {
+            .BackgroundImage = fondoImagenAncha
+        }
 
-        If Not imagenDRM Is Nothing Then
-            contenidoAncho.Children.Add(imagenDRM)
+        If ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar") = True Then
+            If Not imagenDRM Is Nothing Then
+                contenidoAncho.Children.Add(imagenDRM)
+            End If
         End If
 
         Dim tileAncha As New TileBinding With {
@@ -130,19 +122,19 @@ Module Tiles
 
         Dim contenidoGrande As New TileBindingContentAdaptive
 
-        If boolImagenGrande = True Then
-            Dim fondoImagenGrande As New TileBackgroundImage With {
-                .Source = "ms-appdata:///local/" + tile.ID + "grande.png",
-                .HintCrop = AdaptiveImageCrop.Default
-            }
+        Dim fondoImagenGrande As New TileBackgroundImage With {
+            .Source = "ms-appdata:///local/" + tile.ID + "grande.png",
+            .HintCrop = AdaptiveImageCrop.Default
+        }
 
-            contenidoGrande = New TileBindingContentAdaptive With {
-                .BackgroundImage = fondoImagenGrande
-            }
-        End If
+        contenidoGrande = New TileBindingContentAdaptive With {
+            .BackgroundImage = fondoImagenGrande
+        }
 
-        If Not imagenDRM Is Nothing Then
-            contenidoGrande.Children.Add(imagenDRM)
+        If ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar") = True Then
+            If Not imagenDRM Is Nothing Then
+                contenidoGrande.Children.Add(imagenDRM)
+            End If
         End If
 
         Dim tileGrande As New TileBinding With {
@@ -151,17 +143,17 @@ Module Tiles
 
         '-----------------------
 
-        If ApplicationData.Current.LocalSettings.Values("titulo_tile") = True Then
+        If ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = True Then
             tileAncha.Branding = TileBranding.Name
-            tilePequeño.Branding = TileBranding.Name
-            tileMediano.Branding = TileBranding.Name
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = True Then
             tileGrande.Branding = TileBranding.Name
         End If
 
         Dim visual As New TileVisual With {
-            .TileWide = tileAncha,
-            .TileSmall = tilePequeño,
             .TileMedium = tileMediano,
+            .TileWide = tileAncha,
             .TileLarge = tileGrande
         }
 
@@ -172,7 +164,7 @@ Module Tiles
         Dim notificacion As New TileNotification(contenido.GetXml)
 
         Try
-            'TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.ID).Update(notificacion)
+            TileUpdateManager.CreateTileUpdaterForSecondaryTile(tile.ID).Update(notificacion)
         Catch ex As Exception
 
         End Try

@@ -352,6 +352,18 @@ Module Steam
 
         '---------------------------------------------
 
+        Dim titulo1 As TextBlock = pagina.FindName("tituloTileAnchaEnseñar")
+        Dim titulo2 As TextBlock = pagina.FindName("tituloTileAnchaPersonalizar")
+
+        Dim titulo3 As TextBlock = pagina.FindName("tituloTileGrandeEnseñar")
+        Dim titulo4 As TextBlock = pagina.FindName("tituloTileGrandePersonalizar")
+
+        titulo1.Text = juego.Titulo
+        titulo2.Text = juego.Titulo
+
+        titulo3.Text = juego.Titulo
+        titulo4.Text = juego.Titulo
+
         juego.ImagenPequeña = Await SacarIcono(juego.ID)
 
         If Not juego.ImagenPequeña = Nothing Then
@@ -362,6 +374,10 @@ Module Steam
             imagenPequeña1.Source = juego.ImagenPequeña
             imagenPequeña2.Source = juego.ImagenPequeña
             imagenPequeña3.Source = juego.ImagenPequeña
+
+            imagenPequeña1.Tag = juego.ImagenPequeña
+            imagenPequeña2.Tag = juego.ImagenPequeña
+            imagenPequeña3.Tag = juego.ImagenPequeña
         End If
 
         If Not juego.ImagenMediana = Nothing Then
@@ -372,6 +388,10 @@ Module Steam
             imagenMediana1.Source = juego.ImagenMediana
             imagenMediana2.Source = juego.ImagenMediana
             imagenMediana3.Source = juego.ImagenMediana
+
+            imagenMediana1.Tag = juego.ImagenMediana
+            imagenMediana2.Tag = juego.ImagenMediana
+            imagenMediana3.Tag = juego.ImagenMediana
         End If
 
         If Not juego.ImagenAncha = Nothing Then
@@ -382,6 +402,10 @@ Module Steam
             imagenAncha1.Source = juego.ImagenAncha
             imagenAncha2.Source = juego.ImagenAncha
             imagenAncha3.Source = juego.ImagenAncha
+
+            imagenAncha1.Tag = juego.ImagenAncha
+            imagenAncha2.Tag = juego.ImagenAncha
+            imagenAncha3.Tag = juego.ImagenAncha
         End If
 
         If Not juego.ImagenGrande = Nothing Then
@@ -392,6 +416,10 @@ Module Steam
             imagenGrande1.Source = juego.ImagenGrande
             imagenGrande2.Source = juego.ImagenGrande
             imagenGrande3.Source = juego.ImagenGrande
+
+            imagenGrande1.Tag = juego.ImagenGrande
+            imagenGrande2.Tag = juego.ImagenGrande
+            imagenGrande3.Tag = juego.ImagenGrande
         End If
 
     End Sub
@@ -446,7 +474,7 @@ Module Steam
 
     Public Async Function SacarIcono(id As String) As Task(Of Uri)
 
-        Dim html As String = Await Decompiladores.HttpClient(New Uri("http://store.steampowered.com/app/" + id + "/"))
+        Dim html As String = Await Decompiladores.HttpClient(New Uri("https://store.steampowered.com/app/" + id + "/"))
         Dim uriIcono As Uri = Nothing
 
         If Not html = Nothing Then
