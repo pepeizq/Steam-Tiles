@@ -15,17 +15,17 @@ Module Tiles
         Dim boton As Button = pagina.FindName("botonAñadirTile")
         boton.IsEnabled = False
 
-        Dim imagenPequeña As Grid = pagina.FindName("gridTilePequeñaGenerar")
-        Await GenerarImagen(imagenPequeña, tile.ID + "pequena.png")
+        Dim gridTilePequeña As Grid = pagina.FindName("gridTilePequeñaGenerar")
+        Await GenerarImagen(gridTilePequeña, tile.ID + "pequena.png", 71, 71)
 
-        Dim imagenMediana As Grid = pagina.FindName("gridTileMedianaGenerar")
-        Await GenerarImagen(imagenMediana, tile.ID + "mediana.png")
+        Dim gridTileMediana As Grid = pagina.FindName("gridTileMedianaGenerar")
+        Await GenerarImagen(gridTileMediana, tile.ID + "mediana.png", 150, 150)
 
-        Dim imagenAncha As Grid = pagina.FindName("gridTileAnchaGenerar")
-        Await GenerarImagen(imagenAncha, tile.ID + "ancha.png")
+        Dim gridTileAncha As Grid = pagina.FindName("gridTileAnchaGenerar")
+        Await GenerarImagen(gridTileAncha, tile.ID + "ancha.png", 310, 150)
 
-        Dim imagenGrande As Grid = pagina.FindName("gridTileGrandeGenerar")
-        Await GenerarImagen(imagenGrande, tile.ID + "grande.png")
+        Dim gridTileGrande As Grid = pagina.FindName("gridTileGrandeGenerar")
+        Await GenerarImagen(gridTileGrande, tile.ID + "grande.png", 310, 310)
 
         '-----------------------
 
@@ -68,9 +68,8 @@ Module Tiles
             imagenDRM.HintAlign = AdaptiveImageAlign.Right
         End If
 
-        Dim cbIconosLista As ComboBox = pagina.FindName("cbConfigTilesDRMIcono")
-        Dim imagenIcono As ImageEx = cbIconosLista.SelectedItem
-        imagenDRM.Source = imagenIcono.Source
+        Dim cbDRMIcono As ComboBox = pagina.FindName("cbConfigTilesDRMIcono")
+        imagenDRM.Source = cbDRMIcono.SelectedItem.Source
 
         '-----------------------
 
@@ -173,7 +172,7 @@ Module Tiles
 
     End Sub
 
-    Public Async Function GenerarImagen(gridImagen As Grid, clave As String) As Task(Of Boolean)
+    Public Async Function GenerarImagen(gridImagen As Grid, clave As String, ancho As Integer, alto As Integer) As Task(Of Boolean)
 
         Dim descargaFinalizada As Boolean = False
 
@@ -190,6 +189,15 @@ Module Tiles
         Using stream As Streams.IRandomAccessStream = Await ficheroImagen.OpenAsync(FileAccessMode.ReadWrite)
             Dim encoder As BitmapEncoder = Await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream)
             encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, resultado.PixelWidth, resultado.PixelHeight, rawdpi.RawDpiX, rawdpi.RawDpiY, pixeles)
+
+            Dim limites As New BitmapBounds With {
+                .X = resultado.PixelWidth - gridImagen.Width,
+                .Y = resultado.PixelHeight - gridImagen.Height,
+                .Width = ancho,
+                .Height = alto
+            }
+
+            encoder.BitmapTransform.Bounds = limites
 
             Await encoder.FlushAsync
         End Using

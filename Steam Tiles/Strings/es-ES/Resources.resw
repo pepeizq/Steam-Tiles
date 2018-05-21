@@ -235,10 +235,10 @@
     <value>Defecto</value>
   </data>
   <data name="ConfigTilesColorBackground.Text" xml:space="preserve">
-    <value>Color de Fondo</value>
+    <value>Tile Color de Fondo</value>
   </data>
   <data name="ConfigTilesTitle.Text" xml:space="preserve">
-    <value>Titulo</value>
+    <value>Tile Titulo</value>
   </data>
   <data name="Color.Text" xml:space="preserve">
     <value>Color</value>
@@ -250,7 +250,7 @@
     <value>Imagen Coordenadas</value>
   </data>
   <data name="ConfigTilesDRM.Text" xml:space="preserve">
-    <value>DRM</value>
+    <value>Tile DRM</value>
   </data>
   <data name="Icon.Text" xml:space="preserve">
     <value>Icono</value>
@@ -260,5 +260,8 @@
   </data>
   <data name="Search.Text" xml:space="preserve">
     <value>Buscar</value>
+  </data>
+  <data name="ConfigTileImageZoom.Text" xml:space="preserve">
+    <value>Imagen Zoom</value>
   </data>
 </root>

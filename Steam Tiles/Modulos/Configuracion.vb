@@ -1,4 +1,5 @@
-﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
+﻿Imports FontAwesome.UWP
+Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.Storage
 Imports Windows.Storage.Pickers
 Imports Windows.Storage.Streams
@@ -7,6 +8,50 @@ Imports Windows.UI
 Module Configuracion
 
     Public Sub Iniciar()
+
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tiles_titulo") Is Nothing Then
+            MostrarTilesTitulo(True)
+        Else
+            MostrarTilesTitulo(ApplicationData.Current.LocalSettings.Values("mostrar_tiles_titulo"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tiles_drm") Is Nothing Then
+            MostrarTilesDRM(True)
+        Else
+            MostrarTilesDRM(ApplicationData.Current.LocalSettings.Values("mostrar_tiles_drm"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tiles_colorfondo") Is Nothing Then
+            MostrarTilesColorFondo(True)
+        Else
+            MostrarTilesColorFondo(ApplicationData.Current.LocalSettings.Values("mostrar_tiles_colorfondo"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagenbase") Is Nothing Then
+            MostrarTilesImagenBase(True)
+        Else
+            MostrarTilesImagenBase(ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagenbase"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagenestiramiento") Is Nothing Then
+            MostrarTilesImagenEstiramiento(False)
+        Else
+            MostrarTilesImagenEstiramiento(ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagenestiramiento"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagencoordenadas") Is Nothing Then
+            MostrarTilesImagenCoordenadas(False)
+        Else
+            MostrarTilesImagenCoordenadas(ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagencoordenadas"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagenzoom") Is Nothing Then
+            MostrarTilesImagenZoom(False)
+        Else
+            MostrarTilesImagenZoom(ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagenzoom"))
+        End If
+
+        '------------------------------------------
 
         If ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") Is Nothing Then
             TileAnchaTitulo(False)
@@ -25,6 +70,7 @@ Module Configuracion
         Else
             TilesColorTitulo(ApplicationData.Current.LocalSettings.Values("tiles_color_titulo"))
         End If
+
         '------------------------------------------
 
         If ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar") Is Nothing Then
@@ -34,7 +80,7 @@ Module Configuracion
         End If
 
         If ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar") Is Nothing Then
-            TileAnchaDRMMostrar(False)
+            TileAnchaDRMMostrar(True)
         Else
             TileAnchaDRMMostrar(ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar"))
         End If
@@ -99,6 +145,32 @@ Module Configuracion
             TilePequeñaImagenCoordenadas(ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_coordenadaX"), ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_coordenadaY"))
         End If
 
+        If ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_coordenadaX") Is Nothing And ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_coordenadaY") Is Nothing Then
+            TileMedianaImagenCoordenadas(0, 0)
+        Else
+            TileMedianaImagenCoordenadas(ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_coordenadaX"), ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_coordenadaY"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_coordenadaX") Is Nothing And ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_coordenadaY") Is Nothing Then
+            TileAnchaImagenCoordenadas(0, 0)
+        Else
+            TileAnchaImagenCoordenadas(ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_coordenadaX"), ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_coordenadaY"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_coordenadaX") Is Nothing And ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_coordenadaY") Is Nothing Then
+            TileGrandeImagenCoordenadas(0, 0)
+        Else
+            TileGrandeImagenCoordenadas(ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_coordenadaX"), ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_coordenadaY"))
+        End If
+
+        '------------------------------------------
+
+        If ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_zoom") Is Nothing Then
+            TilePequeñaImagenZoom(1)
+        Else
+            TilePequeñaImagenZoom(ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_zoom"))
+        End If
+
     End Sub
 
     Public Sub Resetear()
@@ -106,50 +178,26 @@ Module Configuracion
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = False
+        MostrarTilesTitulo(True)
+        MostrarTilesDRM(True)
+        MostrarTilesColorFondo(True)
 
-        Dim cb1 As CheckBox = pagina.FindName("cbConfigTileAnchaTitulo")
-        cb1.IsChecked = False
+        MostrarTilesImagenBase(True)
+        MostrarTilesImagenEstiramiento(False)
+        MostrarTilesImagenCoordenadas(False)
+        MostrarTilesImagenZoom(False)
 
-        ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = True
+        TileAnchaTitulo(False)
+        TileGrandeTitulo(True)
+        TilesColorTitulo(0)
 
-        Dim cb2 As CheckBox = pagina.FindName("cbConfigTileGrandeTitulo")
-        cb2.IsChecked = True
+        TileMedianaDRMMostrar(False)
+        TileAnchaDRMMostrar(True)
+        TileGrandeDRMMostrar(True)
+        TilesDRMIcono(0)
+        TilesDRMIconoPosicion(1)
 
-        ApplicationData.Current.LocalSettings.Values("tiles_color_titulo") = 0
-
-        Dim cb3 As ComboBox = pagina.FindName("cbConfigTileTituloColor")
-        cb3.SelectedIndex = 0
-
-        ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar") = False
-
-        Dim cb4 As CheckBox = pagina.FindName("cbConfigTileMedianaDRM")
-        cb4.IsChecked = False
-
-        ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar") = False
-
-        Dim cb5 As CheckBox = pagina.FindName("cbConfigTileAnchaDRM")
-        cb5.IsChecked = False
-
-        ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar") = False
-
-        Dim cb6 As CheckBox = pagina.FindName("cbConfigTileGrandeDRM")
-        cb6.IsChecked = True
-
-        ApplicationData.Current.LocalSettings.Values("tiles_drm_icono") = 0
-
-        Dim cb7 As ComboBox = pagina.FindName("cbConfigTilesDRMIcono")
-        cb7.SelectedIndex = 0
-
-        ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion") = 1
-
-        Dim cb8 As ComboBox = pagina.FindName("cbConfigTilesDRMPosicion")
-        cb8.SelectedIndex = 1
-
-        ApplicationData.Current.LocalSettings.Values("tiles_color_fondo") = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(App.Current.Resources("ColorSecundario"))
-
-        Dim picker As ColorPicker = pagina.FindName("colorPickerFondoTiles")
-        picker.Color = App.Current.Resources("ColorSecundario")
+        TilesColorFondo(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(App.Current.Resources("ColorSecundario")))
 
         Dim imagen1 As ImageEx = pagina.FindName("imagenTilePequeñaGenerar")
         Dim imagen2 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
@@ -183,25 +231,157 @@ Module Configuracion
         imagen11.Source = imagen11.Tag
         imagen12.Source = imagen12.Tag
 
-        ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_estiramiento") = 0
+        TilePequeñaImagenEstiramiento(0)
+        TileMedianaImagenEstiramiento(1)
+        TileAnchaImagenEstiramiento(2)
+        TileGrandeImagenEstiramiento(1)
 
-        Dim cb9 As ComboBox = pagina.FindName("cbConfigTilePequeñaImagenEstiramiento")
-        cb9.SelectedIndex = 0
+        TilePequeñaImagenCoordenadas(0, 0)
+        TileMedianaImagenCoordenadas(0, 0)
+        TileAnchaImagenCoordenadas(0, 0)
+        TileGrandeImagenCoordenadas(0, 0)
 
-        ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_estiramiento") = 1
+        TilePequeñaImagenZoom(1)
 
-        Dim cb10 As ComboBox = pagina.FindName("cbConfigTileMedianaImagenEstiramiento")
-        cb10.SelectedIndex = 1
+    End Sub
 
-        ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_estiramiento") = 2
+    Public Sub MostrarTilesTitulo(valor As Boolean)
 
-        Dim cb11 As ComboBox = pagina.FindName("cbConfigTileAnchaImagenEstiramiento")
-        cb11.SelectedIndex = 2
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_estiramiento") = 1
+        ApplicationData.Current.LocalSettings.Values("mostrar_tiles_titulo") = valor
 
-        Dim cb12 As ComboBox = pagina.FindName("cbConfigTileGrandeImagenEstiramiento")
-        cb12.SelectedIndex = 1
+        Dim grid As Grid = pagina.FindName("gridConfigTilesTitulo")
+        Dim icono As FontAwesome.UWP.FontAwesome = pagina.FindName("iconoConfigTilesTitulo")
+
+        If valor = True Then
+            grid.Visibility = Visibility.Visible
+            icono.Icon = FontAwesomeIcon.CaretUp
+        Else
+            grid.Visibility = Visibility.Collapsed
+            icono.Icon = FontAwesomeIcon.CaretDown
+        End If
+
+    End Sub
+
+    Public Sub MostrarTilesDRM(valor As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("mostrar_tiles_drm") = valor
+
+        Dim grid As Grid = pagina.FindName("gridConfigTilesDRM")
+        Dim icono As FontAwesome.UWP.FontAwesome = pagina.FindName("iconoConfigTilesDRM")
+
+        If valor = True Then
+            grid.Visibility = Visibility.Visible
+            icono.Icon = FontAwesomeIcon.CaretUp
+        Else
+            grid.Visibility = Visibility.Collapsed
+            icono.Icon = FontAwesomeIcon.CaretDown
+        End If
+
+    End Sub
+
+    Public Sub MostrarTilesColorFondo(valor As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("mostrar_tiles_colorfondo") = valor
+
+        Dim sp As StackPanel = pagina.FindName("spConfigTilesColorFondo")
+        Dim icono As FontAwesome.UWP.FontAwesome = pagina.FindName("iconoConfigTilesColorFondo")
+
+        If valor = True Then
+            sp.Visibility = Visibility.Visible
+            icono.Icon = FontAwesomeIcon.CaretUp
+        Else
+            sp.Visibility = Visibility.Collapsed
+            icono.Icon = FontAwesomeIcon.CaretDown
+        End If
+
+    End Sub
+
+    Public Sub MostrarTilesImagenBase(valor As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagenbase") = valor
+
+        Dim sp As StackPanel = pagina.FindName("spConfigTilesImagenBase")
+        Dim icono As FontAwesome.UWP.FontAwesome = pagina.FindName("iconoConfigTilesImagenBase")
+
+        If valor = True Then
+            sp.Visibility = Visibility.Visible
+            icono.Icon = FontAwesomeIcon.CaretUp
+        Else
+            sp.Visibility = Visibility.Collapsed
+            icono.Icon = FontAwesomeIcon.CaretDown
+        End If
+
+    End Sub
+
+    Public Sub MostrarTilesImagenEstiramiento(valor As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagenestiramiento") = valor
+
+        Dim sp As StackPanel = pagina.FindName("spConfigTilesImagenEstiramiento")
+        Dim icono As FontAwesome.UWP.FontAwesome = pagina.FindName("iconoConfigTilesImagenEstiramiento")
+
+        If valor = True Then
+            sp.Visibility = Visibility.Visible
+            icono.Icon = FontAwesomeIcon.CaretUp
+        Else
+            sp.Visibility = Visibility.Collapsed
+            icono.Icon = FontAwesomeIcon.CaretDown
+        End If
+
+    End Sub
+
+    Public Sub MostrarTilesImagenCoordenadas(valor As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagencoordenadas") = valor
+
+        Dim sp As StackPanel = pagina.FindName("spConfigTilesImagenCoordenadas")
+        Dim icono As FontAwesome.UWP.FontAwesome = pagina.FindName("iconoConfigTilesImagenCoordenadas")
+
+        If valor = True Then
+            sp.Visibility = Visibility.Visible
+            icono.Icon = FontAwesomeIcon.CaretUp
+        Else
+            sp.Visibility = Visibility.Collapsed
+            icono.Icon = FontAwesomeIcon.CaretDown
+        End If
+
+    End Sub
+
+    Public Sub MostrarTilesImagenZoom(valor As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("mostrar_tiles_imagenzoom") = valor
+
+        Dim sp As StackPanel = pagina.FindName("spConfigTilesImagenZoom")
+        Dim icono As FontAwesome.UWP.FontAwesome = pagina.FindName("iconoConfigTilesImagenZoom")
+
+        If valor = True Then
+            sp.Visibility = Visibility.Visible
+            icono.Icon = FontAwesomeIcon.CaretUp
+        Else
+            sp.Visibility = Visibility.Collapsed
+            icono.Icon = FontAwesomeIcon.CaretDown
+        End If
 
     End Sub
 
@@ -640,6 +820,131 @@ Module Configuracion
 
         Dim sliderY As Slider = pagina.FindName("sliderConfigTilePequeñaImagenCoordenadasY")
         sliderY.Value = y
+
+        Dim imagen1 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
+        Dim imagen2 As ImageEx = pagina.FindName("imagenTilePequeñaGenerar")
+        Dim imagen3 As ImageEx = pagina.FindName("imagenTilePequeñaPersonalizar")
+
+        Dim mover As New TranslateTransform With {
+            .X = x,
+            .Y = y
+        }
+
+        imagen1.RenderTransform = mover
+        imagen2.RenderTransform = mover
+        imagen3.RenderTransform = mover
+
+    End Sub
+
+    Public Sub TileMedianaImagenCoordenadas(x As Integer, y As Integer)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_coordenadaX") = x
+        ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_coordenadaY") = y
+
+        Dim sliderX As Slider = pagina.FindName("sliderConfigTileMedianaImagenCoordenadasX")
+        sliderX.Value = x
+
+        Dim sliderY As Slider = pagina.FindName("sliderConfigTileMedianaImagenCoordenadasY")
+        sliderY.Value = y
+
+        Dim imagen1 As ImageEx = pagina.FindName("imagenTileMedianaEnseñar")
+        Dim imagen2 As ImageEx = pagina.FindName("imagenTileMedianaGenerar")
+        Dim imagen3 As ImageEx = pagina.FindName("imagenTileMedianaPersonalizar")
+
+        Dim mover As New TranslateTransform With {
+            .X = x,
+            .Y = y
+        }
+
+        imagen1.RenderTransform = mover
+        imagen2.RenderTransform = mover
+        imagen3.RenderTransform = mover
+
+    End Sub
+
+    Public Sub TileAnchaImagenCoordenadas(x As Integer, y As Integer)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_coordenadaX") = x
+        ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_coordenadaY") = y
+
+        Dim sliderX As Slider = pagina.FindName("sliderConfigTileAnchaImagenCoordenadasX")
+        sliderX.Value = x
+
+        Dim sliderY As Slider = pagina.FindName("sliderConfigTileAnchaImagenCoordenadasY")
+        sliderY.Value = y
+
+        Dim imagen1 As ImageEx = pagina.FindName("imagenTileAnchaEnseñar")
+        Dim imagen2 As ImageEx = pagina.FindName("imagenTileAnchaGenerar")
+        Dim imagen3 As ImageEx = pagina.FindName("imagenTileAnchaPersonalizar")
+
+        Dim mover As New TranslateTransform With {
+            .X = x,
+            .Y = y
+        }
+
+        imagen1.RenderTransform = mover
+        imagen2.RenderTransform = mover
+        imagen3.RenderTransform = mover
+
+    End Sub
+
+    Public Sub TileGrandeImagenCoordenadas(x As Integer, y As Integer)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_coordenadaX") = x
+        ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_coordenadaY") = y
+
+        Dim sliderX As Slider = pagina.FindName("sliderConfigTileGrandeImagenCoordenadasX")
+        sliderX.Value = x
+
+        Dim sliderY As Slider = pagina.FindName("sliderConfigTileGrandeImagenCoordenadasY")
+        sliderY.Value = y
+
+        Dim imagen1 As ImageEx = pagina.FindName("imagenTileGrandeEnseñar")
+        Dim imagen2 As ImageEx = pagina.FindName("imagenTileGrandeGenerar")
+        Dim imagen3 As ImageEx = pagina.FindName("imagenTileGrandePersonalizar")
+
+        Dim mover As New TranslateTransform With {
+            .X = x,
+            .Y = y
+        }
+
+        imagen1.RenderTransform = mover
+        imagen2.RenderTransform = mover
+        imagen3.RenderTransform = mover
+
+    End Sub
+
+    Public Sub TilePequeñaImagenZoom(valor As Integer)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_zoom") = valor
+
+        Dim slider As Slider = pagina.FindName("sliderConfigTilePequeñaImagenZoom")
+        slider.Value = valor
+
+        Dim imagen1 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
+        Dim imagen2 As ImageEx = pagina.FindName("imagenTilePequeñaGenerar")
+        Dim imagen3 As ImageEx = pagina.FindName("imagenTilePequeñaPersonalizar")
+
+        Dim zoom As New CompositeTransform With {
+            .ScaleX = valor,
+            .ScaleY = valor
+        }
+
+        imagen1.RenderTransform = zoom
+        imagen2.RenderTransform = zoom
+        imagen3.RenderTransform = zoom
 
     End Sub
 

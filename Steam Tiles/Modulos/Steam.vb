@@ -364,7 +364,11 @@ Module Steam
         titulo3.Text = juego.Titulo
         titulo4.Text = juego.Titulo
 
-        juego.ImagenPequeña = Await SacarIcono(juego.ID)
+        Try
+            juego.ImagenPequeña = Await SacarIcono(juego.ID)
+        Catch ex As Exception
+
+        End Try
 
         If Not juego.ImagenPequeña = Nothing Then
             Dim imagenPequeña1 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
@@ -490,6 +494,8 @@ Module Steam
 
                 int2 = temp.IndexOf(ChrW(34))
                 temp2 = temp.Remove(int2, temp.Length - int2)
+
+                temp2 = temp2.Replace("%CDN_HOST_MEDIA_SSL%", "steamcdn-a.akamaihd.net")
 
                 uriIcono = New Uri(temp2.Trim)
             End If

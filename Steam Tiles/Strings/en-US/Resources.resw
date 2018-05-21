@@ -235,10 +235,10 @@
     <value>Reset</value>
   </data>
   <data name="ConfigTilesColorBackground.Text" xml:space="preserve">
-    <value>Background Color</value>
+    <value>Tile Background Color</value>
   </data>
   <data name="ConfigTilesTitle.Text" xml:space="preserve">
-    <value>Title</value>
+    <value>Tile Title</value>
   </data>
   <data name="Color.Text" xml:space="preserve">
     <value>Color</value>
@@ -250,7 +250,7 @@
     <value>Image Coordinates</value>
   </data>
   <data name="ConfigTilesDRM.Text" xml:space="preserve">
-    <value>DRM</value>
+    <value>Tile DRM</value>
   </data>
   <data name="Icon.Text" xml:space="preserve">
     <value>Icon</value>
@@ -260,5 +260,8 @@
   </data>
   <data name="Search.Text" xml:space="preserve">
     <value>Search</value>
+  </data>
+  <data name="ConfigTileImageZoom.Text" xml:space="preserve">
+    <value>Image Zoom</value>
   </data>
 </root>
