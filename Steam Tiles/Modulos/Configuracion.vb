@@ -9,6 +9,32 @@ Module Configuracion
 
     Public Sub Iniciar()
 
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tile_pequeña") Is Nothing Then
+            MostrarTilePequeña(True)
+        Else
+            MostrarTilePequeña(ApplicationData.Current.LocalSettings.Values("mostrar_tile_pequeña"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tile_mediana") Is Nothing Then
+            MostrarTileMediana(True)
+        Else
+            MostrarTileMediana(ApplicationData.Current.LocalSettings.Values("mostrar_tile_mediana"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tile_ancha") Is Nothing Then
+            MostrarTileAncha(True)
+        Else
+            MostrarTileAncha(ApplicationData.Current.LocalSettings.Values("mostrar_tile_ancha"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("mostrar_tile_grande") Is Nothing Then
+            MostrarTileGrande(True)
+        Else
+            MostrarTileGrande(ApplicationData.Current.LocalSettings.Values("mostrar_tile_grande"))
+        End If
+
+        '------------------------------------------
+
         If ApplicationData.Current.LocalSettings.Values("mostrar_tiles_titulo") Is Nothing Then
             MostrarTilesTitulo(True)
         Else
@@ -166,9 +192,27 @@ Module Configuracion
         '------------------------------------------
 
         If ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_zoom") Is Nothing Then
-            TilePequeñaImagenZoom(1)
+            TilePequeñaImagenZoom(1, 0, 0)
         Else
-            TilePequeñaImagenZoom(ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_zoom"))
+            TilePequeñaImagenZoom(ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_zoom"), ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_coordenadaX"), ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_coordenadaY"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_zoom") Is Nothing Then
+            TileMedianaImagenZoom(1, 0, 0)
+        Else
+            TileMedianaImagenZoom(ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_zoom"), ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_coordenadaX"), ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_coordenadaY"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_zoom") Is Nothing Then
+            TileAnchaImagenZoom(1, 0, 0)
+        Else
+            TileAnchaImagenZoom(ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_zoom"), ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_coordenadaX"), ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_coordenadaY"))
+        End If
+
+        If ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_zoom") Is Nothing Then
+            TileGrandeImagenZoom(1, 0, 0)
+        Else
+            TileGrandeImagenZoom(ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_zoom"), ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_coordenadaX"), ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_coordenadaY"))
         End If
 
     End Sub
@@ -177,6 +221,11 @@ Module Configuracion
 
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
+
+        MostrarTilePequeña(True)
+        MostrarTileMediana(True)
+        MostrarTileAncha(True)
+        MostrarTileGrande(True)
 
         MostrarTilesTitulo(True)
         MostrarTilesDRM(True)
@@ -241,7 +290,90 @@ Module Configuracion
         TileAnchaImagenCoordenadas(0, 0)
         TileGrandeImagenCoordenadas(0, 0)
 
-        TilePequeñaImagenZoom(1)
+        TilePequeñaImagenZoom(1, 0, 0)
+        TileMedianaImagenZoom(1, 0, 0)
+        TileAnchaImagenZoom(1, 0, 0)
+        TileGrandeImagenZoom(1, 0, 0)
+
+    End Sub
+
+    Public Sub MostrarTilePequeña(valor As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("mostrar_tile_pequeña") = valor
+
+        Dim cb As CheckBox = pagina.FindName("cbConfigTilePequeña")
+        cb.IsChecked = valor
+
+        Dim sp As StackPanel = pagina.FindName("spConfigTilePequeña")
+
+        If valor = True Then
+            sp.Visibility = Visibility.Visible
+        Else
+            sp.Visibility = Visibility.Collapsed
+        End If
+
+    End Sub
+
+    Public Sub MostrarTileMediana(valor As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("mostrar_tile_mediana") = valor
+
+        Dim cb As CheckBox = pagina.FindName("cbConfigTileMediana")
+        cb.IsChecked = valor
+
+        Dim sp As StackPanel = pagina.FindName("spConfigTileMediana")
+
+        If valor = True Then
+            sp.Visibility = Visibility.Visible
+        Else
+            sp.Visibility = Visibility.Collapsed
+        End If
+
+    End Sub
+
+    Public Sub MostrarTileAncha(valor As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("mostrar_tile_ancha") = valor
+
+        Dim cb As CheckBox = pagina.FindName("cbConfigTileAncha")
+        cb.IsChecked = valor
+
+        Dim sp As StackPanel = pagina.FindName("spConfigTileAncha")
+
+        If valor = True Then
+            sp.Visibility = Visibility.Visible
+        Else
+            sp.Visibility = Visibility.Collapsed
+        End If
+
+    End Sub
+
+    Public Sub MostrarTileGrande(valor As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("mostrar_tile_grande") = valor
+
+        Dim cb As CheckBox = pagina.FindName("cbConfigTileGrande")
+        cb.IsChecked = valor
+
+        Dim sp As StackPanel = pagina.FindName("spConfigTileGrande")
+
+        If valor = True Then
+            sp.Visibility = Visibility.Visible
+        Else
+            sp.Visibility = Visibility.Collapsed
+        End If
 
     End Sub
 
@@ -923,7 +1055,7 @@ Module Configuracion
 
     End Sub
 
-    Public Sub TilePequeñaImagenZoom(valor As Integer)
+    Public Sub TilePequeñaImagenZoom(valor As Integer, x As Integer, y As Integer)
 
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
@@ -939,7 +1071,90 @@ Module Configuracion
 
         Dim zoom As New CompositeTransform With {
             .ScaleX = valor,
-            .ScaleY = valor
+            .ScaleY = valor,
+            .TranslateX = x,
+            .TranslateY = y
+        }
+
+        imagen1.RenderTransform = zoom
+        imagen2.RenderTransform = zoom
+        imagen3.RenderTransform = zoom
+
+    End Sub
+
+    Public Sub TileMedianaImagenZoom(valor As Integer, x As Integer, y As Integer)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_zoom") = valor
+
+        Dim slider As Slider = pagina.FindName("sliderConfigTileMedianaImagenZoom")
+        slider.Value = valor
+
+        Dim imagen1 As ImageEx = pagina.FindName("imagenTileMedianaEnseñar")
+        Dim imagen2 As ImageEx = pagina.FindName("imagenTileMedianaGenerar")
+        Dim imagen3 As ImageEx = pagina.FindName("imagenTileMedianaPersonalizar")
+
+        Dim zoom As New CompositeTransform With {
+            .ScaleX = valor,
+            .ScaleY = valor,
+            .TranslateX = x,
+            .TranslateY = y
+        }
+
+        imagen1.RenderTransform = zoom
+        imagen2.RenderTransform = zoom
+        imagen3.RenderTransform = zoom
+
+    End Sub
+
+    Public Sub TileAnchaImagenZoom(valor As Integer, x As Integer, y As Integer)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_zoom") = valor
+
+        Dim slider As Slider = pagina.FindName("sliderConfigTileAnchaImagenZoom")
+        slider.Value = valor
+
+        Dim imagen1 As ImageEx = pagina.FindName("imagenTileAnchaEnseñar")
+        Dim imagen2 As ImageEx = pagina.FindName("imagenTileAnchaGenerar")
+        Dim imagen3 As ImageEx = pagina.FindName("imagenTileAnchaPersonalizar")
+
+        Dim zoom As New CompositeTransform With {
+            .ScaleX = valor,
+            .ScaleY = valor,
+            .TranslateX = x,
+            .TranslateY = y
+        }
+
+        imagen1.RenderTransform = zoom
+        imagen2.RenderTransform = zoom
+        imagen3.RenderTransform = zoom
+
+    End Sub
+
+    Public Sub TileGrandeImagenZoom(valor As Integer, x As Integer, y As Integer)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_zoom") = valor
+
+        Dim slider As Slider = pagina.FindName("sliderConfigTileGrandeImagenZoom")
+        slider.Value = valor
+
+        Dim imagen1 As ImageEx = pagina.FindName("imagenTileGrandeEnseñar")
+        Dim imagen2 As ImageEx = pagina.FindName("imagenTileGrandeGenerar")
+        Dim imagen3 As ImageEx = pagina.FindName("imagenTileGrandePersonalizar")
+
+        Dim zoom As New CompositeTransform With {
+            .ScaleX = valor,
+            .ScaleY = valor,
+            .TranslateX = x,
+            .TranslateY = y
         }
 
         imagen1.RenderTransform = zoom

@@ -251,7 +251,7 @@ Module Steam
             h += 1
         End While
 
-        Dim panelAvisoNoJuegos As DropShadowPanel = pagina.FindName("panelAvisoNoJuegos")
+        Dim panelAvisoNoJuegos As Grid = pagina.FindName("panelAvisoNoJuegos")
         Dim gridSeleccionar As Grid = pagina.FindName("gridSeleccionarJuego")
 
         If listaFinal.Count > 0 Then

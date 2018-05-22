@@ -170,6 +170,54 @@ Public NotInheritable Class MainPage
 
     End Sub
 
+    Private Sub CbConfigTilePequeña_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTilePequeña.Checked
+
+        Configuracion.MostrarTilePequeña(cbConfigTilePequeña.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTilePequeña_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTilePequeña.Unchecked
+
+        Configuracion.MostrarTilePequeña(cbConfigTilePequeña.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileMediana_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMediana.Checked
+
+        Configuracion.MostrarTileMediana(cbConfigTileMediana.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileMediana_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMediana.Unchecked
+
+        Configuracion.MostrarTileMediana(cbConfigTileMediana.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileAncha_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAncha.Checked
+
+        Configuracion.MostrarTileAncha(cbConfigTileAncha.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileAncha_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAncha.Unchecked
+
+        Configuracion.MostrarTileAncha(cbConfigTileAncha.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileGrande_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrande.Checked
+
+        Configuracion.MostrarTileGrande(cbConfigTileGrande.IsChecked)
+
+    End Sub
+
+    Private Sub CbConfigTileGrande_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrande.Unchecked
+
+        Configuracion.MostrarTileGrande(cbConfigTileGrande.IsChecked)
+
+    End Sub
+
     Private Sub BotonConfigTilesTitulo_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesTitulo.Click
 
         If gridConfigTilesTitulo.Visibility = Visibility.Visible Then
@@ -434,7 +482,41 @@ Public NotInheritable Class MainPage
 
     Private Sub SliderConfigTilePequeñaImagenZoom_SelectionChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTilePequeñaImagenZoom.ValueChanged
 
-        Configuracion.TilePequeñaImagenZoom(sliderConfigTilePequeñaImagenZoom.Value)
+        If sliderConfigTilePequeñaImagenZoom.Value = 0 Then
+            sliderConfigTilePequeñaImagenZoom.Value = 1
+        End If
+
+        Configuracion.TilePequeñaImagenZoom(sliderConfigTilePequeñaImagenZoom.Value, sliderConfigTilePequeñaImagenCoordenadasX.Value, sliderConfigTilePequeñaImagenCoordenadasY.Value)
+
+    End Sub
+
+    Private Sub SliderConfigTileMedianaImagenZoom_SelectionChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTileMedianaImagenZoom.ValueChanged
+
+        If sliderConfigTileMedianaImagenZoom.Value = 0 Then
+            sliderConfigTileMedianaImagenZoom.Value = 1
+        End If
+
+        Configuracion.TileMedianaImagenZoom(sliderConfigTileMedianaImagenZoom.Value, sliderConfigTileMedianaImagenCoordenadasX.Value, sliderConfigTileMedianaImagenCoordenadasY.Value)
+
+    End Sub
+
+    Private Sub SliderConfigTileAnchaImagenZoom_SelectionChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTileAnchaImagenZoom.ValueChanged
+
+        If sliderConfigTileAnchaImagenZoom.Value = 0 Then
+            sliderConfigTileAnchaImagenZoom.Value = 1
+        End If
+
+        Configuracion.TileAnchaImagenZoom(sliderConfigTileAnchaImagenZoom.Value, sliderConfigTileAnchaImagenCoordenadasX.Value, sliderConfigTileAnchaImagenCoordenadasY.Value)
+
+    End Sub
+
+    Private Sub SliderConfigTileGrandeImagenZoom_SelectionChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTileGrandeImagenZoom.ValueChanged
+
+        If sliderConfigTileGrandeImagenZoom.Value = 0 Then
+            sliderConfigTileGrandeImagenZoom.Value = 1
+        End If
+
+        Configuracion.TileGrandeImagenZoom(sliderConfigTileGrandeImagenZoom.Value, sliderConfigTileGrandeImagenCoordenadasX.Value, sliderConfigTileGrandeImagenCoordenadasY.Value)
 
     End Sub
 

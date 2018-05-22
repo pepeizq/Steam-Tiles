@@ -264,4 +264,7 @@
   <data name="ConfigTileImageZoom.Text" xml:space="preserve">
     <value>Imagen Zoom</value>
   </data>
+  <data name="Preview.Text" xml:space="preserve">
+    <value>Previsualizar</value>
+  </data>
 </root>
