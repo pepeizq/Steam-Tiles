@@ -211,7 +211,7 @@
     <value>Wide Tile</value>
   </data>
   <data name="ConfigTileImageStretch.Text" xml:space="preserve">
-    <value>Image Stretch</value>
+    <value>Stretch</value>
   </data>
   <data name="ConfigTileImageStretchNone.Content" xml:space="preserve">
     <value>None</value>
@@ -234,23 +234,17 @@
   <data name="Reset.Text" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="ConfigTilesColorBackground.Text" xml:space="preserve">
-    <value>Tile Background Color</value>
+  <data name="ConfigTilesColor.Text" xml:space="preserve">
+    <value>Tiles Color</value>
   </data>
   <data name="ConfigTilesTitle.Text" xml:space="preserve">
-    <value>Tile Title</value>
+    <value>Tiles Title</value>
   </data>
-  <data name="Color.Text" xml:space="preserve">
-    <value>Color</value>
-  </data>
-  <data name="ConfigTileImageBase.Text" xml:space="preserve">
-    <value>Image Base</value>
-  </data>
-  <data name="ConfigTileImageCoordinates.Text" xml:space="preserve">
-    <value>Image Coordinates</value>
+  <data name="ConfigTileImageAxisX.Text" xml:space="preserve">
+    <value>Axis X</value>
   </data>
   <data name="ConfigTilesDRM.Text" xml:space="preserve">
-    <value>Tile DRM</value>
+    <value>Tiles DRM</value>
   </data>
   <data name="Icon.Text" xml:space="preserve">
     <value>Icon</value>
@@ -258,13 +252,31 @@
   <data name="Position.Text" xml:space="preserve">
     <value>Position</value>
   </data>
-  <data name="Search.Text" xml:space="preserve">
-    <value>Search</value>
-  </data>
   <data name="ConfigTileImageZoom.Text" xml:space="preserve">
-    <value>Image Zoom</value>
+    <value>Zoom</value>
   </data>
   <data name="Preview.Text" xml:space="preserve">
     <value>Preview</value>
+  </data>
+  <data name="ConfigTileImageMargin.Text" xml:space="preserve">
+    <value>Margin</value>
+  </data>
+  <data name="ChangeImage.Text" xml:space="preserve">
+    <value>Change Image</value>
+  </data>
+  <data name="ConfigTileImageAxisY.Text" xml:space="preserve">
+    <value>Asis Y</value>
+  </data>
+  <data name="ColorBackground.Text" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="ColorTitle.Text" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="ConfigTileShowDRM.Text" xml:space="preserve">
+    <value>Show DRM</value>
+  </data>
+  <data name="ConfigTileShowTitle.Text" xml:space="preserve">
+    <value>Show Title</value>
   </data>
 </root>

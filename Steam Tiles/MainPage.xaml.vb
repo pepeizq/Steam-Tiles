@@ -218,13 +218,27 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub BotonConfigTilesTitulo_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesTitulo.Click
+    Private Sub BotonConfigTilePequeñaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilePequeñaBuscarImagen.Click
 
-        If gridConfigTilesTitulo.Visibility = Visibility.Visible Then
-            Configuracion.MostrarTilesTitulo(False)
-        Else
-            Configuracion.MostrarTilesTitulo(True)
-        End If
+        Configuracion.TilesCambioImagen(imagenTilePequeñaGenerar, imagenTilePequeñaEnseñar, imagenTilePequeñaPersonalizar)
+
+    End Sub
+
+    Private Sub BotonConfigTileMedianaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileMedianaBuscarImagen.Click
+
+        Configuracion.TilesCambioImagen(imagenTileMedianaGenerar, imagenTileMedianaEnseñar, imagenTileMedianaPersonalizar)
+
+    End Sub
+
+    Private Sub BotonConfigTileAnchaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileAnchaBuscarImagen.Click
+
+        Configuracion.TilesCambioImagen(imagenTileAnchaGenerar, imagenTileAnchaEnseñar, imagenTileAnchaPersonalizar)
+
+    End Sub
+
+    Private Sub BotonConfigTileGrandeBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileGrandeBuscarImagen.Click
+
+        Configuracion.TilesCambioImagen(imagenTileGrandeGenerar, imagenTileGrandeEnseñar, imagenTileGrandePersonalizar)
 
     End Sub
 
@@ -328,12 +342,12 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub BotonConfigTilesColorFondo_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesColorFondo.Click
+    Private Sub BotonConfigTilesColor_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesColor.Click
 
-        If spConfigTilesColorFondo.Visibility = Visibility.Visible Then
-            Configuracion.MostrarTilesColorFondo(False)
+        If spConfigTilesColor.Visibility = Visibility.Visible Then
+            Configuracion.MostrarTilesColor(False)
         Else
-            Configuracion.MostrarTilesColorFondo(True)
+            Configuracion.MostrarTilesColor(True)
         End If
 
     End Sub
@@ -341,50 +355,6 @@ Public NotInheritable Class MainPage
     Private Sub ColorPickerFondoTiles_ColorChanged(sender As ColorPicker, args As ColorChangedEventArgs) Handles colorPickerFondoTiles.ColorChanged
 
         Configuracion.TilesColorFondo(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(colorPickerFondoTiles.Color))
-
-    End Sub
-
-    Private Sub BotonConfigTilesImagenBase_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesImagenBase.Click
-
-        If spConfigTilesImagenBase.Visibility = Visibility.Visible Then
-            Configuracion.MostrarTilesImagenBase(False)
-        Else
-            Configuracion.MostrarTilesImagenBase(True)
-        End If
-
-    End Sub
-
-    Private Sub BotonConfigTilePequeñaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilePequeñaBuscarImagen.Click
-
-        Configuracion.TilesCambioImagen(imagenTilePequeñaGenerar, imagenTilePequeñaEnseñar, imagenTilePequeñaPersonalizar)
-
-    End Sub
-
-    Private Sub BotonConfigTileMedianaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileMedianaBuscarImagen.Click
-
-        Configuracion.TilesCambioImagen(imagenTileMedianaGenerar, imagenTileMedianaEnseñar, imagenTileMedianaPersonalizar)
-
-    End Sub
-
-    Private Sub BotonConfigTileAnchaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileAnchaBuscarImagen.Click
-
-        Configuracion.TilesCambioImagen(imagenTileAnchaGenerar, imagenTileAnchaEnseñar, imagenTileAnchaPersonalizar)
-
-    End Sub
-
-    Private Sub BotonConfigTileGrandeBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileGrandeBuscarImagen.Click
-
-        Configuracion.TilesCambioImagen(imagenTileGrandeGenerar, imagenTileGrandeEnseñar, imagenTileGrandePersonalizar)
-
-    End Sub
-
-    Private Sub BotonConfigTilesImagenEstiramiento_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesImagenEstiramiento.Click
-
-        If spConfigTilesImagenEstiramiento.Visibility = Visibility.Visible Then
-            Configuracion.MostrarTilesImagenEstiramiento(False)
-        Else
-            Configuracion.MostrarTilesImagenEstiramiento(True)
-        End If
 
     End Sub
 
@@ -412,13 +382,27 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub BotonConfigTilesImagenCoordenadas_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesImagenCoordenadas.Click
+    Private Sub SliderConfigTilePequeñaImagenMargen_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTilePequeñaImagenMargen.ValueChanged
 
-        If spConfigTilesImagenCoordenadas.Visibility = Visibility.Visible Then
-            Configuracion.MostrarTilesImagenCoordenadas(False)
-        Else
-            Configuracion.MostrarTilesImagenCoordenadas(True)
-        End If
+        Configuracion.TilePequeñaImagenMargen(sliderConfigTilePequeñaImagenMargen.Value)
+
+    End Sub
+
+    Private Sub SliderConfigTileMedianaImagenMargen_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTileMedianaImagenMargen.ValueChanged
+
+        Configuracion.TileMedianaImagenMargen(sliderConfigTileMedianaImagenMargen.Value)
+
+    End Sub
+
+    Private Sub SliderConfigTileAnchaImagenMargen_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTileAnchaImagenMargen.ValueChanged
+
+        Configuracion.TileAnchaImagenMargen(sliderConfigTileAnchaImagenMargen.Value)
+
+    End Sub
+
+    Private Sub SliderConfigTileGrandeImagenMargen_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTileGrandeImagenMargen.ValueChanged
+
+        Configuracion.TileGrandeImagenMargen(sliderConfigTileGrandeImagenMargen.Value)
 
     End Sub
 
@@ -467,16 +451,6 @@ Public NotInheritable Class MainPage
     Private Sub SliderConfigTileGrandeImagenCoordenadasY_ValueChanged(sender As Object, e As RangeBaseValueChangedEventArgs) Handles sliderConfigTileGrandeImagenCoordenadasY.ValueChanged
 
         Configuracion.TileGrandeImagenCoordenadas(sliderConfigTileGrandeImagenCoordenadasX.Value, sliderConfigTileGrandeImagenCoordenadasY.Value)
-
-    End Sub
-
-    Private Sub BotonConfigTilesImagenZoom_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesImagenZoom.Click
-
-        If spConfigTilesImagenZoom.Visibility = Visibility.Visible Then
-            Configuracion.MostrarTilesImagenZoom(False)
-        Else
-            Configuracion.MostrarTilesImagenZoom(True)
-        End If
 
     End Sub
 
