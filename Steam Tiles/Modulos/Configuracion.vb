@@ -28,7 +28,7 @@ Module Configuracion
         End If
 
         If ApplicationData.Current.LocalSettings.Values("mostrar_tile_grande") Is Nothing Then
-            MostrarTileGrande(True)
+            MostrarTileGrande(False)
         Else
             MostrarTileGrande(ApplicationData.Current.LocalSettings.Values("mostrar_tile_grande"))
         End If
@@ -225,7 +225,7 @@ Module Configuracion
         MostrarTilePequeña(True)
         MostrarTileMediana(True)
         MostrarTileAncha(True)
-        MostrarTileGrande(True)
+        MostrarTileGrande(False)
 
         MostrarTilesTitulo(True)
         MostrarTilesDRM(True)
