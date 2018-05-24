@@ -1,9 +1,4 @@
 ﻿Imports FontAwesome.UWP
-Imports Microsoft.Toolkit.Uwp.UI.Controls
-Imports Windows.Storage
-Imports Windows.Storage.Pickers
-Imports Windows.Storage.Streams
-Imports Windows.System
 Imports Windows.UI
 Imports Windows.UI.Core
 

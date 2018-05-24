@@ -1,5 +1,4 @@
 ﻿Imports Microsoft.Toolkit.Uwp.Notifications
-Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.Graphics.Imaging
 Imports Windows.Storage
 Imports Windows.UI.Notifications
