@@ -171,9 +171,6 @@
   <data name="MoreThings_SourceCode" xml:space="preserve">
     <value>Código Fuente</value>
   </data>
-  <data name="TileIcon.Text" xml:space="preserve">
-    <value>Añadir icono</value>
-  </data>
   <data name="Tiles" xml:space="preserve">
     <value>Tiles</value>
   </data>
@@ -225,9 +222,6 @@
   <data name="ConfigTileImageStretchUniformFill.Content" xml:space="preserve">
     <value>Uniforme y Rellenar</value>
   </data>
-  <data name="Customization" xml:space="preserve">
-    <value>Personalización</value>
-  </data>
   <data name="Back.Text" xml:space="preserve">
     <value>Volver</value>
   </data>
@@ -236,9 +230,6 @@
   </data>
   <data name="ConfigTilesColor.Text" xml:space="preserve">
     <value>Tiles Color</value>
-  </data>
-  <data name="ConfigTilesTitle.Text" xml:space="preserve">
-    <value>Tiles Titulo</value>
   </data>
   <data name="ConfigTileImageAxisX.Text" xml:space="preserve">
     <value>Eje X</value>
