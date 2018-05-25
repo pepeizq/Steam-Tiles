@@ -234,7 +234,7 @@
 
                                     <controls:ImageEx x:Name="imagenTileAnchaEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
                                     <controls:ImageEx x:Name="imagenDRMTileAnchaEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Height="16" Width="16"/>
-                                    <TextBlock x:Name="tituloTileAnchaEnseñar" Grid.Row="0" Grid.Column="0" Text="Euro Truck Simulator 2" FontSize="20" FontWeight="Light" Padding="10,5" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                    <TextBlock x:Name="tituloTileAnchaEnseñar" Grid.Row="0" Grid.Column="0" FontSize="20" FontWeight="Light" Padding="10,5" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                                 </Grid>
 
                                 <Grid Margin="10,0"/>
@@ -254,7 +254,7 @@
 
                                     <controls:ImageEx x:Name="imagenTileGrandeEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     <controls:ImageEx x:Name="imagenDRMTileGrandeEnseñar" Grid.Row="0" Grid.Column="0" IsCacheEnabled="True" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10" Height="16" Width="16"/>
-                                    <TextBlock x:Name="tituloTileGrandeEnseñar" Grid.Row="0" Grid.Column="0" Text="Euro Truck Simulator 2" FontSize="20" FontWeight="Light" Padding="10,5" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                                    <TextBlock x:Name="tituloTileGrandeEnseñar" Grid.Row="0" Grid.Column="0" FontSize="20" FontWeight="Light" Padding="10,5" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
                                 </Grid>
                             </StackPanel>
                         </StackPanel>

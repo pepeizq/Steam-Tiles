@@ -256,7 +256,7 @@
     <value>Change Image</value>
   </data>
   <data name="ConfigTileImageAxisY.Text" xml:space="preserve">
-    <value>Asis Y</value>
+    <value>Axis Y</value>
   </data>
   <data name="ColorBackground.Text" xml:space="preserve">
     <value>Background</value>
