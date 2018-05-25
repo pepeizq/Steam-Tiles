@@ -237,7 +237,7 @@ Module Steam
                                         Dim imagenAncha As New Uri("http://cdn.edgecast.steamstatic.com/steam/apps/" + id + "/header.jpg", UriKind.RelativeOrAbsolute)
                                         Dim imagenGrande As New Uri("http://cdn.akamai.steamstatic.com/steam/apps/" + id + "/capsule_616x353.jpg", UriKind.RelativeOrAbsolute)
 
-                                        Dim juego As New Tile(titulo, id, New Uri("steam://rungameid/" + id), Nothing, imagenAncha, imagenAncha, imagenGrande)
+                                        Dim juego As New Tile(titulo, id, "steam://rungameid/" + id, Nothing, imagenAncha, imagenAncha, imagenGrande)
 
                                         listaFinal.Add(juego)
                                     End If

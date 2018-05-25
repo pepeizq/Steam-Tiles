@@ -28,7 +28,7 @@ Module Tiles
 
         '-----------------------
 
-        Dim nuevaTile As New SecondaryTile(tile.ID, tile.Titulo, tile.Enlace.ToString, New Uri("ms-appdata:///local/" + tile.ID + "ancha.png", UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
+        Dim nuevaTile As New SecondaryTile(tile.ID, tile.Titulo, tile.Enlace, New Uri("ms-appdata:///local/" + tile.ID + "ancha.png", UriKind.RelativeOrAbsolute), TileSize.Wide310x150)
 
         nuevaTile.VisualElements.Square71x71Logo = New Uri("ms-appdata:///local/" + tile.ID + "pequena.png", UriKind.RelativeOrAbsolute)
         nuevaTile.VisualElements.Square150x150Logo = New Uri("ms-appdata:///local/" + tile.ID + "mediana.png", UriKind.RelativeOrAbsolute)
