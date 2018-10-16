@@ -29,17 +29,20 @@ Module MasCosas
         barra.ButtonInactiveBackgroundColor = Colors.Transparent
 
         Dim iconoMasCosas As New FontAwesome.UWP.FontAwesome With {
-            .Icon = FontAwesomeIcon.Cube
+            .Icon = FontAwesomeIcon.Cube,
+            .Foreground = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
         }
 
         Dim tbMasCosas As New TextBlock With {
             .Text = recursos.GetString("MoreThings"),
-            .Foreground = New SolidColorBrush(Colors.White)
+            .Foreground = New SolidColorBrush(App.Current.Resources("ColorPrimario")),
+            .Margin = New Thickness(-5, 0, 10, 0)
         }
 
         Dim itemMasCosas As NavigationViewItem = pagina.FindName("itemMasCosas")
         itemMasCosas.Icon = iconoMasCosas
         itemMasCosas.Content = tbMasCosas
+        itemMasCosas.Margin = New Thickness(0, 0, 4, 0)
 
         Dim menu As MenuFlyout = pagina.FindName("botonMasCosasMenu")
         menu.Placement = FlyoutPlacementMode.Top

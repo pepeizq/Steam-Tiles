@@ -8,11 +8,12 @@ Module NavigationViewItems
 
         Dim tb As New TextBlock With {
             .Text = titulo,
-            .Foreground = New SolidColorBrush(Colors.White)
+            .Foreground = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
         }
 
         Dim icono As New FontAwesome.UWP.FontAwesome With {
-            .Icon = simbolo
+            .Icon = simbolo,
+            .Foreground = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
         }
 
         Dim item As New NavigationViewItem With {

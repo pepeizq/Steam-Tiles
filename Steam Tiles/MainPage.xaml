@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <Grid x:Name="gridTitulo" Grid.Row="0" Background="{StaticResource GridTituloBackground}">
-            <TextBlock x:Name="tbTitulo" Margin="50,0,0,0" FontSize="13" Foreground="White" VerticalAlignment="Center"/>
+            <TextBlock x:Name="tbTitulo" Margin="15,0,0,0" FontSize="13" Foreground="White" VerticalAlignment="Center"/>
         </Grid>
 
         <Grid x:Name="gridTilePequeñaGenerar" Background="{StaticResource BrushSecundario}" Width="71" Height="71" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -86,7 +86,7 @@
         </Grid>
 
         <NavigationView x:Name="nvPrincipal" Grid.Row="1" Loaded="Nv_Loaded" ItemInvoked="Nv_ItemInvoked"
-                        OpenPaneLength="200" AlwaysShowHeader="False" IsSettingsVisible="False">
+                        AlwaysShowHeader="False" IsSettingsVisible="False" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed">
             <NavigationView.PaneFooter>
                 <StackPanel Orientation="Vertical">
                     <NavigationViewItem x:Name="itemMasCosas" Tapped="Nv_ItemFlyout" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
@@ -124,7 +124,7 @@
                             </TransitionCollection>
                         </Grid.ChildrenTransitions>
 
-                        <Grid Padding="10" Background="IndianRed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
+                        <Grid Padding="10" Background="IndianRed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">
                             <TextBlock x:Uid="SelectGame" TextWrapping="Wrap" Foreground="White"/>
                         </Grid>
                     </Grid>
