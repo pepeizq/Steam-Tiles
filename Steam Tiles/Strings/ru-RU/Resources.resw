@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddTile.Text" xml:space="preserve">
+    <value>Закрепить плитку</value>
+  </data>
+  <data name="Config" xml:space="preserve">
+    <value>Конфигурация</value>
+  </data>
+  <data name="ErrorSteam1" xml:space="preserve">
+    <value>Игры не найдены. Помните, выберите папку steamapps внутри Steam.</value>
+  </data>
+  <data name="GamesDetected" xml:space="preserve">
+    <value>Игры найдены</value>
+  </data>
+  <data name="NoFoldersDetected" xml:space="preserve">
+    <value>Ничего</value>
+  </data>
+  <data name="NoGamesDetected.Text" xml:space="preserve">
+    <value>Игры не найдены, перейдите в раздел Конфигурация</value>
+  </data>
+  <data name="SelectGame.Text" xml:space="preserve">
+    <value>Выберите игру</value>
+  </data>
+  <data name="Tiles" xml:space="preserve">
+    <value>Плитки</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Изменить папку</value>
+  </data>
+  <data name="MoreThings_Contact" xml:space="preserve">
+    <value>Контакт</value>
+  </data>
+  <data name="MoreThings_HelpTranslate" xml:space="preserve">
+    <value>Помочь в переводе</value>
+  </data>
+  <data name="MoreThings_MoreApps" xml:space="preserve">
+    <value>Больше приложений</value>
+  </data>
+  <data name="MoreThings_ReportBug" xml:space="preserve">
+    <value>Сообщить об ошибке</value>
+  </data>
+  <data name="MoreThings_SourceCode" xml:space="preserve">
+    <value>Исходный код</value>
+  </data>
+  <data name="MoreThings_VoteApp" xml:space="preserve">
+    <value>Проголосовать за приложение</value>
+  </data>
+  <data name="MoreThings" xml:space="preserve">
+    <value>Больше вещей</value>
+  </data>
+  <data name="GameSelectedTiles.Text" xml:space="preserve">
+    <value>Изображения для включения в плитку этой игры</value>
+  </data>
+  <data name="MoreThings_Back" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="ConfigAddFolder.Text" xml:space="preserve">
+    <value>Добавить папку</value>
+  </data>
+  <data name="ConfigDeleteFolders.Text" xml:space="preserve">
+    <value>Удалить папки</value>
+  </data>
+  <data name="ConfigFolderMessage.Text" xml:space="preserve">
+    <value>Добавьте свою папку Steam, пример: C:\Steam\steamapps</value>
+  </data>
+  <data name="ConfigFoldersAdded.Text" xml:space="preserve">
+    <value>Добавленные папки:</value>
+  </data>
+  <data name="ConfigFoldersWarning.Text" xml:space="preserve">
+    <value>Совет. Если вы установили игры на разных жестких дисках, добавьте папку steamapps из каждого жесткого диска.</value>
+  </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value>Закрепляйте плитки своих игр из Steam в меню Пуск Windows 10.</value>
+  </data>
+  <data name="StoreTags" xml:space="preserve">
+    <value>Steam;Меню Пуск;Плитка;Плитки;Игры;Windows</value>
+  </data>
+  <data name="TilesPersonalization.Text" xml:space="preserve">
+    <value>Настроить плитки</value>
+  </data>
+  <data name="TileLarge.Text" xml:space="preserve">
+    <value>Большая плитка</value>
+  </data>
+  <data name="TileMedium.Text" xml:space="preserve">
+    <value>Средняя плитка</value>
+  </data>
+  <data name="TileSmall.Text" xml:space="preserve">
+    <value>Маленькая плитка</value>
+  </data>
+  <data name="TileWide.Text" xml:space="preserve">
+    <value>Широкая плитка</value>
+  </data>
+  <data name="ConfigTileImageStretch.Text" xml:space="preserve">
+    <value>Растянуть</value>
+  </data>
+  <data name="ConfigTileImageStretchNone.Content" xml:space="preserve">
+    <value>Ничего</value>
+  </data>
+  <data name="ConfigTileImageStretchUniform.Content" xml:space="preserve">
+    <value>Равномерно</value>
+  </data>
+  <data name="ConfigTileImageStretchFill.Content" xml:space="preserve">
+    <value>Заполнить</value>
+  </data>
+  <data name="ConfigTileImageStretchUniformFill.Content" xml:space="preserve">
+    <value>Равномерно и заполнить</value>
+  </data>
+  <data name="Back.Text" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="Reset.Text" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="ConfigTilesColor.Text" xml:space="preserve">
+    <value>Цвет плиток</value>
+  </data>
+  <data name="ConfigTileImageAxisX.Text" xml:space="preserve">
+    <value>Ось X</value>
+  </data>
+  <data name="ConfigTilesDRM.Text" xml:space="preserve">
+    <value>DRM плитки</value>
+  </data>
+  <data name="Icon.Text" xml:space="preserve">
+    <value>Значок</value>
+  </data>
+  <data name="Position.Text" xml:space="preserve">
+    <value>Расположение</value>
+  </data>
+  <data name="ConfigTileImageZoom.Text" xml:space="preserve">
+    <value>Масштаб</value>
+  </data>
+  <data name="Preview.Text" xml:space="preserve">
+    <value>Предпросмотр</value>
+  </data>
+  <data name="ConfigTileImageMargin.Text" xml:space="preserve">
+    <value>Край</value>
+  </data>
+  <data name="ChangeImage.Text" xml:space="preserve">
+    <value>Изменить изображение</value>
+  </data>
+  <data name="ConfigTileImageAxisY.Text" xml:space="preserve">
+    <value>Ось Y</value>
+  </data>
+  <data name="ColorBackground.Text" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="ColorTitle.Text" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="ConfigTileShowDRM.Text" xml:space="preserve">
+    <value>Показать DRM</value>
+  </data>
+  <data name="ConfigTileShowTitle.Text" xml:space="preserve">
+    <value>Показать плитку</value>
+  </data>
+</root>

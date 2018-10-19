@@ -116,6 +116,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Steam Tiles_TemporaryKey.pfx" />
+    <PRIResource Include="Strings\ru-RU\Resources.resw" />
     <PRIResource Include="Strings\pl-PL\Resources.resw" />
     <PRIResource Include="Strings\pt-BR\Resources.resw" />
     <PRIResource Include="Strings\zh-CN\Resources.resw" />
