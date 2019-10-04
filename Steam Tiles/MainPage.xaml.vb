@@ -49,7 +49,6 @@ Public NotInheritable Class MainPage
         GridVisibilidad(gridTiles, recursos.GetString("Tiles"))
         nvPrincipal.IsPaneOpen = False
 
-        Steam.Generar(False)
         Configuracion.Iniciar()
 
         '--------------------------------------------------------
@@ -491,6 +490,12 @@ Public NotInheritable Class MainPage
 
     'CONFIG-----------------------------------------------------------------------------
 
+    Private Sub CbConfigModosTiles_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigModosTiles.SelectionChanged
+
+        Configuracion.ModoTiles(cbConfigModosTiles.SelectedIndex, False)
+
+    End Sub
+
     Private Sub BotonAñadirCarpetaSteam_Click(sender As Object, e As RoutedEventArgs) Handles botonAñadirCarpetaSteam.Click
 
         Steam.Generar(True)
@@ -500,6 +505,20 @@ Public NotInheritable Class MainPage
     Private Sub BotonBorrarCarpetasSteam_Click(sender As Object, e As RoutedEventArgs) Handles botonBorrarCarpetasSteam.Click
 
         Steam.Borrar()
+
+    End Sub
+
+    Private Sub TbConfigCuenta_TextChanged(sender As Object, e As TextChangedEventArgs) Handles tbConfigCuenta.TextChanged
+
+        If tbConfigCuenta.Text.Trim.Length > 0 Then
+            Steam.Cuenta(tbConfigCuenta.Text.Trim)
+        End If
+
+    End Sub
+
+    Private Sub BotonConfigLimpiarCache_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigLimpiarCache.Click
+
+        Cache.Limpiar()
 
     End Sub
 

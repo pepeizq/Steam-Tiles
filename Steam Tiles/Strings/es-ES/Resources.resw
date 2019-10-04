@@ -270,4 +270,19 @@
   <data name="ConfigTileShowTitle.Text" xml:space="preserve">
     <value>Mostrar Título</value>
   </data>
+  <data name="ConfigCleanCache.Text" xml:space="preserve">
+    <value>Limpiar Cache</value>
+  </data>
+  <data name="ConfigTileMode1.Content" xml:space="preserve">
+    <value>Enseñar los Juegos Instalados</value>
+  </data>
+  <data name="ConfigTileMode2.Content" xml:space="preserve">
+    <value>Enseñar Todos los Juegos de tu Cuenta</value>
+  </data>
+  <data name="ConfigAccountWarning.Text" xml:space="preserve">
+    <value>Debes tener los siguientes permisos para que la app pueda leer tus juegos:</value>
+  </data>
+  <data name="ConfigAccountInfo.Text" xml:space="preserve">
+    <value>Añade tu cuenta de Steam, ten en cuenta que si tienes muchos juegos la aplicación necesita tiempo en procesar la información:</value>
+  </data>
 </root>

@@ -129,7 +129,7 @@
                         </Grid>
                     </Grid>
 
-                    <controls:AdaptiveGridView x:Name="gridViewTilesSteam" Grid.Row="1" Margin="0,20,0,0"
+                    <controls:AdaptiveGridView x:Name="gridViewTiles" Grid.Row="1" Margin="0,20,0,0"
                                        IsItemClickEnabled="True" DesiredWidth="230" ItemHeight="107" 
                                        animations:ReorderGridAnimation.Duration="250">
                     </controls:AdaptiveGridView>
@@ -139,7 +139,7 @@
                         <TextBlock x:Uid="NoGamesDetected" TextWrapping="Wrap" Foreground="White"/>
                     </Grid>
 
-                    <ProgressRing x:Name="prTilesSteam" Grid.Row="1" IsActive="True" Width="64" Height="64" Foreground="{StaticResource BrushSecundario}" Visibility="Collapsed"/>
+                    <ProgressRing x:Name="prTiles" Grid.Row="1" IsActive="True" Width="64" Height="64" Foreground="{StaticResource BrushSecundario}" Visibility="Collapsed"/>
                 </Grid>
 
                 <Grid x:Name="gridAñadirTile" Visibility="Collapsed">
@@ -153,7 +153,7 @@
                             </StackPanel.Background>
 
                             <StackPanel Orientation="Horizontal" Padding="20,15">
-                                <Border BorderThickness="1" BorderBrush="{StaticResource BrushSecundario}" Width="112" Height="40" VerticalAlignment="Center">
+                                <Border BorderThickness="1" BorderBrush="{StaticResource BrushSecundario}" Width="184" Height="69" VerticalAlignment="Center">
                                     <controls:ImageEx x:Name="imagenJuegoSeleccionado" Stretch="UniformToFill" IsCacheEnabled="True"/>
                                 </Border>
 
@@ -833,20 +833,25 @@
 
                 <Grid x:Name="gridConfig" Visibility="Collapsed">
                     <ScrollViewer>
-                        <StackPanel Orientation="Vertical" Width="700" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <StackPanel Orientation="Vertical" Margin="40,20" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1">
-                                <StackPanel.Background>
-                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                        <GradientStop Color="#FFE4E4E4" Offset="0.5" />
-                                        <GradientStop Color="#FFBFBFBF" Offset="1.0" />
-                                    </LinearGradientBrush>
-                                </StackPanel.Background>
+                        <StackPanel Orientation="Vertical" Width="700" Margin="40" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <StackPanel.Background>
+                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                    <GradientStop Color="#FFE4E4E4" Offset="0.5" />
+                                    <GradientStop Color="#FFBFBFBF" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </StackPanel.Background>
 
-                                <Grid x:Name="gridConfigTiles" HorizontalAlignment="Stretch" Padding="10" Background="{StaticResource GridTituloBackground}">
-                                    <TextBlock Text="Tiles" FontSize="16" Foreground="White" Margin="5,0,0,0"/>
-                                </Grid>
+                            <Grid x:Name="gridConfigTiles" HorizontalAlignment="Stretch" Padding="20,10" Background="{StaticResource GridTituloBackground}">
+                                <TextBlock Text="Tiles" FontSize="16" Foreground="White"/>
+                            </Grid>
 
-                                <StackPanel Orientation="Vertical" Padding="15">
+                            <StackPanel Orientation="Vertical" Padding="20">
+                                <ComboBox x:Name="cbConfigModosTiles">
+                                    <ComboBoxItem x:Uid="ConfigTileMode1"/>
+                                    <ComboBoxItem x:Uid="ConfigTileMode2"/>
+                                </ComboBox>
+
+                                <StackPanel x:Name="spModoTile1" Margin="0,20,0,20" Visibility="Collapsed">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
@@ -866,23 +871,62 @@
 
                                     <StackPanel x:Name="spCarpetasDetectadas" Orientation="Vertical"/>
 
-                                    <Button x:Name="botonBorrarCarpetasSteam" Margin="0,25,0,0" Padding="10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                    <Button x:Name="botonBorrarCarpetasSteam" Margin="0,25,0,20" Padding="10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                         <StackPanel Orientation="Horizontal">
                                             <fa:FontAwesome Icon="Trash" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
                                             <TextBlock x:Uid="ConfigDeleteFolders" Foreground="White"/>
                                         </StackPanel>
                                     </Button>
+
+                                    <Grid Padding="15" Background="IndianRed">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <fa:FontAwesome Grid.Column="0" Icon="Exclamation" Margin="5,0" VerticalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Uid="ConfigFoldersWarning" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
+                                    </Grid>
                                 </StackPanel>
 
-                                <Grid Padding="15" Background="IndianRed">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
+                                <StackPanel x:Name="spModoTile2" Margin="0,20,0,20" Visibility="Collapsed">
+                                    <TextBlock x:Uid="ConfigAccountInfo" TextWrapping="Wrap"/>
 
-                                    <fa:FontAwesome Grid.Column="0" Icon="Exclamation" Margin="5,0" VerticalAlignment="Center" Foreground="White"/>
-                                    <TextBlock x:Uid="ConfigFoldersWarning" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
-                                </Grid>
+                                    <TextBox x:Name="tbConfigCuenta" Margin="0,10,0,0"/>
+
+                                    <Grid x:Name="gridConfigCuentaInfo" Padding="0,10" Margin="0,10,0,0" Visibility="Collapsed">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <controls:ImageEx x:Name="imagenConfigCuentaInfo" Grid.Column="0" IsCacheEnabled="True" Width="64" Height="64"/>
+                                        <TextBlock x:Name="tbConfigCuentaInfo" Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                                    </Grid>
+
+                                    <Grid Padding="15" Background="IndianRed" Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <fa:FontAwesome Grid.Column="0" Icon="Exclamation" Margin="5,0" VerticalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Uid="ConfigAccountWarning" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
+                                    </Grid>
+
+                                    <controls:ImageEx Source="Assets/cuentapermisos.jpg" IsCacheEnabled="True" Margin="0,20,0,0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                    <Button x:Name="botonConfigLimpiarCache" Background="{StaticResource BrushSecundario}" Padding="10" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                        <StackPanel Orientation="Horizontal">
+                                            <fa:FontAwesome Icon="Trash" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                            <TextBlock x:Uid="ConfigCleanCache" Foreground="White"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <ProgressRing x:Name="prConfigLimpiarCache" Margin="10,0,0,0" IsActive="True" Width="25" Height="25" Foreground="{StaticResource BrushSecundario}" Visibility="Collapsed"/>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>

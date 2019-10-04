@@ -270,4 +270,19 @@
   <data name="ConfigTileShowTitle.Text" xml:space="preserve">
     <value>Show Title</value>
   </data>
+  <data name="ConfigCleanCache.Text" xml:space="preserve">
+    <value>Clear Cache</value>
+  </data>
+  <data name="ConfigTileMode1.Content" xml:space="preserve">
+    <value>Show Installed Games</value>
+  </data>
+  <data name="ConfigTileMode2.Content" xml:space="preserve">
+    <value>Show all the games in your account</value>
+  </data>
+  <data name="ConfigAccountWarning.Text" xml:space="preserve">
+    <value>You must have the following permissions so that the app can read your games:</value>
+  </data>
+  <data name="ConfigAccountInfo.Text" xml:space="preserve">
+    <value>Add your Steam account, keep in mind that if you have many games the app will need time to process the information:</value>
+  </data>
 </root>
