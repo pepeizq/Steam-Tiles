@@ -78,6 +78,10 @@ Module Cache
             File.Delete(ApplicationData.Current.LocalFolder.Path + "\juegos1")
         End If
 
+        If File.Exists(ApplicationData.Current.LocalFolder.Path + "\juegosCuenta") Then
+            File.Delete(ApplicationData.Current.LocalFolder.Path + "\juegosCuenta")
+        End If
+
         If Directory.Exists(ApplicationData.Current.LocalFolder.Path + "\Cache") = True Then
             Dim carpetaImagenes As StorageFolder = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Cache")
 
