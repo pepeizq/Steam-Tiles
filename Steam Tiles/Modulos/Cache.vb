@@ -67,7 +67,7 @@ Module Cache
         Dim sp1 As StackPanel = pagina.FindName("spModoTile1")
         sp1.IsHitTestVisible = False
 
-        Dim sp2 As StackPanel = pagina.FindName("spModoTile1")
+        Dim sp2 As StackPanel = pagina.FindName("spModoTile2")
         sp2.IsHitTestVisible = False
 
         If File.Exists(ApplicationData.Current.LocalFolder.Path + "\juegos0") Then

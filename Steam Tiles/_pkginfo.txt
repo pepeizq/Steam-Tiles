@@ -1,1 +1,1 @@
-F:\Proyectos\Steam Tiles\Steam Tiles\bin\x64\Release\Upload\Steam Tiles_2.4.1.0\Steam Tiles_2.4.1.0_x86_x64.msixbundle
+F:\Proyectos\Steam Tiles\Steam Tiles\bin\x64\Release\Upload\Steam Tiles_2.4.2.0\Steam Tiles_2.4.2.0_x86_x64.msixbundle
