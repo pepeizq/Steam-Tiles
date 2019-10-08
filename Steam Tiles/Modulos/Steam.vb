@@ -24,8 +24,11 @@ Module Steam
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        Dim pr As ProgressRing = pagina.FindName("prTiles")
-        pr.Visibility = Visibility.Visible
+        Dim spProgreso As StackPanel = pagina.FindName("spProgreso")
+        spProgreso.Visibility = Visibility.Visible
+
+        Dim tbProgreso As TextBlock = pagina.FindName("tbProgreso")
+        tbProgreso.Text = String.Empty
 
         Dim cbTiles As ComboBox = pagina.FindName("cbConfigModosTiles")
         cbTiles.IsEnabled = False
@@ -237,6 +240,7 @@ Module Steam
                                 End If
                             Next
 
+                            Dim k As Integer = 0
                             If listaFicheros.Count > 0 Then
                                 For Each fichero In listaFicheros
                                     Dim titulo As String = fichero.Titulo
@@ -300,6 +304,9 @@ Module Steam
 
                                         listaJuegos.Add(juego)
                                     End If
+
+                                    tbProgreso.Text = k.ToString + "/" + listaFicheros.Count.ToString
+                                    k += 1
                                 Next
                             End If
                         End If
@@ -315,6 +322,7 @@ Module Steam
                 listaIDs = Await helper.ReadFileAsync(Of List(Of String))("juegosCuenta")
             End If
 
+            Dim k As Integer = 0
             If listaIDs.Count > 0 Then
                 For Each id In listaIDs
                     Dim añadir As Boolean = True
@@ -388,13 +396,16 @@ Module Steam
                             End If
                         End If
                     End If
+
+                    tbProgreso.Text = k.ToString + "/" + listaIDs.Count.ToString
+                    k += 1
                 Next
             End If
         End If
 
         Await helper.SaveFileAsync(Of List(Of Tile))("juegos" + modo.ToString, listaJuegos)
 
-        pr.Visibility = Visibility.Collapsed
+        spProgreso.Visibility = Visibility.Collapsed
 
         Dim panelAvisoNoJuegos As Grid = pagina.FindName("panelAvisoNoJuegos")
         Dim gridSeleccionar As Grid = pagina.FindName("gridSeleccionarJuego")

@@ -1,5 +1,6 @@
 ﻿Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
+Imports Windows.Storage.FileProperties
 
 Module Cache
 
@@ -39,7 +40,14 @@ Module Cache
                         End If
                     End If
                 Else
-                    imagenFinal = ApplicationData.Current.LocalFolder.Path + "\Cache\" + id + tipo
+                    Dim ficheroImagen As IStorageFile = Await StorageFile.GetFileFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Cache\" + id + tipo)
+                    Dim tamaño As BasicProperties = Await ficheroImagen.GetBasicPropertiesAsync
+
+                    If tamaño.Size = 0 Then
+                        imagenFinal = Nothing
+                    Else
+                        imagenFinal = ApplicationData.Current.LocalFolder.Path + "\Cache\" + id + tipo
+                    End If
                 End If
             Else
                 imagenFinal = enlace
@@ -86,11 +94,7 @@ Module Cache
             Dim carpetaImagenes As StorageFolder = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Cache")
 
             If Not carpetaImagenes Is Nothing Then
-                Dim ficheros As IReadOnlyList(Of StorageFile) = Await carpetaImagenes.GetFilesAsync
-
-                For Each fichero As StorageFile In ficheros
-                    Await fichero.DeleteAsync()
-                Next
+                Await carpetaImagenes.DeleteAsync
             End If
         End If
 

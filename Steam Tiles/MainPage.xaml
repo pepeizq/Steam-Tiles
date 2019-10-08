@@ -139,7 +139,11 @@
                         <TextBlock x:Uid="NoGamesDetected" TextWrapping="Wrap" Foreground="White"/>
                     </Grid>
 
-                    <ProgressRing x:Name="prTiles" Grid.Row="1" IsActive="True" Width="64" Height="64" Foreground="{StaticResource BrushSecundario}" Visibility="Collapsed"/>
+                    <StackPanel x:Name="spProgreso" Grid.Row="1" Orientation="Horizontal" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <ProgressRing x:Name="prTiles" IsActive="True" Width="46" Height="46" Foreground="{StaticResource BrushSecundario}"/>
+
+                        <TextBlock x:Name="tbProgreso" Margin="25,0,0,0" VerticalAlignment="Center"/>
+                    </StackPanel>
                 </Grid>
 
                 <Grid x:Name="gridAñadirTile" Visibility="Collapsed">
