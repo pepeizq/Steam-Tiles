@@ -46,7 +46,7 @@ Public NotInheritable Class MainPage
 
         Dim recursos As New Resources.ResourceLoader()
 
-        GridVisibilidad(gridTiles, recursos.GetString("Tiles"))
+        'GridVisibilidad(gridTiles, recursos.GetString("Tiles"))
         nvPrincipal.IsPaneOpen = False
 
         Configuracion.Iniciar()

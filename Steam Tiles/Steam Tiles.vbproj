@@ -207,9 +207,9 @@
     <Content Include="Assets\Logos\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Logos\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Logos\Wide310x150Logo.scale-400.png" />
-    <Content Include="Assets\steam_logo_mini3.png" />
-    <Content Include="Assets\steam_logo_mini2.png" />
     <Content Include="Assets\steam_logo_mini1.png" />
+    <Content Include="Assets\steam_logo_mini2.png" />
+    <Content Include="Assets\steam_logo_mini3.png" />
     <Content Include="Assets\steam_logo_mini4.png" />
     <Content Include="Assets\steam_logo_mini5.png" />
     <Content Include="My Project\Default.rd.xml" />

@@ -27,6 +27,9 @@ Module Steam
         Dim spProgreso As StackPanel = pagina.FindName("spProgreso")
         spProgreso.Visibility = Visibility.Visible
 
+        Dim pbProgreso As ProgressBar = pagina.FindName("pbProgreso")
+        pbProgreso.Value = 0
+
         Dim tbProgreso As TextBlock = pagina.FindName("tbProgreso")
         tbProgreso.Text = String.Empty
 
@@ -42,7 +45,7 @@ Module Steam
         Dim botonCache As Button = pagina.FindName("botonConfigLimpiarCache")
         botonCache.IsEnabled = False
 
-        Dim gv As GridView = pagina.FindName("gridViewTiles")
+        Dim gv As GridView = pagina.FindName("gvTiles")
         gv.Items.Clear()
 
         Dim listaJuegos As New List(Of Tile)
@@ -305,6 +308,7 @@ Module Steam
                                         listaJuegos.Add(juego)
                                     End If
 
+                                    pbProgreso.Value = CInt((100 / listaFicheros.Count) * k)
                                     tbProgreso.Text = k.ToString + "/" + listaFicheros.Count.ToString
                                     k += 1
                                 Next
@@ -397,6 +401,7 @@ Module Steam
                         End If
                     End If
 
+                    pbProgreso.Value = CInt((100 / listaIDs.Count) * k)
                     tbProgreso.Text = k.ToString + "/" + listaIDs.Count.ToString
                     k += 1
                 Next
@@ -407,18 +412,24 @@ Module Steam
 
         spProgreso.Visibility = Visibility.Collapsed
 
-        Dim panelAvisoNoJuegos As Grid = pagina.FindName("panelAvisoNoJuegos")
-        Dim gridSeleccionar As Grid = pagina.FindName("gridSeleccionarJuego")
+        Dim gridTiles As Grid = pagina.FindName("gridTiles")
+        Dim gridAvisoNoJuegos As Grid = pagina.FindName("gridAvisoNoJuegos")
 
         If listaJuegos.Count > 0 Then
-            panelAvisoNoJuegos.Visibility = Visibility.Collapsed
-            gridSeleccionar.Visibility = Visibility.Visible
+            gridTiles.Visibility = Visibility.Visible
+            gridAvisoNoJuegos.Visibility = Visibility.Collapsed
 
             listaJuegos.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
 
             gv.Items.Clear()
 
             For Each juego In listaJuegos
+                Dim panel As New DropShadowPanel With {
+                    .Margin = New Thickness(5, 5, 5, 5),
+                    .ShadowOpacity = 0.9,
+                    .BlurRadius = 5
+                }
+
                 Dim boton As New Button
 
                 Dim imagen As New ImageEx With {
@@ -431,9 +442,9 @@ Module Steam
                 boton.Tag = juego
                 boton.Content = imagen
                 boton.Padding = New Thickness(0, 0, 0, 0)
-                boton.BorderThickness = New Thickness(1, 1, 1, 1)
-                boton.BorderBrush = New SolidColorBrush(Colors.Black)
                 boton.Background = New SolidColorBrush(Colors.Transparent)
+
+                panel.Content = boton
 
                 Dim tbToolTip As TextBlock = New TextBlock With {
                     .Text = juego.Titulo,
@@ -447,15 +458,15 @@ Module Steam
                 AddHandler boton.PointerEntered, AddressOf UsuarioEntraBoton
                 AddHandler boton.PointerExited, AddressOf UsuarioSaleBoton
 
-                gv.Items.Add(boton)
+                gv.Items.Add(panel)
             Next
 
             If boolBuscarCarpeta = True Then
                 Toast(listaJuegos.Count.ToString + " " + recursos.GetString("GamesDetected"), Nothing)
             End If
         Else
-            panelAvisoNoJuegos.Visibility = Visibility.Visible
-            gridSeleccionar.Visibility = Visibility.Collapsed
+            gridTiles.Visibility = Visibility.Collapsed
+            gridAvisoNoJuegos.Visibility = Visibility.Visible
 
             If boolBuscarCarpeta = True Then
                 Toast(recursos.GetString("ErrorSteam1"), Nothing)
@@ -485,6 +496,13 @@ Module Steam
 
         Dim tbJuegoSeleccionado As TextBlock = pagina.FindName("tbJuegoSeleccionado")
         tbJuegoSeleccionado.Text = juego.Titulo
+
+        Dim gridSeleccionarJuego As Grid = pagina.FindName("gridSeleccionarJuego")
+        gridSeleccionarJuego.Visibility = Visibility.Collapsed
+
+        Dim gvTiles As GridView = pagina.FindName("gvTiles")
+        gvTiles.Width = 306
+        gvTiles.Padding = New Thickness(0, 0, 15, 0)
 
         Dim gridAñadir As Grid = pagina.FindName("gridAñadirTile")
         gridAñadir.Visibility = Visibility.Visible
@@ -627,7 +645,7 @@ Module Steam
 
         spCarpetas.Children.Add(tb)
 
-        Dim gv As GridView = pagina.FindName("gridViewTiles")
+        Dim gv As GridView = pagina.FindName("gvTiles")
         gv.Items.Clear()
 
         Generar(False)

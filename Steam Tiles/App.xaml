@@ -13,10 +13,10 @@
         <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="White"/>
         <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="White"/>
 
-        <Color x:Key="ColorPrimario">DimGray</Color>
-        <Color x:Key="ColorSecundario">SlateGray</Color>
-        <Color x:Key="ColorTerciario">#a6a6a6</Color>
-        <Color x:Key="ColorCuarto">#cccccc</Color>
+        <Color x:Key="ColorPrimario">#171a21</Color>
+        <Color x:Key="ColorSecundario">#373e4f</Color>
+        <Color x:Key="ColorTerciario">#a1a9bd</Color>
+        <Color x:Key="ColorCuarto">#b8becd</Color>
 
         <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent"/>
         <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="{StaticResource ColorPrimario}"/>

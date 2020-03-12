@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Steam_Tiles.App">
-      <uap:VisualElements DisplayName="Steam Tiles" Square150x150Logo="assets\Logos\Medium150x150Logo.png" Square44x44Logo="assets\Logos\AppList.png" Description="https://pepeizqapps.com" BackgroundColor="dimGray">
+      <uap:VisualElements DisplayName="Steam Tiles" Square150x150Logo="assets\Logos\Medium150x150Logo.png" Square44x44Logo="assets\Logos\AppList.png" Description="https://pepeizqapps.com" BackgroundColor="#171a21">
         <uap:DefaultTile Wide310x150Logo="assets\Logos\Wide310x150Logo.png" ShortName="Steam Tiles" Square310x310Logo="assets\Logos\Large310x310Logo.png" Square71x71Logo="assets\Logos\Small71x71Logo.png">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
@@ -23,7 +23,7 @@
             <uap:ShowOn Tile="square310x310Logo" />
           </uap:ShowNameOnTiles>
         </uap:DefaultTile>
-        <uap:SplashScreen Image="assets\Logos\SplashScreen.png" BackgroundColor="dimGray" />
+        <uap:SplashScreen Image="assets\Logos\SplashScreen.png" BackgroundColor="#171a21" />
         <uap:LockScreen BadgeLogo="assets\Logos\Badge.png" Notification="badge" />
       </uap:VisualElements>
     </Application>
