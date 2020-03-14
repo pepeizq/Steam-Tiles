@@ -1,4 +1,5 @@
 ﻿Imports FontAwesome.UWP
+Imports Windows.Storage
 Imports Windows.UI
 Imports Windows.UI.Core
 
@@ -44,9 +45,6 @@ Public NotInheritable Class MainPage
 
         MasCosas.Generar()
 
-        Dim recursos As New Resources.ResourceLoader()
-
-        'GridVisibilidad(gridTiles, recursos.GetString("Tiles"))
         nvPrincipal.IsPaneOpen = False
 
         Configuracion.Iniciar()
@@ -69,12 +67,10 @@ Public NotInheritable Class MainPage
 
         Await Dispatcher.RunAsync(CoreDispatcherPriority.High, Sub()
                                                                    If estado = True Then
-                                                                       gridAñadirTile.Background = App.Current.Resources("GridAcrilico")
                                                                        gridPersonalizarTiles.Background = App.Current.Resources("GridAcrilico")
                                                                        gridConfig.Background = App.Current.Resources("GridAcrilico")
                                                                        gridConfigTiles.Background = App.Current.Resources("GridTituloBackground")
                                                                    Else
-                                                                       gridAñadirTile.Background = New SolidColorBrush(Colors.LightGray)
                                                                        gridPersonalizarTiles.Background = New SolidColorBrush(Colors.LightGray)
                                                                        gridConfig.Background = New SolidColorBrush(Colors.LightGray)
                                                                        gridConfigTiles.Background = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
@@ -112,21 +108,40 @@ Public NotInheritable Class MainPage
     Private Sub BotonAñadirTile_Click(sender As Object, e As RoutedEventArgs) Handles botonAñadirTile.Click
 
         Dim tile As Tile = botonAñadirTile.Tag
-        Tiles.Generar(tile)
+        Tiles.Añadir.Generar(tile)
 
     End Sub
 
-    Private Sub BotonPersonalizarTiles_Click(sender As Object, e As RoutedEventArgs) Handles botonPersonalizarTiles.Click
+    Private Sub BotonCerrarTiles_Click(sender As Object, e As RoutedEventArgs) Handles botonCerrarTiles.Click
 
         gridAñadirTile.Visibility = Visibility.Collapsed
-        gridPersonalizarTiles.Visibility = Visibility.Visible
+        gridSeleccionarJuego.Visibility = Visibility.Visible
+        gvTiles.Width = ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles")
+        gvTiles.Padding = New Thickness(5, 0, 5, 0)
 
     End Sub
 
-    Private Sub BotonVolverPersonalizacion_Click(sender As Object, e As RoutedEventArgs) Handles botonVolverPersonalizacion.Click
+    Private Sub BotonTilePequeña_Click(sender As Object, e As RoutedEventArgs) Handles botonTilePequeña.Click
 
-        gridAñadirTile.Visibility = Visibility.Visible
-        gridPersonalizarTiles.Visibility = Visibility.Collapsed
+        Tiles.Personalizacion.Cargar(gridTilePequeña, 0)
+
+    End Sub
+
+    Private Sub BotonTileMediana_Click(sender As Object, e As RoutedEventArgs) Handles botonTileMediana.Click
+
+        Tiles.Personalizacion.Cargar(gridTileMediana, 1)
+
+    End Sub
+
+    Private Sub BotonTileAncha_Click(sender As Object, e As RoutedEventArgs) Handles botonTileAncha.Click
+
+        Tiles.Personalizacion.Cargar(gridTileAncha, 2)
+
+    End Sub
+
+    Private Sub BotonTileGrande_Click(sender As Object, e As RoutedEventArgs) Handles botonTileGrande.Click
+
+        Tiles.Personalizacion.Cargar(gridTileGrande, 3)
 
     End Sub
 
@@ -184,63 +199,63 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub BotonConfigTilePequeñaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilePequeñaBuscarImagen.Click
+    'Private Sub BotonConfigTilePequeñaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilePequeñaBuscarImagen.Click
 
-        Configuracion.TilesCambioImagen(imagenTilePequeñaGenerar, imagenTilePequeñaEnseñar, imagenTilePequeñaPersonalizar)
+    '    Configuracion.TilesCambioImagen(imagenTilePequeñaGenerar, imagenTilePequeñaEnseñar, imagenTilePequeñaPersonalizar)
 
-    End Sub
+    'End Sub
 
-    Private Sub BotonConfigTileMedianaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileMedianaBuscarImagen.Click
+    'Private Sub BotonConfigTileMedianaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileMedianaBuscarImagen.Click
 
-        Configuracion.TilesCambioImagen(imagenTileMedianaGenerar, imagenTileMedianaEnseñar, imagenTileMedianaPersonalizar)
+    '    Configuracion.TilesCambioImagen(imagenTileMedianaGenerar, imagenTileMedianaEnseñar, imagenTileMedianaPersonalizar)
 
-    End Sub
+    'End Sub
 
-    Private Sub BotonConfigTileAnchaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileAnchaBuscarImagen.Click
+    'Private Sub BotonConfigTileAnchaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileAnchaBuscarImagen.Click
 
-        Configuracion.TilesCambioImagen(imagenTileAnchaGenerar, imagenTileAnchaEnseñar, imagenTileAnchaPersonalizar)
+    '    Configuracion.TilesCambioImagen(imagenTileAnchaGenerar, imagenTileAnchaEnseñar, imagenTileAnchaPersonalizar)
 
-    End Sub
+    'End Sub
 
-    Private Sub BotonConfigTileGrandeBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileGrandeBuscarImagen.Click
+    'Private Sub BotonConfigTileGrandeBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTileGrandeBuscarImagen.Click
 
-        Configuracion.TilesCambioImagen(imagenTileGrandeGenerar, imagenTileGrandeEnseñar, imagenTileGrandePersonalizar)
+    '    Configuracion.TilesCambioImagen(imagenTileGrandeGenerar, imagenTileGrandeEnseñar, imagenTileGrandePersonalizar)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileAnchaTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaTitulo.Checked
+    'Private Sub CbConfigTileAnchaTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaTitulo.Checked
 
-        Configuracion.TileAnchaTitulo(cbConfigTileAnchaTitulo.IsChecked)
+    '    Configuracion.TileAnchaTitulo(cbConfigTileAnchaTitulo.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileAnchaTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaTitulo.Unchecked
+    'Private Sub CbConfigTileAnchaTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaTitulo.Unchecked
 
-        Configuracion.TileAnchaTitulo(cbConfigTileAnchaTitulo.IsChecked)
+    '    Configuracion.TileAnchaTitulo(cbConfigTileAnchaTitulo.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileGrandeTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeTitulo.Checked
+    'Private Sub CbConfigTileGrandeTitulo_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeTitulo.Checked
 
-        Configuracion.TileGrandeTitulo(cbConfigTileGrandeTitulo.IsChecked)
+    '    Configuracion.TileGrandeTitulo(cbConfigTileGrandeTitulo.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileGrandeTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeTitulo.Unchecked
+    'Private Sub CbConfigTileGrandeTitulo_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeTitulo.Unchecked
 
-        Configuracion.TileGrandeTitulo(cbConfigTileGrandeTitulo.IsChecked)
+    '    Configuracion.TileGrandeTitulo(cbConfigTileGrandeTitulo.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileTituloColor_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTileTituloColor.SelectionChanged
+    'Private Sub CbConfigTileTituloColor_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTileTituloColor.SelectionChanged
 
-        Try
-            Configuracion.TilesColorTitulo(cbConfigTileTituloColor.SelectedIndex)
-        Catch ex As Exception
+    '    Try
+    '        Configuracion.TilesColorTitulo(cbConfigTileTituloColor.SelectedIndex)
+    '    Catch ex As Exception
 
-        End Try
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Private Sub BotonConfigTilesDRM_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesDRM.Click
 
@@ -252,61 +267,61 @@ Public NotInheritable Class MainPage
 
     End Sub
 
-    Private Sub CbConfigTileMedianaDRM_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMedianaDRM.Checked
+    'Private Sub CbConfigTileMedianaDRM_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMedianaDRM.Checked
 
-        Configuracion.TileMedianaDRMMostrar(cbConfigTileMedianaDRM.IsChecked)
+    '    Configuracion.TileMedianaDRMMostrar(cbConfigTileMedianaDRM.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileMedianaDRM_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMedianaDRM.Unchecked
+    'Private Sub CbConfigTileMedianaDRM_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMedianaDRM.Unchecked
 
-        Configuracion.TileMedianaDRMMostrar(cbConfigTileMedianaDRM.IsChecked)
+    '    Configuracion.TileMedianaDRMMostrar(cbConfigTileMedianaDRM.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileAnchaDRM_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaDRM.Checked
+    'Private Sub CbConfigTileAnchaDRM_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaDRM.Checked
 
-        Configuracion.TileAnchaDRMMostrar(cbConfigTileAnchaDRM.IsChecked)
+    '    Configuracion.TileAnchaDRMMostrar(cbConfigTileAnchaDRM.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileAnchaDRM_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaDRM.Unchecked
+    'Private Sub CbConfigTileAnchaDRM_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAnchaDRM.Unchecked
 
-        Configuracion.TileAnchaDRMMostrar(cbConfigTileAnchaDRM.IsChecked)
+    '    Configuracion.TileAnchaDRMMostrar(cbConfigTileAnchaDRM.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileGrandeDRM_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeDRM.Checked
+    'Private Sub CbConfigTileGrandeDRM_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeDRM.Checked
 
-        Configuracion.TileGrandeDRMMostrar(cbConfigTileGrandeDRM.IsChecked)
+    '    Configuracion.TileGrandeDRMMostrar(cbConfigTileGrandeDRM.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileGrandeDRM_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeDRM.Unchecked
+    'Private Sub CbConfigTileGrandeDRM_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrandeDRM.Unchecked
 
-        Configuracion.TileGrandeDRMMostrar(cbConfigTileGrandeDRM.IsChecked)
+    '    Configuracion.TileGrandeDRMMostrar(cbConfigTileGrandeDRM.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTilesDRMIcono_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTilesDRMIcono.SelectionChanged
+    'Private Sub CbConfigTilesDRMIcono_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTilesDRMIcono.SelectionChanged
 
-        Try
-            Configuracion.TilesDRMIcono(cbConfigTilesDRMIcono.SelectedIndex)
-        Catch ex As Exception
+    '    Try
+    '        Configuracion.TilesDRMIcono(cbConfigTilesDRMIcono.SelectedIndex)
+    '    Catch ex As Exception
 
-        End Try
+    '    End Try
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTilesDRMPosicion_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTilesDRMPosicion.SelectionChanged
+    'Private Sub CbConfigTilesDRMPosicion_SelectionChanged(sender As Object, e As SelectionChangedEventArgs) Handles cbConfigTilesDRMPosicion.SelectionChanged
 
-        Try
-            Configuracion.TilesDRMIconoPosicion(cbConfigTilesDRMPosicion.SelectedIndex)
-        Catch ex As Exception
+    '    Try
+    '        Configuracion.TilesDRMIconoPosicion(cbConfigTilesDRMPosicion.SelectedIndex)
+    '    Catch ex As Exception
 
-        End Try
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Private Sub BotonConfigTilesColor_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesColor.Click
 

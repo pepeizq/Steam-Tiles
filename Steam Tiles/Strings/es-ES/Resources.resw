@@ -285,4 +285,7 @@
   <data name="ConfigAccountInfo.Text" xml:space="preserve">
     <value>Añade tu cuenta de Steam, ten en cuenta que si tienes muchos juegos la aplicación necesita tiempo en procesar la información:</value>
   </data>
+  <data name="Options.Content" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
 </root>

@@ -57,55 +57,55 @@ Module Configuracion
 
         '------------------------------------------
 
-        If ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") Is Nothing Then
-            TileAnchaTitulo(False)
-        Else
-            TileAnchaTitulo(ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo"))
-        End If
+        'If ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") Is Nothing Then
+        '    TileAnchaTitulo(False)
+        'Else
+        '    TileAnchaTitulo(ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo"))
+        'End If
 
-        If ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") Is Nothing Then
-            TileGrandeTitulo(True)
-        Else
-            TileGrandeTitulo(ApplicationData.Current.LocalSettings.Values("tile_grande_titulo"))
-        End If
+        'If ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") Is Nothing Then
+        '    TileGrandeTitulo(True)
+        'Else
+        '    TileGrandeTitulo(ApplicationData.Current.LocalSettings.Values("tile_grande_titulo"))
+        'End If
 
-        If ApplicationData.Current.LocalSettings.Values("tiles_color_titulo") Is Nothing Then
-            TilesColorTitulo(0)
-        Else
-            TilesColorTitulo(ApplicationData.Current.LocalSettings.Values("tiles_color_titulo"))
-        End If
+        'If ApplicationData.Current.LocalSettings.Values("tiles_color_titulo") Is Nothing Then
+        '    TilesColorTitulo(0)
+        'Else
+        '    TilesColorTitulo(ApplicationData.Current.LocalSettings.Values("tiles_color_titulo"))
+        'End If
 
         '------------------------------------------
 
-        If ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar") Is Nothing Then
-            TileMedianaDRMMostrar(False)
-        Else
-            TileMedianaDRMMostrar(ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar"))
-        End If
+        'If ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar") Is Nothing Then
+        '    TileMedianaDRMMostrar(False)
+        'Else
+        '    TileMedianaDRMMostrar(ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar"))
+        'End If
 
-        If ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar") Is Nothing Then
-            TileAnchaDRMMostrar(True)
-        Else
-            TileAnchaDRMMostrar(ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar"))
-        End If
+        'If ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar") Is Nothing Then
+        '    TileAnchaDRMMostrar(True)
+        'Else
+        '    TileAnchaDRMMostrar(ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar"))
+        'End If
 
-        If ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar") Is Nothing Then
-            TileGrandeDRMMostrar(True)
-        Else
-            TileGrandeDRMMostrar(ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar"))
-        End If
+        'If ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar") Is Nothing Then
+        '    TileGrandeDRMMostrar(True)
+        'Else
+        '    TileGrandeDRMMostrar(ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar"))
+        'End If
 
-        If ApplicationData.Current.LocalSettings.Values("tiles_drm_icono") Is Nothing Then
-            TilesDRMIcono(0)
-        Else
-            TilesDRMIcono(ApplicationData.Current.LocalSettings.Values("tiles_drm_icono"))
-        End If
+        'If ApplicationData.Current.LocalSettings.Values("tiles_drm_icono") Is Nothing Then
+        '    TilesDRMIcono(0)
+        'Else
+        '    TilesDRMIcono(ApplicationData.Current.LocalSettings.Values("tiles_drm_icono"))
+        'End If
 
-        If ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion") Is Nothing Then
-            TilesDRMIconoPosicion(1)
-        Else
-            TilesDRMIconoPosicion(ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion"))
-        End If
+        'If ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion") Is Nothing Then
+        '    TilesDRMIconoPosicion(1)
+        'Else
+        '    TilesDRMIconoPosicion(ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion"))
+        'End If
 
         '------------------------------------------
 
@@ -275,15 +275,15 @@ Module Configuracion
         MostrarTilesDRM(True)
         MostrarTilesColor(True)
 
-        TileAnchaTitulo(False)
-        TileGrandeTitulo(True)
-        TilesColorTitulo(0)
+        'TileAnchaTitulo(False)
+        'TileGrandeTitulo(True)
+        'TilesColorTitulo(0)
 
-        TileMedianaDRMMostrar(False)
-        TileAnchaDRMMostrar(True)
-        TileGrandeDRMMostrar(True)
-        TilesDRMIcono(0)
-        TilesDRMIconoPosicion(1)
+        'TileMedianaDRMMostrar(False)
+        'TileAnchaDRMMostrar(True)
+        'TileGrandeDRMMostrar(True)
+        'TilesDRMIcono(0)
+        'TilesDRMIconoPosicion(1)
 
         TilesColorFondo(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(App.Current.Resources("ColorSecundario")))
 
@@ -461,223 +461,223 @@ Module Configuracion
 
     End Sub
 
-    Public Sub TileAnchaTitulo(valor As Boolean)
+    'Public Sub TileAnchaTitulo(valor As Boolean)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+    '    Dim frame As Frame = Window.Current.Content
+    '    Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = valor
+    '    ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = valor
 
-        Dim cb As CheckBox = pagina.FindName("cbConfigTileAnchaTitulo")
-        cb.IsChecked = valor
+    '    Dim cb As CheckBox = pagina.FindName("cbConfigTileAnchaTitulo")
+    '    cb.IsChecked = valor
 
-        Dim titulo1 As TextBlock = pagina.FindName("tituloTileAnchaEnseñar")
-        Dim titulo2 As TextBlock = pagina.FindName("tituloTileAnchaPersonalizar")
+    '    Dim titulo1 As TextBlock = pagina.FindName("tituloTileAncha")
+    '    Dim titulo2 As TextBlock = pagina.FindName("tituloTileAnchaPersonalizar")
 
-        If valor = True Then
-            titulo1.Visibility = Visibility.Visible
-            titulo2.Visibility = Visibility.Visible
-        Else
-            titulo1.Visibility = Visibility.Collapsed
-            titulo2.Visibility = Visibility.Collapsed
-        End If
+    '    If valor = True Then
+    '        titulo1.Visibility = Visibility.Visible
+    '        titulo2.Visibility = Visibility.Visible
+    '    Else
+    '        titulo1.Visibility = Visibility.Collapsed
+    '        titulo2.Visibility = Visibility.Collapsed
+    '    End If
 
-    End Sub
+    'End Sub
 
-    Public Sub TileGrandeTitulo(valor As Boolean)
+    'Public Sub TileGrandeTitulo(valor As Boolean)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+    '    Dim frame As Frame = Window.Current.Content
+    '    Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = valor
+    '    ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = valor
 
-        Dim cb As CheckBox = pagina.FindName("cbConfigTileGrandeTitulo")
-        cb.IsChecked = valor
+    '    Dim cb As CheckBox = pagina.FindName("cbConfigTileGrandeTitulo")
+    '    cb.IsChecked = valor
 
-        Dim titulo1 As TextBlock = pagina.FindName("tituloTileGrandeEnseñar")
-        Dim titulo2 As TextBlock = pagina.FindName("tituloTileGrandePersonalizar")
+    '    Dim titulo1 As TextBlock = pagina.FindName("tituloTileGrande")
+    '    Dim titulo2 As TextBlock = pagina.FindName("tituloTileGrandePersonalizar")
 
-        If valor = True Then
-            titulo1.Visibility = Visibility.Visible
-            titulo2.Visibility = Visibility.Visible
-        Else
-            titulo1.Visibility = Visibility.Collapsed
-            titulo2.Visibility = Visibility.Collapsed
-        End If
+    '    If valor = True Then
+    '        titulo1.Visibility = Visibility.Visible
+    '        titulo2.Visibility = Visibility.Visible
+    '    Else
+    '        titulo1.Visibility = Visibility.Collapsed
+    '        titulo2.Visibility = Visibility.Collapsed
+    '    End If
 
-    End Sub
+    'End Sub
 
-    Public Sub TilesColorTitulo(color As Integer)
+    'Public Sub TilesColorTitulo(color As Integer)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+    '    Dim frame As Frame = Window.Current.Content
+    '    Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tiles_color_titulo") = color
+    '    ApplicationData.Current.LocalSettings.Values("tiles_color_titulo") = color
 
-        Dim cbColor As ComboBox = pagina.FindName("cbConfigTileTituloColor")
-        cbColor.SelectedIndex = color
+    '    Dim cbColor As ComboBox = pagina.FindName("cbConfigTileTituloColor")
+    '    cbColor.SelectedIndex = color
 
-        Dim titulo1 As TextBlock = pagina.FindName("tituloTileAnchaEnseñar")
-        Dim titulo2 As TextBlock = pagina.FindName("tituloTileAnchaPersonalizar")
+    '    Dim titulo1 As TextBlock = pagina.FindName("tituloTileAncha")
+    '    Dim titulo2 As TextBlock = pagina.FindName("tituloTileAnchaPersonalizar")
 
-        Dim titulo3 As TextBlock = pagina.FindName("tituloTileGrandeEnseñar")
-        Dim titulo4 As TextBlock = pagina.FindName("tituloTileGrandePersonalizar")
+    '    Dim titulo3 As TextBlock = pagina.FindName("tituloTileGrande")
+    '    Dim titulo4 As TextBlock = pagina.FindName("tituloTileGrandePersonalizar")
 
-        If color = 0 Then
-            titulo1.Foreground = New SolidColorBrush(Colors.White)
-            titulo2.Foreground = New SolidColorBrush(Colors.White)
+    '    If color = 0 Then
+    '        titulo1.Foreground = New SolidColorBrush(Colors.White)
+    '        titulo2.Foreground = New SolidColorBrush(Colors.White)
 
-            titulo3.Foreground = New SolidColorBrush(Colors.White)
-            titulo4.Foreground = New SolidColorBrush(Colors.White)
-        Else
-            titulo1.Foreground = New SolidColorBrush(Colors.Black)
-            titulo2.Foreground = New SolidColorBrush(Colors.Black)
+    '        titulo3.Foreground = New SolidColorBrush(Colors.White)
+    '        titulo4.Foreground = New SolidColorBrush(Colors.White)
+    '    Else
+    '        titulo1.Foreground = New SolidColorBrush(Colors.Black)
+    '        titulo2.Foreground = New SolidColorBrush(Colors.Black)
 
-            titulo3.Foreground = New SolidColorBrush(Colors.Black)
-            titulo4.Foreground = New SolidColorBrush(Colors.Black)
-        End If
+    '        titulo3.Foreground = New SolidColorBrush(Colors.Black)
+    '        titulo4.Foreground = New SolidColorBrush(Colors.Black)
+    '    End If
 
-    End Sub
+    'End Sub
 
-    Public Sub TileMedianaDRMMostrar(valor As Boolean)
+    'Public Sub TileMedianaDRMMostrar(valor As Boolean)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+    '    Dim frame As Frame = Window.Current.Content
+    '    Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar") = valor
+    '    ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar") = valor
 
-        Dim cb As CheckBox = pagina.FindName("cbConfigTileMedianaDRM")
-        cb.IsChecked = valor
+    '    Dim cb As CheckBox = pagina.FindName("cbConfigTileMedianaDRM")
+    '    cb.IsChecked = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenDRMTileMedianaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenDRMTileMedianaPersonalizar")
+    '    Dim imagen1 As ImageEx = pagina.FindName("imagenDRMTileMediana")
+    '    Dim imagen2 As ImageEx = pagina.FindName("imagenDRMTileMedianaPersonalizar")
 
-        If valor = True Then
-            imagen1.Visibility = Visibility.Visible
-            imagen2.Visibility = Visibility.Visible
-        Else
-            imagen1.Visibility = Visibility.Collapsed
-            imagen2.Visibility = Visibility.Collapsed
-        End If
+    '    If valor = True Then
+    '        imagen1.Visibility = Visibility.Visible
+    '        imagen2.Visibility = Visibility.Visible
+    '    Else
+    '        imagen1.Visibility = Visibility.Collapsed
+    '        imagen2.Visibility = Visibility.Collapsed
+    '    End If
 
-    End Sub
+    'End Sub
 
-    Public Sub TileAnchaDRMMostrar(valor As Boolean)
+    'Public Sub TileAnchaDRMMostrar(valor As Boolean)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+    '    Dim frame As Frame = Window.Current.Content
+    '    Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar") = valor
+    '    ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar") = valor
 
-        Dim cb As CheckBox = pagina.FindName("cbConfigTileAnchaDRM")
-        cb.IsChecked = valor
+    '    Dim cb As CheckBox = pagina.FindName("cbConfigTileAnchaDRM")
+    '    cb.IsChecked = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenDRMTileAnchaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenDRMTileAnchaPersonalizar")
+    '    Dim imagen1 As ImageEx = pagina.FindName("imagenDRMTileAncha")
+    '    Dim imagen2 As ImageEx = pagina.FindName("imagenDRMTileAnchaPersonalizar")
 
-        If valor = True Then
-            imagen1.Visibility = Visibility.Visible
-            imagen2.Visibility = Visibility.Visible
-        Else
-            imagen1.Visibility = Visibility.Collapsed
-            imagen2.Visibility = Visibility.Collapsed
-        End If
+    '    If valor = True Then
+    '        imagen1.Visibility = Visibility.Visible
+    '        imagen2.Visibility = Visibility.Visible
+    '    Else
+    '        imagen1.Visibility = Visibility.Collapsed
+    '        imagen2.Visibility = Visibility.Collapsed
+    '    End If
 
-    End Sub
+    'End Sub
 
-    Public Sub TileGrandeDRMMostrar(valor As Boolean)
+    'Public Sub TileGrandeDRMMostrar(valor As Boolean)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+    '    Dim frame As Frame = Window.Current.Content
+    '    Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar") = valor
+    '    ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar") = valor
 
-        Dim cb As CheckBox = pagina.FindName("cbConfigTileGrandeDRM")
-        cb.IsChecked = valor
+    '    Dim cb As CheckBox = pagina.FindName("cbConfigTileGrandeDRM")
+    '    cb.IsChecked = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenDRMTileGrandeEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenDRMTileGrandePersonalizar")
+    '    Dim imagen1 As ImageEx = pagina.FindName("imagenDRMTileGrande")
+    '    Dim imagen2 As ImageEx = pagina.FindName("imagenDRMTileGrandePersonalizar")
 
-        If valor = True Then
-            imagen1.Visibility = Visibility.Visible
-            imagen2.Visibility = Visibility.Visible
-        Else
-            imagen1.Visibility = Visibility.Collapsed
-            imagen2.Visibility = Visibility.Collapsed
-        End If
+    '    If valor = True Then
+    '        imagen1.Visibility = Visibility.Visible
+    '        imagen2.Visibility = Visibility.Visible
+    '    Else
+    '        imagen1.Visibility = Visibility.Collapsed
+    '        imagen2.Visibility = Visibility.Collapsed
+    '    End If
 
-    End Sub
+    'End Sub
 
-    Public Sub TilesDRMIcono(valor As Integer)
+    'Public Sub TilesDRMIcono(valor As Integer)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+    '    Dim frame As Frame = Window.Current.Content
+    '    Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tiles_drm_icono") = valor
+    '    ApplicationData.Current.LocalSettings.Values("tiles_drm_icono") = valor
 
-        Dim cb As ComboBox = pagina.FindName("cbConfigTilesDRMIcono")
-        cb.SelectedIndex = valor
+    '    Dim cb As ComboBox = pagina.FindName("cbConfigTilesDRMIcono")
+    '    cb.SelectedIndex = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenDRMTileMedianaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenDRMTileMedianaPersonalizar")
+    '    Dim imagen1 As ImageEx = pagina.FindName("imagenDRMTileMediana")
+    '    Dim imagen2 As ImageEx = pagina.FindName("imagenDRMTileMedianaPersonalizar")
 
-        Dim imagen3 As ImageEx = pagina.FindName("imagenDRMTileAnchaEnseñar")
-        Dim imagen4 As ImageEx = pagina.FindName("imagenDRMTileAnchaPersonalizar")
+    '    Dim imagen3 As ImageEx = pagina.FindName("imagenDRMTileAncha")
+    '    Dim imagen4 As ImageEx = pagina.FindName("imagenDRMTileAnchaPersonalizar")
 
-        Dim imagen5 As ImageEx = pagina.FindName("imagenDRMTileGrandeEnseñar")
-        Dim imagen6 As ImageEx = pagina.FindName("imagenDRMTileGrandePersonalizar")
+    '    Dim imagen5 As ImageEx = pagina.FindName("imagenDRMTileGrande")
+    '    Dim imagen6 As ImageEx = pagina.FindName("imagenDRMTileGrandePersonalizar")
 
-        imagen1.Source = cb.SelectedItem.Source
-        imagen2.Source = cb.SelectedItem.Source
+    '    imagen1.Source = cb.SelectedItem.Source
+    '    imagen2.Source = cb.SelectedItem.Source
 
-        imagen3.Source = cb.SelectedItem.Source
-        imagen4.Source = cb.SelectedItem.Source
+    '    imagen3.Source = cb.SelectedItem.Source
+    '    imagen4.Source = cb.SelectedItem.Source
 
-        imagen5.Source = cb.SelectedItem.Source
-        imagen6.Source = cb.SelectedItem.Source
+    '    imagen5.Source = cb.SelectedItem.Source
+    '    imagen6.Source = cb.SelectedItem.Source
 
-    End Sub
+    'End Sub
 
-    Public Sub TilesDRMIconoPosicion(valor As Integer)
+    'Public Sub TilesDRMIconoPosicion(valor As Integer)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+    '    Dim frame As Frame = Window.Current.Content
+    '    Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion") = valor
+    '    ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion") = valor
 
-        Dim cb As ComboBox = pagina.FindName("cbConfigTilesDRMPosicion")
-        cb.SelectedIndex = valor
+    '    Dim cb As ComboBox = pagina.FindName("cbConfigTilesDRMPosicion")
+    '    cb.SelectedIndex = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenDRMTileMedianaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenDRMTileMedianaPersonalizar")
+    '    Dim imagen1 As ImageEx = pagina.FindName("imagenDRMTileMediana")
+    '    Dim imagen2 As ImageEx = pagina.FindName("imagenDRMTileMedianaPersonalizar")
 
-        Dim imagen3 As ImageEx = pagina.FindName("imagenDRMTileAnchaEnseñar")
-        Dim imagen4 As ImageEx = pagina.FindName("imagenDRMTileAnchaPersonalizar")
+    '    Dim imagen3 As ImageEx = pagina.FindName("imagenDRMTileAncha")
+    '    Dim imagen4 As ImageEx = pagina.FindName("imagenDRMTileAnchaPersonalizar")
 
-        Dim imagen5 As ImageEx = pagina.FindName("imagenDRMTileGrandeEnseñar")
-        Dim imagen6 As ImageEx = pagina.FindName("imagenDRMTileGrandePersonalizar")
+    '    Dim imagen5 As ImageEx = pagina.FindName("imagenDRMTileGrande")
+    '    Dim imagen6 As ImageEx = pagina.FindName("imagenDRMTileGrandePersonalizar")
 
-        If valor = 0 Then
-            imagen1.HorizontalAlignment = HorizontalAlignment.Left
-            imagen2.HorizontalAlignment = HorizontalAlignment.Left
+    '    If valor = 0 Then
+    '        imagen1.HorizontalAlignment = HorizontalAlignment.Left
+    '        imagen2.HorizontalAlignment = HorizontalAlignment.Left
 
-            imagen3.HorizontalAlignment = HorizontalAlignment.Left
-            imagen4.HorizontalAlignment = HorizontalAlignment.Left
+    '        imagen3.HorizontalAlignment = HorizontalAlignment.Left
+    '        imagen4.HorizontalAlignment = HorizontalAlignment.Left
 
-            imagen5.HorizontalAlignment = HorizontalAlignment.Left
-            imagen6.HorizontalAlignment = HorizontalAlignment.Left
-        Else
-            imagen1.HorizontalAlignment = HorizontalAlignment.Right
-            imagen2.HorizontalAlignment = HorizontalAlignment.Right
+    '        imagen5.HorizontalAlignment = HorizontalAlignment.Left
+    '        imagen6.HorizontalAlignment = HorizontalAlignment.Left
+    '    Else
+    '        imagen1.HorizontalAlignment = HorizontalAlignment.Right
+    '        imagen2.HorizontalAlignment = HorizontalAlignment.Right
 
-            imagen3.HorizontalAlignment = HorizontalAlignment.Right
-            imagen4.HorizontalAlignment = HorizontalAlignment.Right
+    '        imagen3.HorizontalAlignment = HorizontalAlignment.Right
+    '        imagen4.HorizontalAlignment = HorizontalAlignment.Right
 
-            imagen5.HorizontalAlignment = HorizontalAlignment.Right
-            imagen6.HorizontalAlignment = HorizontalAlignment.Right
-        End If
+    '        imagen5.HorizontalAlignment = HorizontalAlignment.Right
+    '        imagen6.HorizontalAlignment = HorizontalAlignment.Right
+    '    End If
 
-    End Sub
+    'End Sub
 
     Public Sub TilesColorFondo(color As String)
 
@@ -689,37 +689,15 @@ Module Configuracion
         Dim picker As ColorPicker = pagina.FindName("colorPickerFondoTiles")
         picker.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color)
 
-        Dim grid1 As Grid = pagina.FindName("gridTilePequeñaEnseñar")
-        Dim grid2 As Grid = pagina.FindName("gridTilePequeñaGenerar")
-        Dim grid3 As Grid = pagina.FindName("gridTilePequeñaPersonalizar")
-
-        Dim grid4 As Grid = pagina.FindName("gridTileMedianaEnseñar")
-        Dim grid5 As Grid = pagina.FindName("gridTileMedianaGenerar")
-        Dim grid6 As Grid = pagina.FindName("gridTileMedianaPersonalizar")
-
-        Dim grid7 As Grid = pagina.FindName("gridTileAnchaEnseñar")
-        Dim grid8 As Grid = pagina.FindName("gridTileAnchaGenerar")
-        Dim grid9 As Grid = pagina.FindName("gridTileAnchaPersonalizar")
-
-        Dim grid10 As Grid = pagina.FindName("gridTileGrandeEnseñar")
-        Dim grid11 As Grid = pagina.FindName("gridTileGrandeGenerar")
-        Dim grid12 As Grid = pagina.FindName("gridTileGrandePersonalizar")
+        Dim grid1 As Grid = pagina.FindName("gridTilePequeña")
+        Dim grid2 As Grid = pagina.FindName("gridTileMediana")
+        Dim grid3 As Grid = pagina.FindName("gridTileAncha")
+        Dim grid4 As Grid = pagina.FindName("gridTileGrande")
 
         grid1.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
         grid2.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
         grid3.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-
         grid4.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-        grid5.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-        grid6.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-
-        grid7.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-        grid8.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-        grid9.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-
-        grid10.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-        grid11.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-        grid12.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
 
     End Sub
 
@@ -757,26 +735,16 @@ Module Configuracion
         Dim cb As ComboBox = pagina.FindName("cbConfigTilePequeñaImagenEstiramiento")
         cb.SelectedIndex = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTilePequeñaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTilePequeñaPersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTilePequeña")
 
         If valor = 0 Then
-            imagen1.Stretch = Stretch.None
-            imagen2.Stretch = Stretch.None
-            imagen3.Stretch = Stretch.None
+            imagen.Stretch = Stretch.None
         ElseIf valor = 1 Then
-            imagen1.Stretch = Stretch.Uniform
-            imagen2.Stretch = Stretch.Uniform
-            imagen3.Stretch = Stretch.Uniform
+            imagen.Stretch = Stretch.Uniform
         ElseIf valor = 2 Then
-            imagen1.Stretch = Stretch.UniformToFill
-            imagen2.Stretch = Stretch.UniformToFill
-            imagen3.Stretch = Stretch.UniformToFill
+            imagen.Stretch = Stretch.UniformToFill
         ElseIf valor = 3 Then
-            imagen1.Stretch = Stretch.Fill
-            imagen2.Stretch = Stretch.Fill
-            imagen3.Stretch = Stretch.Fill
+            imagen.Stretch = Stretch.Fill
         End If
 
     End Sub
@@ -791,26 +759,16 @@ Module Configuracion
         Dim cb As ComboBox = pagina.FindName("cbConfigTileMedianaImagenEstiramiento")
         cb.SelectedIndex = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileMedianaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileMedianaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileMedianaPersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTileMediana")
 
         If valor = 0 Then
-            imagen1.Stretch = Stretch.None
-            imagen2.Stretch = Stretch.None
-            imagen3.Stretch = Stretch.None
+            imagen.Stretch = Stretch.None
         ElseIf valor = 1 Then
-            imagen1.Stretch = Stretch.Uniform
-            imagen2.Stretch = Stretch.Uniform
-            imagen3.Stretch = Stretch.Uniform
+            imagen.Stretch = Stretch.Uniform
         ElseIf valor = 2 Then
-            imagen1.Stretch = Stretch.UniformToFill
-            imagen2.Stretch = Stretch.UniformToFill
-            imagen3.Stretch = Stretch.UniformToFill
+            imagen.Stretch = Stretch.UniformToFill
         ElseIf valor = 3 Then
-            imagen1.Stretch = Stretch.Fill
-            imagen2.Stretch = Stretch.Fill
-            imagen3.Stretch = Stretch.Fill
+            imagen.Stretch = Stretch.Fill
         End If
 
     End Sub
@@ -825,26 +783,16 @@ Module Configuracion
         Dim cb As ComboBox = pagina.FindName("cbConfigTileAnchaImagenEstiramiento")
         cb.SelectedIndex = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileAnchaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileAnchaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileAnchaPersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTileAncha")
 
         If valor = 0 Then
-            imagen1.Stretch = Stretch.None
-            imagen2.Stretch = Stretch.None
-            imagen3.Stretch = Stretch.None
+            imagen.Stretch = Stretch.None
         ElseIf valor = 1 Then
-            imagen1.Stretch = Stretch.Uniform
-            imagen2.Stretch = Stretch.Uniform
-            imagen3.Stretch = Stretch.Uniform
+            imagen.Stretch = Stretch.Uniform
         ElseIf valor = 2 Then
-            imagen1.Stretch = Stretch.UniformToFill
-            imagen2.Stretch = Stretch.UniformToFill
-            imagen3.Stretch = Stretch.UniformToFill
+            imagen.Stretch = Stretch.UniformToFill
         ElseIf valor = 3 Then
-            imagen1.Stretch = Stretch.Fill
-            imagen2.Stretch = Stretch.Fill
-            imagen3.Stretch = Stretch.Fill
+            imagen.Stretch = Stretch.Fill
         End If
 
     End Sub
@@ -859,26 +807,16 @@ Module Configuracion
         Dim cb As ComboBox = pagina.FindName("cbConfigTileGrandeImagenEstiramiento")
         cb.SelectedIndex = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileGrandeEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileGrandeGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileGrandePersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTileGrande")
 
         If valor = 0 Then
-            imagen1.Stretch = Stretch.None
-            imagen2.Stretch = Stretch.None
-            imagen3.Stretch = Stretch.None
+            imagen.Stretch = Stretch.None
         ElseIf valor = 1 Then
-            imagen1.Stretch = Stretch.Uniform
-            imagen2.Stretch = Stretch.Uniform
-            imagen3.Stretch = Stretch.Uniform
+            imagen.Stretch = Stretch.Uniform
         ElseIf valor = 2 Then
-            imagen1.Stretch = Stretch.UniformToFill
-            imagen2.Stretch = Stretch.UniformToFill
-            imagen3.Stretch = Stretch.UniformToFill
+            imagen.Stretch = Stretch.UniformToFill
         ElseIf valor = 3 Then
-            imagen1.Stretch = Stretch.Fill
-            imagen2.Stretch = Stretch.Fill
-            imagen3.Stretch = Stretch.Fill
+            imagen.Stretch = Stretch.Fill
         End If
 
     End Sub
@@ -890,13 +828,8 @@ Module Configuracion
 
         ApplicationData.Current.LocalSettings.Values("tile_pequeña_imagen_margen") = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTilePequeñaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTilePequeñaPersonalizar")
-
-        imagen1.Margin = New Thickness(valor)
-        imagen2.Margin = New Thickness(valor)
-        imagen3.Margin = New Thickness(valor)
+        Dim imagen As ImageEx = pagina.FindName("imagenTilePequeña")
+        imagen.Margin = New Thickness(valor)
 
     End Sub
 
@@ -907,13 +840,8 @@ Module Configuracion
 
         ApplicationData.Current.LocalSettings.Values("tile_mediana_imagen_margen") = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileMedianaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileMedianaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileMedianaPersonalizar")
-
-        imagen1.Margin = New Thickness(valor)
-        imagen2.Margin = New Thickness(valor)
-        imagen3.Margin = New Thickness(valor)
+        Dim imagen As ImageEx = pagina.FindName("imagenTileMediana")
+        imagen.Margin = New Thickness(valor)
 
     End Sub
 
@@ -924,13 +852,8 @@ Module Configuracion
 
         ApplicationData.Current.LocalSettings.Values("tile_ancha_imagen_margen") = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileAnchaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileAnchaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileAnchaPersonalizar")
-
-        imagen1.Margin = New Thickness(valor)
-        imagen2.Margin = New Thickness(valor)
-        imagen3.Margin = New Thickness(valor)
+        Dim imagen As ImageEx = pagina.FindName("imagenTileAncha")
+        imagen.Margin = New Thickness(valor)
 
     End Sub
 
@@ -941,13 +864,8 @@ Module Configuracion
 
         ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_margen") = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileGrandeEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileGrandeGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileGrandePersonalizar")
-
-        imagen1.Margin = New Thickness(valor)
-        imagen2.Margin = New Thickness(valor)
-        imagen3.Margin = New Thickness(valor)
+        Dim imagen As ImageEx = pagina.FindName("imagenTileGrande")
+        imagen.Margin = New Thickness(valor)
 
     End Sub
 
@@ -965,18 +883,14 @@ Module Configuracion
         Dim sliderY As Slider = pagina.FindName("sliderConfigTilePequeñaImagenCoordenadasY")
         sliderY.Value = y
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTilePequeñaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTilePequeñaPersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTilePequeña")
 
         Dim mover As New TranslateTransform With {
             .X = x,
             .Y = y
         }
 
-        imagen1.RenderTransform = mover
-        imagen2.RenderTransform = mover
-        imagen3.RenderTransform = mover
+        imagen.RenderTransform = mover
 
     End Sub
 
@@ -994,18 +908,14 @@ Module Configuracion
         Dim sliderY As Slider = pagina.FindName("sliderConfigTileMedianaImagenCoordenadasY")
         sliderY.Value = y
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileMedianaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileMedianaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileMedianaPersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTileMediana")
 
         Dim mover As New TranslateTransform With {
             .X = x,
             .Y = y
         }
 
-        imagen1.RenderTransform = mover
-        imagen2.RenderTransform = mover
-        imagen3.RenderTransform = mover
+        imagen.RenderTransform = mover
 
     End Sub
 
@@ -1023,18 +933,14 @@ Module Configuracion
         Dim sliderY As Slider = pagina.FindName("sliderConfigTileAnchaImagenCoordenadasY")
         sliderY.Value = y
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileAnchaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileAnchaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileAnchaPersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTileAncha")
 
         Dim mover As New TranslateTransform With {
             .X = x,
             .Y = y
         }
 
-        imagen1.RenderTransform = mover
-        imagen2.RenderTransform = mover
-        imagen3.RenderTransform = mover
+        imagen.RenderTransform = mover
 
     End Sub
 
@@ -1052,18 +958,14 @@ Module Configuracion
         Dim sliderY As Slider = pagina.FindName("sliderConfigTileGrandeImagenCoordenadasY")
         sliderY.Value = y
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileGrandeEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileGrandeGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileGrandePersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTileGrande")
 
         Dim mover As New TranslateTransform With {
             .X = x,
             .Y = y
         }
 
-        imagen1.RenderTransform = mover
-        imagen2.RenderTransform = mover
-        imagen3.RenderTransform = mover
+        imagen.RenderTransform = mover
 
     End Sub
 
@@ -1077,9 +979,7 @@ Module Configuracion
         Dim slider As Slider = pagina.FindName("sliderConfigTilePequeñaImagenZoom")
         slider.Value = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTilePequeñaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTilePequeñaPersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTilePequeña")
 
         Dim zoom As New CompositeTransform With {
             .ScaleX = valor,
@@ -1088,9 +988,7 @@ Module Configuracion
             .TranslateY = y
         }
 
-        imagen1.RenderTransform = zoom
-        imagen2.RenderTransform = zoom
-        imagen3.RenderTransform = zoom
+        imagen.RenderTransform = zoom
 
     End Sub
 
@@ -1104,9 +1002,7 @@ Module Configuracion
         Dim slider As Slider = pagina.FindName("sliderConfigTileMedianaImagenZoom")
         slider.Value = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileMedianaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileMedianaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileMedianaPersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTileMediana")
 
         Dim zoom As New CompositeTransform With {
             .ScaleX = valor,
@@ -1115,9 +1011,7 @@ Module Configuracion
             .TranslateY = y
         }
 
-        imagen1.RenderTransform = zoom
-        imagen2.RenderTransform = zoom
-        imagen3.RenderTransform = zoom
+        imagen.RenderTransform = zoom
 
     End Sub
 
@@ -1131,9 +1025,7 @@ Module Configuracion
         Dim slider As Slider = pagina.FindName("sliderConfigTileAnchaImagenZoom")
         slider.Value = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileAnchaEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileAnchaGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileAnchaPersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTileAncha")
 
         Dim zoom As New CompositeTransform With {
             .ScaleX = valor,
@@ -1142,9 +1034,7 @@ Module Configuracion
             .TranslateY = y
         }
 
-        imagen1.RenderTransform = zoom
-        imagen2.RenderTransform = zoom
-        imagen3.RenderTransform = zoom
+        imagen.RenderTransform = zoom
 
     End Sub
 
@@ -1158,9 +1048,7 @@ Module Configuracion
         Dim slider As Slider = pagina.FindName("sliderConfigTileGrandeImagenZoom")
         slider.Value = valor
 
-        Dim imagen1 As ImageEx = pagina.FindName("imagenTileGrandeEnseñar")
-        Dim imagen2 As ImageEx = pagina.FindName("imagenTileGrandeGenerar")
-        Dim imagen3 As ImageEx = pagina.FindName("imagenTileGrandePersonalizar")
+        Dim imagen As ImageEx = pagina.FindName("imagenTileGrande")
 
         Dim zoom As New CompositeTransform With {
             .ScaleX = valor,
@@ -1169,9 +1057,7 @@ Module Configuracion
             .TranslateY = y
         }
 
-        imagen1.RenderTransform = zoom
-        imagen2.RenderTransform = zoom
-        imagen3.RenderTransform = zoom
+        imagen.RenderTransform = zoom
 
     End Sub
 

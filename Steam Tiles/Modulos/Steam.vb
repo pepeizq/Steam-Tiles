@@ -11,6 +11,7 @@ Imports Windows.UI.Xaml.Media.Animation
 
 Module Steam
 
+    Dim anchoColumna As Integer = 306
     Dim clave As String = "carpeta36"
 
     Public Async Sub Generar(boolBuscarCarpeta As Boolean)
@@ -501,7 +502,8 @@ Module Steam
         gridSeleccionarJuego.Visibility = Visibility.Collapsed
 
         Dim gvTiles As GridView = pagina.FindName("gvTiles")
-        gvTiles.Width = 306
+        ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles") = gvTiles.ActualWidth
+        gvTiles.Width = anchoColumna
         gvTiles.Padding = New Thickness(0, 0, 15, 0)
 
         Dim gridAñadir As Grid = pagina.FindName("gridAñadirTile")
@@ -520,18 +522,6 @@ Module Steam
 
         '---------------------------------------------
 
-        Dim titulo1 As TextBlock = pagina.FindName("tituloTileAnchaEnseñar")
-        Dim titulo2 As TextBlock = pagina.FindName("tituloTileAnchaPersonalizar")
-
-        Dim titulo3 As TextBlock = pagina.FindName("tituloTileGrandeEnseñar")
-        Dim titulo4 As TextBlock = pagina.FindName("tituloTileGrandePersonalizar")
-
-        titulo1.Text = juego.Titulo
-        titulo2.Text = juego.Titulo
-
-        titulo3.Text = juego.Titulo
-        titulo4.Text = juego.Titulo
-
         Try
             juego.ImagenIcono = Await Cache.DescargarImagen(Await SacarIcono(juego.ID), juego.ID, "icono")
         Catch ex As Exception
@@ -539,67 +529,31 @@ Module Steam
         End Try
 
         If Not juego.ImagenIcono = Nothing Then
-            Dim imagenPequeña1 As ImageEx = pagina.FindName("imagenTilePequeñaEnseñar")
-            Dim imagenPequeña2 As ImageEx = pagina.FindName("imagenTilePequeñaGenerar")
-            Dim imagenPequeña3 As ImageEx = pagina.FindName("imagenTilePequeñaPersonalizar")
-
-            imagenPequeña1.Source = juego.ImagenIcono
-            imagenPequeña2.Source = juego.ImagenIcono
-            imagenPequeña3.Source = juego.ImagenIcono
-
-            imagenPequeña1.Tag = juego.ImagenIcono
-            imagenPequeña2.Tag = juego.ImagenIcono
-            imagenPequeña3.Tag = juego.ImagenIcono
+            Dim imagenPequeña As ImageEx = pagina.FindName("imagenTilePequeña")
+            imagenPequeña.Source = juego.ImagenIcono
+            imagenPequeña.Tag = juego.ImagenIcono
         End If
 
         If Not juego.ImagenAncha = Nothing Then
-            Dim imagenMediana1 As ImageEx = pagina.FindName("imagenTileMedianaEnseñar")
-            Dim imagenMediana2 As ImageEx = pagina.FindName("imagenTileMedianaGenerar")
-            Dim imagenMediana3 As ImageEx = pagina.FindName("imagenTileMedianaPersonalizar")
+            Dim imagenMediana As ImageEx = pagina.FindName("imagenTileMediana")
 
             If Not juego.ImagenLogo = Nothing Then
-                imagenMediana1.Source = juego.ImagenLogo
-                imagenMediana2.Source = juego.ImagenLogo
-                imagenMediana3.Source = juego.ImagenLogo
-
-                imagenMediana1.Tag = juego.ImagenLogo
-                imagenMediana2.Tag = juego.ImagenLogo
-                imagenMediana3.Tag = juego.ImagenLogo
+                imagenMediana.Source = juego.ImagenLogo
+                imagenMediana.Tag = juego.ImagenLogo
             Else
-                imagenMediana1.Source = juego.ImagenAncha
-                imagenMediana2.Source = juego.ImagenAncha
-                imagenMediana3.Source = juego.ImagenAncha
-
-                imagenMediana1.Tag = juego.ImagenAncha
-                imagenMediana2.Tag = juego.ImagenAncha
-                imagenMediana3.Tag = juego.ImagenAncha
+                imagenMediana.Source = juego.ImagenAncha
+                imagenMediana.Tag = juego.ImagenAncha
             End If
 
-            Dim imagenAncha1 As ImageEx = pagina.FindName("imagenTileAnchaEnseñar")
-            Dim imagenAncha2 As ImageEx = pagina.FindName("imagenTileAnchaGenerar")
-            Dim imagenAncha3 As ImageEx = pagina.FindName("imagenTileAnchaPersonalizar")
-
-            imagenAncha1.Source = juego.ImagenAncha
-            imagenAncha2.Source = juego.ImagenAncha
-            imagenAncha3.Source = juego.ImagenAncha
-
-            imagenAncha1.Tag = juego.ImagenAncha
-            imagenAncha2.Tag = juego.ImagenAncha
-            imagenAncha3.Tag = juego.ImagenAncha
+            Dim imagenAncha As ImageEx = pagina.FindName("imagenTileAncha")
+            imagenAncha.Source = juego.ImagenAncha
+            imagenAncha.Tag = juego.ImagenAncha
         End If
 
         If Not juego.ImagenGrande = Nothing Then
-            Dim imagenGrande1 As ImageEx = pagina.FindName("imagenTileGrandeEnseñar")
-            Dim imagenGrande2 As ImageEx = pagina.FindName("imagenTileGrandeGenerar")
-            Dim imagenGrande3 As ImageEx = pagina.FindName("imagenTileGrandePersonalizar")
-
-            imagenGrande1.Source = juego.ImagenGrande
-            imagenGrande2.Source = juego.ImagenGrande
-            imagenGrande3.Source = juego.ImagenGrande
-
-            imagenGrande1.Tag = juego.ImagenGrande
-            imagenGrande2.Tag = juego.ImagenGrande
-            imagenGrande3.Tag = juego.ImagenGrande
+            Dim imagenGrande As ImageEx = pagina.FindName("imagenTileGrande")
+            imagenGrande.Source = juego.ImagenGrande
+            imagenGrande.Tag = juego.ImagenGrande
         End If
 
     End Sub
