@@ -285,7 +285,16 @@
   <data name="ConfigAccountInfo.Text" xml:space="preserve">
     <value>Add your Steam account, keep in mind that if you have many games the app will need time to process the information:</value>
   </data>
-  <data name="Options.Content" xml:space="preserve">
+  <data name="Options.Text" xml:space="preserve">
     <value>Options</value>
+  </data>
+  <data name="OptionsSource.Content" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="OptionsSourceComputer.Text" xml:space="preserve">
+    <value>Search on your computer</value>
+  </data>
+  <data name="OptionsSourceInfo.Text" xml:space="preserve">
+    <value>Change the image with one on your computer or one on the Internet:</value>
   </data>
 </root>

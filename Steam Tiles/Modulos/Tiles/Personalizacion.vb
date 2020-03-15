@@ -1,5 +1,7 @@
 ﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Windows.Storage
+Imports Windows.Storage.Pickers
+Imports Windows.Storage.Streams
 
 Namespace Tiles
     Module Personalizacion
@@ -75,6 +77,13 @@ Namespace Tiles
 
             gridInterior.Children.Add(imagen)
 
+            Dim cbOpciones As ComboBox = pagina.FindName("cbOpciones")
+
+            RemoveHandler cbOpciones.SelectionChanged, AddressOf CambiarOpcion
+            AddHandler cbOpciones.SelectionChanged, AddressOf CambiarOpcion
+
+            cbOpciones.SelectedIndex = 0
+
         End Sub
 
         Public Sub Volver(sender As Object, e As RoutedEventArgs)
@@ -87,6 +96,56 @@ Namespace Tiles
 
             Dim gridPersonalizarTiles As Grid = pagina.FindName("gridPersonalizarTiles")
             gridPersonalizarTiles.Visibility = Visibility.Collapsed
+
+        End Sub
+
+        Public Sub CambiarOpcion(sender As Object, e As SelectionChangedEventArgs)
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            Dim cbOpciones As ComboBox = pagina.FindName("cbOpciones")
+
+            If cbOpciones.SelectedIndex = 0 Then
+                Dim gridFuente As Grid = pagina.FindName("gridPersonalizacionImagenFuente")
+                MostrarGridOpcion(gridFuente)
+
+            End If
+
+        End Sub
+
+        Private Async Sub CambioImagen()
+
+            Dim ficheroPicker As New FileOpenPicker
+            ficheroPicker.FileTypeFilter.Add(".png")
+            ficheroPicker.FileTypeFilter.Add(".jpg")
+            ficheroPicker.ViewMode = PickerViewMode.List
+
+            Dim ficheroImagen As StorageFile = Await ficheroPicker.PickSingleFileAsync
+
+            Dim bitmap As New BitmapImage
+
+            Try
+                Dim stream As FileRandomAccessStream = Await ficheroImagen.OpenAsync(FileAccessMode.Read)
+                bitmap.SetSource(stream)
+
+                'imagen1.Source = bitmap
+
+            Catch ex As Exception
+
+            End Try
+
+        End Sub
+
+        Private Sub MostrarGridOpcion(grid As Grid)
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            Dim gridFuente As Grid = pagina.FindName("gridPersonalizacionImagenFuente")
+            gridFuente.Visibility = Visibility.Collapsed
+
+            grid.Visibility = Visibility.Visible
 
         End Sub
 

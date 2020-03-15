@@ -211,10 +211,12 @@
                                         </StackPanel>
                                     </Button>
                                 </controls:DropShadowPanel>
-
+                                                              
                                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0">
-                                    <ComboBox x:Name="cbOpciones" SelectedIndex="0">
-                                        <ComboBoxItem x:Uid="Options"/>
+                                    <TextBlock x:Uid="Options" Margin="0,0,20,0" VerticalAlignment="Center"/>
+
+                                    <ComboBox x:Name="cbOpciones" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                        <ComboBoxItem x:Uid="OptionsSource"/>
                                     </ComboBox> 
                                 </StackPanel>
 
@@ -255,15 +257,43 @@
                             </Grid>
 
                             <Grid Grid.Row="1" Padding="20">
-
-                                <Grid x:Name="gridPersonalizacionExterior" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1">
-                                    <Grid x:Name="gridPersonalizacionInterior" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-
-
-                                    </Grid>
-
-                                </Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
                                 
+                                <Grid x:Name="gridPersonalizacionExterior" Grid.Column="0" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1">
+                                    <Grid x:Name="gridPersonalizacionInterior" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Grid>
+
+                                <Grid Grid.Column="1" Padding="30">
+                                    <Grid x:Name="gridPersonalizacionImagenFuente" Visibility="Collapsed">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid Grid.Row="0" Margin="20" MaxWidth="300">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            
+                                            <fa:FontAwesome Grid.Column="0" Icon="InfoCircle" Foreground="{StaticResource BrushPrimario}"/>
+                                            <TextBlock x:Uid="OptionsSourceInfo" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                        </Grid>
+                                        
+
+                                        <controls:DropShadowPanel Grid.Row="1" ShadowOpacity="0.9" BlurRadius="5" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Button x:Name="botonPersonalizacionCambiarImagenOrdenador" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <fa:FontAwesome Icon="Folder" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                                    <TextBlock x:Uid="OptionsSourceComputer" Foreground="White"/>
+                                                </StackPanel>
+                                            </Button>
+                                        </controls:DropShadowPanel>
+                                    </Grid>
+                                </Grid>
                             </Grid>
 
                             <Grid Grid.Row="1" Padding="20" Visibility="Collapsed">
