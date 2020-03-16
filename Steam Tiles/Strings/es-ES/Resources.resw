@@ -297,4 +297,13 @@
   <data name="OptionsSourceInfo.Text" xml:space="preserve">
     <value>Cambia la imagen con una en tu ordenador o una de Internet:</value>
   </data>
+  <data name="OptionsSourceUbication.Text" xml:space="preserve">
+    <value>Ubicación de la Imagen:</value>
+  </data>
+  <data name="OptionsSourceUbication1.Content" xml:space="preserve">
+    <value>Caja Interior</value>
+  </data>
+  <data name="OptionsSourceUbication2.Content" xml:space="preserve">
+    <value>Caja Exterior</value>
+  </data>
 </root>

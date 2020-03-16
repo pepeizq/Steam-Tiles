@@ -271,6 +271,8 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
 
                                         <Grid Grid.Row="0" Margin="20" MaxWidth="300">
@@ -283,7 +285,6 @@
                                             <TextBlock x:Uid="OptionsSourceInfo" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
                                         </Grid>
                                         
-
                                         <controls:DropShadowPanel Grid.Row="1" ShadowOpacity="0.9" BlurRadius="5" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <Button x:Name="botonPersonalizacionCambiarImagenOrdenador" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                                 <StackPanel Orientation="Horizontal">
@@ -292,6 +293,13 @@
                                                 </StackPanel>
                                             </Button>
                                         </controls:DropShadowPanel>
+
+                                        <TextBlock x:Uid="OptionsSourceUbication" Grid.Row="2" Margin="0,30,0,20" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+
+                                        <ComboBox x:Name="cbPersonalizacionImagenUbicacion" Grid.Row="3" MaxWidth="300" HorizontalAlignment="Center" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                            <ComboBoxItem x:Uid="OptionsSourceUbication1"/>
+                                            <ComboBoxItem x:Uid="OptionsSourceUbication2"/>
+                                        </ComboBox>
                                     </Grid>
                                 </Grid>
                             </Grid>
