@@ -216,7 +216,7 @@
                                     <TextBlock x:Uid="Options" Margin="0,0,20,0" VerticalAlignment="Center"/>
 
                                     <ComboBox x:Name="cbOpciones" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <ComboBoxItem x:Uid="OptionsSource"/>
+                                        <!--<ComboBoxItem x:Uid="OptionsSource"/>-->
                                     </ComboBox> 
                                 </StackPanel>
 
@@ -266,42 +266,68 @@
                                     <Grid x:Name="gridPersonalizacionInterior" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
 
-                                <Grid Grid.Column="1" Padding="30">
-                                    <Grid x:Name="gridPersonalizacionImagenFuente" Visibility="Collapsed">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Grid Grid.Row="0" Margin="20" MaxWidth="300">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            
-                                            <fa:FontAwesome Grid.Column="0" Icon="InfoCircle" Foreground="{StaticResource BrushPrimario}"/>
-                                            <TextBlock x:Uid="OptionsSourceInfo" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                                        </Grid>
+                                <controls:TabView Grid.Column="1" VerticalAlignment="Top" Margin="20,0,0,0" Background="{StaticResource BrushCuarto}">
+                                    <controls:TabViewItem>
+                                        <controls:TabViewItem.Header>
+                                            <Grid PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                                <TextBlock x:Uid="OptionsSource"/>
+                                            </Grid>
+                                        </controls:TabViewItem.Header>
                                         
-                                        <controls:DropShadowPanel Grid.Row="1" ShadowOpacity="0.9" BlurRadius="5" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                            <Button x:Name="botonPersonalizacionCambiarImagenOrdenador" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <fa:FontAwesome Icon="Folder" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                    <TextBlock x:Uid="OptionsSourceComputer" Foreground="White"/>
-                                                </StackPanel>
-                                            </Button>
-                                        </controls:DropShadowPanel>
+                                        <StackPanel Orientation="Vertical" Padding="20">
+                                            <Grid Margin="10" MaxWidth="300">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
 
-                                        <TextBlock x:Uid="OptionsSourceUbication" Grid.Row="2" Margin="0,30,0,20" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                                <fa:FontAwesome Grid.Column="0" Icon="InfoCircle" Foreground="{StaticResource BrushPrimario}"/>
+                                                <TextBlock x:Uid="OptionsSourceInfo" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                            </Grid>
 
-                                        <ComboBox x:Name="cbPersonalizacionImagenUbicacion" Grid.Row="3" MaxWidth="300" HorizontalAlignment="Center" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                            <ComboBoxItem x:Uid="OptionsSourceUbication1"/>
-                                            <ComboBoxItem x:Uid="OptionsSourceUbication2"/>
-                                        </ComboBox>
-                                    </Grid>
-                                </Grid>
+                                            <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <Button x:Name="botonPersonalizacionCambiarImagenOrdenador" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <fa:FontAwesome Icon="Folder" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                                        <TextBlock x:Uid="OptionsSourceComputer" Foreground="White"/>
+                                                    </StackPanel>
+                                                </Button>
+                                            </controls:DropShadowPanel>
+
+                                            <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                                                <TextBlock x:Uid="OptionsSourceInternet" HorizontalAlignment="Center"/>
+                                                <TextBox x:Name="tbPersonalizacionCambiarImagenInternet" MaxWidth="300" Margin="0,10,0,0"/>
+                                            </StackPanel>
+
+                                            <TextBlock x:Uid="OptionsSourceUbication" Margin="0,30,0,10" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+
+                                            <ComboBox x:Name="cbPersonalizacionImagenUbicacion" MaxWidth="300" HorizontalAlignment="Center" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                                <ComboBoxItem x:Uid="OptionsSourceUbication1"/>
+                                                <ComboBoxItem x:Uid="OptionsSourceUbication2"/>
+                                            </ComboBox>
+
+                                            <TextBlock x:Uid="OptionsSourceStretch" Margin="0,20,0,10" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
+
+                                            <ComboBox x:Name="cbPersonalizacionImagenEstiramiento" MaxWidth="300" HorizontalAlignment="Center" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                                <ComboBoxItem x:Uid="OptionsSourceStretch1"/>
+                                                <ComboBoxItem x:Uid="OptionsSourceStretch2"/>
+                                                <ComboBoxItem x:Uid="OptionsSourceStretch3"/>
+                                                <ComboBoxItem x:Uid="OptionsSourceStretch4"/>
+                                            </ComboBox>
+                                        </StackPanel>
+                                    </controls:TabViewItem>
+                                    <controls:TabViewItem>
+                                        <controls:TabViewItem.Header>
+                                            <Grid PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                                <TextBlock x:Uid="OptionsBackground"/>
+                                            </Grid>
+                                        </controls:TabViewItem.Header>
+
+                                        <StackPanel Orientation="Vertical" Padding="20">
+                                            
+                                        </StackPanel> 
+                                    </controls:TabViewItem> 
+                                </controls:TabView>
                             </Grid>
 
                             <Grid Grid.Row="1" Padding="20" Visibility="Collapsed">

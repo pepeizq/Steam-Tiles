@@ -2,7 +2,6 @@
 Imports Windows.Storage
 Imports Windows.Storage.Pickers
 Imports Windows.Storage.Streams
-Imports Windows.UI
 
 Namespace Tiles
     Module Personalizacion
@@ -69,6 +68,20 @@ Namespace Tiles
             gridExterior.Width = anchoExterior
             gridExterior.Height = altoExterior
 
+            For Each hijo In gridExterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    gridExterior.Children.Remove(hijo)
+                End If
+            Next
+
             Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
             gridInterior.BorderThickness = New Thickness(1, 1, 1, 1)
             gridInterior.SetValue(Canvas.ZIndexProperty, 99990)
@@ -82,12 +95,32 @@ Namespace Tiles
 
             gridInterior.Children.Add(imagen)
 
-            Dim cbOpciones As ComboBox = pagina.FindName("cbOpciones")
+            '-------------------------------------------
 
-            RemoveHandler cbOpciones.SelectionChanged, AddressOf CambiarOpcion
-            AddHandler cbOpciones.SelectionChanged, AddressOf CambiarOpcion
+            Dim botonImagenOrdenador As Button = pagina.FindName("botonPersonalizacionCambiarImagenOrdenador")
 
-            cbOpciones.SelectedIndex = 0
+            RemoveHandler botonImagenOrdenador.Click, AddressOf CambioImagenOrdenador
+            AddHandler botonImagenOrdenador.Click, AddressOf CambioImagenOrdenador
+
+            Dim tbImagenInternet As TextBox = pagina.FindName("tbPersonalizacionCambiarImagenInternet")
+            tbImagenInternet.Text = String.Empty
+
+            RemoveHandler tbImagenInternet.TextChanged, AddressOf CambioImagenInternet
+            AddHandler tbImagenInternet.TextChanged, AddressOf CambioImagenInternet
+
+            Dim cbImagenUbicacion As ComboBox = pagina.FindName("cbPersonalizacionImagenUbicacion")
+
+            RemoveHandler cbImagenUbicacion.SelectionChanged, AddressOf CambiarImagenUbicacion
+            AddHandler cbImagenUbicacion.SelectionChanged, AddressOf CambiarImagenUbicacion
+
+            cbImagenUbicacion.SelectedIndex = 0
+
+            Dim cbImagenEstiramiento As ComboBox = pagina.FindName("cbPersonalizacionImagenEstiramiento")
+
+            RemoveHandler cbImagenEstiramiento.SelectionChanged, AddressOf CambiarImagenEstiramiento
+            AddHandler cbImagenEstiramiento.SelectionChanged, AddressOf CambiarImagenEstiramiento
+
+            cbImagenEstiramiento.SelectedIndex = 0
 
         End Sub
 
@@ -172,39 +205,7 @@ Namespace Tiles
 
         End Sub
 
-        Public Sub CambiarOpcion(sender As Object, e As SelectionChangedEventArgs)
-
-            Dim frame As Frame = Window.Current.Content
-            Dim pagina As Page = frame.Content
-
-            Dim cbOpciones As ComboBox = pagina.FindName("cbOpciones")
-
-            If cbOpciones.SelectedIndex = 0 Then
-                Dim gridFuente As Grid = pagina.FindName("gridPersonalizacionImagenFuente")
-                MostrarGridOpcion(gridFuente)
-
-                Dim botonImagenOrdenador As Button = pagina.FindName("botonPersonalizacionCambiarImagenOrdenador")
-
-                RemoveHandler botonImagenOrdenador.Click, AddressOf CambioImagen
-                AddHandler botonImagenOrdenador.Click, AddressOf CambioImagen
-
-                Dim cbImagenUbicacion As ComboBox = pagina.FindName("cbPersonalizacionImagenUbicacion")
-
-                RemoveHandler cbImagenUbicacion.SelectionChanged, AddressOf CambiarImagenUbicacion
-                AddHandler cbImagenUbicacion.SelectionChanged, AddressOf CambiarImagenUbicacion
-
-                If ApplicationData.Current.LocalSettings.Values("opcion_imagen_ubicacion") Is Nothing Then
-                    cbImagenUbicacion.SelectedIndex = 0
-                Else
-                    cbImagenUbicacion.SelectedIndex = ApplicationData.Current.LocalSettings.Values("opcion_imagen_ubicacion")
-                End If
-
-
-            End If
-
-        End Sub
-
-        Private Async Sub CambioImagen(sender As Object, e As RoutedEventArgs)
+        Private Async Sub CambioImagenOrdenador(sender As Object, e As RoutedEventArgs)
 
             Dim frame As Frame = Window.Current.Content
             Dim pagina As Page = frame.Content
@@ -215,6 +216,7 @@ Namespace Tiles
             Dim ficheroPicker As New FileOpenPicker
             ficheroPicker.FileTypeFilter.Add(".png")
             ficheroPicker.FileTypeFilter.Add(".jpg")
+            ficheroPicker.FileTypeFilter.Add(".jpeg")
             ficheroPicker.ViewMode = PickerViewMode.List
 
             Dim ficheroImagen As StorageFile = Await ficheroPicker.PickSingleFileAsync
@@ -224,60 +226,203 @@ Namespace Tiles
             Try
                 Dim stream As FileRandomAccessStream = Await ficheroImagen.OpenAsync(FileAccessMode.Read)
                 bitmap.SetSource(stream)
-
-                Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
-
-                For Each hijo In gridExterior.Children
-                    Dim grid As Grid = hijo
-
-                    If grid Is Nothing Then
-                        gridExterior.Children.Remove(hijo)
-                    End If
-                Next
-
-                Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
-
-                Dim imagen As New ImageEx With {
-                    .IsCacheEnabled = True,
-                    .Source = bitmap,
-                    .Stretch = Stretch.UniformToFill
-                }
-
-                If ApplicationData.Current.LocalSettings.Values("opcion_imagen_ubicacion") Is Nothing Then
-                    gridInterior.Children.Add(imagen)
-                Else
-                    If ApplicationData.Current.LocalSettings.Values("opcion_imagen_ubicacion") = 0 Then
-                        gridInterior.Children.Add(imagen)
-                    Else
-                        gridInterior.Children.Clear()
-                        gridExterior.Children.Add(imagen)
-                    End If
-                End If
-
             Catch ex As Exception
 
             End Try
+
+            CambioImagenIncrustar(bitmap)
 
             botonImagenOrdenador.IsEnabled = True
 
         End Sub
 
-        Public Sub CambiarImagenUbicacion(sender As Object, e As SelectionChangedEventArgs)
-
-            Dim cb As ComboBox = sender
-            ApplicationData.Current.LocalSettings.Values("opcion_imagen_ubicacion") = cb.SelectedIndex
-
-        End Sub
-
-        Private Sub MostrarGridOpcion(grid As Grid)
+        Private Sub CambioImagenInternet(sender As Object, e As TextChangedEventArgs)
 
             Dim frame As Frame = Window.Current.Content
             Dim pagina As Page = frame.Content
 
-            Dim gridFuente As Grid = pagina.FindName("gridPersonalizacionImagenFuente")
-            gridFuente.Visibility = Visibility.Collapsed
+            Dim tbImagenInternet As TextBox = pagina.FindName("tbPersonalizacionCambiarImagenInternet")
+            tbImagenInternet.IsEnabled = False
 
-            grid.Visibility = Visibility.Visible
+            If tbImagenInternet.Text.Trim.Length > 0 Then
+                If tbImagenInternet.Text.Trim.Contains("http://") Or tbImagenInternet.Text.Trim.Contains("https://") Then
+                    Try
+                        CambioImagenIncrustar(tbImagenInternet.Text.Trim)
+                    Catch ex As Exception
+
+                    End Try
+                End If
+            End If
+
+            tbImagenInternet.IsEnabled = True
+
+        End Sub
+
+        Private Sub CambioImagenIncrustar(bitmap As Object)
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
+
+            For Each hijo In gridExterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    gridExterior.Children.Remove(hijo)
+                End If
+            Next
+
+            Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
+
+            Dim imagen As New ImageEx With {
+                .IsCacheEnabled = True,
+                .Source = bitmap,
+                .Stretch = Stretch.UniformToFill
+            }
+
+            Dim cbImagenUbicacion As ComboBox = pagina.FindName("cbPersonalizacionImagenUbicacion")
+
+            If cbImagenUbicacion.SelectedIndex = 0 Then
+                gridInterior.Children.Add(imagen)
+            ElseIf cbImagenUbicacion.SelectedIndex = 1 Then
+                gridInterior.Children.Clear()
+                gridExterior.Children.Add(imagen)
+            End If
+
+        End Sub
+
+        Private Sub CambiarImagenUbicacion(sender As Object, e As SelectionChangedEventArgs)
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            Dim cb As ComboBox = sender
+
+            Dim imagen As New ImageEx
+
+            Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
+
+            For Each hijo In gridExterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    imagen.Source = imagen2.Source
+                    imagen.IsCacheEnabled = imagen2.IsCacheEnabled
+                    imagen.Stretch = imagen2.Stretch
+
+                    gridExterior.Children.Remove(hijo)
+                End If
+            Next
+
+            Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
+
+            For Each hijo In gridInterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    imagen.Source = imagen2.Source
+                    imagen.IsCacheEnabled = imagen2.IsCacheEnabled
+                    imagen.Stretch = imagen2.Stretch
+
+                    gridInterior.Children.Remove(hijo)
+                End If
+            Next
+
+            If cb.SelectedIndex = 0 Then
+                gridInterior.Children.Add(imagen)
+            ElseIf cb.SelectedIndex = 1 Then
+                gridExterior.Children.Add(imagen)
+            End If
+
+        End Sub
+
+        Private Sub CambiarImagenEstiramiento(sender As Object, e As SelectionChangedEventArgs)
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            Dim cb As ComboBox = sender
+
+            Dim imagen As New ImageEx
+
+            Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
+
+            For Each hijo In gridExterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    imagen.Source = imagen2.Source
+                    imagen.IsCacheEnabled = imagen2.IsCacheEnabled
+
+                    If cb.SelectedIndex = 0 Then
+                        imagen.Stretch = Stretch.UniformToFill
+                    ElseIf cb.SelectedIndex = 1 Then
+                        imagen.Stretch = Stretch.Uniform
+                    ElseIf cb.SelectedIndex = 2 Then
+                        imagen.Stretch = Stretch.Fill
+                    ElseIf cb.SelectedIndex = 3 Then
+                        imagen.Stretch = Stretch.None
+                    End If
+
+                    gridExterior.Children.Remove(hijo)
+                    gridExterior.Children.Add(imagen)
+                End If
+            Next
+
+            Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
+
+            For Each hijo In gridInterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    imagen.Source = imagen2.Source
+                    imagen.IsCacheEnabled = imagen2.IsCacheEnabled
+
+                    If cb.SelectedIndex = 0 Then
+                        imagen.Stretch = Stretch.UniformToFill
+                    ElseIf cb.SelectedIndex = 1 Then
+                        imagen.Stretch = Stretch.Uniform
+                    ElseIf cb.SelectedIndex = 2 Then
+                        imagen.Stretch = Stretch.Fill
+                    ElseIf cb.SelectedIndex = 3 Then
+                        imagen.Stretch = Stretch.None
+                    End If
+
+                    gridInterior.Children.Remove(hijo)
+                    gridInterior.Children.Add(imagen)
+                End If
+            Next
 
         End Sub
 

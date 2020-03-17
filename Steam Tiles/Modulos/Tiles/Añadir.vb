@@ -57,18 +57,18 @@ Namespace Tiles
 
             '-----------------------
 
-            Dim imagenDRM As New AdaptiveImage With {
-                .HintRemoveMargin = True
-            }
+            'Dim imagenDRM As New AdaptiveImage With {
+            '    .HintRemoveMargin = True
+            '}
 
-            If ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion") = 0 Then
-                imagenDRM.HintAlign = AdaptiveImageAlign.Left
-            Else
-                imagenDRM.HintAlign = AdaptiveImageAlign.Right
-            End If
+            'If ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion") = 0 Then
+            '    imagenDRM.HintAlign = AdaptiveImageAlign.Left
+            'Else
+            '    imagenDRM.HintAlign = AdaptiveImageAlign.Right
+            'End If
 
-            Dim cbDRMIcono As ComboBox = pagina.FindName("cbConfigTilesDRMIcono")
-            imagenDRM.Source = cbDRMIcono.SelectedItem.Source
+            'Dim cbDRMIcono As ComboBox = pagina.FindName("cbConfigTilesDRMIcono")
+            'imagenDRM.Source = cbDRMIcono.SelectedItem.Source
 
             '-----------------------
 
@@ -83,11 +83,11 @@ Namespace Tiles
                 .BackgroundImage = fondoImagenMediano
             }
 
-            If ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar") = True Then
-                If Not imagenDRM Is Nothing Then
-                    contenidoMediano.Children.Add(imagenDRM)
-                End If
-            End If
+            'If ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar") = True Then
+            '    If Not imagenDRM Is Nothing Then
+            '        contenidoMediano.Children.Add(imagenDRM)
+            '    End If
+            'End If
 
             Dim tileMediano As New TileBinding With {
                 .Content = contenidoMediano
@@ -106,11 +106,11 @@ Namespace Tiles
                 .BackgroundImage = fondoImagenAncha
             }
 
-            If ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar") = True Then
-                If Not imagenDRM Is Nothing Then
-                    contenidoAncho.Children.Add(imagenDRM)
-                End If
-            End If
+            'If ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar") = True Then
+            '    If Not imagenDRM Is Nothing Then
+            '        contenidoAncho.Children.Add(imagenDRM)
+            '    End If
+            'End If
 
             Dim tileAncha As New TileBinding With {
                 .Content = contenidoAncho
@@ -129,11 +129,11 @@ Namespace Tiles
                 .BackgroundImage = fondoImagenGrande
             }
 
-            If ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar") = True Then
-                If Not imagenDRM Is Nothing Then
-                    contenidoGrande.Children.Add(imagenDRM)
-                End If
-            End If
+            'If ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar") = True Then
+            '    If Not imagenDRM Is Nothing Then
+            '        contenidoGrande.Children.Add(imagenDRM)
+            '    End If
+            'End If
 
             Dim tileGrande As New TileBinding With {
                 .Content = contenidoGrande

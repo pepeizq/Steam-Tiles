@@ -288,7 +288,7 @@
   <data name="Options.Text" xml:space="preserve">
     <value>Options</value>
   </data>
-  <data name="OptionsSource.Content" xml:space="preserve">
+  <data name="OptionsSource.Text" xml:space="preserve">
     <value>Source</value>
   </data>
   <data name="OptionsSourceComputer.Text" xml:space="preserve">
@@ -305,5 +305,26 @@
   </data>
   <data name="OptionsSourceUbication2.Content" xml:space="preserve">
     <value>Outer box</value>
+  </data>
+  <data name="OptionsSourceInternet.Text" xml:space="preserve">
+    <value>Add the image url:</value>
+  </data>
+  <data name="OptionsBackground.Text" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="OptionsSourceStretch.Text" xml:space="preserve">
+    <value>Image Stretch:</value>
+  </data>
+  <data name="OptionsSourceStretch1.Content" xml:space="preserve">
+    <value>Uniform and Fill</value>
+  </data>
+  <data name="OptionsSourceStretch2.Content" xml:space="preserve">
+    <value>Uniform</value>
+  </data>
+  <data name="OptionsSourceStretch3.Content" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="OptionsSourceStretch4.Content" xml:space="preserve">
+    <value>None</value>
   </data>
 </root>
