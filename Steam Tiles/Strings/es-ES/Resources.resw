@@ -327,4 +327,10 @@
   <data name="OptionsSourceStretch4.Content" xml:space="preserve">
     <value>Ninguno</value>
   </data>
+  <data name="OptionsDetails.Text" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="OptionsMargin.Text" xml:space="preserve">
+    <value>Margen</value>
+  </data>
 </root>
