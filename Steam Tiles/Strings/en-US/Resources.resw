@@ -333,4 +333,10 @@
   <data name="OptionsMargin.Text" xml:space="preserve">
     <value>Margin</value>
   </data>
+  <data name="OptionsTitle.Content" xml:space="preserve">
+    <value>Show Game Title</value>
+  </data>
+  <data name="OptionsTitleInfo.Text" xml:space="preserve">
+    <value>The title will be displayed in the Tile at the bottom left</value>
+  </data>
 </root>

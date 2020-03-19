@@ -7,7 +7,7 @@ Imports Windows.Storage.Streams
 Namespace Tiles
     Module Personalizacion
 
-        Public Async Sub Cargar(grid As Grid, tipo As Integer)
+        Public Async Sub Cargar(grid As Grid, tipo As Integer, fuente As String)
 
             BloquearControles(False)
 
@@ -43,25 +43,30 @@ Namespace Tiles
                 altoInterior = 310
             End If
 
-            Dim id As Integer = 0
-
             Dim carpeta As StorageFolder = ApplicationData.Current.LocalFolder
             Dim ficheros As IReadOnlyList(Of StorageFile) = Await carpeta.GetFilesAsync()
 
             For Each fichero In ficheros
-                id = id + 1
-            Next
+                If fichero.Name.Contains("personalizacion") Then
+                    Try
+                        Await fichero.DeleteAsync()
+                    Catch ex As Exception
 
-            Await Tiles.Imagen.Generar(grid, "personalizacion" + id.ToString + ".png", anchoInterior, altoInterior)
+                    End Try
+                End If
+            Next
 
             Dim frame As Frame = Window.Current.Content
             Dim pagina As Page = frame.Content
 
             Dim botonVolver As Button = pagina.FindName("botonVolverPersonalizacion")
-            botonVolver.Tag = tipo
 
-            RemoveHandler botonVolver.Click, AddressOf Volver
-            AddHandler botonVolver.Click, AddressOf Volver
+            If Not botonVolver Is Nothing Then
+                botonVolver.Tag = tipo
+
+                RemoveHandler botonVolver.Click, AddressOf Volver
+                AddHandler botonVolver.Click, AddressOf Volver
+            End If
 
             Dim gridPersonalizar As Grid = pagina.FindName("gridPersonalizarTiles")
             gridPersonalizar.Visibility = Visibility.Visible
@@ -92,7 +97,7 @@ Namespace Tiles
             gridInterior.Height = altoInterior
 
             Dim imagen As New ImageEx With {
-                .Source = "ms-appdata:///local/personalizacion" + id.ToString + ".png",
+                .Source = fuente,
                 .IsCacheEnabled = True
             }
 
@@ -103,55 +108,101 @@ Namespace Tiles
 
             Dim botonImagenOrdenador As Button = pagina.FindName("botonPersonalizacionCambiarImagenOrdenador")
 
-            Try
+            If Not botonImagenOrdenador Is Nothing Then
                 RemoveHandler botonImagenOrdenador.Click, AddressOf CambioImagenOrdenador
                 AddHandler botonImagenOrdenador.Click, AddressOf CambioImagenOrdenador
-            Catch ex As Exception
-
-            End Try
+            End If
 
             Dim tbImagenInternet As TextBox = pagina.FindName("tbPersonalizacionCambiarImagenInternet")
-            tbImagenInternet.Text = String.Empty
 
-            RemoveHandler tbImagenInternet.TextChanged, AddressOf CambioImagenInternet
-            AddHandler tbImagenInternet.TextChanged, AddressOf CambioImagenInternet
+            If Not tbImagenInternet Is Nothing Then
+                tbImagenInternet.Text = String.Empty
+
+                RemoveHandler tbImagenInternet.TextChanged, AddressOf CambioImagenInternet
+                AddHandler tbImagenInternet.TextChanged, AddressOf CambioImagenInternet
+            End If
 
             Dim cbImagenUbicacion As ComboBox = pagina.FindName("cbPersonalizacionImagenUbicacion")
 
-            RemoveHandler cbImagenUbicacion.SelectionChanged, AddressOf CambiarImagenUbicacion
-            AddHandler cbImagenUbicacion.SelectionChanged, AddressOf CambiarImagenUbicacion
+            If Not cbImagenUbicacion Is Nothing Then
+                RemoveHandler cbImagenUbicacion.SelectionChanged, AddressOf CambiarImagenUbicacion
+                AddHandler cbImagenUbicacion.SelectionChanged, AddressOf CambiarImagenUbicacion
 
-            cbImagenUbicacion.SelectedIndex = 0
+                cbImagenUbicacion.SelectedIndex = 0
+            End If
 
             Dim cbImagenEstiramiento As ComboBox = pagina.FindName("cbPersonalizacionImagenEstiramiento")
 
-            RemoveHandler cbImagenEstiramiento.SelectionChanged, AddressOf CambiarImagenEstiramiento
-            AddHandler cbImagenEstiramiento.SelectionChanged, AddressOf CambiarImagenEstiramiento
+            If Not cbImagenEstiramiento Is Nothing Then
+                RemoveHandler cbImagenEstiramiento.SelectionChanged, AddressOf CambiarImagenEstiramiento
+                AddHandler cbImagenEstiramiento.SelectionChanged, AddressOf CambiarImagenEstiramiento
 
-            cbImagenEstiramiento.SelectedIndex = 0
+                cbImagenEstiramiento.SelectedIndex = 0
+            End If
 
             Dim tbImagenMargen As TextBox = pagina.FindName("tbPersonalizacionImagenMargen")
-            tbImagenMargen.Text = 0
 
-            RemoveHandler tbImagenMargen.TextChanged, AddressOf CambiarImagenMargen
-            AddHandler tbImagenMargen.TextChanged, AddressOf CambiarImagenMargen
+            If Not tbImagenMargen Is Nothing Then
+                tbImagenMargen.Text = 0
 
-            RemoveHandler tbImagenMargen.BeforeTextChanging, AddressOf CambiarImagenMargenControl
-            AddHandler tbImagenMargen.BeforeTextChanging, AddressOf CambiarImagenMargenControl
+                RemoveHandler tbImagenMargen.TextChanged, AddressOf CambiarImagenMargen
+                AddHandler tbImagenMargen.TextChanged, AddressOf CambiarImagenMargen
 
-            Notificaciones.Toast(App.Current.Resources("ColorSecundario").ToString, Nothing)
+                RemoveHandler tbImagenMargen.BeforeTextChanging, AddressOf CambiarImagenMargenControl
+                AddHandler tbImagenMargen.BeforeTextChanging, AddressOf CambiarImagenMargenControl
+            End If
+
+            Dim cbImagenTitulo As CheckBox = pagina.FindName("cbPersonalizacionImagenTitulo")
+
+            If Not cbImagenTitulo Is Nothing Then
+                If tipo = 0 Or tipo = 1 Then
+                    cbImagenTitulo.Visibility = Visibility.Collapsed
+                Else
+                    cbImagenTitulo.Visibility = Visibility.Visible
+                    cbImagenTitulo.IsChecked = False
+                    cbImagenTitulo.Tag = tipo
+
+                    RemoveHandler cbImagenTitulo.Checked, AddressOf CambiarImagenTitulo_Checked
+                    AddHandler cbImagenTitulo.Checked, AddressOf CambiarImagenTitulo_Checked
+
+                    RemoveHandler cbImagenTitulo.Unchecked, AddressOf CambiarImagenTitulo_Unchecked
+                    AddHandler cbImagenTitulo.Unchecked, AddressOf CambiarImagenTitulo_Unchecked
+
+                    If tipo = 2 Then
+                        ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = False
+                    ElseIf tipo = 3 Then
+                        ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = False
+                    End If
+                End If
+            End If
 
             Dim colorFondo As ColorPicker = pagina.FindName("colorPickerPersonalizacionFondo")
-            colorFondo.Color = ColorHelper.ToColor(App.Current.Resources("ColorSecundario"))
 
-            RemoveHandler colorFondo.ColorChanged, AddressOf CambiarFondoColor
-            AddHandler colorFondo.ColorChanged, AddressOf CambiarFondoColor
+            If Not colorFondo Is Nothing Then
+                colorFondo.Color = ColorHelper.ToColor(ColorHelper.ToHex(App.Current.Resources("ColorTerciario")))
+
+                RemoveHandler colorFondo.ColorChanged, AddressOf CambiarFondoColor
+                AddHandler colorFondo.ColorChanged, AddressOf CambiarFondoColor
+
+                gridExterior.Background = New SolidColorBrush(colorFondo.Color)
+            End If
+
+            '-------------------------------------------
+
+            Dim botonResetear As Button = pagina.FindName("botonResetearPersonalizacion")
+
+            If Not botonResetear Is Nothing Then
+                botonResetear.Tag = fuente
+
+                RemoveHandler botonResetear.Click, AddressOf Resetear
+                AddHandler botonResetear.Click, AddressOf Resetear
+            End If
 
             BloquearControles(True)
 
         End Sub
 
-        Public Async Sub Volver(sender As Object, e As RoutedEventArgs)
+        Private Async Sub Volver(sender As Object, e As RoutedEventArgs)
 
             Dim frame As Frame = Window.Current.Content
             Dim pagina As Page = frame.Content
@@ -510,6 +561,32 @@ Namespace Tiles
 
         End Sub
 
+        Private Sub CambiarImagenTitulo_Checked(sender As Object, e As RoutedEventArgs)
+
+            Dim cb As CheckBox = sender
+            Dim tipo As Integer = cb.Tag
+
+            If tipo = 2 Then
+                ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = True
+            ElseIf tipo = 3 Then
+                ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = True
+            End If
+
+        End Sub
+
+        Private Sub CambiarImagenTitulo_Unchecked(sender As Object, e As RoutedEventArgs)
+
+            Dim cb As CheckBox = sender
+            Dim tipo As Integer = cb.Tag
+
+            If tipo = 2 Then
+                ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = False
+            ElseIf tipo = 3 Then
+                ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = False
+            End If
+
+        End Sub
+
         Private Sub CambiarFondoColor(sender As Object, args As ColorChangedEventArgs)
 
             Dim frame As Frame = Window.Current.Content
@@ -525,10 +602,61 @@ Namespace Tiles
 
         End Sub
 
+        Private Sub Resetear(sender As Object, e As RoutedEventArgs)
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            Dim boton As Button = sender
+
+            Dim gridOriginal As Grid = boton.Tag
+
+            Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
+
+            For Each hijo In gridExterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    gridExterior.Children.Remove(hijo)
+                End If
+            Next
+
+            Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
+
+            For Each hijo In gridInterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    gridInterior.Children.Remove(hijo)
+                End If
+            Next
+
+        End Sub
+
         Private Sub BloquearControles(estado As Boolean)
 
             Dim frame As Frame = Window.Current.Content
             Dim pagina As Page = frame.Content
+
+            Dim gridCarga As Grid = pagina.FindName("gridPersonalizacionCarga")
+
+            If estado = False Then
+                gridCarga.Visibility = Visibility.Visible
+            Else
+                gridCarga.Visibility = Visibility.Collapsed
+            End If
 
             Dim botonAñadirTile As Button = pagina.FindName("botonAñadirTile")
             botonAñadirTile.IsEnabled = estado

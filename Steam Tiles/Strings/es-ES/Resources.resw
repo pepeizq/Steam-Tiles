@@ -226,7 +226,7 @@
     <value>Volver</value>
   </data>
   <data name="Reset.Text" xml:space="preserve">
-    <value>Defecto</value>
+    <value>Reset</value>
   </data>
   <data name="ConfigTilesColor.Text" xml:space="preserve">
     <value>Tiles Color</value>
@@ -332,5 +332,11 @@
   </data>
   <data name="OptionsMargin.Text" xml:space="preserve">
     <value>Margen</value>
+  </data>
+  <data name="OptionsTitle.Content" xml:space="preserve">
+    <value>Mostrar Título del Juego</value>
+  </data>
+  <data name="OptionsTitleInfo.Text" xml:space="preserve">
+    <value>El título se mostrará en la Tile abajo a la izquierda</value>
   </data>
 </root>

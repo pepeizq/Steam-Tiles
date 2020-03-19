@@ -60,7 +60,7 @@
                             </TransitionCollection>
                         </Grid.ChildrenTransitions>
 
-                        <Grid Padding="10" Background="IndianRed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,5,0,0">
+                        <Grid Padding="10" Background="IndianRed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
                             <TextBlock x:Uid="SelectGame" TextWrapping="Wrap" Foreground="White"/>
                         </Grid>
                     </Grid>
@@ -137,7 +137,7 @@
 
                                 <Button x:Name="botonTilePequeña" Grid.Column="0" Background="Transparent" VerticalAlignment="Top" Padding="0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                     <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
-                                        <Grid x:Name="gridTilePequeña" Background="{StaticResource BrushSecundario}" Width="71" Height="71">
+                                        <Grid x:Name="gridTilePequeña" Background="{StaticResource BrushTercero}" Width="71" Height="71">
                                             <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>
                                         </Grid>
                                     </controls:DropShadowPanel>
@@ -145,7 +145,7 @@
 
                                 <Button x:Name="botonTileMediana" Grid.Column="1" Background="Transparent" VerticalAlignment="Top" Padding="0" Margin="20,0,0,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                     <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
-                                        <Grid x:Name="gridTileMediana" Background="{StaticResource BrushSecundario}" Width="150" Height="150">
+                                        <Grid x:Name="gridTileMediana" Background="{StaticResource BrushTercero}" Width="150" Height="150">
                                             <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </Grid>
                                     </controls:DropShadowPanel>
@@ -153,7 +153,7 @@
 
                                 <Button x:Name="botonTileAncha" Grid.Column="2" Background="Transparent" VerticalAlignment="Top" Padding="0" Margin="20,0,0,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                     <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
-                                        <Grid x:Name="gridTileAncha" Background="{StaticResource BrushSecundario}" Width="310" Height="150">
+                                        <Grid x:Name="gridTileAncha" Background="{StaticResource BrushTercero}" Width="310" Height="150">
                                             <controls:ImageEx x:Name="imagenTileAncha" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
                                         </Grid>
                                     </controls:DropShadowPanel>
@@ -161,8 +161,8 @@
 
                                 <Button x:Name="botonTileGrande" Grid.Column="3" Background="Transparent" VerticalAlignment="Top" Padding="0" Margin="20,0,0,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                     <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
-                                        <Grid x:Name="gridTileGrande" Background="{StaticResource BrushSecundario}" Width="310" Height="310">
-                                            <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <Grid x:Name="gridTileGrande" Background="{StaticResource BrushTercero}" Width="310" Height="310">
+                                            <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
                                         </Grid>
                                     </controls:DropShadowPanel>
                                 </Button>
@@ -211,49 +211,19 @@
                                         </StackPanel>
                                     </Button>
                                 </controls:DropShadowPanel>
-                                                              
-                                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0">
-                                    <TextBlock x:Uid="Options" Margin="0,0,20,0" VerticalAlignment="Center"/>
 
-                                    <ComboBox x:Name="cbOpciones" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <!--<ComboBoxItem x:Uid="OptionsSource"/>-->
-                                    </ComboBox> 
-                                </StackPanel>
+                                <Grid x:Name="gridPersonalizacionCarga" Grid.Column="1" HorizontalAlignment="Center" Width="200">
+                                    <TextBlock Text="test"/>
+                                    <ProgressBar IsIndeterminate="True" Foreground="{StaticResource BrushPrimario}" Width="100" Height="40"/>
+                                </Grid>
 
-                                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0" Visibility="Collapsed">
-                                    <fa:FontAwesome Icon="InfoCircle" Foreground="{StaticResource BrushSecundario}"/>
-                                    <TextBlock x:Uid="Preview" VerticalAlignment="Center" Margin="10,0,15,0"/>
-
-                                    <StackPanel Orientation="Horizontal">
-                                        <CheckBox x:Name="cbConfigTilePequeña" MinWidth="0" Margin="10,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                            <CheckBox.Content>
-                                                <TextBlock x:Uid="TileSmall"/>
-                                            </CheckBox.Content>
-                                        </CheckBox>
-                                        <CheckBox x:Name="cbConfigTileMediana" MinWidth="0" Margin="10,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                            <CheckBox.Content>
-                                                <TextBlock x:Uid="TileMedium"/>
-                                            </CheckBox.Content>
-                                        </CheckBox>
-                                        <CheckBox x:Name="cbConfigTileAncha" MinWidth="0" Margin="10,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                            <CheckBox.Content>
-                                                <TextBlock x:Uid="TileWide"/>
-                                            </CheckBox.Content>
-                                        </CheckBox>
-                                        <CheckBox x:Name="cbConfigTileGrande" MinWidth="0" Margin="10,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                            <CheckBox.Content>
-                                                <TextBlock x:Uid="TileLarge"/>
-                                            </CheckBox.Content>
-                                        </CheckBox>
-                                    </StackPanel>
-                                </StackPanel>
-
-                                <Button x:Name="botonResetearPersonalizacion" Grid.Column="2" Padding="15,10" Margin="20" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton" Visibility="Collapsed">
-                                    <StackPanel Orientation="Horizontal">
-                                        <fa:FontAwesome Icon="Eraser" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                        <TextBlock x:Uid="Reset" Foreground="White"/>
-                                    </StackPanel>
-                                </Button>
+                                <controls:DropShadowPanel Grid.Column="2" ShadowOpacity="0.9" BlurRadius="5" Margin="20">
+                                    <Button x:Name="botonResetearPersonalizacion" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock x:Uid="Reset" Foreground="White"/>
+                                        </StackPanel>
+                                    </Button>
+                                </controls:DropShadowPanel>
                             </Grid>
 
                             <Grid Grid.Row="1" Padding="20">
@@ -333,8 +303,23 @@
                                                 <TextBlock x:Uid="OptionsMargin" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,0"/>
                                                 <TextBox x:Name="tbPersonalizacionImagenMargen" Grid.Column="1" MinWidth="20"/>
                                             </Grid>
-                                            
-                                            
+
+                                            <Grid HorizontalAlignment="Center" Margin="0,20">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <CheckBox x:Name="cbPersonalizacionImagenTitulo" Grid.Column="0" x:Uid="OptionsTitle" VerticalAlignment="Center" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
+
+                                                <fa:FontAwesome Icon="InfoCircle" Grid.Column="1" Margin="15,0,0,0" Foreground="{StaticResource BrushPrimario}">
+                                                    <ToolTipService.ToolTip>
+                                                        <Grid MaxWidth="300">
+                                                            <TextBlock x:Uid="OptionsTitleInfo" TextWrapping="Wrap" FontSize="15"/>
+                                                        </Grid>
+                                                    </ToolTipService.ToolTip>
+                                                </fa:FontAwesome> 
+                                            </Grid>
                                             
                                         </StackPanel>
                                     </controls:TabViewItem>

@@ -343,101 +343,101 @@ Module Configuracion
 
     Public Sub MostrarTilePequeña(valor As Boolean)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+        'Dim frame As Frame = Window.Current.Content
+        'Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("mostrar_tile_pequeña") = valor
+        'ApplicationData.Current.LocalSettings.Values("mostrar_tile_pequeña") = valor
 
-        Dim cb As CheckBox = pagina.FindName("cbConfigTilePequeña")
-        cb.IsChecked = valor
+        'Dim cb As CheckBox = pagina.FindName("cbConfigTilePequeña")
+        'cb.IsChecked = valor
 
-        Dim sp As StackPanel = pagina.FindName("spConfigTilePequeña")
+        'Dim sp As StackPanel = pagina.FindName("spConfigTilePequeña")
 
-        If valor = True Then
-            sp.Visibility = Visibility.Visible
-        Else
-            sp.Visibility = Visibility.Collapsed
-        End If
+        'If valor = True Then
+        '    sp.Visibility = Visibility.Visible
+        'Else
+        '    sp.Visibility = Visibility.Collapsed
+        'End If
 
     End Sub
 
     Public Sub MostrarTileMediana(valor As Boolean)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+        'Dim frame As Frame = Window.Current.Content
+        'Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("mostrar_tile_mediana") = valor
+        'ApplicationData.Current.LocalSettings.Values("mostrar_tile_mediana") = valor
 
-        Dim cb As CheckBox = pagina.FindName("cbConfigTileMediana")
-        cb.IsChecked = valor
+        'Dim cb As CheckBox = pagina.FindName("cbConfigTileMediana")
+        'cb.IsChecked = valor
 
-        Dim sp As StackPanel = pagina.FindName("spConfigTileMediana")
+        'Dim sp As StackPanel = pagina.FindName("spConfigTileMediana")
 
-        If valor = True Then
-            sp.Visibility = Visibility.Visible
-        Else
-            sp.Visibility = Visibility.Collapsed
-        End If
+        'If valor = True Then
+        '    sp.Visibility = Visibility.Visible
+        'Else
+        '    sp.Visibility = Visibility.Collapsed
+        'End If
 
     End Sub
 
     Public Sub MostrarTileAncha(valor As Boolean)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+        'Dim frame As Frame = Window.Current.Content
+        'Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("mostrar_tile_ancha") = valor
+        'ApplicationData.Current.LocalSettings.Values("mostrar_tile_ancha") = valor
 
-        Dim cb As CheckBox = pagina.FindName("cbConfigTileAncha")
-        cb.IsChecked = valor
+        'Dim cb As CheckBox = pagina.FindName("cbConfigTileAncha")
+        'cb.IsChecked = valor
 
-        Dim sp As StackPanel = pagina.FindName("spConfigTileAncha")
+        'Dim sp As StackPanel = pagina.FindName("spConfigTileAncha")
 
-        If valor = True Then
-            sp.Visibility = Visibility.Visible
-        Else
-            sp.Visibility = Visibility.Collapsed
-        End If
+        'If valor = True Then
+        '    sp.Visibility = Visibility.Visible
+        'Else
+        '    sp.Visibility = Visibility.Collapsed
+        'End If
 
     End Sub
 
     Public Sub MostrarTileGrande(valor As Boolean)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+        'Dim frame As Frame = Window.Current.Content
+        'Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("mostrar_tile_grande") = valor
+        'ApplicationData.Current.LocalSettings.Values("mostrar_tile_grande") = valor
 
-        Dim cb As CheckBox = pagina.FindName("cbConfigTileGrande")
-        cb.IsChecked = valor
+        'Dim cb As CheckBox = pagina.FindName("cbConfigTileGrande")
+        'cb.IsChecked = valor
 
-        Dim sp As StackPanel = pagina.FindName("spConfigTileGrande")
+        'Dim sp As StackPanel = pagina.FindName("spConfigTileGrande")
 
-        If valor = True Then
-            sp.Visibility = Visibility.Visible
-        Else
-            sp.Visibility = Visibility.Collapsed
-        End If
+        'If valor = True Then
+        '    sp.Visibility = Visibility.Visible
+        'Else
+        '    sp.Visibility = Visibility.Collapsed
+        'End If
 
     End Sub
 
     Public Sub MostrarTilesDRM(valor As Boolean)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+        'Dim frame As Frame = Window.Current.Content
+        'Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("mostrar_tiles_drm") = valor
+        'ApplicationData.Current.LocalSettings.Values("mostrar_tiles_drm") = valor
 
-        Dim grid As Grid = pagina.FindName("gridConfigTilesDRM")
-        Dim icono As FontAwesome.UWP.FontAwesome = pagina.FindName("iconoConfigTilesDRM")
+        'Dim grid As Grid = pagina.FindName("gridConfigTilesDRM")
+        'Dim icono As FontAwesome.UWP.FontAwesome = pagina.FindName("iconoConfigTilesDRM")
 
-        If valor = True Then
-            grid.Visibility = Visibility.Visible
-            icono.Icon = FontAwesomeIcon.CaretUp
-        Else
-            grid.Visibility = Visibility.Collapsed
-            icono.Icon = FontAwesomeIcon.CaretDown
-        End If
+        'If valor = True Then
+        '    grid.Visibility = Visibility.Visible
+        '    icono.Icon = FontAwesomeIcon.CaretUp
+        'Else
+        '    grid.Visibility = Visibility.Collapsed
+        '    icono.Icon = FontAwesomeIcon.CaretDown
+        'End If
 
     End Sub
 
@@ -681,23 +681,23 @@ Module Configuracion
 
     Public Sub TilesColorFondo(color As String)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+        'Dim frame As Frame = Window.Current.Content
+        'Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tiles_color_fondo") = color
+        'ApplicationData.Current.LocalSettings.Values("tiles_color_fondo") = color
 
-        Dim picker As ColorPicker = pagina.FindName("colorPickerFondoTiles")
-        picker.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color)
+        'Dim picker As ColorPicker = pagina.FindName("colorPickerFondoTiles")
+        'picker.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color)
 
-        Dim grid1 As Grid = pagina.FindName("gridTilePequeña")
-        Dim grid2 As Grid = pagina.FindName("gridTileMediana")
-        Dim grid3 As Grid = pagina.FindName("gridTileAncha")
-        Dim grid4 As Grid = pagina.FindName("gridTileGrande")
+        'Dim grid1 As Grid = pagina.FindName("gridTilePequeña")
+        'Dim grid2 As Grid = pagina.FindName("gridTileMediana")
+        'Dim grid3 As Grid = pagina.FindName("gridTileAncha")
+        'Dim grid4 As Grid = pagina.FindName("gridTileGrande")
 
-        grid1.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-        grid2.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-        grid3.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
-        grid4.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        'grid1.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        'grid2.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        'grid3.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
+        'grid4.Background = New SolidColorBrush(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(color))
 
     End Sub
 
@@ -799,25 +799,25 @@ Module Configuracion
 
     Public Sub TileGrandeImagenEstiramiento(valor As Integer)
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
+        'Dim frame As Frame = Window.Current.Content
+        'Dim pagina As Page = frame.Content
 
-        ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_estiramiento") = valor
+        'ApplicationData.Current.LocalSettings.Values("tile_grande_imagen_estiramiento") = valor
 
-        Dim cb As ComboBox = pagina.FindName("cbConfigTileGrandeImagenEstiramiento")
-        cb.SelectedIndex = valor
+        'Dim cb As ComboBox = pagina.FindName("cbConfigTileGrandeImagenEstiramiento")
+        'cb.SelectedIndex = valor
 
-        Dim imagen As ImageEx = pagina.FindName("imagenTileGrande")
+        'Dim imagen As ImageEx = pagina.FindName("imagenTileGrande")
 
-        If valor = 0 Then
-            imagen.Stretch = Stretch.None
-        ElseIf valor = 1 Then
-            imagen.Stretch = Stretch.Uniform
-        ElseIf valor = 2 Then
-            imagen.Stretch = Stretch.UniformToFill
-        ElseIf valor = 3 Then
-            imagen.Stretch = Stretch.Fill
-        End If
+        'If valor = 0 Then
+        '    imagen.Stretch = Stretch.None
+        'ElseIf valor = 1 Then
+        '    imagen.Stretch = Stretch.Uniform
+        'ElseIf valor = 2 Then
+        '    imagen.Stretch = Stretch.UniformToFill
+        'ElseIf valor = 3 Then
+        '    imagen.Stretch = Stretch.Fill
+        'End If
 
     End Sub
 

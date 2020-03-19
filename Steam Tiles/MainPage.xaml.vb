@@ -123,81 +123,81 @@ Public NotInheritable Class MainPage
 
     Private Sub BotonTilePequeña_Click(sender As Object, e As RoutedEventArgs) Handles botonTilePequeña.Click
 
-        Tiles.Personalizacion.Cargar(gridTilePequeña, 0)
+        Tiles.Personalizacion.Cargar(gridTilePequeña, 0, imagenTilePequeña.Source)
 
     End Sub
 
     Private Sub BotonTileMediana_Click(sender As Object, e As RoutedEventArgs) Handles botonTileMediana.Click
 
-        Tiles.Personalizacion.Cargar(gridTileMediana, 1)
+        Tiles.Personalizacion.Cargar(gridTileMediana, 1, imagenTileMediana.Source)
 
     End Sub
 
     Private Sub BotonTileAncha_Click(sender As Object, e As RoutedEventArgs) Handles botonTileAncha.Click
 
-        Tiles.Personalizacion.Cargar(gridTileAncha, 2)
+        Tiles.Personalizacion.Cargar(gridTileAncha, 2, imagenTileAncha.Source)
 
     End Sub
 
     Private Sub BotonTileGrande_Click(sender As Object, e As RoutedEventArgs) Handles botonTileGrande.Click
 
-        Tiles.Personalizacion.Cargar(gridTileGrande, 3)
+        Tiles.Personalizacion.Cargar(gridTileGrande, 3, imagenTileGrande.Source)
 
     End Sub
 
-    Private Sub BotonResetearPersonalizacion_Click(sender As Object, e As RoutedEventArgs) Handles botonResetearPersonalizacion.Click
+    'Private Sub BotonResetearPersonalizacion_Click(sender As Object, e As RoutedEventArgs) Handles botonResetearPersonalizacion.Click
 
-        Configuracion.Resetear
+    '    Configuracion.Resetear
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTilePequeña_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTilePequeña.Checked
+    'Private Sub CbConfigTilePequeña_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTilePequeña.Checked
 
-        Configuracion.MostrarTilePequeña(cbConfigTilePequeña.IsChecked)
+    '    Configuracion.MostrarTilePequeña(cbConfigTilePequeña.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTilePequeña_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTilePequeña.Unchecked
+    'Private Sub CbConfigTilePequeña_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTilePequeña.Unchecked
 
-        Configuracion.MostrarTilePequeña(cbConfigTilePequeña.IsChecked)
+    '    Configuracion.MostrarTilePequeña(cbConfigTilePequeña.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileMediana_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMediana.Checked
+    'Private Sub CbConfigTileMediana_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMediana.Checked
 
-        Configuracion.MostrarTileMediana(cbConfigTileMediana.IsChecked)
+    '    Configuracion.MostrarTileMediana(cbConfigTileMediana.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileMediana_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMediana.Unchecked
+    'Private Sub CbConfigTileMediana_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMediana.Unchecked
 
-        Configuracion.MostrarTileMediana(cbConfigTileMediana.IsChecked)
+    '    Configuracion.MostrarTileMediana(cbConfigTileMediana.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileAncha_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAncha.Checked
+    'Private Sub CbConfigTileAncha_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAncha.Checked
 
-        Configuracion.MostrarTileAncha(cbConfigTileAncha.IsChecked)
+    '    Configuracion.MostrarTileAncha(cbConfigTileAncha.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileAncha_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAncha.Unchecked
+    'Private Sub CbConfigTileAncha_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileAncha.Unchecked
 
-        Configuracion.MostrarTileAncha(cbConfigTileAncha.IsChecked)
+    '    Configuracion.MostrarTileAncha(cbConfigTileAncha.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileGrande_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrande.Checked
+    'Private Sub CbConfigTileGrande_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrande.Checked
 
-        Configuracion.MostrarTileGrande(cbConfigTileGrande.IsChecked)
+    '    Configuracion.MostrarTileGrande(cbConfigTileGrande.IsChecked)
 
-    End Sub
+    'End Sub
 
-    Private Sub CbConfigTileGrande_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrande.Unchecked
+    'Private Sub CbConfigTileGrande_Unchecked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileGrande.Unchecked
 
-        Configuracion.MostrarTileGrande(cbConfigTileGrande.IsChecked)
+    '    Configuracion.MostrarTileGrande(cbConfigTileGrande.IsChecked)
 
-    End Sub
+    'End Sub
 
     'Private Sub BotonConfigTilePequeñaBuscarImagen_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilePequeñaBuscarImagen.Click
 
@@ -257,15 +257,15 @@ Public NotInheritable Class MainPage
 
     'End Sub
 
-    Private Sub BotonConfigTilesDRM_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesDRM.Click
+    'Private Sub BotonConfigTilesDRM_Click(sender As Object, e As RoutedEventArgs) Handles botonConfigTilesDRM.Click
 
-        If gridConfigTilesDRM.Visibility = Visibility.Visible Then
-            Configuracion.MostrarTilesDRM(False)
-        Else
-            Configuracion.MostrarTilesDRM(True)
-        End If
+    '    If gridConfigTilesDRM.Visibility = Visibility.Visible Then
+    '        Configuracion.MostrarTilesDRM(False)
+    '    Else
+    '        Configuracion.MostrarTilesDRM(True)
+    '    End If
 
-    End Sub
+    'End Sub
 
     'Private Sub CbConfigTileMedianaDRM_Checked(sender As Object, e As RoutedEventArgs) Handles cbConfigTileMedianaDRM.Checked
 
