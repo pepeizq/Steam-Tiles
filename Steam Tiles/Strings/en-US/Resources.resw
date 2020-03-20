@@ -363,4 +363,7 @@
   <data name="OptionsPlatformPosition4.Content" xml:space="preserve">
     <value>Down Right</value>
   </data>
+  <data name="GamePersonalizationInfo.Text" xml:space="preserve">
+    <value>Click on the image to customize it before adding the Tile</value>
+  </data>
 </root>

@@ -25,6 +25,9 @@ Public NotInheritable Class MainPage
         If Not item Is Nothing Then
             If item.Text = recursos.GetString("Tiles") Then
                 GridVisibilidad(gridTiles, item.Text)
+                gridSeleccionarJuego.Visibility = Visibility.Visible
+                gvTiles.Width = ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles")
+                gvTiles.Padding = New Thickness(5, 0, 5, 0)
             ElseIf item.Text = recursos.GetString("Config") Then
                 GridVisibilidad(gridConfig, item.Text)
             End If

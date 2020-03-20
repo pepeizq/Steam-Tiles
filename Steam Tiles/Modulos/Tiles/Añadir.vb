@@ -35,40 +35,37 @@ Namespace Tiles
             nuevaTile.VisualElements.Wide310x150Logo = New Uri("ms-appdata:///local/" + tile.ID + "ancha.png", UriKind.RelativeOrAbsolute)
             nuevaTile.VisualElements.Square310x310Logo = New Uri("ms-appdata:///local/" + tile.ID + "grande.png", UriKind.RelativeOrAbsolute)
 
-            If ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = True Then
-                nuevaTile.VisualElements.ShowNameOnWide310x150Logo = True
+            If Not ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") Is Nothing Then
+                If ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = True Then
+                    nuevaTile.VisualElements.ShowNameOnWide310x150Logo = True
+                Else
+                    nuevaTile.VisualElements.ShowNameOnWide310x150Logo = False
+                End If
             Else
                 nuevaTile.VisualElements.ShowNameOnWide310x150Logo = False
             End If
 
-            If ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = True Then
-                nuevaTile.VisualElements.ShowNameOnSquare310x310Logo = True
+            If Not ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") Is Nothing Then
+                If ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = True Then
+                    nuevaTile.VisualElements.ShowNameOnSquare310x310Logo = True
+                Else
+                    nuevaTile.VisualElements.ShowNameOnSquare310x310Logo = False
+                End If
             Else
                 nuevaTile.VisualElements.ShowNameOnSquare310x310Logo = False
             End If
 
-            If ApplicationData.Current.LocalSettings.Values("tiles_color_titulo") = 0 Then
-                nuevaTile.VisualElements.ForegroundText = ForegroundText.Light
+            If Not ApplicationData.Current.LocalSettings.Values("tiles_color_titulo") Is Nothing Then
+                If ApplicationData.Current.LocalSettings.Values("tiles_color_titulo") = 0 Then
+                    nuevaTile.VisualElements.ForegroundText = ForegroundText.Light
+                Else
+                    nuevaTile.VisualElements.ForegroundText = ForegroundText.Dark
+                End If
             Else
-                nuevaTile.VisualElements.ForegroundText = ForegroundText.Dark
+                nuevaTile.VisualElements.ForegroundText = ForegroundText.Light
             End If
 
             Await nuevaTile.RequestCreateAsync()
-
-            '-----------------------
-
-            'Dim imagenDRM As New AdaptiveImage With {
-            '    .HintRemoveMargin = True
-            '}
-
-            'If ApplicationData.Current.LocalSettings.Values("tiles_drm_icono_posicion") = 0 Then
-            '    imagenDRM.HintAlign = AdaptiveImageAlign.Left
-            'Else
-            '    imagenDRM.HintAlign = AdaptiveImageAlign.Right
-            'End If
-
-            'Dim cbDRMIcono As ComboBox = pagina.FindName("cbConfigTilesDRMIcono")
-            'imagenDRM.Source = cbDRMIcono.SelectedItem.Source
 
             '-----------------------
 
@@ -82,12 +79,6 @@ Namespace Tiles
             contenidoMediano = New TileBindingContentAdaptive With {
                 .BackgroundImage = fondoImagenMediano
             }
-
-            'If ApplicationData.Current.LocalSettings.Values("tile_mediana_drm_mostrar") = True Then
-            '    If Not imagenDRM Is Nothing Then
-            '        contenidoMediano.Children.Add(imagenDRM)
-            '    End If
-            'End If
 
             Dim tileMediano As New TileBinding With {
                 .Content = contenidoMediano
@@ -106,12 +97,6 @@ Namespace Tiles
                 .BackgroundImage = fondoImagenAncha
             }
 
-            'If ApplicationData.Current.LocalSettings.Values("tile_ancha_drm_mostrar") = True Then
-            '    If Not imagenDRM Is Nothing Then
-            '        contenidoAncho.Children.Add(imagenDRM)
-            '    End If
-            'End If
-
             Dim tileAncha As New TileBinding With {
                 .Content = contenidoAncho
             }
@@ -129,24 +114,22 @@ Namespace Tiles
                 .BackgroundImage = fondoImagenGrande
             }
 
-            'If ApplicationData.Current.LocalSettings.Values("tile_grande_drm_mostrar") = True Then
-            '    If Not imagenDRM Is Nothing Then
-            '        contenidoGrande.Children.Add(imagenDRM)
-            '    End If
-            'End If
-
             Dim tileGrande As New TileBinding With {
                 .Content = contenidoGrande
             }
 
             '-----------------------
 
-            If ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = True Then
-                tileAncha.Branding = TileBranding.Name
+            If Not ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") Is Nothing Then
+                If ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = True Then
+                    tileAncha.Branding = TileBranding.Name
+                End If
             End If
 
-            If ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = True Then
-                tileGrande.Branding = TileBranding.Name
+            If Not ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") Is Nothing Then
+                If ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = True Then
+                    tileGrande.Branding = TileBranding.Name
+                End If
             End If
 
             Dim visual As New TileVisual With {

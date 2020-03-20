@@ -3,9 +3,15 @@ Imports Microsoft.Toolkit.Uwp.Helpers
 Imports Windows.Storage
 Imports Windows.Storage.Pickers
 Imports Windows.Storage.Streams
+Imports Windows.UI
+Imports Windows.UI.Core
 
 Namespace Tiles
     Module Personalizacion
+
+        ReadOnly listaIconos As New List(Of String) From {
+            "1", "2", "3", "4", "5", "6", "7"
+        }
 
         Public Async Sub Cargar(grid As Grid, tipo As Integer, fuente As String)
 
@@ -215,7 +221,7 @@ Namespace Tiles
             Dim colorFondo As ColorPicker = pagina.FindName("colorPickerPersonalizacionFondo")
 
             If Not colorFondo Is Nothing Then
-                colorFondo.Color = ColorHelper.ToColor(ColorHelper.ToHex(App.Current.Resources("ColorTerciario")))
+                colorFondo.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(App.Current.Resources("ColorTerciario")))
 
                 RemoveHandler colorFondo.ColorChanged, AddressOf CambiarFondoColor
                 AddHandler colorFondo.ColorChanged, AddressOf CambiarFondoColor
@@ -241,6 +247,16 @@ Namespace Tiles
 
                         RemoveHandler cbPlataforma.Unchecked, AddressOf EnseñarPlataforma_Unchecked
                         AddHandler cbPlataforma.Unchecked, AddressOf EnseñarPlataforma_Unchecked
+
+                        Dim spPlataforma As StackPanel = pagina.FindName("spPersonalizacionPlataforma")
+
+                        If Not spPlataforma Is Nothing Then
+                            If cbPlataforma.IsChecked = True Then
+                                spPlataforma.Visibility = Visibility.Visible
+                            Else
+                                spPlataforma.Visibility = Visibility.Collapsed
+                            End If
+                        End If
                     End If
 
                     Dim cbPlataformaPosicion As ComboBox = pagina.FindName("cbPersonalizacionPlataformaPosicion")
@@ -705,6 +721,33 @@ Namespace Tiles
             Dim sp As StackPanel = pagina.FindName("spPersonalizacionPlataforma")
             sp.Visibility = Visibility.Visible
 
+            Dim gvPlataformaIconos As AdaptiveGridView = pagina.FindName("gvPersonalizacionPlataformaIconos")
+            gvPlataformaIconos.Items.Clear()
+
+            For Each icono In listaIconos
+                Dim botonIcono As New Button With {
+                    .Background = New SolidColorBrush(Colors.Transparent),
+                    .Padding = New Thickness(0, 0, 0, 0)
+                }
+
+                Dim imagenIcono As New ImageEx With {
+                    .Source = "ms-appx:///Assets/Iconos/" + icono + ".png",
+                    .IsCacheEnabled = True,
+                    .Stretch = Stretch.Uniform,
+                    .MaxHeight = 32,
+                    .MaxWidth = 32,
+                    .Margin = New Thickness(5, 5, 5, 5)
+                }
+
+                botonIcono.Content = imagenIcono
+
+                AddHandler botonIcono.Click, AddressOf UsuarioClickeaIcono
+                AddHandler botonIcono.PointerEntered, AddressOf UsuarioEntraBoton
+                AddHandler botonIcono.PointerExited, AddressOf UsuarioSaleBoton
+
+                gvPlataformaIconos.Items.Add(botonIcono)
+            Next
+
         End Sub
 
         Private Sub EnseñarPlataforma_Unchecked(sender As Object, e As RoutedEventArgs)
@@ -715,9 +758,211 @@ Namespace Tiles
             Dim sp As StackPanel = pagina.FindName("spPersonalizacionPlataforma")
             sp.Visibility = Visibility.Collapsed
 
+            Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
+
+            For Each hijo In gridExterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    If imagen2.Name = "iconoPlataforma" Then
+                        gridExterior.Children.Remove(hijo)
+                    End If
+                End If
+            Next
+
+            Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
+
+            For Each hijo In gridInterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    If imagen2.Name = "iconoPlataforma" Then
+                        gridInterior.Children.Remove(hijo)
+                    End If
+                End If
+            Next
+
+        End Sub
+
+        Private Sub UsuarioClickeaIcono(sender As Object, e As RoutedEventArgs)
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            Dim botonIcono As Button = sender
+            Dim imagenIcono As ImageEx = botonIcono.Content
+
+            Dim cbPlataformaPosicion As ComboBox = pagina.FindName("cbPersonalizacionPlataformaPosicion")
+
+            Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
+
+            For Each hijo In gridExterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    If imagen2.Name = "iconoPlataforma" Then
+                        imagen2.Opacity = 0
+                        gridExterior.Children.Remove(hijo)
+                    End If
+
+                    Dim imagen3 As New ImageEx With {
+                        .Source = imagenIcono.Source,
+                        .MaxHeight = 24,
+                        .MaxWidth = 72,
+                        .Name = "iconoPlataforma"
+                    }
+
+                    imagen3.SetValue(Canvas.ZIndexProperty, 99991)
+
+                    If cbPlataformaPosicion.SelectedIndex = 0 Then
+                        imagen3.HorizontalAlignment = HorizontalAlignment.Left
+                        imagen3.VerticalAlignment = VerticalAlignment.Top
+                    ElseIf cbPlataformaPosicion.SelectedIndex = 1 Then
+                        imagen3.HorizontalAlignment = HorizontalAlignment.Right
+                        imagen3.VerticalAlignment = VerticalAlignment.Top
+                    ElseIf cbPlataformaPosicion.SelectedIndex = 2 Then
+                        imagen3.HorizontalAlignment = HorizontalAlignment.Left
+                        imagen3.VerticalAlignment = VerticalAlignment.Bottom
+                    ElseIf cbPlataformaPosicion.SelectedIndex = 3 Then
+                        imagen3.HorizontalAlignment = HorizontalAlignment.Right
+                        imagen3.VerticalAlignment = VerticalAlignment.Bottom
+                    End If
+
+                    gridExterior.Children.Add(imagen3)
+                End If
+            Next
+
+            Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
+
+            For Each hijo In gridInterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    If imagen2.Name = "iconoPlataforma" Then
+                        imagen2.Opacity = 0
+                        gridInterior.Children.Remove(hijo)
+                    End If
+
+                    Dim imagen3 As New ImageEx With {
+                        .Source = imagenIcono.Source,
+                        .MaxHeight = 24,
+                        .MaxWidth = 72,
+                        .Name = "iconoPlataforma",
+                        .Margin = New Thickness(5, 5, 5, 5)
+                    }
+
+                    imagen3.SetValue(Canvas.ZIndexProperty, 99991)
+
+                    If cbPlataformaPosicion.SelectedIndex = 0 Then
+                        imagen3.HorizontalAlignment = HorizontalAlignment.Left
+                        imagen3.VerticalAlignment = VerticalAlignment.Top
+                    ElseIf cbPlataformaPosicion.SelectedIndex = 1 Then
+                        imagen3.HorizontalAlignment = HorizontalAlignment.Right
+                        imagen3.VerticalAlignment = VerticalAlignment.Top
+                    ElseIf cbPlataformaPosicion.SelectedIndex = 2 Then
+                        imagen3.HorizontalAlignment = HorizontalAlignment.Left
+                        imagen3.VerticalAlignment = VerticalAlignment.Bottom
+                    ElseIf cbPlataformaPosicion.SelectedIndex = 3 Then
+                        imagen3.HorizontalAlignment = HorizontalAlignment.Right
+                        imagen3.VerticalAlignment = VerticalAlignment.Bottom
+                    End If
+
+                    gridInterior.Children.Add(imagen3)
+                End If
+            Next
+
         End Sub
 
         Private Sub CambiarPlataformaPosicion(sender As Object, e As SelectionChangedEventArgs)
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            Dim cbPosicion As ComboBox = sender
+
+            Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
+
+            For Each hijo In gridExterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    If imagen2.Name = "iconoPlataforma" Then
+                        If cbPosicion.SelectedIndex = 0 Then
+                            imagen2.HorizontalAlignment = HorizontalAlignment.Left
+                            imagen2.VerticalAlignment = VerticalAlignment.Top
+                        ElseIf cbPosicion.SelectedIndex = 1 Then
+                            imagen2.HorizontalAlignment = HorizontalAlignment.Right
+                            imagen2.VerticalAlignment = VerticalAlignment.Top
+                        ElseIf cbPosicion.SelectedIndex = 2 Then
+                            imagen2.HorizontalAlignment = HorizontalAlignment.Left
+                            imagen2.VerticalAlignment = VerticalAlignment.Bottom
+                        ElseIf cbPosicion.SelectedIndex = 3 Then
+                            imagen2.HorizontalAlignment = HorizontalAlignment.Right
+                            imagen2.VerticalAlignment = VerticalAlignment.Bottom
+                        End If
+                    End If
+                End If
+            Next
+
+            Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
+
+            For Each hijo In gridInterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    If imagen2.Name = "iconoPlataforma" Then
+                        If cbPosicion.SelectedIndex = 0 Then
+                            imagen2.HorizontalAlignment = HorizontalAlignment.Left
+                            imagen2.VerticalAlignment = VerticalAlignment.Top
+                        ElseIf cbPosicion.SelectedIndex = 1 Then
+                            imagen2.HorizontalAlignment = HorizontalAlignment.Right
+                            imagen2.VerticalAlignment = VerticalAlignment.Top
+                        ElseIf cbPosicion.SelectedIndex = 2 Then
+                            imagen2.HorizontalAlignment = HorizontalAlignment.Left
+                            imagen2.VerticalAlignment = VerticalAlignment.Bottom
+                        ElseIf cbPosicion.SelectedIndex = 3 Then
+                            imagen2.HorizontalAlignment = HorizontalAlignment.Right
+                            imagen2.VerticalAlignment = VerticalAlignment.Bottom
+                        End If
+                    End If
+                End If
+            Next
 
         End Sub
 
@@ -835,6 +1080,18 @@ Namespace Tiles
 
             Dim botonTileGrande As Button = pagina.FindName("botonTileGrande")
             botonTileGrande.IsEnabled = estado
+
+        End Sub
+
+        Private Sub UsuarioEntraBoton(sender As Object, e As PointerRoutedEventArgs)
+
+            Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
+
+        End Sub
+
+        Private Sub UsuarioSaleBoton(sender As Object, e As PointerRoutedEventArgs)
+
+            Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Arrow, 1)
 
         End Sub
 

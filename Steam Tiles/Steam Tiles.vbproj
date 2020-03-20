@@ -162,6 +162,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\cuentapermisos.jpg" />
+    <Content Include="Assets\Iconos\1.png" />
+    <Content Include="Assets\Iconos\2.png" />
+    <Content Include="Assets\Iconos\3.png" />
+    <Content Include="Assets\Iconos\4.png" />
+    <Content Include="Assets\Iconos\5.png" />
+    <Content Include="Assets\Iconos\6.png" />
+    <Content Include="Assets\Iconos\7.png" />
     <Content Include="Assets\steam_logo.png" />
     <Content Include="Assets\Logos\AppList.altform-unplated_targetsize-16.png" />
     <Content Include="Assets\Logos\AppList.altform-unplated_targetsize-24.png" />
@@ -213,11 +220,6 @@
     <Content Include="Assets\Logos\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Logos\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Logos\Wide310x150Logo.scale-400.png" />
-    <Content Include="Assets\steam_logo_mini1.png" />
-    <Content Include="Assets\steam_logo_mini2.png" />
-    <Content Include="Assets\steam_logo_mini3.png" />
-    <Content Include="Assets\steam_logo_mini4.png" />
-    <Content Include="Assets\steam_logo_mini5.png" />
     <Content Include="My Project\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
