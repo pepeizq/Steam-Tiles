@@ -339,4 +339,28 @@
   <data name="OptionsTitleInfo.Text" xml:space="preserve">
     <value>El título se mostrará en la Tile abajo a la izquierda</value>
   </data>
+  <data name="OptionsMove.Text" xml:space="preserve">
+    <value>Mover la Imagen</value>
+  </data>
+  <data name="OptionsPlatform.Text" xml:space="preserve">
+    <value>Plataforma</value>
+  </data>
+  <data name="OptionsPlatformIcon.Content" xml:space="preserve">
+    <value>Enseñar Icono de la Plataforma</value>
+  </data>
+  <data name="OptionsPlatformPosition.Text" xml:space="preserve">
+    <value>Posición:</value>
+  </data>
+  <data name="OptionsPlatformPosition1.Content" xml:space="preserve">
+    <value>Arriba Izquierda</value>
+  </data>
+  <data name="OptionsPlatformPosition2.Content" xml:space="preserve">
+    <value>Arriba Derecha</value>
+  </data>
+  <data name="OptionsPlatformPosition3.Content" xml:space="preserve">
+    <value>Abajo Izquierda</value>
+  </data>
+  <data name="OptionsPlatformPosition4.Content" xml:space="preserve">
+    <value>Abajo Derecha</value>
+  </data>
 </root>

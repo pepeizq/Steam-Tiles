@@ -106,6 +106,9 @@ Namespace Tiles
 
             '-------------------------------------------
 
+            Dim tvPersonalizacion As TabView = pagina.FindName("tvPersonalizacion")
+            tvPersonalizacion.SelectedIndex = 0
+
             Dim botonImagenOrdenador As Button = pagina.FindName("botonPersonalizacionCambiarImagenOrdenador")
 
             If Not botonImagenOrdenador Is Nothing Then
@@ -137,19 +140,50 @@ Namespace Tiles
                 RemoveHandler cbImagenEstiramiento.SelectionChanged, AddressOf CambiarImagenEstiramiento
                 AddHandler cbImagenEstiramiento.SelectionChanged, AddressOf CambiarImagenEstiramiento
 
-                cbImagenEstiramiento.SelectedIndex = 0
+                Dim imagen2 As ImageEx = grid.Children(0)
+
+                If Not imagen2 Is Nothing Then
+                    If imagen2.Stretch = Stretch.UniformToFill Then
+                        cbImagenEstiramiento.SelectedIndex = 0
+                    ElseIf imagen2.Stretch = Stretch.Uniform Then
+                        cbImagenEstiramiento.SelectedIndex = 1
+                    ElseIf imagen2.Stretch = Stretch.Fill Then
+                        cbImagenEstiramiento.SelectedIndex = 2
+                    ElseIf imagen2.Stretch = Stretch.None Then
+                        cbImagenEstiramiento.SelectedIndex = 3
+                    End If
+                Else
+                    cbImagenEstiramiento.SelectedIndex = 0
+                End If
+
+                ApplicationData.Current.LocalSettings.Values("modo_estiramiento") = cbImagenEstiramiento.SelectedIndex
             End If
 
-            Dim tbImagenMargen As TextBox = pagina.FindName("tbPersonalizacionImagenMargen")
+            Dim sliderImagenMargen As Slider = pagina.FindName("sliderPersonalizacionImagenMargen")
 
-            If Not tbImagenMargen Is Nothing Then
-                tbImagenMargen.Text = 0
+            If Not sliderImagenMargen Is Nothing Then
+                sliderImagenMargen.Minimum = 0
 
-                RemoveHandler tbImagenMargen.TextChanged, AddressOf CambiarImagenMargen
-                AddHandler tbImagenMargen.TextChanged, AddressOf CambiarImagenMargen
+                RemoveHandler sliderImagenMargen.ValueChanged, AddressOf CambiarImagenMargen
+                AddHandler sliderImagenMargen.ValueChanged, AddressOf CambiarImagenMargen
+            End If
 
-                RemoveHandler tbImagenMargen.BeforeTextChanging, AddressOf CambiarImagenMargenControl
-                AddHandler tbImagenMargen.BeforeTextChanging, AddressOf CambiarImagenMargenControl
+            Dim sliderImagenMoverX As Slider = pagina.FindName("sliderPersonalizacionImagenMoverX")
+
+            If Not sliderImagenMoverX Is Nothing Then
+                RemoveHandler sliderImagenMoverX.ValueChanged, AddressOf CambiarImagenMover
+                AddHandler sliderImagenMoverX.ValueChanged, AddressOf CambiarImagenMover
+
+                sliderImagenMoverX.Value = 0
+            End If
+
+            Dim sliderImagenMoverY As Slider = pagina.FindName("sliderPersonalizacionImagenMoverY")
+
+            If Not sliderImagenMoverY Is Nothing Then
+                RemoveHandler sliderImagenMoverY.ValueChanged, AddressOf CambiarImagenMover
+                AddHandler sliderImagenMoverY.ValueChanged, AddressOf CambiarImagenMover
+
+                sliderImagenMoverY.Value = 0
             End If
 
             Dim cbImagenTitulo As CheckBox = pagina.FindName("cbPersonalizacionImagenTitulo")
@@ -176,6 +210,8 @@ Namespace Tiles
                 End If
             End If
 
+            '-------------------------------------------
+
             Dim colorFondo As ColorPicker = pagina.FindName("colorPickerPersonalizacionFondo")
 
             If Not colorFondo Is Nothing Then
@@ -185,6 +221,38 @@ Namespace Tiles
                 AddHandler colorFondo.ColorChanged, AddressOf CambiarFondoColor
 
                 gridExterior.Background = New SolidColorBrush(colorFondo.Color)
+            End If
+
+            '-------------------------------------------
+
+            Dim tviPlataforma As TabViewItem = pagina.FindName("tviPersonalizacionPlataforma")
+
+            If Not tviPlataforma Is Nothing Then
+                If tipo = 0 Or tipo = 1 Then
+                    tviPlataforma.Visibility = Visibility.Collapsed
+                ElseIf tipo = 2 Or tipo = 3 Then
+                    tviPlataforma.Visibility = Visibility.Visible
+
+                    Dim cbPlataforma As CheckBox = pagina.FindName("cbPersonalizacionPlataforma")
+
+                    If Not cbPlataforma Is Nothing Then
+                        RemoveHandler cbPlataforma.Checked, AddressOf EnseñarPlataforma_Checked
+                        AddHandler cbPlataforma.Checked, AddressOf EnseñarPlataforma_Checked
+
+                        RemoveHandler cbPlataforma.Unchecked, AddressOf EnseñarPlataforma_Unchecked
+                        AddHandler cbPlataforma.Unchecked, AddressOf EnseñarPlataforma_Unchecked
+                    End If
+
+                    Dim cbPlataformaPosicion As ComboBox = pagina.FindName("cbPersonalizacionPlataformaPosicion")
+
+                    If Not cbPlataformaPosicion Is Nothing Then
+                        RemoveHandler cbPlataformaPosicion.SelectionChanged, AddressOf CambiarPlataformaPosicion
+                        AddHandler cbPlataformaPosicion.SelectionChanged, AddressOf CambiarPlataformaPosicion
+
+                        cbPlataformaPosicion.SelectedIndex = 1
+                    End If
+
+                End If
             End If
 
             '-------------------------------------------
@@ -273,10 +341,6 @@ Namespace Tiles
 
             Dim gridAñadirTile As Grid = pagina.FindName("gridAñadirTile")
             gridAñadirTile.Visibility = Visibility.Visible
-
-
-
-
 
             Dim gridPersonalizarTiles As Grid = pagina.FindName("gridPersonalizarTiles")
             gridPersonalizarTiles.Visibility = Visibility.Collapsed
@@ -504,60 +568,91 @@ Namespace Tiles
 
         End Sub
 
-        Private Sub CambiarImagenMargen(sender As Object, e As TextChangedEventArgs)
+        Private Sub CambiarImagenMargen(sender As Object, e As RangeBaseValueChangedEventArgs)
 
             Dim frame As Frame = Window.Current.Content
             Dim pagina As Page = frame.Content
 
-            Dim tb As TextBox = sender
+            Dim slider As Slider = sender
 
-            If tb.Text.Trim.Length > 0 Then
-                Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
+            Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
 
-                For Each hijo In gridExterior.Children
-                    Dim imagen2 As ImageEx = Nothing
+            For Each hijo In gridExterior.Children
+                Dim imagen2 As ImageEx = Nothing
 
-                    Try
-                        imagen2 = hijo
-                    Catch ex As Exception
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
 
-                    End Try
+                End Try
 
-                    If Not imagen2 Is Nothing Then
-                        imagen2.Margin = New Thickness(tb.Text.Trim, tb.Text.Trim, tb.Text.Trim, tb.Text.Trim)
-                    End If
-                Next
+                If Not imagen2 Is Nothing Then
+                    imagen2.Margin = New Thickness(slider.Value, slider.Value, slider.Value, slider.Value)
+                End If
+            Next
 
-                Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
+            Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
 
-                For Each hijo In gridInterior.Children
-                    Dim imagen2 As ImageEx = Nothing
+            For Each hijo In gridInterior.Children
+                Dim imagen2 As ImageEx = Nothing
 
-                    Try
-                        imagen2 = hijo
-                    Catch ex As Exception
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
 
-                    End Try
+                End Try
 
-                    If Not imagen2 Is Nothing Then
-                        imagen2.Margin = New Thickness(tb.Text.Trim, tb.Text.Trim, tb.Text.Trim, tb.Text.Trim)
-                    End If
-                Next
-            End If
+                If Not imagen2 Is Nothing Then
+                    imagen2.Margin = New Thickness(slider.Value, slider.Value, slider.Value, slider.Value)
+                End If
+            Next
 
         End Sub
 
-        Private Sub CambiarImagenMargenControl(sender As Object, e As TextBoxBeforeTextChangingEventArgs)
+        Private Sub CambiarImagenMover(sender As Object, e As RangeBaseValueChangedEventArgs)
 
-            If Char.IsDigit(e.NewText) = False Then
-                e.Cancel = True
-            Else
-                Dim i As Integer = e.NewText
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
 
-                If i < 0 Or i > 99 Then
-                    e.Cancel = True
+            Dim sliderX As Slider = pagina.FindName("sliderPersonalizacionImagenMoverX")
+            Dim sliderY As Slider = pagina.FindName("sliderPersonalizacionImagenMoverY")
+
+            Dim mover As New TranslateTransform With {
+                .X = sliderX.Value,
+                .Y = sliderY.Value
+            }
+
+            Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
+
+            For Each hijo In gridExterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    imagen2.RenderTransform = mover
                 End If
-            End If
+            Next
+
+            Dim gridInterior As Grid = pagina.FindName("gridPersonalizacionInterior")
+
+            For Each hijo In gridInterior.Children
+                Dim imagen2 As ImageEx = Nothing
+
+                Try
+                    imagen2 = hijo
+                Catch ex As Exception
+
+                End Try
+
+                If Not imagen2 Is Nothing Then
+                    imagen2.RenderTransform = mover
+                End If
+            Next
 
         End Sub
 
@@ -602,6 +697,30 @@ Namespace Tiles
 
         End Sub
 
+        Private Sub EnseñarPlataforma_Checked(sender As Object, e As RoutedEventArgs)
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            Dim sp As StackPanel = pagina.FindName("spPersonalizacionPlataforma")
+            sp.Visibility = Visibility.Visible
+
+        End Sub
+
+        Private Sub EnseñarPlataforma_Unchecked(sender As Object, e As RoutedEventArgs)
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            Dim sp As StackPanel = pagina.FindName("spPersonalizacionPlataforma")
+            sp.Visibility = Visibility.Collapsed
+
+        End Sub
+
+        Private Sub CambiarPlataformaPosicion(sender As Object, e As SelectionChangedEventArgs)
+
+        End Sub
+
         Private Sub Resetear(sender As Object, e As RoutedEventArgs)
 
             Dim frame As Frame = Window.Current.Content
@@ -609,7 +728,12 @@ Namespace Tiles
 
             Dim boton As Button = sender
 
-            Dim gridOriginal As Grid = boton.Tag
+            Dim original As String = boton.Tag
+
+            Dim imagen As New ImageEx With {
+                .IsCacheEnabled = True,
+                .Source = original
+            }
 
             Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
 
@@ -642,6 +766,42 @@ Namespace Tiles
                     gridInterior.Children.Remove(hijo)
                 End If
             Next
+
+            gridInterior.Children.Add(imagen)
+
+            Dim cbImagenUbicacion As ComboBox = pagina.FindName("cbPersonalizacionImagenUbicacion")
+
+            If Not cbImagenUbicacion Is Nothing Then
+                cbImagenUbicacion.SelectedIndex = 0
+            End If
+
+            Dim cbImagenEstiramiento As ComboBox = pagina.FindName("cbPersonalizacionImagenEstiramiento")
+
+            If Not cbImagenEstiramiento Is Nothing Then
+                If Not ApplicationData.Current.LocalSettings.Values("modo_estiramiento") = Nothing Then
+                    cbImagenEstiramiento.SelectedIndex = ApplicationData.Current.LocalSettings.Values("modo_estiramiento")
+                Else
+                    cbImagenEstiramiento.SelectedIndex = 0
+                End If
+            End If
+
+            Dim sliderImagenMargen As Slider = pagina.FindName("sliderPersonalizacionImagenMargen")
+
+            If Not sliderImagenMargen Is Nothing Then
+                sliderImagenMargen.Minimum = 0
+            End If
+
+            Dim sliderImagenMoverX As Slider = pagina.FindName("sliderPersonalizacionImagenMoverX")
+
+            If Not sliderImagenMoverX Is Nothing Then
+                sliderImagenMoverX.Value = 0
+            End If
+
+            Dim sliderImagenMoverY As Slider = pagina.FindName("sliderPersonalizacionImagenMoverY")
+
+            If Not sliderImagenMoverY Is Nothing Then
+                sliderImagenMoverY.Value = 0
+            End If
 
         End Sub
 

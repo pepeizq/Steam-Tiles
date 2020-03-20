@@ -98,6 +98,7 @@
 
                             <Grid Grid.Row="1" Padding="20" Background="{StaticResource BrushCuarto}">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
@@ -111,7 +112,11 @@
                                     </Button>
                                 </controls:DropShadowPanel>
 
-                                <controls:DropShadowPanel Grid.Column="1" ShadowOpacity="0.9" BlurRadius="5">
+                                <Grid x:Name="gridPersonalizacionCarga" Grid.Column="1" HorizontalAlignment="Center" Visibility="Collapsed">
+                                    <ProgressBar IsIndeterminate="True" Foreground="{StaticResource BrushPrimario}" Width="100"/>
+                                </Grid>
+
+                                <controls:DropShadowPanel Grid.Column="2" ShadowOpacity="0.9" BlurRadius="5">
                                     <Button x:Name="botonCerrarTiles" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                         <StackPanel Orientation="Horizontal">
                                             <fa:FontAwesome Icon="Close" Foreground="White" VerticalAlignment="Center"/>
@@ -138,7 +143,7 @@
                                 <Button x:Name="botonTilePequeña" Grid.Column="0" Background="Transparent" VerticalAlignment="Top" Padding="0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                     <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
                                         <Grid x:Name="gridTilePequeña" Background="{StaticResource BrushTercero}" Width="71" Height="71">
-                                            <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None"/>
+                                            <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" Stretch="None"/>
                                         </Grid>
                                     </controls:DropShadowPanel>
                                 </Button>
@@ -146,7 +151,7 @@
                                 <Button x:Name="botonTileMediana" Grid.Column="1" Background="Transparent" VerticalAlignment="Top" Padding="0" Margin="20,0,0,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                     <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
                                         <Grid x:Name="gridTileMediana" Background="{StaticResource BrushTercero}" Width="150" Height="150">
-                                            <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True"/>
                                         </Grid>
                                     </controls:DropShadowPanel>
                                 </Button>
@@ -154,7 +159,7 @@
                                 <Button x:Name="botonTileAncha" Grid.Column="2" Background="Transparent" VerticalAlignment="Top" Padding="0" Margin="20,0,0,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                     <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
                                         <Grid x:Name="gridTileAncha" Background="{StaticResource BrushTercero}" Width="310" Height="150">
-                                            <controls:ImageEx x:Name="imagenTileAncha" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
+                                            <controls:ImageEx x:Name="imagenTileAncha" IsCacheEnabled="True" Stretch="UniformToFill"/>
                                         </Grid>
                                     </controls:DropShadowPanel>
                                 </Button>
@@ -162,7 +167,7 @@
                                 <Button x:Name="botonTileGrande" Grid.Column="3" Background="Transparent" VerticalAlignment="Top" Padding="0" Margin="20,0,0,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                     <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
                                         <Grid x:Name="gridTileGrande" Background="{StaticResource BrushTercero}" Width="310" Height="310">
-                                            <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill"/>
+                                            <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" Stretch="UniformToFill"/>
                                         </Grid>
                                     </controls:DropShadowPanel>
                                 </Button>
@@ -212,11 +217,6 @@
                                     </Button>
                                 </controls:DropShadowPanel>
 
-                                <Grid x:Name="gridPersonalizacionCarga" Grid.Column="1" HorizontalAlignment="Center" Width="200">
-                                    <TextBlock Text="test"/>
-                                    <ProgressBar IsIndeterminate="True" Foreground="{StaticResource BrushPrimario}" Width="100" Height="40"/>
-                                </Grid>
-
                                 <controls:DropShadowPanel Grid.Column="2" ShadowOpacity="0.9" BlurRadius="5" Margin="20">
                                     <Button x:Name="botonResetearPersonalizacion" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                         <StackPanel Orientation="Horizontal">
@@ -236,7 +236,7 @@
                                     <Grid x:Name="gridPersonalizacionInterior" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Grid>
 
-                                <controls:TabView Grid.Column="1" VerticalAlignment="Top" Margin="20,0,0,0" Background="{StaticResource BrushCuarto}">
+                                <controls:TabView x:Name="tvPersonalizacion" Grid.Column="1" VerticalAlignment="Top" Margin="20,0,0,0" Background="{StaticResource BrushCuarto}">
                                     <controls:TabViewItem>
                                         <controls:TabViewItem.Header>
                                             <Grid PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
@@ -301,10 +301,40 @@
                                                 </Grid.ColumnDefinitions>
                                                 
                                                 <TextBlock x:Uid="OptionsMargin" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                                                <TextBox x:Name="tbPersonalizacionImagenMargen" Grid.Column="1" MinWidth="20"/>
+                                                <Slider x:Name="sliderPersonalizacionImagenMargen" Grid.Column="1" Width="180" Minimum="0" Maximum="200" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
                                             </Grid>
 
-                                            <Grid HorizontalAlignment="Center" Margin="0,20">
+                                            <Grid HorizontalAlignment="Center" Margin="0,20,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+
+                                                <TextBlock x:Uid="OptionsMove" Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,5"/>
+
+                                                <Grid Grid.Row="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <TextBlock Text="X" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                                    <Slider x:Name="sliderPersonalizacionImagenMoverX" Grid.Column="1" Width="200" Minimum="-200" Maximum="200" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
+                                                </Grid>
+
+                                                <Grid Grid.Row="2">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <TextBlock Text="Y" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                                    <Slider x:Name="sliderPersonalizacionImagenMoverY" Grid.Column="1" Width="200" Minimum="-200" Maximum="200" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
+                                                </Grid>
+                                            </Grid>
+
+                                            <Grid HorizontalAlignment="Center" Margin="0,20,0,0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="Auto"/>
@@ -318,9 +348,8 @@
                                                             <TextBlock x:Uid="OptionsTitleInfo" TextWrapping="Wrap" FontSize="15"/>
                                                         </Grid>
                                                     </ToolTipService.ToolTip>
-                                                </fa:FontAwesome> 
+                                                </fa:FontAwesome>
                                             </Grid>
-                                            
                                         </StackPanel>
                                     </controls:TabViewItem>
                                     <controls:TabViewItem>
@@ -333,7 +362,37 @@
                                         <StackPanel Orientation="Vertical" Padding="20" Width="360">
                                             <ColorPicker x:Name="colorPickerPersonalizacionFondo" IsMoreButtonVisible="True" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
                                         </StackPanel> 
-                                    </controls:TabViewItem> 
+                                    </controls:TabViewItem>
+                                    <controls:TabViewItem x:Name="tviPersonalizacionPlataforma">
+                                        <controls:TabViewItem.Header>
+                                            <Grid PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                                <TextBlock x:Uid="OptionsPlatform"/>
+                                            </Grid>
+                                        </controls:TabViewItem.Header>
+
+                                        <StackPanel Orientation="Vertical" Padding="20" Width="360">
+                                            <CheckBox x:Name="cbPersonalizacionPlataforma" x:Uid="OptionsPlatformIcon" HorizontalAlignment="Center" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
+
+                                            <StackPanel x:Name="spPersonalizacionPlataforma" Orientation="Vertical">
+                                                <Grid Margin="0,15,0,0" HorizontalAlignment="Center">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <TextBlock x:Uid="OptionsPlatformPosition" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                                                    <ComboBox x:Name="cbPersonalizacionPlataformaPosicion" Grid.Column="1" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                                        <ComboBoxItem x:Uid="OptionsPlatformPosition1"/>
+                                                        <ComboBoxItem x:Uid="OptionsPlatformPosition2"/>
+                                                        <ComboBoxItem x:Uid="OptionsPlatformPosition3"/>
+                                                        <ComboBoxItem x:Uid="OptionsPlatformPosition4"/>
+                                                    </ComboBox>                                                   
+                                                </Grid>
+
+                                                <controls:AdaptiveGridView x:Name="gvPersonalizacionPlataformaIconos" Margin="0,15,0,0" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </controls:TabViewItem>
                                 </controls:TabView>
                             </Grid>
 
