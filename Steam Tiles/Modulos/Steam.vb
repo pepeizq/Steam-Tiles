@@ -46,6 +46,9 @@ Module Steam
         Dim botonCache As Button = pagina.FindName("botonConfigLimpiarCache")
         botonCache.IsEnabled = False
 
+        Dim gridSeleccionarJuego As Grid = pagina.FindName("gridSeleccionarJuego")
+        gridSeleccionarJuego.Visibility = Visibility.Collapsed
+
         Dim gv As GridView = pagina.FindName("gvTiles")
         gv.Items.Clear()
 
@@ -419,6 +422,7 @@ Module Steam
         If listaJuegos.Count > 0 Then
             gridTiles.Visibility = Visibility.Visible
             gridAvisoNoJuegos.Visibility = Visibility.Collapsed
+            gridSeleccionarJuego.Visibility = Visibility.Visible
 
             listaJuegos.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
 
@@ -468,6 +472,7 @@ Module Steam
         Else
             gridTiles.Visibility = Visibility.Collapsed
             gridAvisoNoJuegos.Visibility = Visibility.Visible
+            gridSeleccionarJuego.Visibility = Visibility.Collapsed
 
             If boolBuscarCarpeta = True Then
                 Toast(recursos.GetString("ErrorSteam1"), Nothing)
@@ -502,7 +507,11 @@ Module Steam
         gridSeleccionarJuego.Visibility = Visibility.Collapsed
 
         Dim gvTiles As GridView = pagina.FindName("gvTiles")
-        ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles") = gvTiles.ActualWidth
+
+        If gvTiles.ActualWidth > anchoColumna Then
+            ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles") = gvTiles.ActualWidth
+        End If
+
         gvTiles.Width = anchoColumna
         gvTiles.Padding = New Thickness(0, 0, 15, 0)
 

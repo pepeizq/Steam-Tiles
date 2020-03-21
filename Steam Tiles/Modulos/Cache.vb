@@ -78,6 +78,9 @@ Module Cache
         Dim sp2 As StackPanel = pagina.FindName("spModoTile2")
         sp2.IsHitTestVisible = False
 
+        Dim gridSeleccionarJuego As Grid = pagina.FindName("gridSeleccionarJuego")
+        gridSeleccionarJuego.Visibility = Visibility.Collapsed
+
         If File.Exists(ApplicationData.Current.LocalFolder.Path + "\juegos0") Then
             File.Delete(ApplicationData.Current.LocalFolder.Path + "\juegos0")
         End If
