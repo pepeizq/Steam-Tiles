@@ -126,8 +126,13 @@ Public NotInheritable Class MainPage
 
         gridAñadirTile.Visibility = Visibility.Collapsed
         gridSeleccionarJuego.Visibility = Visibility.Visible
-        gvTiles.Width = ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles")
-        gvTiles.Padding = New Thickness(5, 0, 5, 0)
+
+        If ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles") > 0 Then
+            If Steam.anchoColumna < ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles") Then
+                gvTiles.Width = ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles")
+                gvTiles.Padding = New Thickness(5, 0, 5, 0)
+            End If
+        End If
 
     End Sub
 

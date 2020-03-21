@@ -11,7 +11,7 @@ Imports Windows.UI.Xaml.Media.Animation
 
 Module Steam
 
-    Dim anchoColumna As Integer = 306
+    Public anchoColumna As Integer = 306
     Dim clave As String = "carpeta36"
 
     Public Async Sub Generar(boolBuscarCarpeta As Boolean)
