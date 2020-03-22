@@ -26,8 +26,12 @@ Public NotInheritable Class MainPage
             If item.Text = recursos.GetString("Tiles") Then
                 GridVisibilidad(gridTiles, item.Text)
 
-                If Not spProgreso.Visibility = Visibility.Visible Then
-                    gridSeleccionarJuego.Visibility = Visibility.Visible
+                If spProgreso.Visibility = Visibility.Visible Then
+                    gridSeleccionarJuego.Visibility = Visibility.Collapsed
+                End If
+
+                If gridAvisoNoJuegos.Visibility = Visibility.Visible Then
+                    gridSeleccionarJuego.Visibility = Visibility.Collapsed
                 End If
 
                 If Not ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles") = 0 Then
