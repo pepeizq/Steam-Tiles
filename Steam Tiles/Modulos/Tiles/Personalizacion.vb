@@ -326,14 +326,22 @@ Namespace Tiles
             gridInterior.BorderThickness = New Thickness(0, 0, 0, 0)
 
             If gridInterior.Children.Count > 0 Then
-                Await Tiles.Imagen.Generar(gridInterior, "personalizacion" + id.ToString + ".png", ancho, alto)
+                Try
+                    Await Tiles.Imagen.Generar(gridInterior, "personalizacion" + id.ToString + ".png", ancho, alto)
+                Catch ex As Exception
+
+                End Try
             End If
 
             Dim gridExterior As Grid = pagina.FindName("gridPersonalizacionExterior")
             gridExterior.BorderThickness = New Thickness(0, 0, 0, 0)
 
             If gridExterior.Children.Count > 0 Then
-                Await Tiles.Imagen.Generar(gridExterior, "personalizacion" + id.ToString + ".png", ancho, alto)
+                Try
+                    Await Tiles.Imagen.Generar(gridExterior, "personalizacion" + id.ToString + ".png", ancho, alto)
+                Catch ex As Exception
+
+                End Try
             End If
 
             Dim imagen As New ImageEx With {
