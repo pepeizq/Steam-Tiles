@@ -531,6 +531,9 @@ Module Steam
 
         '---------------------------------------------
 
+        Dim imagenPequeña As ImageEx = pagina.FindName("imagenTilePequeña")
+        imagenPequeña.Source = Nothing
+
         Try
             juego.ImagenIcono = Await Cache.DescargarImagen(Await SacarIcono(juego.ID), juego.ID, "icono")
         Catch ex As Exception
@@ -538,14 +541,17 @@ Module Steam
         End Try
 
         If Not juego.ImagenIcono = Nothing Then
-            Dim imagenPequeña As ImageEx = pagina.FindName("imagenTilePequeña")
             imagenPequeña.Source = juego.ImagenIcono
             imagenPequeña.Tag = juego.ImagenIcono
         End If
 
-        If Not juego.ImagenAncha = Nothing Then
-            Dim imagenMediana As ImageEx = pagina.FindName("imagenTileMediana")
+        Dim imagenMediana As ImageEx = pagina.FindName("imagenTileMediana")
+        imagenMediana.Source = Nothing
 
+        Dim imagenAncha As ImageEx = pagina.FindName("imagenTileAncha")
+        imagenAncha.Source = Nothing
+
+        If Not juego.ImagenAncha = Nothing Then
             If Not juego.ImagenLogo = Nothing Then
                 imagenMediana.Source = juego.ImagenLogo
                 imagenMediana.Tag = juego.ImagenLogo
@@ -554,13 +560,14 @@ Module Steam
                 imagenMediana.Tag = juego.ImagenAncha
             End If
 
-            Dim imagenAncha As ImageEx = pagina.FindName("imagenTileAncha")
             imagenAncha.Source = juego.ImagenAncha
             imagenAncha.Tag = juego.ImagenAncha
         End If
 
+        Dim imagenGrande As ImageEx = pagina.FindName("imagenTileGrande")
+        imagenGrande.Source = Nothing
+
         If Not juego.ImagenGrande = Nothing Then
-            Dim imagenGrande As ImageEx = pagina.FindName("imagenTileGrande")
             imagenGrande.Source = juego.ImagenGrande
             imagenGrande.Tag = juego.ImagenGrande
         End If
