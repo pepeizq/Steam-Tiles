@@ -192,83 +192,11 @@
   <data name="StoreTags" xml:space="preserve">
     <value>Steam;Menu Inicio;Tile;Tiles;Juegos;Windows</value>
   </data>
-  <data name="TilesPersonalization.Text" xml:space="preserve">
-    <value>Personaliza las Tiles</value>
-  </data>
-  <data name="TileLarge.Text" xml:space="preserve">
-    <value>Tile Grande</value>
-  </data>
-  <data name="TileMedium.Text" xml:space="preserve">
-    <value>Tile Mediana</value>
-  </data>
-  <data name="TileSmall.Text" xml:space="preserve">
-    <value>Tile Pequeña</value>
-  </data>
-  <data name="TileWide.Text" xml:space="preserve">
-    <value>Tile Ancha</value>
-  </data>
-  <data name="ConfigTileImageStretch.Text" xml:space="preserve">
-    <value>Estiramiento</value>
-  </data>
-  <data name="ConfigTileImageStretchNone.Content" xml:space="preserve">
-    <value>Ninguno</value>
-  </data>
-  <data name="ConfigTileImageStretchUniform.Content" xml:space="preserve">
-    <value>Uniforme</value>
-  </data>
-  <data name="ConfigTileImageStretchFill.Content" xml:space="preserve">
-    <value>Rellenar</value>
-  </data>
-  <data name="ConfigTileImageStretchUniformFill.Content" xml:space="preserve">
-    <value>Uniforme y Rellenar</value>
-  </data>
   <data name="Back.Text" xml:space="preserve">
     <value>Volver</value>
   </data>
   <data name="Reset.Text" xml:space="preserve">
     <value>Reset</value>
-  </data>
-  <data name="ConfigTilesColor.Text" xml:space="preserve">
-    <value>Tiles Color</value>
-  </data>
-  <data name="ConfigTileImageAxisX.Text" xml:space="preserve">
-    <value>Eje X</value>
-  </data>
-  <data name="ConfigTilesDRM.Text" xml:space="preserve">
-    <value>Tiles DRM</value>
-  </data>
-  <data name="Icon.Text" xml:space="preserve">
-    <value>Icono</value>
-  </data>
-  <data name="Position.Text" xml:space="preserve">
-    <value>Posición</value>
-  </data>
-  <data name="ConfigTileImageZoom.Text" xml:space="preserve">
-    <value>Zoom</value>
-  </data>
-  <data name="Preview.Text" xml:space="preserve">
-    <value>Previsualizar</value>
-  </data>
-  <data name="ConfigTileImageMargin.Text" xml:space="preserve">
-    <value>Margen</value>
-  </data>
-  <data name="ChangeImage.Text" xml:space="preserve">
-    <value>Cambiar Imagen</value>
-  </data>
-  <data name="ConfigTileImageAxisY.Text" xml:space="preserve">
-    <value>Eje Y</value>
-  </data>
-  <data name="ColorBackground.Text" xml:space="preserve">
-    <value>Fondo</value>
-  </data>
-  <data name="ColorTitle.Text" xml:space="preserve">
-    <value>Título</value>
-  </data>
-  <data name="ConfigTileShowDRM.Text" xml:space="preserve">
-    <value>Mostrar DRM</value>
-  </data>
-  <data name="ConfigTileShowTitle.Text" xml:space="preserve">
-    <value>Mostrar Título</value>
   </data>
   <data name="ConfigCleanCache.Text" xml:space="preserve">
     <value>Limpiar Cache</value>

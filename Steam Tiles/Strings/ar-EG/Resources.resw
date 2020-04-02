@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,180 +118,180 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddTile.Text" xml:space="preserve">
-    <value>Pin Tile</value>
+    <value>تثبيت الصورة</value>
   </data>
   <data name="Config" xml:space="preserve">
-    <value>Configuration</value>
-  </data>
-  <data name="ConfigAddFolder.Text" xml:space="preserve">
-    <value>Add Folder</value>
-  </data>
-  <data name="ConfigDeleteFolders.Text" xml:space="preserve">
-    <value>Delete Folders</value>
-  </data>
-  <data name="ConfigFolderMessage.Text" xml:space="preserve">
-    <value>Add your Steam folder following this example: C:\Steam\steamapps</value>
-  </data>
-  <data name="ConfigFoldersAdded.Text" xml:space="preserve">
-    <value>Folders added:</value>
-  </data>
-  <data name="ConfigFoldersWarning.Text" xml:space="preserve">
-    <value>Advice: If you have installed games in different hard drives add the steamapps folder of each hard drive.</value>
-  </data>
-  <data name="MoreThings_Contact" xml:space="preserve">
-    <value>Contact</value>
+    <value>الاعدادات</value>
   </data>
   <data name="ErrorSteam1" xml:space="preserve">
-    <value>No games detected. Remember select the folder steamapps inside of Steam.</value>
+    <value>لم يتم اكتشاف اى لعبة  تذكر اختيار ملف العاب استيم (steamapps) داخل steam</value>
   </data>
   <data name="GamesDetected" xml:space="preserve">
-    <value>games detected</value>
-  </data>
-  <data name="MoreThings_HelpTranslate" xml:space="preserve">
-    <value>Help to Translate</value>
-  </data>
-  <data name="MoreThings_MoreApps" xml:space="preserve">
-    <value>More Apps</value>
+    <value>تم اكتشاف العاب.</value>
   </data>
   <data name="NoFoldersDetected" xml:space="preserve">
-    <value>None</value>
+    <value>لا شئ.</value>
   </data>
   <data name="NoGamesDetected.Text" xml:space="preserve">
-    <value>No games detected, go to Configuration</value>
-  </data>
-  <data name="MoreThings_ReportBug" xml:space="preserve">
-    <value>Report a Bug</value>
+    <value>لم يتم اكتشاف اى العاب .راجع الاعدادات</value>
   </data>
   <data name="SelectGame.Text" xml:space="preserve">
-    <value>Select a game</value>
-  </data>
-  <data name="MoreThings_SourceCode" xml:space="preserve">
-    <value>Source Code</value>
+    <value>اختر لعبه</value>
   </data>
   <data name="Tiles" xml:space="preserve">
-    <value>Tiles</value>
-  </data>
-  <data name="MoreThings_VoteApp" xml:space="preserve">
-    <value>Vote the App</value>
+    <value>الصور</value>
   </data>
   <data name="Change" xml:space="preserve">
-    <value>Change Folder</value>
+    <value>غير الفولدر</value>
   </data>
-  <data name="StoreDescription" xml:space="preserve">
-    <value>Pin Tiles in the Start Menu of Windows 10 for your Steam games.</value>
+  <data name="MoreThings_Contact" xml:space="preserve">
+    <value>الاتصال</value>
   </data>
-  <data name="GameSelectedTiles.Text" xml:space="preserve">
-    <value>Images to include in the Tile of this game:</value>
+  <data name="MoreThings_HelpTranslate" xml:space="preserve">
+    <value>ساعد فى الترجمة</value>
   </data>
-  <data name="MoreThings_Back" xml:space="preserve">
-    <value>Back</value>
+  <data name="MoreThings_MoreApps" xml:space="preserve">
+    <value>المزيد من التطبيقات</value>
+  </data>
+  <data name="MoreThings_ReportBug" xml:space="preserve">
+    <value>بلغ عن عطل</value>
+  </data>
+  <data name="MoreThings_SourceCode" xml:space="preserve">
+    <value>كود المصدر</value>
+  </data>
+  <data name="MoreThings_VoteApp" xml:space="preserve">
+    <value>قيم التطبيق</value>
   </data>
   <data name="MoreThings" xml:space="preserve">
-    <value>More Things</value>
+    <value>المزيد</value>
+  </data>
+  <data name="GameSelectedTiles.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MoreThings_Back" xml:space="preserve">
+    <value>للخلف</value>
+  </data>
+  <data name="ConfigAddFolder.Text" xml:space="preserve">
+    <value>اختر ملف</value>
+  </data>
+  <data name="ConfigDeleteFolders.Text" xml:space="preserve">
+    <value>احذف ملف</value>
+  </data>
+  <data name="ConfigFolderMessage.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ConfigFoldersAdded.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="ConfigFoldersWarning.Text" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value></value>
   </data>
   <data name="StoreTags" xml:space="preserve">
-    <value>Steam;Start Menu;Tile;Tiles;Games;Windows</value>
+    <value></value>
   </data>
   <data name="Back.Text" xml:space="preserve">
-    <value>Back</value>
+    <value>ggogt</value>
   </data>
   <data name="Reset.Text" xml:space="preserve">
-    <value>Reset</value>
+    <value></value>
   </data>
   <data name="ConfigCleanCache.Text" xml:space="preserve">
-    <value>Clear Cache</value>
+    <value></value>
   </data>
   <data name="ConfigTileMode1.Content" xml:space="preserve">
-    <value>Show Installed Games</value>
+    <value></value>
   </data>
   <data name="ConfigTileMode2.Content" xml:space="preserve">
-    <value>Show all the games in your account</value>
+    <value></value>
   </data>
   <data name="ConfigAccountWarning.Text" xml:space="preserve">
-    <value>You must have the following permissions so that the app can read your games:</value>
+    <value></value>
   </data>
   <data name="ConfigAccountInfo.Text" xml:space="preserve">
-    <value>Add your Steam account, keep in mind that if you have many games the app will need time to process the information:</value>
+    <value></value>
   </data>
   <data name="Options.Text" xml:space="preserve">
-    <value>Options</value>
+    <value></value>
   </data>
   <data name="OptionsSource.Text" xml:space="preserve">
-    <value>Source</value>
+    <value></value>
   </data>
   <data name="OptionsSourceComputer.Text" xml:space="preserve">
-    <value>Search on your computer</value>
+    <value></value>
   </data>
   <data name="OptionsSourceInfo.Text" xml:space="preserve">
-    <value>Change the image with one on your computer or one on the Internet:</value>
+    <value></value>
   </data>
   <data name="OptionsSourceUbication.Text" xml:space="preserve">
-    <value>Image Location:</value>
+    <value></value>
   </data>
   <data name="OptionsSourceUbication1.Content" xml:space="preserve">
-    <value>Inner Box</value>
+    <value></value>
   </data>
   <data name="OptionsSourceUbication2.Content" xml:space="preserve">
-    <value>Outer box</value>
+    <value></value>
   </data>
   <data name="OptionsSourceInternet.Text" xml:space="preserve">
-    <value>Add the image url:</value>
+    <value></value>
   </data>
   <data name="OptionsBackground.Text" xml:space="preserve">
-    <value>Background</value>
+    <value></value>
   </data>
   <data name="OptionsSourceStretch.Text" xml:space="preserve">
-    <value>Image Stretch:</value>
+    <value></value>
   </data>
   <data name="OptionsSourceStretch1.Content" xml:space="preserve">
-    <value>Uniform and Fill</value>
+    <value></value>
   </data>
   <data name="OptionsSourceStretch2.Content" xml:space="preserve">
-    <value>Uniform</value>
+    <value></value>
   </data>
   <data name="OptionsSourceStretch3.Content" xml:space="preserve">
-    <value>Fill</value>
+    <value></value>
   </data>
   <data name="OptionsSourceStretch4.Content" xml:space="preserve">
-    <value>None</value>
+    <value></value>
   </data>
   <data name="OptionsDetails.Text" xml:space="preserve">
-    <value>Details</value>
+    <value></value>
   </data>
   <data name="OptionsMargin.Text" xml:space="preserve">
-    <value>Margin</value>
+    <value></value>
   </data>
   <data name="OptionsTitle.Content" xml:space="preserve">
-    <value>Show Game Title</value>
+    <value></value>
   </data>
   <data name="OptionsTitleInfo.Text" xml:space="preserve">
-    <value>The title will be displayed in the Tile at the bottom left</value>
+    <value></value>
   </data>
   <data name="OptionsMove.Text" xml:space="preserve">
-    <value>Move the Image</value>
+    <value></value>
   </data>
   <data name="OptionsPlatform.Text" xml:space="preserve">
-    <value>Plataform</value>
+    <value></value>
   </data>
   <data name="OptionsPlatformIcon.Content" xml:space="preserve">
-    <value>Show Platform Icon</value>
+    <value></value>
   </data>
   <data name="OptionsPlatformPosition.Text" xml:space="preserve">
-    <value>Position:</value>
+    <value></value>
   </data>
   <data name="OptionsPlatformPosition1.Content" xml:space="preserve">
-    <value>Up Left</value>
+    <value></value>
   </data>
   <data name="OptionsPlatformPosition2.Content" xml:space="preserve">
-    <value>Up Right</value>
+    <value></value>
   </data>
   <data name="OptionsPlatformPosition3.Content" xml:space="preserve">
-    <value>Down Left</value>
+    <value></value>
   </data>
   <data name="OptionsPlatformPosition4.Content" xml:space="preserve">
-    <value>Down Right</value>
+    <value></value>
   </data>
   <data name="GamePersonalizationInfo.Text" xml:space="preserve">
-    <value>Click on the image to customize it before adding the Tile</value>
+    <value></value>
   </data>
 </root>
