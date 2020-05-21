@@ -1,4 +1,5 @@
 ﻿Imports FontAwesome.UWP
+Imports Windows.ApplicationModel.Core
 Imports Windows.Storage
 Imports Windows.UI
 Imports Windows.UI.Core

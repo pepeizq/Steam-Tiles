@@ -1,0 +1,5 @@
+﻿ar-EG 33%
+pl-PL 45%
+pt-BR 42%
+ru-RU 54%
+zh-CN 45%

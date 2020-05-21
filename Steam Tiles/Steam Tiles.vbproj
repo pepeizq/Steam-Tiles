@@ -116,6 +116,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Strings\Estados.txt" />
     <None Include="Package.xml" />
     <None Include="Package.StoreAssociation.xml">
       <SubType>Designer</SubType>
