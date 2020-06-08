@@ -139,6 +139,8 @@ Public NotInheritable Class MainPage
             End If
         End If
 
+        tbTitulo.Text = Package.Current.DisplayName + " (" + Package.Current.Id.Version.Major.ToString + "." + Package.Current.Id.Version.Minor.ToString + "." + Package.Current.Id.Version.Build.ToString + "." + Package.Current.Id.Version.Revision.ToString + ")"
+
     End Sub
 
     Private Sub BotonTilePequeña_Click(sender As Object, e As RoutedEventArgs) Handles botonTilePequeña.Click
