@@ -1,4 +1,5 @@
 ﻿Imports FontAwesome.UWP
+Imports Microsoft.Toolkit.Uwp.Helpers
 Imports Windows.ApplicationModel.Core
 Imports Windows.Storage
 Imports Windows.UI
@@ -105,6 +106,54 @@ Public NotInheritable Class MainPage
         grid.Visibility = Visibility.Visible
 
     End Sub
+
+    Private Async Sub TbBuscador_TextChanged(sender As Object, e As TextChangedEventArgs) Handles tbBuscador.TextChanged
+
+        Dim helper As New LocalObjectStorageHelper
+
+        Dim listaJuegos As New List(Of Tile)
+
+        If Await helper.FileExistsAsync("juegos" + ApplicationData.Current.LocalSettings.Values("modo_tiles").ToString) = True Then
+            listaJuegos = Await helper.ReadFileAsync(Of List(Of Tile))("juegos" + ApplicationData.Current.LocalSettings.Values("modo_tiles").ToString)
+        End If
+
+        If Not listaJuegos Is Nothing Then
+            gvTiles.Items.Clear()
+
+            listaJuegos.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
+
+            If tbBuscador.Text.Trim.Length > 0 Then
+                For Each juego In listaJuegos
+                    Dim busqueda As String = tbBuscador.Text.Trim
+
+                    If LimpiarBusqueda(juego.Titulo).ToString.Contains(LimpiarBusqueda(busqueda)) Then
+                        BotonEstilo(juego, gvTiles)
+                    End If
+                Next
+            Else
+                For Each juego In listaJuegos
+                    BotonEstilo(juego, gvTiles)
+                Next
+            End If
+        End If
+
+    End Sub
+
+    Private Function LimpiarBusqueda(texto As String)
+
+        Dim listaCaracteres As New List(Of String) From {"Early Access", " ", "•", ">", "<", "¿", "?", "!", "¡", ":",
+            ".", "_", "–", "-", ";", ",", "™", "®", "'", "’", "´", "`", "(", ")", "/", "\", "|", "&", "#", "=", ChrW(34),
+            "@", "^", "[", "]", "ª", "«"}
+
+        For Each item In listaCaracteres
+            texto = texto.Replace(item, Nothing)
+        Next
+
+        texto = texto.ToLower
+        texto = texto.Trim
+
+        Return texto
+    End Function
 
     Private Sub UsuarioEntraBoton(sender As Object, e As PointerRoutedEventArgs)
 
