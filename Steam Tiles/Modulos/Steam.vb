@@ -12,8 +12,8 @@ Imports Windows.UI.Xaml.Media.Animation
 Module Steam
 
     Public anchoColumna As Integer = 200
-    Dim clave As String = "carpeta37"
-    Dim dominioImagenes As String = "https://steamcdn-a.akamaihd.net"
+    Dim clave As String = "carpeta38"
+    Dim dominioImagenes As String = "https://cdn.cloudflare.steamstatic.com"
 
     Public Async Sub Generar(boolBuscarCarpeta As Boolean)
 
@@ -285,9 +285,9 @@ Module Steam
                                         End Try
 
                                         Dim imagenAncha As String = String.Empty
-                                        imagenAncha = Await Cache.DescargarImagen(dominioImagenes + "steam/apps/" + id + "/header.jpg", id, "ancha")
-                                        Try
 
+                                        Try
+                                            imagenAncha = Await Cache.DescargarImagen(dominioImagenes + "/steam/apps/" + id + "/header.jpg", id, "ancha")
                                         Catch ex As Exception
 
                                         End Try
@@ -419,12 +419,14 @@ Module Steam
 
         Dim gridTiles As Grid = pagina.FindName("gridTiles")
         Dim gridAvisoNoJuegos As Grid = pagina.FindName("gridAvisoNoJuegos")
+        Dim spBuscador As StackPanel = pagina.FindName("spBuscador")
 
         If Not listaJuegos Is Nothing Then
             If listaJuegos.Count > 0 Then
                 gridTiles.Visibility = Visibility.Visible
                 gridAvisoNoJuegos.Visibility = Visibility.Collapsed
                 gridSeleccionarJuego.Visibility = Visibility.Visible
+                spBuscador.Visibility = Visibility.Visible
 
                 listaJuegos.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
 
@@ -434,13 +436,14 @@ Module Steam
                     BotonEstilo(juego, gv)
                 Next
 
-                If boolBuscarCarpeta = True Then
-                    Toast(listaJuegos.Count.ToString + " " + recursos.GetString("GamesDetected"), Nothing)
-                End If
+                'If boolBuscarCarpeta = True Then
+                '    Toast(listaJuegos.Count.ToString + " " + recursos.GetString("GamesDetected"), Nothing)
+                'End If
             Else
                 gridTiles.Visibility = Visibility.Collapsed
                 gridAvisoNoJuegos.Visibility = Visibility.Visible
                 gridSeleccionarJuego.Visibility = Visibility.Collapsed
+                spBuscador.Visibility = Visibility.Collapsed
 
                 If boolBuscarCarpeta = True Then
                     Toast(recursos.GetString("ErrorSteam1"), Nothing)
@@ -450,6 +453,7 @@ Module Steam
             gridTiles.Visibility = Visibility.Collapsed
             gridAvisoNoJuegos.Visibility = Visibility.Visible
             gridSeleccionarJuego.Visibility = Visibility.Collapsed
+            spBuscador.Visibility = Visibility.Collapsed
         End If
 
         cbTiles.IsEnabled = True
@@ -626,7 +630,7 @@ Module Steam
 
     End Sub
 
-    Public Sub Borrar()
+    Public Async Sub Borrar()
 
         StorageApplicationPermissions.FutureAccessList.Clear()
 
@@ -645,8 +649,22 @@ Module Steam
 
         spCarpetas.Children.Add(tb)
 
-        Dim gv As GridView = pagina.FindName("gvTiles")
+        Dim gv As AdaptiveGridView = pagina.FindName("gvTiles")
         gv.Items.Clear()
+
+        Dim helper As New LocalObjectStorageHelper
+
+        If Await helper.FileExistsAsync("juegos0") = True Then
+            Dim listaJuegos As List(Of Tile) = Await helper.ReadFileAsync(Of List(Of Tile))("juegos0")
+            listaJuegos.Clear()
+            Await helper.SaveFileAsync(Of List(Of Tile))("juegos0", listaJuegos)
+        End If
+
+        If Await helper.FileExistsAsync("juegos1") = True Then
+            Dim listaJuegos As List(Of Tile) = Await helper.ReadFileAsync(Of List(Of Tile))("juegos1")
+            listaJuegos.Clear()
+            Await helper.SaveFileAsync(Of List(Of Tile))("juegos1", listaJuegos)
+        End If
 
         Generar(False)
 

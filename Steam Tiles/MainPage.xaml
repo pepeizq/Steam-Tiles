@@ -509,7 +509,18 @@
                                     <controls:ImageEx Source="Assets/cuentapermisos.jpg" IsCacheEnabled="True" Margin="0,20,0,0"/>
                                 </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                <Grid Margin="0,30,0,0">
+                                    <CheckBox x:Name="cbActivarCache" VerticalAlignment="Top" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                        <CheckBox.Content>
+                                            <StackPanel Orientation="Vertical" Margin="5,0,0,0">
+                                                <TextBlock x:Uid="CacheMode" Margin="0,0,0,7"/>
+                                                <TextBlock x:Uid="CacheMode2" TextWrapping="Wrap"/>
+                                            </StackPanel>
+                                        </CheckBox.Content>    
+                                    </CheckBox> 
+                                </Grid>
+
+                                <StackPanel x:Name="spCacheOpciones" Orientation="Horizontal" Margin="0,20,0,0">
                                     <Button x:Name="botonConfigLimpiarCache" Background="{StaticResource BrushSecundario}" Padding="10" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
                                         <StackPanel Orientation="Horizontal">
                                             <fa:FontAwesome Icon="Trash" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>

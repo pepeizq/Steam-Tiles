@@ -71,6 +71,7 @@ Public NotInheritable Class MainPage
         barra.ButtonInactiveBackgroundColor = Colors.Transparent
         barra.ButtonInactiveForegroundColor = Colors.White
 
+        Cache.Cargar()
         Configuracion.Iniciar()
 
         '--------------------------------------------------------

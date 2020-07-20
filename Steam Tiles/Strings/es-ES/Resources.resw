@@ -294,4 +294,10 @@
   <data name="GamePersonalizationInfo.Text" xml:space="preserve">
     <value>Clickea en la imagen para personalizarla antes de añadir la Tile</value>
   </data>
+  <data name="CacheMode.Text" xml:space="preserve">
+    <value>Modo Cache</value>
+  </data>
+  <data name="CacheMode2.Text" xml:space="preserve">
+    <value>Si activas este modo, la app descarga en tu disco duro cada imagen necesaria del juego para añadir Tiles.</value>
+  </data>
 </root>
