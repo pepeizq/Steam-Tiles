@@ -241,6 +241,8 @@
     <Language Code="no-no" InMinimumRequirementSet="true" />
     <Language Code="nso" InMinimumRequirementSet="true" />
     <Language Code="nso-za" InMinimumRequirementSet="true" />
+    <Language Code="om" InMinimumRequirementSet="false" />
+    <Language Code="om-et" InMinimumRequirementSet="false" />
     <Language Code="or" InMinimumRequirementSet="true" />
     <Language Code="or-in" InMinimumRequirementSet="true" />
     <Language Code="pa" InMinimumRequirementSet="true" />
@@ -370,8 +372,10 @@
     <MainPackageIdentityName>5078pepeizq.SteamTilesforWindows10</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.OfertasenAmazon</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.RedditGameDeals</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.BethesdaTiles</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.Battle.netTiles</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.DiscordTiles</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.DiscordPinTiles</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.EpicGamesTiles</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.GamersGate</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.GOGTiles</MainPackageIdentityName>
@@ -380,6 +384,7 @@
     <MainPackageIdentityName>5078pepeizq.HoriginTiles</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.OriginTiles</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.pepeizqsCities</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.pepeizqsCities-Windows10</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.20054F14ADAAA</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.pepeizqsWallpapers</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.SteamBridge</MainPackageIdentityName>
@@ -388,64 +393,7 @@
     <MainPackageIdentityName>5078pepeizq.SteamAchievementsEnhanced</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.SteamSkins</MainPackageIdentityName>
     <MainPackageIdentityName>5078pepeizq.TwitchTiles</MainPackageIdentityName>
+    <MainPackageIdentityName>5078pepeizq.UplayTiles</MainPackageIdentityName>
   </AccountPackageIdentityNames>
-  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH51SB3">
-    <BundleInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>X86</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>X64</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-      <PackageInfo>
-        <OsMinVersion>0.0.0.0</OsMinVersion>
-        <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>2.3.6.0</PackageMaxArchitectureVersion>
-      </PackageInfo>
-    </BundleInfo>
-  </PackageInfoList>
+  <PackageInfoList LandingUrl="https://developer.microsoft.com/dashboard/Application?appId=9NBLGGH51SB3" />
 </StoreAssociation>

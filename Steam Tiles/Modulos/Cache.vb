@@ -30,7 +30,7 @@ Module Cache
                     If Not ficheroImagen Is Nothing Then
                         Dim descargador As New BackgroundDownloader
                         Dim descarga As DownloadOperation = descargador.CreateDownload(New Uri(enlace), ficheroImagen)
-                        descarga.Priority = BackgroundTransferPriority.Default
+                        descarga.Priority = BackgroundTransferPriority.High
                         Await descarga.StartAsync
 
                         If descarga.Progress.Status = BackgroundTransferStatus.Completed Then

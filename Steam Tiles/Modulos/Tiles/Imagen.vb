@@ -22,27 +22,6 @@ Namespace Tiles
                 Dim encoder As BitmapEncoder = Await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream)
                 encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, resultado.PixelWidth, resultado.PixelHeight, rawdpi.RawDpiX, rawdpi.RawDpiY, pixeles)
 
-                If gridImagen.Width = ancho And gridImagen.Height = alto Then
-                    Dim limites As New BitmapBounds With {
-                        .X = resultado.PixelWidth - gridImagen.Width,
-                        .Y = resultado.PixelHeight - gridImagen.Height,
-                        .Width = ancho,
-                        .Height = alto
-                    }
-
-                    encoder.BitmapTransform.Bounds = limites
-                Else
-                    Dim limites As New BitmapBounds With {
-                        .X = gridImagen.Width / 2 - ancho / 2,
-                        .Y = gridImagen.Height / 2 - alto / 2,
-                        .Width = ancho,
-                        .Height = alto
-                    }
-
-                    encoder.BitmapTransform.Bounds = limites
-                End If
-
-
                 Await encoder.FlushAsync
             End Using
 

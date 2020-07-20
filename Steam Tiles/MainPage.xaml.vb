@@ -13,8 +13,9 @@ Public NotInheritable Class MainPage
         Dim recursos As New Resources.ResourceLoader()
 
         nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Tiles"), FontAwesomeIcon.Home, 0))
-        nvPrincipal.MenuItems.Add(New NavigationViewItemSeparator)
         nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Config"), FontAwesomeIcon.Cog, 1))
+        nvPrincipal.MenuItems.Add(New NavigationViewItemSeparator)
+        nvPrincipal.MenuItems.Add(MasCosas.Generar("https://github.com/pepeizq/Steam-Tiles", "https://poeditor.com/join/project/aKmScyB4QT"))
 
     End Sub
 
@@ -43,14 +44,10 @@ Public NotInheritable Class MainPage
 
             ElseIf item.Text = recursos.GetString("Config") Then
                 GridVisibilidad(gridConfig, item.Text)
+            ElseIf item.Text = recursos.GetString("MoreThings") Then
+                FlyoutBase.ShowAttachedFlyout(nvPrincipal.MenuItems.Item(nvPrincipal.MenuItems.Count - 1))
             End If
         End If
-
-    End Sub
-
-    Private Sub Nv_ItemFlyout(sender As NavigationViewItem, args As TappedRoutedEventArgs)
-
-        FlyoutBase.ShowAttachedFlyout(sender)
 
     End Sub
 
@@ -59,9 +56,20 @@ Public NotInheritable Class MainPage
         'Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "es-ES"
         'Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "en-US"
 
-        MasCosas.Generar()
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
 
-        nvPrincipal.IsPaneOpen = False
+        Dim tbTitulo As TextBlock = pagina.FindName("tbTitulo")
+        tbTitulo.Text = Package.Current.DisplayName
+
+        Dim coreBarra As CoreApplicationViewTitleBar = CoreApplication.GetCurrentView.TitleBar
+        coreBarra.ExtendViewIntoTitleBar = True
+
+        Dim barra As ApplicationViewTitleBar = ApplicationView.GetForCurrentView().TitleBar
+        barra.ButtonBackgroundColor = Colors.Transparent
+        barra.ButtonForegroundColor = Colors.White
+        barra.ButtonInactiveBackgroundColor = Colors.Transparent
+        barra.ButtonInactiveForegroundColor = Colors.White
 
         Configuracion.Iniciar()
 
@@ -97,11 +105,21 @@ Public NotInheritable Class MainPage
 
     Private Sub GridVisibilidad(grid As Grid, tag As String)
 
+        Dim recursos As New Resources.ResourceLoader()
+
         tbTitulo.Text = Package.Current.DisplayName + " (" + Package.Current.Id.Version.Major.ToString + "." + Package.Current.Id.Version.Minor.ToString + "." + Package.Current.Id.Version.Build.ToString + "." + Package.Current.Id.Version.Revision.ToString + ") - " + tag
 
         gridAñadirTile.Visibility = Visibility.Collapsed
         gridPersonalizarTiles.Visibility = Visibility.Collapsed
         gridConfig.Visibility = Visibility.Collapsed
+
+        spBuscador.Visibility = Visibility.Collapsed
+
+        If tag = recursos.GetString("Tiles") Then
+            If gvTiles.Items.Count > 0 Then
+                spBuscador.Visibility = Visibility.Visible
+            End If
+        End If
 
         grid.Visibility = Visibility.Visible
 
@@ -178,8 +196,10 @@ Public NotInheritable Class MainPage
 
     Private Sub BotonCerrarTiles_Click(sender As Object, e As RoutedEventArgs) Handles botonCerrarTiles.Click
 
+        Dim recursos As New Resources.ResourceLoader()
+
         gridAñadirTile.Visibility = Visibility.Collapsed
-        gridSeleccionarJuego.Visibility = Visibility.Visible
+        spBuscador.Visibility = Visibility.Visible
 
         If ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles") > 0 Then
             If Steam.anchoColumna < ApplicationData.Current.LocalSettings.Values("ancho_grid_tiles") Then
@@ -188,33 +208,67 @@ Public NotInheritable Class MainPage
             End If
         End If
 
-        tbTitulo.Text = Package.Current.DisplayName + " (" + Package.Current.Id.Version.Major.ToString + "." + Package.Current.Id.Version.Minor.ToString + "." + Package.Current.Id.Version.Build.ToString + "." + Package.Current.Id.Version.Revision.ToString + ")"
+        tbTitulo.Text = Package.Current.DisplayName + " (" + Package.Current.Id.Version.Major.ToString + "." + Package.Current.Id.Version.Minor.ToString + "." + Package.Current.Id.Version.Build.ToString + "." + Package.Current.Id.Version.Revision.ToString + ") - " + recursos.GetString("Tiles")
 
     End Sub
 
     Private Sub BotonTilePequeña_Click(sender As Object, e As RoutedEventArgs) Handles botonTilePequeña.Click
 
         Tiles.Personalizacion.Cargar(gridTilePequeña, 0, imagenTilePequeña.Source)
+        ResetearPersonalizacion(0)
 
     End Sub
 
     Private Sub BotonTileMediana_Click(sender As Object, e As RoutedEventArgs) Handles botonTileMediana.Click
 
         Tiles.Personalizacion.Cargar(gridTileMediana, 1, imagenTileMediana.Source)
+        ResetearPersonalizacion(1)
 
     End Sub
 
     Private Sub BotonTileAncha_Click(sender As Object, e As RoutedEventArgs) Handles botonTileAncha.Click
 
         Tiles.Personalizacion.Cargar(gridTileAncha, 2, imagenTileAncha.Source)
+        ResetearPersonalizacion(2)
 
     End Sub
 
     Private Sub BotonTileGrande_Click(sender As Object, e As RoutedEventArgs) Handles botonTileGrande.Click
 
         Tiles.Personalizacion.Cargar(gridTileGrande, 3, imagenTileGrande.Source)
+        ResetearPersonalizacion(3)
 
     End Sub
+
+    'PERSONALIZACION--------------------------------------------------------------------
+
+    Private Sub ResetearPersonalizacion(tipo As Integer)
+
+        tbPersonalizacionCambiarImagenInternet.Text = String.Empty
+
+        cbPersonalizacionImagenUbicacion.SelectedIndex = 0
+
+        sliderPersonalizacionImagenMargen.Value = 0
+
+        If tipo = 0 Or tipo = 1 Then
+            gridPersonalizacionImagenTitulo.Visibility = Visibility.Collapsed
+        Else
+            cbPersonalizacionImagenTitulo.IsChecked = False
+            cbPersonalizacionImagenTitulo.Tag = tipo
+            gridPersonalizacionImagenTitulo.Visibility = Visibility.Visible
+
+            If tipo = 2 Then
+                ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = False
+            ElseIf tipo = 3 Then
+                ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = False
+            End If
+        End If
+
+        colorPickerPersonalizacionFondo.Color = Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToColor(Microsoft.Toolkit.Uwp.Helpers.ColorHelper.ToHex(App.Current.Resources("ColorTerciario")))
+        gridPersonalizacionExterior.Background = New SolidColorBrush(colorPickerPersonalizacionFondo.Color)
+
+    End Sub
+
 
     'CONFIG-----------------------------------------------------------------------------
 

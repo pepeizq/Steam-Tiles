@@ -1,51 +1,45 @@
 ﻿Imports FontAwesome.UWP
 Imports Microsoft.Services.Store.Engagement
-Imports Windows.ApplicationModel.Core
 Imports Windows.System
-Imports Windows.UI
 Imports Windows.UI.Core
 
 Module MasCosas
 
-    Dim traduccion As String = "https://poeditor.com/join/project/aKmScyB4QT"
-    Dim codigoFuente As String = "https://github.com/pepeizq/Steam-Tiles"
-
-    Public Sub Generar()
+    Public Function Generar(codigoFuente As String, traduccion As String)
 
         Dim recursos As New Resources.ResourceLoader()
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
-
-        Dim tbTitulo As TextBlock = pagina.FindName("tbTitulo")
-        tbTitulo.Text = Package.Current.DisplayName
-
-        Dim coreBarra As CoreApplicationViewTitleBar = CoreApplication.GetCurrentView.TitleBar
-        coreBarra.ExtendViewIntoTitleBar = True
-
-        Dim barra As ApplicationViewTitleBar = ApplicationView.GetForCurrentView().TitleBar
-        barra.ButtonBackgroundColor = Colors.Transparent
-        barra.ButtonForegroundColor = Colors.White
-        barra.ButtonInactiveBackgroundColor = Colors.Transparent
-
         Dim iconoMasCosas As New FontAwesome.UWP.FontAwesome With {
-            .Icon = FontAwesomeIcon.Cube,
+            .Icon = FontAwesomeIcon.CaretDown,
             .Foreground = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
         }
 
         Dim tbMasCosas As New TextBlock With {
             .Text = recursos.GetString("MoreThings"),
-            .Foreground = New SolidColorBrush(App.Current.Resources("ColorPrimario")),
-            .Margin = New Thickness(-5, 0, 10, 0)
+            .Foreground = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
         }
 
-        Dim itemMasCosas As NavigationViewItem = pagina.FindName("itemMasCosas")
-        itemMasCosas.Icon = iconoMasCosas
-        itemMasCosas.Content = tbMasCosas
-        itemMasCosas.Margin = New Thickness(0, 0, 4, 0)
+        Dim itemMasCosas As New NavigationViewItem With {
+            .Icon = iconoMasCosas,
+            .Content = tbMasCosas
+        }
 
-        Dim menu As MenuFlyout = pagina.FindName("botonMasCosasMenu")
-        menu.Placement = FlyoutPlacementMode.Top
+        Dim tbToolTip As TextBlock = New TextBlock With {
+            .Text = recursos.GetString("MoreThings")
+        }
+
+        ToolTipService.SetToolTip(itemMasCosas, tbToolTip)
+        ToolTipService.SetPlacement(itemMasCosas, PlacementMode.Mouse)
+
+        AddHandler itemMasCosas.PointerEntered, AddressOf UsuarioEntraBoton
+        AddHandler itemMasCosas.PointerExited, AddressOf UsuarioSaleBoton
+
+        '---------------------------------------------
+
+        Dim menu As New MenuFlyout With {
+            .Placement = FlyoutPlacementMode.Top,
+            .ShowMode = FlyoutShowMode.Transient
+        }
 
         Dim iconoMasApps As New FontAwesome.UWP.FontAwesome With {
             .Icon = FontAwesomeIcon.Cube
@@ -131,7 +125,8 @@ Module MasCosas
 
             Dim menuItemTraducir As New MenuFlyoutItem With {
                 .Text = recursos.GetString("MoreThings_HelpTranslate"),
-                .Icon = iconoTraducir
+                .Icon = iconoTraducir,
+                .Tag = traduccion
             }
 
             AddHandler menuItemTraducir.Click, AddressOf MenuItemTraducirClick
@@ -153,7 +148,8 @@ Module MasCosas
 
             Dim menuItemCodigoFuente As New MenuFlyoutItem With {
                 .Text = recursos.GetString("MoreThings_SourceCode"),
-                .Icon = iconoCodigoFuente
+                .Icon = iconoCodigoFuente,
+                .Tag = codigoFuente
             }
 
             AddHandler menuItemCodigoFuente.Click, AddressOf MenuItemCodigoFuenteClick
@@ -163,7 +159,11 @@ Module MasCosas
             menu.Items.Add(menuItemCodigoFuente)
         End If
 
-    End Sub
+        FlyoutBase.SetAttachedFlyout(itemMasCosas, menu)
+
+        Return itemMasCosas
+
+    End Function
 
     Private Async Sub MenuItemVotarClick(sender As Object, e As RoutedEventArgs)
 
@@ -202,13 +202,23 @@ Module MasCosas
 
     Private Async Sub MenuItemTraducirClick(sender As Object, e As RoutedEventArgs)
 
-        Await Launcher.LaunchUriAsync(New Uri(traduccion))
+        Dim item As MenuFlyoutItem = sender
+        Dim enlace As String = item.Tag
+
+        If Not enlace = String.Empty Then
+            Await Launcher.LaunchUriAsync(New Uri(enlace))
+        End If
 
     End Sub
 
     Private Async Sub MenuItemCodigoFuenteClick(sender As Object, e As RoutedEventArgs)
 
-        Await Launcher.LaunchUriAsync(New Uri(codigoFuente))
+        Dim item As MenuFlyoutItem = sender
+        Dim enlace As String = item.Tag
+
+        If Not enlace = String.Empty Then
+            Await Launcher.LaunchUriAsync(New Uri(enlace))
+        End If
 
     End Sub
 

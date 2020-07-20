@@ -21,18 +21,15 @@
             <TextBlock x:Name="tbTitulo" Margin="15,0,0,0" FontSize="13" Foreground="White" VerticalAlignment="Center"/>
         </Grid>
 
-        <NavigationView x:Name="nvPrincipal" Grid.Row="1" Loaded="Nv_Loaded" ItemInvoked="Nv_ItemInvoked"
+        <NavigationView x:Name="nvPrincipal" Grid.Row="1" Loaded="Nv_Loaded" ItemInvoked="Nv_ItemInvoked" IsPaneOpen="False"
                         AlwaysShowHeader="False" IsSettingsVisible="False" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed">
             <NavigationView.PaneFooter>
-                <StackPanel Orientation="Vertical">
-                    <NavigationViewItem x:Name="itemMasCosas" Tapped="Nv_ItemFlyout" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                        <FlyoutBase.AttachedFlyout>
-                            <MenuFlyout x:Name="botonMasCosasMenu"/>
-                        </FlyoutBase.AttachedFlyout>
-                    </NavigationViewItem>
+                <StackPanel x:Name="spBuscador" Orientation="Horizontal" Visibility="Collapsed">
+                    <fa:FontAwesome Icon="Search" Foreground="{StaticResource BrushPrimario}" Margin="0,0,15,0"/>
+                    <TextBox x:Name="tbBuscador" MinWidth="180" Margin="0,4,10,4"/>
                 </StackPanel>
             </NavigationView.PaneFooter>
-
+            
             <Grid>
                 <Grid.Transitions>
                     <TransitionCollection>
@@ -42,8 +39,8 @@
 
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                        <GradientStop Color="#2e4460" Offset="0.5" />
-                        <GradientStop Color="#1b2838" Offset="1.0" />
+                        <GradientStop Color="#353b45" Offset="0.5" />
+                        <GradientStop Color="#24282f" Offset="1.0" />
                     </LinearGradientBrush>
                 </Grid.Background>
 
@@ -60,20 +57,9 @@
                             </TransitionCollection>
                         </Grid.ChildrenTransitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid Grid.Column="0" Padding="10" Background="IndianRed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,10,0,0">
+                        <Grid Padding="10" Background="IndianRed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
                             <TextBlock x:Uid="SelectGame" TextWrapping="Wrap" Foreground="White"/>
                         </Grid>
-
-                        <StackPanel Grid.Column="2" Orientation="Horizontal" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
-                            <fa:FontAwesome Icon="Search" Foreground="White" Margin="0,0,15,0"/>
-                            <TextBox x:Name="tbBuscador" MinWidth="120"/>
-                        </StackPanel>
                     </Grid>
 
                     <Grid Grid.Row="1" Margin="0,20,0,0">
@@ -83,7 +69,7 @@
                         </Grid.ColumnDefinitions>
 
                         <controls:AdaptiveGridView x:Name="gvTiles" Grid.Column="0" Padding="5,0,5,0"
-                                       IsItemClickEnabled="True" DesiredWidth="306" ItemHeight="142" 
+                                       IsItemClickEnabled="True" DesiredWidth="200" ItemHeight="300" 
                                        animations:ReorderGridAnimation.Duration="250">
                         </controls:AdaptiveGridView>
 
@@ -372,37 +358,7 @@
                                                 <Slider x:Name="sliderPersonalizacionImagenMargen" Grid.Column="1" Width="180" Minimum="0" Maximum="200" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
                                             </Grid>
 
-                                            <Grid HorizontalAlignment="Center" Margin="0,20,0,0">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                </Grid.RowDefinitions>
-
-                                                <TextBlock x:Uid="OptionsMove" Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,5"/>
-
-                                                <Grid Grid.Row="1">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <TextBlock Text="X" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                                                    <Slider x:Name="sliderPersonalizacionImagenMoverX" Grid.Column="1" Width="200" Minimum="-200" Maximum="200" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
-                                                </Grid>
-
-                                                <Grid Grid.Row="2">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <TextBlock Text="Y" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                                                    <Slider x:Name="sliderPersonalizacionImagenMoverY" Grid.Column="1" Width="200" Minimum="-200" Maximum="200" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
-                                                </Grid>
-                                            </Grid>
-
-                                            <Grid HorizontalAlignment="Center" Margin="0,20,0,0">
+                                            <Grid x:Name="gridPersonalizacionImagenTitulo" HorizontalAlignment="Center" Margin="0,20,0,0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>
                                                     <ColumnDefinition Width="Auto"/>
