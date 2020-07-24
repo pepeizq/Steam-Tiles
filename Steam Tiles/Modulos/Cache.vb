@@ -1,4 +1,5 @@
-﻿Imports Windows.Networking.BackgroundTransfer
+﻿Imports Microsoft.Toolkit.Uwp.Helpers
+Imports Windows.Networking.BackgroundTransfer
 Imports Windows.Storage
 Imports Windows.Storage.FileProperties
 
@@ -17,6 +18,11 @@ Module Cache
 
         RemoveHandler cbActivar.Unchecked, AddressOf ActivarCache
         AddHandler cbActivar.Unchecked, AddressOf ActivarCache
+
+        Dim botonLimpiar As Button = pagina.FindName("botonConfigLimpiarCache")
+
+        RemoveHandler botonLimpiar.Click, AddressOf Limpiar
+        AddHandler botonLimpiar.Click, AddressOf Limpiar
 
         If Not ApplicationData.Current.LocalSettings.Values("cache") = Nothing Then
             If ApplicationData.Current.LocalSettings.Values("cache") = 0 Then
@@ -109,7 +115,7 @@ Module Cache
 
     End Function
 
-    Public Async Sub Limpiar()
+    Public Async Sub Limpiar(sender As Object, e As RoutedEventArgs)
 
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
@@ -152,13 +158,27 @@ Module Cache
             End If
         End If
 
+        Dim listaJuegos As New List(Of Tile)
+        Dim helper As New LocalObjectStorageHelper
+        Await helper.SaveFileAsync(Of List(Of Tile))("juegos0", listaJuegos)
+        Await helper.SaveFileAsync(Of List(Of Tile))("juegos1", listaJuegos)
+
         Steam.Generar(False)
 
-        boton.IsEnabled = True
         pr.Visibility = Visibility.Collapsed
-        cbTiles.IsEnabled = True
-        sp1.IsHitTestVisible = True
-        sp2.IsHitTestVisible = True
+
+    End Sub
+
+    Public Sub Estado(estado As Boolean)
+
+        Dim frame As Frame = Window.Current.Content
+        Dim pagina As Page = frame.Content
+
+        Dim cbActivar As CheckBox = pagina.FindName("cbActivarCache")
+        cbActivar.IsEnabled = estado
+
+        Dim botonLimpiar As Button = pagina.FindName("botonConfigLimpiarCache")
+        botonLimpiar.IsEnabled = estado
 
     End Sub
 

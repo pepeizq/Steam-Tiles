@@ -44,8 +44,7 @@ Module Steam
         Dim sp2 As StackPanel = pagina.FindName("spModoTile2")
         sp2.IsHitTestVisible = False
 
-        Dim botonCache As Button = pagina.FindName("botonConfigLimpiarCache")
-        botonCache.IsEnabled = False
+        Cache.Estado(False)
 
         Dim gridSeleccionarJuego As Grid = pagina.FindName("gridSeleccionarJuego")
         gridSeleccionarJuego.Visibility = Visibility.Collapsed
@@ -459,7 +458,7 @@ Module Steam
         cbTiles.IsEnabled = True
         sp1.IsHitTestVisible = True
         sp2.IsHitTestVisible = True
-        botonCache.IsEnabled = True
+        Cache.Estado(True)
 
     End Sub
 
