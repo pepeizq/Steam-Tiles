@@ -18,6 +18,11 @@
         <Color x:Key="ColorTerciario">#a1a9bd</Color>
         <Color x:Key="ColorCuarto">#b8becd</Color>
 
+        <Color x:Key="ColorCajaRojaFondo">#cd5c5c</Color>
+        <Color x:Key="ColorCajaRojaSombra">#6b2121</Color>
+        <Color x:Key="ColorCajaRojaBoton">#c84d4d</Color>
+        <Color x:Key="ColorCajaRojaBotonHover">#892a2a</Color>
+
         <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent"/>
         <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="{StaticResource ColorPrimario}"/>
         <SolidColorBrush x:Key="ListViewItemForegroundPointerOver" Color="White"/>

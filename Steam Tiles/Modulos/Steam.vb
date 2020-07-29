@@ -767,8 +767,7 @@ Module Steam
         Dim sp2 As StackPanel = pagina.FindName("spModoTile2")
         sp2.IsHitTestVisible = False
 
-        Dim botonCache As Button = pagina.FindName("botonConfigLimpiarCache")
-        botonCache.IsEnabled = False
+        Cache.Estado(False)
 
         Dim htmlID As String = Await Decompiladores.HttpClient(New Uri("https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=41F2D73A0B5024E9101F8D4E8D8AC21E&vanityurl=" + cuenta))
 
@@ -924,7 +923,7 @@ Module Steam
         cbTiles.IsEnabled = True
         sp1.IsHitTestVisible = True
         sp2.IsHitTestVisible = True
-        botonCache.IsEnabled = True
+        Cache.Estado(True)
 
     End Sub
 

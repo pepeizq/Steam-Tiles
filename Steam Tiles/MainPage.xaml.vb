@@ -1,7 +1,7 @@
-﻿Imports FontAwesome.UWP
-Imports Microsoft.Toolkit.Uwp.Helpers
+﻿Imports Microsoft.Toolkit.Uwp.Helpers
 Imports Windows.ApplicationModel.Core
 Imports Windows.Storage
+Imports Windows.System
 Imports Windows.UI
 Imports Windows.UI.Core
 
@@ -12,8 +12,8 @@ Public NotInheritable Class MainPage
 
         Dim recursos As New Resources.ResourceLoader()
 
-        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Tiles"), FontAwesomeIcon.Home, 0))
-        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Config"), FontAwesomeIcon.Cog, 1))
+        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Tiles"), FontAwesome5.EFontAwesomeIcon.Solid_Home, 0))
+        nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Config"), FontAwesome5.EFontAwesomeIcon.Solid_Cog, 1))
         nvPrincipal.MenuItems.Add(New NavigationViewItemSeparator)
         nvPrincipal.MenuItems.Add(MasCosas.Generar("https://github.com/pepeizq/Steam-Tiles", "https://poeditor.com/join/project/aKmScyB4QT"))
 
@@ -91,10 +91,12 @@ Public NotInheritable Class MainPage
                                                                        gridPersonalizarTiles.Background = App.Current.Resources("GridAcrilico")
                                                                        gridConfig.Background = App.Current.Resources("GridAcrilico")
                                                                        gridConfigTiles.Background = App.Current.Resources("GridTituloBackground")
+                                                                       gridConfigCache.Background = App.Current.Resources("GridTituloBackground")
                                                                    Else
                                                                        gridPersonalizarTiles.Background = New SolidColorBrush(Colors.LightGray)
                                                                        gridConfig.Background = New SolidColorBrush(Colors.LightGray)
                                                                        gridConfigTiles.Background = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
+                                                                       gridConfigCache.Background = New SolidColorBrush(App.Current.Resources("ColorPrimario"))
                                                                    End If
                                                                End Sub)
 
@@ -179,6 +181,43 @@ Public NotInheritable Class MainPage
     End Sub
 
     Private Sub UsuarioSaleBoton(sender As Object, e As PointerRoutedEventArgs)
+
+        Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Arrow, 1)
+
+    End Sub
+
+    'BOTONES-ROJO-----------------------------------------------------------------------
+
+    Private Sub BotonAbrirConfig_Click(sender As Object, e As RoutedEventArgs) Handles botonAbrirConfig.Click
+
+        Dim recursos As New Resources.ResourceLoader()
+        GridVisibilidad(gridConfig, recursos.GetString("Config"))
+
+    End Sub
+
+    Private Async Sub BotonAbrirYoutube_Click(sender As Object, e As RoutedEventArgs) Handles botonAbrirYoutube.Click
+
+        Await Launcher.LaunchUriAsync(New Uri("https://www.youtube.com/watch?v=bJXy7WLills"))
+
+    End Sub
+
+    Private Sub UsuarioEntraBotonRojo(sender As Object, e As PointerRoutedEventArgs)
+
+        Dim boton As Button = sender
+        Dim sp As StackPanel = boton.Content
+
+        sp.Background = New SolidColorBrush(App.Current.Resources("ColorCajaRojaBotonHover"))
+
+        Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
+
+    End Sub
+
+    Private Sub UsuarioSaleBotonRojo(sender As Object, e As PointerRoutedEventArgs)
+
+        Dim boton As Button = sender
+        Dim sp As StackPanel = boton.Content
+
+        sp.Background = New SolidColorBrush(App.Current.Resources("ColorCajaRojaBoton"))
 
         Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Arrow, 1)
 
@@ -292,7 +331,13 @@ Public NotInheritable Class MainPage
     Private Sub TbConfigCuenta_TextChanged(sender As Object, e As TextChangedEventArgs) Handles tbConfigCuenta.TextChanged
 
         If tbConfigCuenta.Text.Trim.Length > 0 Then
-            Steam.Cuenta(tbConfigCuenta.Text.Trim)
+            Dim usuario As String = tbConfigCuenta.Text.Trim
+
+            usuario = usuario.Replace("https://steamcommunity.com/id/", Nothing)
+            usuario = usuario.Replace("http://steamcommunity.com/id/", Nothing)
+            usuario = usuario.Replace("/", Nothing)
+
+            Steam.Cuenta(usuario)
         End If
 
     End Sub

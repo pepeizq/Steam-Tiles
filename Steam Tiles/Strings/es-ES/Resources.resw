@@ -157,7 +157,7 @@
     <value>Ninguna</value>
   </data>
   <data name="NoGamesDetected.Text" xml:space="preserve">
-    <value>No se han detectado juegos, ve a Configuración</value>
+    <value>No se han detectado juegos, ve a Configuración para que la app pueda cargar los juegos.</value>
   </data>
   <data name="MoreThings" xml:space="preserve">
     <value>Más Cosas</value>
@@ -299,5 +299,11 @@
   </data>
   <data name="CacheMode2.Text" xml:space="preserve">
     <value>Si activas este modo, la app descarga en tu disco duro cada imagen necesaria del juego para añadir Tiles.</value>
+  </data>
+  <data name="NoGamesDetectedOpenConfig.Text" xml:space="preserve">
+    <value>Abrir Configuración</value>
+  </data>
+  <data name="NoGamesDetectedOpenYoutube.Text" xml:space="preserve">
+    <value>Tutorial en YouTube</value>
   </data>
 </root>
