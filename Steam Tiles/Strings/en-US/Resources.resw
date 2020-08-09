@@ -306,4 +306,7 @@
   <data name="NoGamesDetectedOpenYoutube.Text" xml:space="preserve">
     <value>Tutorial on YouTube</value>
   </data>
+  <data name="MoreThings_Video" xml:space="preserve">
+    <value>Video on YouTube</value>
+  </data>
 </root>

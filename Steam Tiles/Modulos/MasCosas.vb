@@ -5,7 +5,7 @@ Imports Windows.UI.Core
 
 Module MasCosas
 
-    Public Function Generar(codigoFuente As String, traduccion As String)
+    Public Function Generar(codigoFuente As String, traduccion As String, video As String)
 
         Dim recursos As New Resources.ResourceLoader()
 
@@ -159,6 +159,30 @@ Module MasCosas
             menu.Items.Add(menuItemCodigoFuente)
         End If
 
+        If Not video = Nothing Then
+            If traduccion = Nothing Then
+                If codigoFuente = Nothing Then
+                    menu.Items.Add(New MenuFlyoutSeparator)
+                End If
+            End If
+
+            Dim iconoVideo As New FontAwesome5.FontAwesome With {
+                .Icon = FontAwesome5.EFontAwesomeIcon.Brands_Youtube
+            }
+
+            Dim menuItemVideo As New MenuFlyoutItem With {
+                .Text = recursos.GetString("MoreThings_Video"),
+                .Icon = iconoVideo,
+                .Tag = video
+            }
+
+            AddHandler menuItemVideo.Click, AddressOf MenuItemVideoClick
+            AddHandler menuItemVideo.PointerEntered, AddressOf UsuarioEntraBotonMFItem
+            AddHandler menuItemVideo.PointerExited, AddressOf UsuarioSaleBotonMFItem
+
+            menu.Items.Add(menuItemVideo)
+        End If
+
         FlyoutBase.SetAttachedFlyout(itemMasCosas, menu)
 
         Return itemMasCosas
@@ -212,6 +236,17 @@ Module MasCosas
     End Sub
 
     Private Async Sub MenuItemCodigoFuenteClick(sender As Object, e As RoutedEventArgs)
+
+        Dim item As MenuFlyoutItem = sender
+        Dim enlace As String = item.Tag
+
+        If Not enlace = String.Empty Then
+            Await Launcher.LaunchUriAsync(New Uri(enlace))
+        End If
+
+    End Sub
+
+    Private Async Sub MenuItemVideoClick(sender As Object, e As RoutedEventArgs)
 
         Dim item As MenuFlyoutItem = sender
         Dim enlace As String = item.Tag

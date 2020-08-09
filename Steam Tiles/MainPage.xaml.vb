@@ -15,7 +15,7 @@ Public NotInheritable Class MainPage
         nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Tiles"), FontAwesome5.EFontAwesomeIcon.Solid_Home, 0))
         nvPrincipal.MenuItems.Add(NavigationViewItems.Generar(recursos.GetString("Config"), FontAwesome5.EFontAwesomeIcon.Solid_Cog, 1))
         nvPrincipal.MenuItems.Add(New NavigationViewItemSeparator)
-        nvPrincipal.MenuItems.Add(MasCosas.Generar("https://github.com/pepeizq/Steam-Tiles", "https://poeditor.com/join/project/aKmScyB4QT"))
+        nvPrincipal.MenuItems.Add(MasCosas.Generar("https://github.com/pepeizq/Steam-Tiles", "https://poeditor.com/join/project/aKmScyB4QT", "https://www.youtube.com/watch?v=bJXy7WLills"))
 
     End Sub
 
