@@ -215,12 +215,7 @@ Module MasCosas
 
     Private Async Sub MenuItemReportarClick(sender As Object, e As RoutedEventArgs)
 
-        If StoreServicesFeedbackLauncher.IsSupported = True Then
-            Dim ejecutador As StoreServicesFeedbackLauncher = StoreServicesFeedbackLauncher.GetDefault()
-            Await ejecutador.LaunchAsync()
-        Else
-            Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/contact/"))
-        End If
+        Await Launcher.LaunchUriAsync(New Uri("https://pepeizqapps.com/contact/"))
 
     End Sub
 
