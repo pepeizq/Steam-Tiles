@@ -192,11 +192,11 @@ Module MasCosas
 
     Private Sub MenuItemCalificarClick(sender As Object, e As RoutedEventArgs)
 
-        CalificarApp()
+        CalificarApp(False)
 
     End Sub
 
-    Public Async Sub CalificarApp()
+    Public Async Sub CalificarApp(primeraVez As Boolean)
 
         Dim recursos As New Resources.ResourceLoader()
 
@@ -209,7 +209,15 @@ Module MasCosas
                 Dim contexto As StoreContext = StoreContext.GetForUser(usuario)
                 Dim config As ApplicationDataContainer = ApplicationData.Current.LocalSettings
 
-                If config.Values("Calificar_App") = 0 Or config.Values("Calificar_App") = Nothing Then
+                Dim sacarVentana As Boolean = True
+
+                If primeraVez = True Then
+                    If config.Values("Calificar_App") = 1 Then
+                        sacarVentana = False
+                    End If
+                End If
+
+                If sacarVentana = True Then
                     Dim review As StoreRateAndReviewResult = Await contexto.RequestRateAndReviewAppAsync
 
                     If review.Status = StoreRateAndReviewStatus.Succeeded Then
