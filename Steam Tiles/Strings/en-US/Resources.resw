@@ -171,8 +171,8 @@
   <data name="Tiles" xml:space="preserve">
     <value>Tiles</value>
   </data>
-  <data name="MoreThings_VoteApp" xml:space="preserve">
-    <value>Vote the App</value>
+  <data name="MoreThings_RateApp" xml:space="preserve">
+    <value>Rate the App</value>
   </data>
   <data name="Change" xml:space="preserve">
     <value>Change Folder</value>
@@ -308,5 +308,8 @@
   </data>
   <data name="MoreThings_Video" xml:space="preserve">
     <value>Video on YouTube</value>
+  </data>
+  <data name="MoreThings_RateAppThanks" xml:space="preserve">
+    <value>Thanks for rating the app</value>
   </data>
 </root>

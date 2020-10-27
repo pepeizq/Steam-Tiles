@@ -1,5 +1,6 @@
-﻿Imports Microsoft.Services.Store.Engagement
-Imports Microsoft.Toolkit.Uwp.UI.Animations
+﻿Imports Microsoft.Toolkit.Uwp.UI.Animations
+Imports Windows.Services.Store
+Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI.Core
 
@@ -73,20 +74,20 @@ Module MasCosas
 
         menu.Items.Add(New MenuFlyoutSeparator)
 
-        Dim iconoVotar As New FontAwesome5.FontAwesome With {
+        Dim iconoCalificar As New FontAwesome5.FontAwesome With {
             .Icon = FontAwesome5.EFontAwesomeIcon.Regular_ThumbsUp
         }
 
-        Dim menuItemVotar As New MenuFlyoutItem With {
-            .Text = recursos.GetString("MoreThings_VoteApp"),
-            .Icon = iconoVotar
+        Dim menuItemCalificar As New MenuFlyoutItem With {
+            .Text = recursos.GetString("MoreThings_RateApp"),
+            .Icon = iconoCalificar
         }
 
-        AddHandler menuItemVotar.Click, AddressOf MenuItemVotarClick
-        AddHandler menuItemVotar.PointerEntered, AddressOf UsuarioEntraBotonMFItem
-        AddHandler menuItemVotar.PointerExited, AddressOf UsuarioSaleBotonMFItem
+        AddHandler menuItemCalificar.Click, AddressOf MenuItemCalificarClick
+        AddHandler menuItemCalificar.PointerEntered, AddressOf UsuarioEntraBotonMFItem
+        AddHandler menuItemCalificar.PointerExited, AddressOf UsuarioSaleBotonMFItem
 
-        menu.Items.Add(menuItemVotar)
+        menu.Items.Add(menuItemCalificar)
 
         Dim iconoContacto As New FontAwesome5.FontAwesome With {
             .Icon = FontAwesome5.EFontAwesomeIcon.Regular_Comment
@@ -189,9 +190,37 @@ Module MasCosas
 
     End Function
 
-    Private Async Sub MenuItemVotarClick(sender As Object, e As RoutedEventArgs)
+    Private Sub MenuItemCalificarClick(sender As Object, e As RoutedEventArgs)
 
-        Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
+        CalificarApp()
+
+    End Sub
+
+    Public Async Sub CalificarApp()
+
+        Dim recursos As New Resources.ResourceLoader()
+
+        Dim usuarios As IReadOnlyList(Of User) = Await User.FindAllAsync
+
+        If Not usuarios Is Nothing Then
+            If usuarios.Count > 0 Then
+                Dim usuario As User = usuarios(0)
+
+                Dim contexto As StoreContext = StoreContext.GetForUser(usuario)
+                Dim config As ApplicationDataContainer = ApplicationData.Current.LocalSettings
+
+                If config.Values("Calificar_App") = 0 Or config.Values("Calificar_App") = Nothing Then
+                    Dim review As StoreRateAndReviewResult = Await contexto.RequestRateAndReviewAppAsync
+
+                    If review.Status = StoreRateAndReviewStatus.Succeeded Then
+                        Notificaciones.Toast(recursos.GetString("MoreThings_RateAppThanks"), Nothing)
+                        config.Values("Calificar_App") = 1
+                    Else
+                        config.Values("Calificar_App") = 0
+                    End If
+                End If
+            End If
+        End If
 
     End Sub
 

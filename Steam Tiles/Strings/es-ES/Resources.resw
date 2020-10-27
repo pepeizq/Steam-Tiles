@@ -174,8 +174,8 @@
   <data name="Tiles" xml:space="preserve">
     <value>Tiles</value>
   </data>
-  <data name="MoreThings_VoteApp" xml:space="preserve">
-    <value>Vota la App</value>
+  <data name="MoreThings_RateApp" xml:space="preserve">
+    <value>Califica la App</value>
   </data>
   <data name="Change" xml:space="preserve">
     <value>Cambiar Carpeta</value>
@@ -308,5 +308,8 @@
   </data>
   <data name="MoreThings_Video" xml:space="preserve">
     <value>Vídeo en YouTube</value>
+  </data>
+  <data name="MoreThings_RateAppThanks" xml:space="preserve">
+    <value>Gracias por calificar la app</value>
   </data>
 </root>
