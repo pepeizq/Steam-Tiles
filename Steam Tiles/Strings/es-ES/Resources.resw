@@ -312,4 +312,10 @@
   <data name="MoreThings_RateAppThanks" xml:space="preserve">
     <value>Gracias por calificar la app</value>
   </data>
+  <data name="BuyApp.Text" xml:space="preserve">
+    <value>Comprar App</value>
+  </data>
+  <data name="TrialMessage.Text" xml:space="preserve">
+    <value>Estás usando la versión de prueba de la app, está limitada a 1 Tile.</value>
+  </data>
 </root>

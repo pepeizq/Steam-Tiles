@@ -510,6 +510,8 @@ Module Steam
 
     Private Async Sub BotonTile_Click(sender As Object, e As RoutedEventArgs)
 
+        Trial.Detectar()
+
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 

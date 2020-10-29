@@ -161,6 +161,7 @@
     <Compile Include="Modulos\Tiles\Imagen.vb" />
     <Compile Include="Modulos\Tiles\Añadir.vb" />
     <Compile Include="Modulos\Tiles\Personalizacion.vb" />
+    <Compile Include="Modulos\Trial.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>

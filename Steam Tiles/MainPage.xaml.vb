@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.Toolkit.Uwp.Helpers
 Imports Windows.ApplicationModel.Core
+Imports Windows.Services.Store
 Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI
@@ -338,6 +339,21 @@ Public NotInheritable Class MainPage
             usuario = usuario.Replace("/", Nothing)
 
             Steam.Cuenta(usuario)
+        End If
+
+    End Sub
+
+    Private Async Sub BotonComprarApp_Click(sender As Object, e As RoutedEventArgs) Handles botonComprarApp.Click
+
+        Dim usuarios As IReadOnlyList(Of User) = Await User.FindAllAsync
+
+        If Not usuarios Is Nothing Then
+            If usuarios.Count > 0 Then
+                Dim usuario As User = usuarios(0)
+
+                Dim contexto As StoreContext = StoreContext.GetForUser(usuario)
+                Await contexto.RequestPurchaseAsync("9NBLGGH51SB3")
+            End If
         End If
 
     End Sub
