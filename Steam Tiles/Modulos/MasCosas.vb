@@ -223,6 +223,9 @@ Module MasCosas
                     If review.Status = StoreRateAndReviewStatus.Succeeded Then
                         Notificaciones.Toast(recursos.GetString("MoreThings_RateAppThanks"), Nothing)
                         config.Values("Calificar_App") = 1
+                    ElseIf review.Status = StoreRateAndReviewStatus.Error Then
+                        Await Launcher.LaunchUriAsync(New Uri("ms-windows-store:REVIEW?PFN=" + Package.Current.Id.FamilyName))
+                        config.Values("Calificar_App") = 1
                     Else
                         config.Values("Calificar_App") = 0
                     End If

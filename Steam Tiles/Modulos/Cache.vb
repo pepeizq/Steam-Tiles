@@ -63,55 +63,81 @@ Module Cache
 
         If ApplicationData.Current.LocalSettings.Values("cache") = 1 Then
             If Not enlace = String.Empty Then
-                Dim carpetaImagenes As StorageFolder = Nothing
+                If enlace.Contains("http://") Or enlace.Contains("https://") Then
+                    Dim carpetaImagenes As StorageFolder = Nothing
 
-                If Directory.Exists(ApplicationData.Current.LocalFolder.Path + "\Cache") = False Then
-                    carpetaImagenes = Await ApplicationData.Current.LocalFolder.CreateFolderAsync("Cache")
-                Else
-                    carpetaImagenes = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Cache")
-                End If
+                    If Directory.Exists(ApplicationData.Current.LocalFolder.Path + "\Cache") = False Then
+                        carpetaImagenes = Await ApplicationData.Current.LocalFolder.CreateFolderAsync("Cache")
+                    Else
+                        carpetaImagenes = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Cache")
+                    End If
 
-                If Not carpetaImagenes Is Nothing Then
-                    If Not File.Exists(ApplicationData.Current.LocalFolder.Path + "\Cache\" + id + tipo) Then
-                        Dim ficheroImagen As IStorageFile = Nothing
+                    If Not carpetaImagenes Is Nothing Then
+                        If Not File.Exists(ApplicationData.Current.LocalFolder.Path + "\Cache\" + id + tipo) Then
+                            Dim ficheroImagen As IStorageFile = Nothing
 
-                        Try
-                            ficheroImagen = Await carpetaImagenes.CreateFileAsync(id + tipo, CreationCollisionOption.ReplaceExisting)
-                        Catch ex As Exception
+                            Try
+                                ficheroImagen = Await carpetaImagenes.CreateFileAsync(id + tipo, CreationCollisionOption.ReplaceExisting)
+                            Catch ex As Exception
 
-                        End Try
+                            End Try
 
-                        If Not ficheroImagen Is Nothing Then
-                            Dim descargador As New BackgroundDownloader
-                            Dim descarga As DownloadOperation = descargador.CreateDownload(New Uri(enlace), ficheroImagen)
-                            descarga.Priority = BackgroundTransferPriority.High
-                            Await descarga.StartAsync
+                            If Not ficheroImagen Is Nothing Then
+                                Dim descargador As New BackgroundDownloader
+                                Dim descarga As DownloadOperation = descargador.CreateDownload(New Uri(enlace), ficheroImagen)
+                                descarga.Priority = BackgroundTransferPriority.High
+                                Await descarga.StartAsync
 
-                            If descarga.Progress.Status = BackgroundTransferStatus.Completed Then
-                                Dim ficheroDescargado As IStorageFile = descarga.ResultFile
+                                If descarga.Progress.Status = BackgroundTransferStatus.Completed Then
+                                    Dim ficheroDescargado As IStorageFile = descarga.ResultFile
+                                    Dim tamaño As BasicProperties = Await ficheroDescargado.GetBasicPropertiesAsync
 
-                                imagenFinal = ficheroDescargado.Path
+                                    If tamaño.Size > 0 Then
+                                        Return ficheroDescargado.Path
+                                    Else
+                                        Await ficheroDescargado.DeleteAsync()
+                                        Return enlace
+                                    End If
+                                End If
+                            End If
+                        Else
+                            Dim ficheroImagen As IStorageFile = Await StorageFile.GetFileFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Cache\" + id + tipo)
+                            Dim tamaño As BasicProperties = Await ficheroImagen.GetBasicPropertiesAsync
+
+                            If tamaño.Size > 0 Then
+                                Return ApplicationData.Current.LocalFolder.Path + "\Cache\" + id + tipo
                             End If
                         End If
-                    Else
-                        Dim ficheroImagen As IStorageFile = Await StorageFile.GetFileFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Cache\" + id + tipo)
-                        Dim tamaño As BasicProperties = Await ficheroImagen.GetBasicPropertiesAsync
-
-                        If tamaño.Size = 0 Then
-                            imagenFinal = Nothing
-                        Else
-                            imagenFinal = ApplicationData.Current.LocalFolder.Path + "\Cache\" + id + tipo
-                        End If
                     End If
-                Else
-                    imagenFinal = enlace
+                End If
+            Else
+                Dim fichero As StorageFile = Nothing
+
+                Try
+                    fichero = Await StorageFile.GetFileFromApplicationUriAsync(New Uri("ms-appx:///Assets/Juegos/" + id + "_" + tipo + ".png"))
+                Catch ex As Exception
+
+                End Try
+
+                If Not fichero Is Nothing Then
+                    Return "Assets/Juegos/" + id + "_" + tipo + ".png"
+                End If
+
+                Try
+                    fichero = Await StorageFile.GetFileFromApplicationUriAsync(New Uri("ms-appx:///Assets/Juegos/" + id + "_" + tipo + ".jpg"))
+                Catch ex As Exception
+
+                End Try
+
+                If Not fichero Is Nothing Then
+                    Return "Assets/Juegos/" + id + "_" + tipo + ".jpg"
                 End If
             End If
         Else
-            imagenFinal = enlace
+            Return enlace
         End If
 
-        Return imagenFinal
+        Return Nothing
 
     End Function
 
