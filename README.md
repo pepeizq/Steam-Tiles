@@ -1,14 +1,14 @@
-# Steam Tiles
+# Tiles for Steam Games
 
 App for Windows 10 written in Visual Basic for Universal Windows Platform (UWP).
 
 ### What does the app do?
 
-Pin Tiles in the Start Menu of Windows 10 for your Steam games, more information [in my web](https://pepeizqapps.com/app/steam-tiles/).
+Pin Tiles of your games from Steam to the Windows 10 Start Menu, more information [in my web](https://pepeizqapps.com/app/steam-tiles/).
 
 ### Video on Youtube
-https://www.youtube.com/watch?v=bJXy7WLills
+https://www.youtube.com/watch?v=rsm54AbJZZk
 
-[![Image1](https://i.imgur.com/SIQHPVm.png)](https://pepeizqapps.com/app/steam-tiles/)
+[![Image1](https://i.imgur.com/RX0TBkf.png)](https://pepeizqapps.com/app/steam-tiles/)
 
-[![Image2](https://i.imgur.com/Yb6Uybp.png)](https://pepeizqapps.com/app/steam-tiles/)
+[![Image2](https://i.imgur.com/IYkK4mo.png)](https://pepeizqapps.com/app/steam-tiles/)
