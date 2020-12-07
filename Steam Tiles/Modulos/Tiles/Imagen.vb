@@ -12,7 +12,7 @@ Namespace Tiles
             Dim ficheroImagen As StorageFile = Await carpetaInstalacion.CreateFileAsync(clave, CreationCollisionOption.ReplaceExisting)
 
             Dim resultado As New RenderTargetBitmap()
-            Await resultado.RenderAsync(gridImagen)
+            Await resultado.RenderAsync(gridImagen, ancho, alto)
 
             Dim buffer As Streams.IBuffer = Await resultado.GetPixelsAsync
             Dim pixeles As Byte() = buffer.ToArray
@@ -20,7 +20,7 @@ Namespace Tiles
 
             Using stream As Streams.IRandomAccessStream = Await ficheroImagen.OpenAsync(FileAccessMode.ReadWrite)
                 Dim encoder As BitmapEncoder = Await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, stream)
-                encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Ignore, resultado.PixelWidth, resultado.PixelHeight, rawdpi.RawDpiX, rawdpi.RawDpiY, pixeles)
+                encoder.SetPixelData(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Straight, resultado.PixelWidth, resultado.PixelHeight, rawdpi.RawDpiX, rawdpi.RawDpiY, pixeles)
 
                 Await encoder.FlushAsync
             End Using

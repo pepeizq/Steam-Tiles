@@ -151,9 +151,7 @@ Namespace Tiles
             End Try
 
             MasCosas.CalificarApp(True)
-
-            ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = False
-            ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = False
+            Interfaz.AñadirTile.ResetearValores()
 
             boton.IsEnabled = True
 

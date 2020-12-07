@@ -11,609 +11,548 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="Page_Loaded">
 
-    <Grid Background="{StaticResource ColorGridPrincipal}">
+    <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="32"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="gridTitulo" Grid.Row="0" Background="{StaticResource GridTituloBackground}">
-            <TextBlock x:Name="tbTitulo" Margin="15,0,0,0" FontSize="13" Foreground="White" VerticalAlignment="Center"/>
+        <Grid x:Name="gridTitulo" Grid.Row="0" Background="{StaticResource AcrilicoFondo}">
+            <TextBlock x:Name="tbTitulo" Margin="15,0,0,0" FontSize="12" Foreground="White" VerticalAlignment="Center"/>
         </Grid>
 
-        <NavigationView x:Name="nvPrincipal" Grid.Row="1" Loaded="Nv_Loaded" ItemInvoked="Nv_ItemInvoked" IsPaneOpen="False"
+        <NavigationView x:Name="nvPrincipal" Grid.Row="1" Background="{StaticResource AcrilicoFondo}" Loaded="Nv_Loaded" ItemInvoked="Nv_ItemInvoked" IsPaneOpen="False"
                         AlwaysShowHeader="False" IsSettingsVisible="False" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed">
+
+            <NavigationView.Resources>
+                <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="Transparent" />
+            </NavigationView.Resources>
+
             <NavigationView.PaneFooter>
                 <StackPanel x:Name="spBuscador" Orientation="Horizontal" Visibility="Collapsed">
                     <iconos:FontAwesome Icon="Solid_Search" Foreground="{StaticResource BrushPrimario}" Margin="0,0,15,0"/>
                     <TextBox x:Name="tbBuscador" MinWidth="180" Margin="0,4,10,4"/>
                 </StackPanel>
             </NavigationView.PaneFooter>
-            
-            <Grid>
-                <Grid.Transitions>
-                    <TransitionCollection>
-                        <EdgeUIThemeTransition Edge="Bottom"/>
-                    </TransitionCollection>
-                </Grid.Transitions>
 
-                <Grid.Background>
-                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                        <GradientStop Color="#353b45" Offset="0.5" />
-                        <GradientStop Color="#24282f" Offset="1.0" />
-                    </LinearGradientBrush>
-                </Grid.Background>
-
-                <Grid x:Name="gridTiles" Visibility="Collapsed" Padding="10">
+            <Grid Padding="20">
+                <Grid x:Name="gridJuegos" Visibility="Collapsed">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid x:Name="gridSeleccionarJuego" Grid.Row="0">
-                        <Grid.ChildrenTransitions>
-                            <TransitionCollection>
-                                <PaneThemeTransition Edge="Top"/>
-                            </TransitionCollection>
-                        </Grid.ChildrenTransitions>
+                    <Grid Grid.Row="0" Padding="15" BorderBrush="{StaticResource ColorCajaRojaSombra}" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Grid.Background>
+                            <SolidColorBrush Color="{StaticResource ColorCajaRojaFondo}" Opacity="0.8"/>
+                        </Grid.Background>
 
-                        <Grid Padding="10" Background="{StaticResource ColorCajaRojaFondo}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,0,0">
-                            <TextBlock x:Uid="SelectGame" TextWrapping="Wrap" Foreground="White"/>
-                        </Grid>
+                        <TextBlock x:Uid="SelectGame" TextWrapping="Wrap" Foreground="White"/>
                     </Grid>
 
-                    <Grid Grid.Row="1" Margin="0,20,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                    <controls:AdaptiveGridView x:Name="gvTiles" Grid.Row="1" Margin="0,20,0,0" Padding="0,0,30,0" IsItemClickEnabled="True" animations:ReorderGridAnimation.Duration="250"/>
+                </Grid>
 
-                        <controls:AdaptiveGridView x:Name="gvTiles" Grid.Column="0" Padding="5,0,5,0"
-                                       IsItemClickEnabled="True" DesiredWidth="200" 
-                                       animations:ReorderGridAnimation.Duration="250">
-                        </controls:AdaptiveGridView>
+                <Grid x:Name="gridAñadirTile" Visibility="Collapsed" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                        <Grid x:Name="gridAñadirTile" Grid.Column="1" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
-                            <Grid x:Name="gridMensajeTrialAñadirTile" Grid.Row="0" Padding="20" HorizontalAlignment="Center" Visibility="Collapsed">
-                                <controls:DropShadowPanel Color="Black" ShadowOpacity="0.5" BlurRadius="20">
-                                    <Grid Padding="20" Background="{StaticResource ColorCajaRojaFondo}">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <iconos:FontAwesome Grid.Column="0" Margin="0,0,10,0" Icon="Solid_Exclamation" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
-                                        <TextBlock Grid.Column="1" x:Uid="TrialMessage" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
-                                    </Grid>
-                                </controls:DropShadowPanel>
-                            </Grid>
-
-                            <Grid Grid.Row="1" Padding="20" HorizontalAlignment="Center">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Border Grid.Column="0" BorderThickness="1" BorderBrush="{StaticResource BrushPrimario}" Width="184" Height="69" VerticalAlignment="Center">
-                                    <controls:ImageEx x:Name="imagenJuegoSeleccionado" Stretch="UniformToFill" IsCacheEnabled="True"/>
-                                </Border>
-
-                                <TextBlock x:Name="tbJuegoSeleccionado" Grid.Column="1" VerticalAlignment="Center" Margin="20,0" TextWrapping="Wrap" Foreground="White" FontSize="18"/>
-                            </Grid>
-
-                            <Grid Grid.Row="2" Padding="20" Background="{StaticResource BrushCuarto}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-
-                                <controls:DropShadowPanel x:Name="panelAñadirTile" Grid.Column="0" ShadowOpacity="0.9" BlurRadius="5">
-                                    <Button x:Name="botonAñadirTile" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <StackPanel Orientation="Horizontal">
-                                            <iconos:FontAwesome Icon="Solid_Thumbtack" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                            <TextBlock x:Uid="AddTile" Foreground="White"/>
-                                        </StackPanel>
-                                    </Button>
-                                </controls:DropShadowPanel>
-
-                                <controls:DropShadowPanel x:Name="panelComprarApp" Grid.Column="0" ShadowOpacity="0.9" BlurRadius="5" Visibility="Collapsed">
-                                    <Button x:Name="botonComprarApp" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock x:Uid="BuyApp" Foreground="White"/>
-                                        </StackPanel>
-                                    </Button>
-                                </controls:DropShadowPanel>
-
-                                <Grid x:Name="gridPersonalizacionCarga" Grid.Column="1" HorizontalAlignment="Center" Visibility="Collapsed">
-                                    <ProgressBar IsIndeterminate="True" Foreground="{StaticResource BrushPrimario}" Width="100"/>
-                                </Grid>
-
-                                <controls:DropShadowPanel Grid.Column="2" ShadowOpacity="0.9" BlurRadius="5">
-                                    <Button x:Name="botonCerrarTiles" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <StackPanel Orientation="Horizontal">
-                                            <iconos:FontAwesome Icon="Solid_Times" Foreground="White" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                    </Button>
-                                </controls:DropShadowPanel>
-                            </Grid>
-
-                            <Grid Grid.Row="3" Padding="20">
+                    <ScrollViewer x:Name="svPersonalizacion" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+                        <StackPanel Orientation="Vertical" Padding="0,0,30,0">
+                            <Grid Padding="30">
                                 <Grid.Background>
-                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                        <GradientStop Color="#aeb0b5" Offset="0.5" />
-                                        <GradientStop Color="#8f9299" Offset="1.0" />
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush Color="{StaticResource ColorCuarto}" Opacity="0.8"/>
                                 </Grid.Background>
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Button x:Name="botonTilePequeña" Grid.Column="0" Background="Transparent" VerticalAlignment="Top" Padding="0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                    <ToolTipService.ToolTip>
-                                        <Grid Padding="5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" BorderThickness="1" BorderBrush="{StaticResource ColorPrimario}" Width="131" Height="61" VerticalAlignment="Center">
+                                    <controls:ImageEx x:Name="imagenJuegoSeleccionado" Stretch="UniformToFill" IsCacheEnabled="True"/>
+                                </Border>
 
-                                            <iconos:FontAwesome Grid.Column="0" Icon="Solid_InfoCircle" Foreground="{StaticResource BrushPrimario}" Margin="0,0,10,0"/>
-                                            <TextBlock x:Uid="GamePersonalizationInfo" Grid.Column="1" FontSize="15" TextWrapping="Wrap"/>
-                                        </Grid>
-                                    </ToolTipService.ToolTip>
+                                <TextBlock x:Name="tbJuegoSeleccionado" Grid.Column="1" VerticalAlignment="Center" Margin="20,0" TextWrapping="Wrap" Foreground="White" FontSize="18"/>
 
-                                    <Button.Content>
-                                        <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
-                                            <Grid x:Name="gridTilePequeña" Background="{StaticResource BrushTercero}" Width="71" Height="71">
-                                                <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" Stretch="None"/>
-                                            </Grid>
-                                        </controls:DropShadowPanel>
-                                    </Button.Content>
+                                <Grid x:Name="gridPersonalizacionCarga" Grid.Column="2" HorizontalAlignment="Right" Margin="0,0,25,0" Visibility="Collapsed">
+                                    <ProgressBar IsIndeterminate="True" Foreground="{StaticResource ColorTerciario}" Width="100"/>
+                                </Grid>
+
+                                <Button x:Name="botonAñadirTile" Grid.Column="3" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="18,15" BorderThickness="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <iconos:FontAwesome Icon="Solid_Thumbtack" Foreground="White" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                        <TextBlock x:Uid="AddTile" Foreground="White"/>
+                                    </StackPanel>
                                 </Button>
 
-                                <Button x:Name="botonTileMediana" Grid.Column="1" Background="Transparent" VerticalAlignment="Top" Padding="0" Margin="20,0,0,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                    <ToolTipService.ToolTip>
-                                        <Grid Padding="5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <iconos:FontAwesome Grid.Column="0" Icon="Solid_InfoCircle" Foreground="{StaticResource BrushPrimario}" Margin="0,0,10,0"/>
-                                            <TextBlock x:Uid="GamePersonalizationInfo" Grid.Column="1" FontSize="15" TextWrapping="Wrap"/>
-                                        </Grid>
-                                    </ToolTipService.ToolTip>
-                                    
-                                    <Button.Content>
-                                        <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
-                                            <Grid x:Name="gridTileMediana" Background="{StaticResource BrushTercero}" Width="150" Height="150">
-                                                <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True"/>
-                                            </Grid>
-                                        </controls:DropShadowPanel>
-                                    </Button.Content>
-                                </Button>
-
-                                <Button x:Name="botonTileAncha" Grid.Column="2" Background="Transparent" VerticalAlignment="Top" Padding="0" Margin="20,0,0,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                    <ToolTipService.ToolTip>
-                                        <Grid Padding="5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <iconos:FontAwesome Grid.Column="0" Icon="Solid_InfoCircle" Foreground="{StaticResource BrushPrimario}" Margin="0,0,10,0"/>
-                                            <TextBlock x:Uid="GamePersonalizationInfo" Grid.Column="1" FontSize="15" TextWrapping="Wrap"/>
-                                        </Grid>
-                                    </ToolTipService.ToolTip>
-                                    
-                                    <Button.Content>
-                                        <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
-                                            <Grid x:Name="gridTileAncha" Background="{StaticResource BrushTercero}" Width="310" Height="150">
-                                                <controls:ImageEx x:Name="imagenTileAncha" IsCacheEnabled="True" Stretch="UniformToFill"/>
-                                            </Grid>
-                                        </controls:DropShadowPanel>
-                                    </Button.Content>
-                                </Button>
-
-                                <Button x:Name="botonTileGrande" Grid.Column="3" Background="Transparent" VerticalAlignment="Top" Padding="0" Margin="20,0,0,0" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                    <ToolTipService.ToolTip>
-                                        <Grid Padding="5">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <iconos:FontAwesome Grid.Column="0" Icon="Solid_InfoCircle" Foreground="{StaticResource BrushPrimario}" Margin="0,0,10,0"/>
-                                            <TextBlock x:Uid="GamePersonalizationInfo" Grid.Column="1" FontSize="15" TextWrapping="Wrap"/>
-                                        </Grid>
-                                    </ToolTipService.ToolTip>
-                                    
-                                    <Button.Content>
-                                        <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5">
-                                            <Grid x:Name="gridTileGrande" Background="{StaticResource BrushTercero}" Width="310" Height="310">
-                                                <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" Stretch="UniformToFill"/>
-                                            </Grid>
-                                        </controls:DropShadowPanel>
-                                    </Button.Content>
+                                <Button x:Name="botonComprarApp" Grid.Column="3" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="18,15" BorderThickness="0" Visibility="Collapsed">
+                                    <TextBlock x:Uid="BuyApp" Foreground="White"/>
                                 </Button>
                             </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
 
-                <StackPanel x:Name="spProgreso" Orientation="Horizontal" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <ProgressBar x:Name="pbProgreso" Width="200" Foreground="White"/>
-                    <TextBlock x:Name="tbProgreso" Margin="25,0,0,0" VerticalAlignment="Center" Foreground="White"/>
-                </StackPanel>
+                            <Grid x:Name="gridMensajeTrialAñadirTile" Padding="15" BorderBrush="{StaticResource ColorCajaRojaSombra}" BorderThickness="1" HorizontalAlignment="Center" Visibility="Collapsed" Margin="0,40,0,0">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="{StaticResource ColorCajaRojaFondo}" Opacity="0.8"/>
+                                </Grid.Background>
 
-                <Grid x:Name="gridAvisoNoJuegos" Padding="10" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
-                    <controls:DropShadowPanel Color="Black" ShadowOpacity="0.5" BlurRadius="20" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Grid Width="500" Padding="20" Background="{StaticResource ColorCajaRojaFondo}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
                                 <iconos:FontAwesome Grid.Column="0" Margin="0,0,10,0" Icon="Solid_Exclamation" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
-                                <TextBlock Grid.Column="1" x:Uid="NoGamesDetected" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
+                                <TextBlock Grid.Column="1" x:Uid="TrialMessage" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
                             </Grid>
 
-                            <Grid Grid.Row="1" Margin="0,20,0,0">
+                            <TextBlock x:Uid="Personalization" Foreground="White" FontSize="18" Margin="10,40,0,15" HorizontalAlignment="Center"/>
+
+                            <Grid>
+                                <Grid.Background>
+                                    <SolidColorBrush Color="{StaticResource ColorCuarto}" Opacity="0.2"/>
+                                </Grid.Background>
+
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="1.5*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="3.5*"/>
+                                    <ColumnDefinition Width="3.5*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <controls:DropShadowPanel Grid.Column="0" Color="{StaticResource ColorCajaRojaSombra}" Margin="0,10,0,0" ShadowOpacity="0.9" BlurRadius="5" HorizontalAlignment="Center">
-                                    <Button x:Name="botonAbrirConfig" Padding="0" BorderThickness="0" PointerEntered="UsuarioEntraBotonRojo" PointerExited="UsuarioSaleBotonRojo">
-                                        <StackPanel Orientation="Horizontal" Padding="12" Background="{StaticResource ColorCajaRojaBoton}">
-                                            <iconos:FontAwesome Icon="Solid_Cog" Foreground="White" Margin="0,0,10,0"/>
-                                            <TextBlock x:Uid="NoGamesDetectedOpenConfig" Foreground="White"/>
-                                        </StackPanel>
-                                    </Button>
-                                </controls:DropShadowPanel>
-
-                                <controls:DropShadowPanel Grid.Column="2" Color="{StaticResource ColorCajaRojaSombra}" Margin="0,10,0,0" ShadowOpacity="0.9" BlurRadius="5" HorizontalAlignment="Center">
-                                    <Button x:Name="botonAbrirYoutube" Padding="0" BorderThickness="0" PointerEntered="UsuarioEntraBotonRojo" PointerExited="UsuarioSaleBotonRojo">
-                                        <StackPanel Orientation="Horizontal" Padding="12" Background="{StaticResource ColorCajaRojaBoton}">
-                                            <iconos:FontAwesome Icon="Brands_YoutubeSquare" Foreground="White" Margin="0,0,10,0"/>
-                                            <TextBlock x:Uid="NoGamesDetectedOpenYoutube" Foreground="White"/>
-                                        </StackPanel>
-                                    </Button>
-                                </controls:DropShadowPanel>
-                            </Grid>
-                        </Grid> 
-                    </controls:DropShadowPanel> 
-                </Grid>
-            
-                <Grid x:Name="gridPersonalizarTiles" Visibility="Collapsed">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Margin="20">
-                            <Grid.Background>
-                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                    <GradientStop Color="#aeb0b5" Offset="0.5" />
-                                    <GradientStop Color="#8f9299" Offset="1.0" />
-                                </LinearGradientBrush>
-                            </Grid.Background>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0" Background="{StaticResource BrushCuarto}">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-
-                                <controls:DropShadowPanel Grid.Column="0" ShadowOpacity="0.9" BlurRadius="5" Margin="20">
-                                    <Button x:Name="botonVolverPersonalizacion" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <StackPanel Orientation="Horizontal">
-                                            <iconos:FontAwesome Icon="Solid_ArrowLeft" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                            <TextBlock x:Uid="Back" Foreground="White"/>
-                                        </StackPanel>
-                                    </Button>
-                                </controls:DropShadowPanel>
-
-                                <controls:DropShadowPanel Grid.Column="2" ShadowOpacity="0.9" BlurRadius="5" Margin="20">
-                                    <Button x:Name="botonResetearPersonalizacion" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock x:Uid="Reset" Foreground="White"/>
-                                        </StackPanel>
-                                    </Button>
-                                </controls:DropShadowPanel>
-                            </Grid>
-
-                            <Grid Grid.Row="1" Padding="20">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                
-                                <Grid x:Name="gridPersonalizacionExterior" Grid.Column="0" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" VerticalAlignment="Top">
-                                    <Grid x:Name="gridPersonalizacionInterior" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                </Grid>
-
-                                <controls:TabView x:Name="tvPersonalizacion" Grid.Column="1" VerticalAlignment="Top" Margin="20,0,0,0" Background="{StaticResource BrushCuarto}">
-                                    <controls:TabViewItem>
-                                        <controls:TabViewItem.Header>
-                                            <Grid PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                                <TextBlock x:Uid="OptionsSource"/>
-                                            </Grid>
-                                        </controls:TabViewItem.Header>
-                                        
-                                        <StackPanel Orientation="Vertical" Padding="20" Width="360">
-                                            <Grid Margin="10">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-
-                                                <iconos:FontAwesome Grid.Column="0" Icon="Solid_InfoCircle" Foreground="{StaticResource BrushPrimario}"/>
-                                                <TextBlock x:Uid="OptionsSourceInfo" Grid.Column="1" Margin="15,0,0,0" VerticalAlignment="Center" TextWrapping="Wrap"/>
-                                            </Grid>
-
-                                            <controls:DropShadowPanel ShadowOpacity="0.9" BlurRadius="5" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                <Button x:Name="botonPersonalizacionCambiarImagenOrdenador" Padding="15,10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <iconos:FontAwesome Icon="Solid_Folder" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                        <TextBlock x:Uid="OptionsSourceComputer" Foreground="White"/>
-                                                    </StackPanel>
-                                                </Button>
-                                            </controls:DropShadowPanel>
-
-                                            <StackPanel Orientation="Vertical" Margin="0,10,0,0">
-                                                <TextBlock x:Uid="OptionsSourceInternet" HorizontalAlignment="Center"/>
-                                                <TextBox x:Name="tbPersonalizacionCambiarImagenInternet" Margin="0,10,0,0"/>
-                                            </StackPanel>
-
-                                            <TextBlock x:Uid="OptionsSourceUbication" Margin="0,30,0,10" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
-
-                                            <ComboBox x:Name="cbPersonalizacionImagenUbicacion" MaxWidth="300" HorizontalAlignment="Center" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                                <ComboBoxItem x:Uid="OptionsSourceUbication1"/>
-                                                <ComboBoxItem x:Uid="OptionsSourceUbication2"/>
-                                            </ComboBox>
-
-                                            <TextBlock x:Uid="OptionsSourceStretch" Margin="0,20,0,10" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap"/>
-
-                                            <ComboBox x:Name="cbPersonalizacionImagenEstiramiento" MaxWidth="300" HorizontalAlignment="Center" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                                <ComboBoxItem x:Uid="OptionsSourceStretch1"/>
-                                                <ComboBoxItem x:Uid="OptionsSourceStretch2"/>
-                                                <ComboBoxItem x:Uid="OptionsSourceStretch3"/>
-                                                <ComboBoxItem x:Uid="OptionsSourceStretch4"/>
-                                            </ComboBox>
-                                        </StackPanel>
-                                    </controls:TabViewItem>
-                                    <controls:TabViewItem>
-                                        <controls:TabViewItem.Header>
-                                            <Grid PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                                <TextBlock x:Uid="OptionsDetails"/>
-                                            </Grid>
-                                        </controls:TabViewItem.Header>
-
-                                        <StackPanel Orientation="Vertical" Padding="20" Width="360">
-                                            <Grid HorizontalAlignment="Center">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-                                                
-                                                <TextBlock x:Uid="OptionsMargin" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,15,0"/>
-                                                <Slider x:Name="sliderPersonalizacionImagenMargen" Grid.Column="1" Width="180" Minimum="0" Maximum="200" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
-                                            </Grid>
-
-                                            <Grid x:Name="gridPersonalizacionImagenTitulo" HorizontalAlignment="Center" Margin="0,20,0,0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                </Grid.ColumnDefinitions>
-
-                                                <CheckBox x:Name="cbPersonalizacionImagenTitulo" Grid.Column="0" x:Uid="OptionsTitle" VerticalAlignment="Center" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
-
-                                                <iconos:FontAwesome Icon="Solid_InfoCircle" Grid.Column="1" Margin="15,0,0,0" Foreground="{StaticResource BrushPrimario}">
-                                                    <ToolTipService.ToolTip>
-                                                        <Grid MaxWidth="300">
-                                                            <TextBlock x:Uid="OptionsTitleInfo" TextWrapping="Wrap" FontSize="15"/>
-                                                        </Grid>
-                                                    </ToolTipService.ToolTip>
-                                                </iconos:FontAwesome>
-                                            </Grid>
-                                        </StackPanel>
-                                    </controls:TabViewItem>
-                                    <controls:TabViewItem>
-                                        <controls:TabViewItem.Header>
-                                            <Grid PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                                <TextBlock x:Uid="OptionsBackground"/>
-                                            </Grid>
-                                        </controls:TabViewItem.Header>
-
-                                        <StackPanel Orientation="Vertical" Padding="20" Width="360">
-                                            <ColorPicker x:Name="colorPickerPersonalizacionFondo" IsMoreButtonVisible="True" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
-                                        </StackPanel> 
-                                    </controls:TabViewItem>
-                                    <controls:TabViewItem x:Name="tviPersonalizacionPlataforma">
-                                        <controls:TabViewItem.Header>
-                                            <Grid PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                                <TextBlock x:Uid="OptionsPlatform"/>
-                                            </Grid>
-                                        </controls:TabViewItem.Header>
-
-                                        <StackPanel Orientation="Vertical" Padding="20" Width="360">
-                                            <CheckBox x:Name="cbPersonalizacionPlataforma" x:Uid="OptionsPlatformIcon" HorizontalAlignment="Center" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton"/>
-
-                                            <StackPanel x:Name="spPersonalizacionPlataforma" Orientation="Vertical">
-                                                <Grid Margin="0,15,0,0" HorizontalAlignment="Center">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <TextBlock x:Uid="OptionsPlatformPosition" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                    <ComboBox x:Name="cbPersonalizacionPlataformaPosicion" Grid.Column="1" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                                        <ComboBoxItem x:Uid="OptionsPlatformPosition1"/>
-                                                        <ComboBoxItem x:Uid="OptionsPlatformPosition2"/>
-                                                        <ComboBoxItem x:Uid="OptionsPlatformPosition3"/>
-                                                        <ComboBoxItem x:Uid="OptionsPlatformPosition4"/>
-                                                    </ComboBox>                                                   
-                                                </Grid>
-
-                                                <controls:AdaptiveGridView x:Name="gvPersonalizacionPlataformaIconos" Margin="0,20,0,0" HorizontalAlignment="Center"/>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </controls:TabViewItem>
-                                </controls:TabView>
-                            </Grid>
-                        </Grid> 
-                    </ScrollViewer> 
-                </Grid>
-
-                <Grid x:Name="gridConfig" Visibility="Collapsed">
-                    <ScrollViewer>
-                        <StackPanel Orientation="Vertical" Width="700" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <StackPanel Orientation="Vertical" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1">
-                                <StackPanel.Background>
-                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                        <GradientStop Color="#aeb0b5" Offset="0.5" />
-                                        <GradientStop Color="#8f9299" Offset="1.0" />
-                                    </LinearGradientBrush>
-                                </StackPanel.Background>
-
-                                <Grid x:Name="gridConfigTiles" HorizontalAlignment="Stretch" Padding="20,10" Background="{StaticResource GridTituloBackground}">
-                                    <TextBlock Text="Tiles" FontSize="16" Foreground="White"/>
-                                </Grid>
-
-                                <StackPanel Orientation="Vertical" Padding="20">
-                                    <ComboBox x:Name="cbConfigModosTiles" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <ComboBoxItem x:Uid="ConfigTileMode1"/>
-                                        <ComboBoxItem x:Uid="ConfigTileMode2"/>
-                                    </ComboBox>
-
-                                    <StackPanel x:Name="spModoTile1" Margin="0,20,0,0" Visibility="Collapsed">
+                                <Button x:Name="botonPersonalizacionTilePequeña" Grid.Column="0" Style="{ThemeResource ButtonRevealStyle}" Background="Transparent" Padding="20" BorderBrush="{StaticResource ColorCuarto}" BorderThickness="1,1,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Bottom">
+                                    <Button.Content>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <Button x:Name="botonAñadirCarpetaSteam" Grid.Column="0" Padding="10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <iconos:FontAwesome Icon="Solid_FolderPlus" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                                                    <TextBlock x:Uid="ConfigAddFolder" Foreground="White"/>
-                                                </StackPanel>
-                                            </Button>
+                                            <StackPanel Grid.Column="0" Orientation="Vertical">
+                                                <Grid x:Name="gridTilePequeña" Background="Transparent" Width="71" Height="71" VerticalAlignment="Top">
+                                                    <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" Stretch="None"/>
+                                                </Grid>
 
-                                            <TextBlock x:Uid="ConfigFolderMessage" Grid.Column="1" VerticalAlignment="Center" Margin="15,0,0,0" TextWrapping="Wrap"/>
-                                        </Grid>
-                                        <TextBlock x:Uid="ConfigFoldersAdded" Margin="0,15,0,5"/>
-
-                                        <StackPanel x:Name="spCarpetasDetectadas" Orientation="Vertical"/>
-
-                                        <Button x:Name="botonBorrarCarpetasSteam" Margin="0,25,0,20" Padding="10" Background="{StaticResource BrushSecundario}" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                            <StackPanel Orientation="Horizontal">
-                                                <iconos:FontAwesome Icon="Solid_TrashAlt" Margin="0,0,10,0" VerticalAlignment="Center" Foreground="White"/>
-                                                <TextBlock x:Uid="ConfigDeleteFolders" Foreground="White"/>
+                                                <TextBlock Text="71x71" Foreground="White" FontSize="13" Margin="0,15,0,0" HorizontalAlignment="Center"/>
                                             </StackPanel>
-                                        </Button>
 
-                                        <Grid Padding="15" Background="{StaticResource ColorCajaRojaFondo}">
+                                            <iconos:FontAwesome x:Name="iconoPersonalizacionTilePequeña" Grid.Column="2" Foreground="White" FontSize="19" VerticalAlignment="Bottom"/>
+                                        </Grid>
+                                    </Button.Content>
+                                </Button>
+
+                                <Button x:Name="botonPersonalizacionTileMediana" Grid.Column="1" Style="{ThemeResource ButtonRevealStyle}" Background="Transparent" Padding="20" BorderBrush="{StaticResource ColorCuarto}" BorderThickness="1,1,1,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Bottom">
+                                    <Button.Content>
+                                        <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <iconos:FontAwesome Grid.Column="0" Icon="Solid_Exclamation" Margin="5,0" VerticalAlignment="Center" Foreground="White"/>
-                                            <TextBlock x:Uid="ConfigFoldersWarning" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
+                                            <StackPanel Grid.Column="0" Orientation="Vertical">
+                                                <Grid x:Name="gridTileMediana" Background="Transparent" Width="150" Height="150" VerticalAlignment="Top">
+                                                    <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True"/>
+                                                </Grid>
+
+                                                <TextBlock Text="150x150" Foreground="White" FontSize="13" Margin="0,15,0,0" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+
+                                            <iconos:FontAwesome x:Name="iconoPersonalizacionTileMediana" Grid.Column="2" Foreground="White" FontSize="19" VerticalAlignment="Bottom"/>
                                         </Grid>
-                                    </StackPanel>
+                                    </Button.Content>
+                                </Button>
 
-                                    <StackPanel x:Name="spModoTile2" Margin="0,20,0,0" Visibility="Collapsed">
-                                        <TextBlock x:Uid="ConfigAccountInfo" TextWrapping="Wrap"/>
-
-                                        <TextBox x:Name="tbConfigCuenta" Margin="0,10,0,0"/>
-
-                                        <Grid x:Name="gridConfigCuentaInfo" Padding="0,10" Margin="0,10,0,0" Visibility="Collapsed">
+                                <Button x:Name="botonPersonalizacionTileAncha" Grid.Column="2" Style="{ThemeResource ButtonRevealStyle}" Background="Transparent" Padding="20" BorderBrush="{StaticResource ColorCuarto}" BorderThickness="0,1,0,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Bottom">
+                                    <Button.Content>
+                                        <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <controls:ImageEx x:Name="imagenConfigCuentaInfo" Grid.Column="0" IsCacheEnabled="True" Width="64" Height="64"/>
-                                            <TextBlock x:Name="tbConfigCuentaInfo" Grid.Column="1" Margin="10,0,0,0" VerticalAlignment="Center"/>
-                                        </Grid>
+                                            <StackPanel Grid.Column="0" Orientation="Vertical">
+                                                <Grid x:Name="gridTileAncha" Background="Transparent" Width="310" Height="150" VerticalAlignment="Top">
+                                                    <controls:ImageEx x:Name="imagenTileAncha" IsCacheEnabled="True" Stretch="UniformToFill"/>
+                                                </Grid>
 
-                                        <Grid Padding="15" Background="{StaticResource ColorCajaRojaFondo}" Margin="0,10,0,0">
+                                                <TextBlock Text="310x150" Foreground="White" FontSize="13" Margin="0,15,0,0" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+
+                                            <iconos:FontAwesome x:Name="iconoPersonalizacionTileAncha" Grid.Column="2" Foreground="White" FontSize="19" VerticalAlignment="Bottom"/>
+                                        </Grid>
+                                    </Button.Content>
+                                </Button>
+
+                                <Button x:Name="botonPersonalizacionTileGrande" Grid.Column="3" Style="{ThemeResource ButtonRevealStyle}" Background="Transparent" Padding="20" BorderBrush="{StaticResource ColorCuarto}" BorderThickness="1,1,1,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Bottom">
+                                    <Button.Content>
+                                        <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
-                                            <iconos:FontAwesome Grid.Column="0" Icon="Solid_Exclamation" Margin="5,0" VerticalAlignment="Center" Foreground="White"/>
-                                            <TextBlock x:Uid="ConfigAccountWarning" Grid.Column="1" Margin="10,0" TextWrapping="Wrap" Foreground="White"/>
+                                            <StackPanel Grid.Column="0" Orientation="Vertical">
+                                                <Grid x:Name="gridTileGrande" Background="Transparent" Width="310" Height="310" VerticalAlignment="Top">
+                                                    <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" Stretch="UniformToFill"/>
+                                                </Grid>
+
+                                                <TextBlock Text="310x310" Foreground="White" FontSize="13" Margin="0,15,0,0" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+
+                                            <iconos:FontAwesome x:Name="iconoPersonalizacionTileGrande" Grid.Column="2" Foreground="White" FontSize="19" VerticalAlignment="Bottom"/>
                                         </Grid>
+                                    </Button.Content>
+                                </Button>
+                            </Grid>
 
-                                        <controls:ImageEx Source="Assets/cuentapermisos.jpg" IsCacheEnabled="True" Margin="0,20,0,0"/>
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Vertical" BorderBrush="{StaticResource BrushSecundario}" BorderThickness="1" Margin="0,50,0,0">
+                            <StackPanel Orientation="Vertical" BorderBrush="{StaticResource ColorPrimario}" BorderThickness="0">
                                 <StackPanel.Background>
-                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                        <GradientStop Color="#aeb0b5" Offset="0.5" />
-                                        <GradientStop Color="#8f9299" Offset="1.0" />
-                                    </LinearGradientBrush>
+                                    <SolidColorBrush Color="{StaticResource ColorCuarto}" Opacity="0.8"/>
                                 </StackPanel.Background>
 
-                                <Grid x:Name="gridConfigCache" HorizontalAlignment="Stretch" Padding="20,10" Background="{StaticResource GridTituloBackground}">
-                                    <TextBlock Text="Cache" FontSize="16" Foreground="White"/>
-                                </Grid>
+                                <Grid x:Name="gridPersonalizacionTilePequeña">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <StackPanel Orientation="Vertical" Padding="20">
-                                    <CheckBox x:Name="cbActivarCache" VerticalAlignment="Top" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
-                                        <CheckBox.Content>
-                                            <StackPanel Orientation="Vertical" Margin="5,0,0,0">
-                                                <TextBlock x:Uid="CacheMode" Margin="0,0,0,7"/>
-                                                <TextBlock x:Uid="CacheMode2" TextWrapping="Wrap"/>
-                                            </StackPanel>
-                                        </CheckBox.Content>
-                                    </CheckBox>
-
-                                    <StackPanel x:Name="spCacheOpciones" Orientation="Horizontal" Margin="0,20,0,0">
-                                        <Button x:Name="botonConfigLimpiarCache" Background="{StaticResource BrushSecundario}" Padding="10" PointerEntered="UsuarioEntraBoton" PointerExited="UsuarioSaleBoton">
+                                    <StackPanel Grid.Column="0" Padding="40" Orientation="Vertical">
+                                        <TextBlock x:Uid="ChangeImageComputer" Foreground="White" TextWrapping="Wrap"/>
+                                        <Button x:Name="botonCambiarImagenOrdenadorTilePequeña" Margin="0,15,0,0" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="15,12" BorderThickness="0">
                                             <StackPanel Orientation="Horizontal">
-                                                <iconos:FontAwesome Icon="Solid_TrashAlt" Foreground="White" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                                <TextBlock x:Uid="ConfigCleanCache" Foreground="White"/>
+                                                <iconos:FontAwesome Icon="Solid_FolderOpen" Foreground="White" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                                <TextBlock x:Uid="ChangeImageComputerSearch" Foreground="White"/>
                                             </StackPanel>
                                         </Button>
 
-                                        <ProgressRing x:Name="prConfigLimpiarCache" Margin="10,0,0,0" IsActive="True" Width="25" Height="25" Foreground="{StaticResource BrushSecundario}" Visibility="Collapsed"/>
+                                        <TextBlock x:Uid="ChangeImageLink" Margin="0,30,0,0" Foreground="White"/>
+                                        <TextBox x:Name="tbCambiarImagenEnlaceTilePequeña" Margin="0,15,0,0" RequestedTheme="Dark" MinWidth="400" MaxWidth="800" HorizontalAlignment="Left"/>
+
+                                        <TextBlock x:Uid="ImageAdjustment" Margin="0,30,0,0" Foreground="White"/>
+                                        <ComboBox x:Name="cbCambiarImagenAjusteTilePequeña" Margin="0,15,0,0"/>
+
+                                        <TextBlock x:Uid="ImageMargin" Margin="0,30,0,0" Foreground="White"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                            <Slider x:Name="sliderCambiarImagenMargenTilePequeña" Foreground="White" RequestedTheme="Dark" Width="300" HorizontalAlignment="Left" Maximum="40"/>
+                                            <TextBlock x:Name="tbCambiarImagenMargenTilePequeña" Text="0px" Foreground="White" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                        <TextBlock x:Uid="ImageCorner" Margin="0,30,0,0" Foreground="White"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                            <Slider x:Name="sliderCambiarImagenEsquinasTilePequeña" Foreground="White" RequestedTheme="Dark" Width="300" HorizontalAlignment="Left" Maximum="40"/>
+                                            <TextBlock x:Name="tbCambiarImagenEsquinasTilePequeña" Text="0px" Foreground="White" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
                                     </StackPanel>
-                                </StackPanel>                                
+
+                                    <StackPanel Grid.Column="1" Padding="40" Orientation="Vertical">
+                                        <TextBlock x:Uid="ImageTransparent" Foreground="White"/>
+                                        <ToggleSwitch x:Name="tsImagenTransparenciaTilePequeña" RequestedTheme="Dark" Margin="0,15,0,0"/>
+
+                                        <StackPanel x:Name="spImagenFondoTilePequeña" Orientation="Vertical" Visibility="Collapsed" Margin="0,30,0,0">
+                                            <TextBlock x:Uid="ImageBackground" Foreground="White"/>
+                                            <ColorPicker x:Name="cpImagenFondoTilePequeña" IsMoreButtonVisible="True" RequestedTheme="Dark" Margin="0,15,0,0" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid x:Name="gridPersonalizacionTileMediana">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Padding="40" Orientation="Vertical">
+                                        <TextBlock x:Uid="ChangeImageComputer" Foreground="White" TextWrapping="Wrap"/>
+                                        <Button x:Name="botonCambiarImagenOrdenadorTileMediana" Margin="0,15,0,0" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="15,12" BorderThickness="0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <iconos:FontAwesome Icon="Solid_FolderOpen" Foreground="White" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                                <TextBlock x:Uid="ChangeImageComputerSearch" Foreground="White"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <TextBlock x:Uid="ChangeImageLink" Margin="0,30,0,0" Foreground="White"/>
+                                        <TextBox x:Name="tbCambiarImagenEnlaceTileMediana" Margin="0,15,0,0" RequestedTheme="Dark" MinWidth="400" MaxWidth="800" HorizontalAlignment="Left"/>
+
+                                        <TextBlock x:Uid="ImageAdjustment" Margin="0,30,0,0" Foreground="White"/>
+                                        <ComboBox x:Name="cbCambiarImagenAjusteTileMediana" Margin="0,15,0,0"/>
+
+                                        <TextBlock x:Uid="ImageMargin" Margin="0,30,0,0" Foreground="White"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                            <Slider x:Name="sliderCambiarImagenMargenTileMediana" Foreground="White" RequestedTheme="Dark" Width="300" HorizontalAlignment="Left" Maximum="60"/>
+                                            <TextBlock x:Name="tbCambiarImagenMargenTileMediana" Text="0px" Foreground="White" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                        <TextBlock x:Uid="ImageCorner" Margin="0,30,0,0" Foreground="White"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                            <Slider x:Name="sliderCambiarImagenEsquinasTileMediana" Foreground="White" RequestedTheme="Dark" Width="300" HorizontalAlignment="Left" Maximum="60"/>
+                                            <TextBlock x:Name="tbCambiarImagenEsquinasTileMediana" Text="0px" Foreground="White" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Padding="40" Orientation="Vertical">
+                                        <TextBlock x:Uid="ImageTransparent" Foreground="White"/>
+                                        <ToggleSwitch x:Name="tsImagenTransparenciaTileMediana" RequestedTheme="Dark" Margin="0,15,0,0"/>
+
+                                        <StackPanel x:Name="spImagenFondoTileMediana" Orientation="Vertical" Visibility="Collapsed" Margin="0,30,0,0">
+                                            <TextBlock x:Uid="ImageBackground" Foreground="White"/>
+                                            <ColorPicker x:Name="cpImagenFondoTileMediana" IsMoreButtonVisible="True" RequestedTheme="Dark" Margin="0,15,0,0" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid x:Name="gridPersonalizacionTileAncha">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Padding="40" Orientation="Vertical">
+                                        <TextBlock x:Uid="ChangeImageComputer" Foreground="White" TextWrapping="Wrap"/>
+                                        <Button x:Name="botonCambiarImagenOrdenadorTileAncha" Margin="0,15,0,0" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="15,12" BorderThickness="0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <iconos:FontAwesome Icon="Solid_FolderOpen" Foreground="White" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                                <TextBlock x:Uid="ChangeImageComputerSearch" Foreground="White"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <TextBlock x:Uid="ChangeImageLink" Margin="0,30,0,0" Foreground="White"/>
+                                        <TextBox x:Name="tbCambiarImagenEnlaceTileAncha" Margin="0,15,0,0" RequestedTheme="Dark" MinWidth="400" MaxWidth="800" HorizontalAlignment="Left"/>
+
+                                        <TextBlock x:Uid="ImageAdjustment" Margin="0,30,0,0" Foreground="White"/>
+                                        <ComboBox x:Name="cbCambiarImagenAjusteTileAncha" Margin="0,15,0,0"/>
+
+                                        <TextBlock x:Uid="ImageMargin" Margin="0,30,0,0" Foreground="White"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                            <Slider x:Name="sliderCambiarImagenMargenTileAncha" Foreground="White" RequestedTheme="Dark" Width="300" HorizontalAlignment="Left" Maximum="60"/>
+                                            <TextBlock x:Name="tbCambiarImagenMargenTileAncha" Text="0px" Foreground="White" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                        <TextBlock x:Uid="ImageCorner" Margin="0,30,0,0" Foreground="White"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                            <Slider x:Name="sliderCambiarImagenEsquinasTileAncha" Foreground="White" RequestedTheme="Dark" Width="300" HorizontalAlignment="Left" Maximum="60"/>
+                                            <TextBlock x:Name="tbCambiarImagenEsquinasTileAncha" Text="0px" Foreground="White" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Padding="40" Orientation="Vertical">
+                                        <TextBlock x:Uid="ImageTransparent" Foreground="White"/>
+                                        <ToggleSwitch x:Name="tsImagenTransparenciaTileAncha" RequestedTheme="Dark" Margin="0,15,0,0"/>
+
+                                        <StackPanel x:Name="spImagenFondoTileAncha" Orientation="Vertical" Visibility="Collapsed" Margin="0,30,0,0">
+                                            <TextBlock x:Uid="ImageBackground" Foreground="White"/>
+                                            <ColorPicker x:Name="cpImagenFondoTileAncha" IsMoreButtonVisible="True" RequestedTheme="Dark" Margin="0,15,0,0" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+
+                                        <TextBlock x:Uid="ImageTitle" Margin="0,30,0,0" Foreground="White" TextWrapping="Wrap"/>
+                                        <ToggleSwitch x:Name="tsImagenTituloTileAncha" RequestedTheme="Dark" Margin="0,15,0,0"/>
+
+                                        <StackPanel x:Name="spImagenTituloTileAncha" Orientation="Vertical" Visibility="Collapsed" Margin="0,30,0,0">
+                                            <TextBlock x:Uid="ImageTitleColor" Foreground="White"/>
+                                            <ComboBox x:Name="cbImagenTituloColorTileAncha" RequestedTheme="Dark" Margin="0,15,0,0"/>
+                                        </StackPanel>
+
+                                        <TextBlock x:Uid="ImageIcon" Margin="0,30,0,0" Foreground="White" TextWrapping="Wrap"/>
+                                        <ToggleSwitch x:Name="tsImagenIconoTileAncha" RequestedTheme="Dark" Margin="0,15,0,0"/>
+
+                                        <StackPanel x:Name="spImagenIconoTileAncha" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0">
+                                            <GridView x:Name="gvImagenIconoTileAncha">
+                                                <GridView.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <ItemsWrapGrid MaximumRowsOrColumns="6" Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </GridView.ItemsPanel>
+                                            </GridView>
+
+                                            <TextBlock x:Uid="ImageIconPosition" Margin="0,15,0,0" Foreground="White" TextWrapping="Wrap"/>
+                                            <ComboBox x:Name="cbImagenIconoPosicionTileAncha" RequestedTheme="Dark" Margin="0,15,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid x:Name="gridPersonalizacionTileGrande">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0" Padding="40" Orientation="Vertical">
+                                        <TextBlock x:Uid="ChangeImageComputer" Foreground="White" TextWrapping="Wrap"/>
+                                        <Button x:Name="botonCambiarImagenOrdenadorTileGrande" Margin="0,15,0,0" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="15,12" BorderThickness="0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <iconos:FontAwesome Icon="Solid_FolderOpen" Foreground="White" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                                <TextBlock x:Uid="ChangeImageComputerSearch" Foreground="White"/>
+                                            </StackPanel>
+                                        </Button>
+
+                                        <TextBlock x:Uid="ChangeImageLink" Margin="0,30,0,0" Foreground="White"/>
+                                        <TextBox x:Name="tbCambiarImagenEnlaceTileGrande" Margin="0,15,0,0" RequestedTheme="Dark" MinWidth="400" MaxWidth="800" HorizontalAlignment="Left"/>
+
+                                        <TextBlock x:Uid="ImageAdjustment" Margin="0,30,0,0" Foreground="White"/>
+                                        <ComboBox x:Name="cbCambiarImagenAjusteTileGrande" Margin="0,15,0,0"/>
+
+                                        <TextBlock x:Uid="ImageMargin" Margin="0,30,0,0" Foreground="White"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                            <Slider x:Name="sliderCambiarImagenMargenTileGrande" Foreground="White" RequestedTheme="Dark" Width="300" HorizontalAlignment="Left" Maximum="60"/>
+                                            <TextBlock x:Name="tbCambiarImagenMargenTileGrande" Text="0px" Foreground="White" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                        <TextBlock x:Uid="ImageCorner" Margin="0,30,0,0" Foreground="White"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                            <Slider x:Name="sliderCambiarImagenEsquinasTileGrande" Foreground="White" RequestedTheme="Dark" Width="300" HorizontalAlignment="Left" Maximum="60"/>
+                                            <TextBlock x:Name="tbCambiarImagenEsquinasTileGrande" Text="0px" Foreground="White" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Padding="40" Orientation="Vertical">
+                                        <TextBlock x:Uid="ImageTransparent" Foreground="White"/>
+                                        <ToggleSwitch x:Name="tsImagenTransparenciaTileGrande" RequestedTheme="Dark" Margin="0,15,0,0"/>
+
+                                        <StackPanel x:Name="spImagenFondoTileGrande" Orientation="Vertical" Visibility="Collapsed" Margin="0,30,0,0">
+                                            <TextBlock x:Uid="ImageBackground" Foreground="White"/>
+                                            <ColorPicker x:Name="cpImagenFondoTileGrande" IsMoreButtonVisible="True" RequestedTheme="Dark" Margin="0,15,0,0" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+
+                                        <TextBlock x:Uid="ImageTitle" Margin="0,30,0,0" Foreground="White" TextWrapping="Wrap"/>
+                                        <ToggleSwitch x:Name="tsImagenTituloTileGrande" RequestedTheme="Dark" Margin="0,15,0,0"/>
+
+                                        <StackPanel x:Name="spImagenTituloTileGrande" Orientation="Vertical" Visibility="Collapsed" Margin="0,30,0,0">
+                                            <TextBlock x:Uid="ImageTitleColor" Foreground="White"/>
+                                            <ComboBox x:Name="cbImagenTituloColorTileGrande" RequestedTheme="Dark" Margin="0,15,0,0"/>
+                                        </StackPanel>
+
+                                        <TextBlock x:Uid="ImageIcon" Margin="0,30,0,0" Foreground="White" TextWrapping="Wrap"/>
+                                        <ToggleSwitch x:Name="tsImagenIconoTileGrande" RequestedTheme="Dark" Margin="0,15,0,0"/>
+
+                                        <StackPanel x:Name="spImagenIconoTileGrande" Orientation="Vertical" Visibility="Collapsed" Margin="0,15,0,0">
+                                            <GridView x:Name="gvImagenIconoTileGrande">
+                                                <GridView.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <ItemsWrapGrid MaximumRowsOrColumns="6" Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </GridView.ItemsPanel>
+                                            </GridView>
+
+                                            <TextBlock x:Uid="ImageIconPosition" Margin="0,15,0,0" Foreground="White" TextWrapping="Wrap"/>
+                                            <ComboBox x:Name="cbImagenIconoPosicionTileGrande" RequestedTheme="Dark" Margin="0,15,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <Grid Grid.Column="1" Margin="20,0" Width="50">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Button x:Name="botonCerrarTiles" Grid.Row="0" Style="{ThemeResource ButtonRevealStyle}" Background="Transparent" Padding="15,12" BorderThickness="0" HorizontalAlignment="Center">
+                            <iconos:FontAwesome Icon="Solid_Times" Foreground="White" VerticalAlignment="Center" FontSize="19"/>
+                        </Button>
+
+                        <Button x:Name="botonSubirTiles" Grid.Row="2" Style="{ThemeResource ButtonRevealStyle}" Background="Transparent" Padding="15,12" BorderThickness="0" HorizontalAlignment="Center" Visibility="Collapsed">
+                            <iconos:FontAwesome Icon="Solid_ArrowUp" Foreground="White" VerticalAlignment="Center" FontSize="19"/>
+                        </Button>
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="gridProgreso" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ProgressBar x:Name="pbProgreso" Grid.Column="0" Width="200" Foreground="White"/>
+                    <TextBlock x:Name="tbProgreso" Grid.Column="1" Margin="25,0,0,0" VerticalAlignment="Center" Foreground="White"/>
+                </Grid>
+
+                <Grid x:Name="gridAvisoNoJuegos" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+                    <StackPanel Orientation="Vertical" Padding="30" BorderBrush="{StaticResource ColorCajaRojaSombra}" BorderThickness="1">
+                        <StackPanel.Background>
+                            <SolidColorBrush Color="{StaticResource ColorCajaRojaFondo}" Opacity="0.8"/>
+                        </StackPanel.Background>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <iconos:FontAwesome Grid.Column="0" Icon="Solid_Exclamation" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                            <TextBlock Grid.Column="1" x:Uid="ConfigNoGamesDetected" Margin="20,0,0,0" TextWrapping="Wrap" Foreground="White"/>
+                        </Grid>
+
+                        <Button x:Name="botonAbrirConfig" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCajaRojaBoton}" Padding="18,15" BorderThickness="0" Margin="0,30,0,0" HorizontalAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <iconos:FontAwesome Icon="Solid_Cog" Foreground="White" Margin="0,0,15,0"/>
+                                <TextBlock x:Uid="ConfigOpen" Foreground="White"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+                <Grid x:Name="gridConfig" Visibility="Collapsed">
+                    <ScrollViewer>
+                        <StackPanel Orientation="Vertical" Padding="40" Margin="20" BorderBrush="{StaticResource ColorPrimario}" BorderThickness="1">
+                            <StackPanel.Background>
+                                <SolidColorBrush Color="{StaticResource ColorCuarto}" Opacity="0.8"/>
+                            </StackPanel.Background>
+
+                            <TextBlock x:Uid="Steam_ConfigMessage" Foreground="White" TextWrapping="Wrap"/>
+
+                            <Grid Margin="0,30,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <iconos:FontAwesome Grid.Column="0" Icon="Solid_ChevronRight" Foreground="White" FontSize="15"/>
+                                <TextBlock x:Uid="Steam_ConfigModeMessage" Grid.Column="1" Foreground="White" TextWrapping="Wrap" Margin="15,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </Grid>
+
+                            <ComboBox x:Name="cbSteamConfigModosTiles" Margin="20,20,0,0"/>
+
+                            <StackPanel x:Name="spSteamConfigModo1" Orientation="Vertical" Visibility="Collapsed">
+                                
+                            </StackPanel>
+
+                            <StackPanel x:Name="spSteamConfigModo2" Orientation="Vertical" Visibility="Collapsed">
+
+                            </StackPanel>
+
+                            <Grid BorderBrush="{StaticResource ColorPrimario}" BorderThickness="0,1,0,0" Margin="0,50"/>
+
+                            <TextBlock x:Uid="ConfigCache" FontSize="17" Foreground="White"/>
+                            <TextBlock x:Uid="ConfigCache2" Foreground="White" TextWrapping="Wrap" Margin="0,20,0,0"/>
+                            <ToggleSwitch x:Name="tsConfigCache" Margin="0,20,0,0" Foreground="White" RequestedTheme="Dark"/>
+
+                            <StackPanel x:Name="spConfigCache" Orientation="Horizontal" Margin="0,30,0,0">
+                                <Button x:Name="botonConfigLimpiarCache" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="18,15" BorderThickness="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <iconos:FontAwesome Icon="Solid_TrashAlt" Foreground="White" VerticalAlignment="Center" Margin="0,0,15,0"/>
+                                        <TextBlock x:Uid="ConfigCacheClean" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <ProgressRing x:Name="prConfigLimpiarCache" Margin="20,0,0,0" IsActive="True" Width="25" Height="25" Foreground="White" Visibility="Collapsed"/>
+                                <TextBlock x:Uid="ConfigCacheMessage" Foreground="White" TextWrapping="Wrap" Margin="30,0,0,0" FontSize="13" VerticalAlignment="Center"/>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
                 </Grid>
+
+                <Grid x:Name="gridMasTiles" Visibility="Collapsed"/>
+
+                <Grid x:Name="gridMasCosas" Visibility="Collapsed"/>
             </Grid>
         </NavigationView>
     </Grid>

@@ -1,10 +1,11 @@
-﻿Imports Microsoft.Toolkit.Uwp.UI.Controls
-Imports Windows.Services.Store
+﻿Imports Windows.Services.Store
 Imports Windows.Storage
 Imports Windows.System
 Imports Windows.UI.StartScreen
 
 Module Trial
+
+    Public idTienda As String = "9NBLGGH51SB3"
 
     Public Async Sub Detectar()
 
@@ -39,15 +40,30 @@ Module Trial
 
             Dim tiles As IReadOnlyList(Of SecondaryTile) = Await SecondaryTile.FindAllAsync()
 
-            Dim panelAñadirTile As DropShadowPanel = pagina.FindName("panelAñadirTile")
-            Dim panelComprarApp As DropShadowPanel = pagina.FindName("panelComprarApp")
+            Dim botonAñadirTile As Button = pagina.FindName("botonAñadirTile")
+            Dim botonComprarApp As Button = pagina.FindName("botonComprarApp")
 
             If tiles.Count = 0 Then
-                panelAñadirTile.Visibility = Visibility.Visible
-                panelComprarApp.Visibility = Visibility.Collapsed
+                botonAñadirTile.Visibility = Visibility.Visible
+                botonComprarApp.Visibility = Visibility.Collapsed
             ElseIf tiles.Count > 0 Then
-                panelAñadirTile.Visibility = Visibility.Collapsed
-                panelComprarApp.Visibility = Visibility.Visible
+                botonAñadirTile.Visibility = Visibility.Collapsed
+                botonComprarApp.Visibility = Visibility.Visible
+            End If
+        End If
+
+    End Sub
+
+    Public Async Sub ComprarAppClick(sender As Object, e As RoutedEventArgs)
+
+        Dim usuarios As IReadOnlyList(Of User) = Await User.FindAllAsync
+
+        If Not usuarios Is Nothing Then
+            If usuarios.Count > 0 Then
+                Dim usuario As User = usuarios(0)
+
+                Dim contexto As StoreContext = StoreContext.GetForUser(usuario)
+                Await contexto.RequestPurchaseAsync(idTienda)
             End If
         End If
 

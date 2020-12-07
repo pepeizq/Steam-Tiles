@@ -122,17 +122,11 @@
     <Content Include="Assets\Logos\AppList.altform-lightunplated_targetsize-32.png" />
     <Content Include="Assets\Logos\AppList.altform-lightunplated_targetsize-48.png" />
     <Content Include="Assets\steam_logo.png" />
-    <Content Include="Strings\Estados.txt" />
     <None Include="Package.xml" />
     <None Include="Package.StoreAssociation.xml">
       <SubType>Designer</SubType>
     </None>
     <None Include="Steam Tiles_TemporaryKey.pfx" />
-    <PRIResource Include="Strings\ar-EG\Resources.resw" />
-    <PRIResource Include="Strings\ru-RU\Resources.resw" />
-    <PRIResource Include="Strings\pl-PL\Resources.resw" />
-    <PRIResource Include="Strings\pt-BR\Resources.resw" />
-    <PRIResource Include="Strings\zh-CN\Resources.resw" />
     <PRIResource Include="Strings\es-ES\Resources.resw">
       <SubType>Designer</SubType>
     </PRIResource>
@@ -151,8 +145,13 @@
     <Compile Include="Modulos\Cache.vb" />
     <Compile Include="Modulos\Configuracion.vb" />
     <Compile Include="Modulos\Decompiladores.vb" />
+    <Compile Include="Modulos\Interfaz\AñadirTile.vb" />
+    <Compile Include="Modulos\Interfaz\Busqueda.vb" />
+    <Compile Include="Modulos\Interfaz\EfectosHover.vb" />
+    <Compile Include="Modulos\Interfaz\MasTiles.vb" />
+    <Compile Include="Modulos\Interfaz\NavigationViewItems.vb" />
+    <Compile Include="Modulos\Interfaz\Pestañas.vb" />
     <Compile Include="Modulos\MasCosas.vb" />
-    <Compile Include="Modulos\NavigationViewItems.vb" />
     <Compile Include="Modulos\Notificaciones.vb" />
     <Compile Include="Modulos\Steam.vb" />
     <Compile Include="MainPage.xaml.vb">

@@ -7,34 +7,38 @@ Module Cache
 
     Public Sub Cargar()
 
+        Dim recursos As New Resources.ResourceLoader()
+
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        Dim cbActivar As CheckBox = pagina.FindName("cbActivarCache")
-        Dim spOpciones As StackPanel = pagina.FindName("spCacheOpciones")
+        Dim ts As ToggleSwitch = pagina.FindName("tsConfigCache")
+        ts.OnContent = recursos.GetString("Activated")
+        ts.OffContent = recursos.GetString("Disabled")
 
-        RemoveHandler cbActivar.Checked, AddressOf ActivarCache
-        AddHandler cbActivar.Checked, AddressOf ActivarCache
+        AddHandler ts.Toggled, AddressOf ActivarCache
+        AddHandler ts.PointerEntered, AddressOf Interfaz.EfectosHover.Entra_Basico
+        AddHandler ts.PointerExited, AddressOf Interfaz.EfectosHover.Sale_Basico
 
-        RemoveHandler cbActivar.Unchecked, AddressOf ActivarCache
-        AddHandler cbActivar.Unchecked, AddressOf ActivarCache
+        Dim sp As StackPanel = pagina.FindName("spConfigCache")
 
         Dim botonLimpiar As Button = pagina.FindName("botonConfigLimpiarCache")
 
-        RemoveHandler botonLimpiar.Click, AddressOf Limpiar
         AddHandler botonLimpiar.Click, AddressOf Limpiar
+        AddHandler botonLimpiar.PointerEntered, AddressOf Interfaz.EfectosHover.Entra_Boton_IconoTexto
+        AddHandler botonLimpiar.PointerExited, AddressOf Interfaz.EfectosHover.Sale_Boton_IconoTexto
 
         If Not ApplicationData.Current.LocalSettings.Values("cache") = Nothing Then
             If ApplicationData.Current.LocalSettings.Values("cache") = 0 Then
-                cbActivar.IsChecked = False
-                spOpciones.Visibility = Visibility.Collapsed
+                ts.IsOn = False
+                sp.Visibility = Visibility.Collapsed
             Else
-                cbActivar.IsChecked = True
-                spOpciones.Visibility = Visibility.Visible
+                ts.IsOn = True
+                sp.Visibility = Visibility.Visible
             End If
         Else
             ApplicationData.Current.LocalSettings.Values("cache") = 0
-            spOpciones.Visibility = Visibility.Collapsed
+            sp.Visibility = Visibility.Collapsed
         End If
 
     End Sub
@@ -44,22 +48,20 @@ Module Cache
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        Dim cb As CheckBox = sender
-        Dim spOpciones As StackPanel = pagina.FindName("spCacheOpciones")
+        Dim ts As ToggleSwitch = sender
+        Dim sp As StackPanel = pagina.FindName("spConfigCache")
 
-        If cb.IsChecked = False Then
+        If ts.IsOn = False Then
             ApplicationData.Current.LocalSettings.Values("cache") = 0
-            spOpciones.Visibility = Visibility.Collapsed
+            sp.Visibility = Visibility.Collapsed
         Else
             ApplicationData.Current.LocalSettings.Values("cache") = 1
-            spOpciones.Visibility = Visibility.Visible
+            sp.Visibility = Visibility.Visible
         End If
 
     End Sub
 
     Public Async Function DescargarImagen(enlace As String, id As String, tipo As String) As Task(Of String)
-
-        Dim imagenFinal As String = String.Empty
 
         If ApplicationData.Current.LocalSettings.Values("cache") = 1 Then
             If Not enlace = String.Empty Then
@@ -110,34 +112,34 @@ Module Cache
                         End If
                     End If
                 End If
-            Else
-                Dim fichero As StorageFile = Nothing
-
-                Try
-                    fichero = Await StorageFile.GetFileFromApplicationUriAsync(New Uri("ms-appx:///Assets/Juegos/" + id + "_" + tipo + ".png"))
-                Catch ex As Exception
-
-                End Try
-
-                If Not fichero Is Nothing Then
-                    Return "Assets/Juegos/" + id + "_" + tipo + ".png"
-                End If
-
-                Try
-                    fichero = Await StorageFile.GetFileFromApplicationUriAsync(New Uri("ms-appx:///Assets/Juegos/" + id + "_" + tipo + ".jpg"))
-                Catch ex As Exception
-
-                End Try
-
-                If Not fichero Is Nothing Then
-                    Return "Assets/Juegos/" + id + "_" + tipo + ".jpg"
-                End If
             End If
-        Else
-            Return enlace
         End If
 
-        Return Nothing
+        If enlace = Nothing Then
+            Dim fichero As StorageFile = Nothing
+
+            Try
+                fichero = Await StorageFile.GetFileFromApplicationUriAsync(New Uri("ms-appx:///Assets/Juegos/" + id + "_" + tipo + ".png"))
+            Catch ex As Exception
+
+            End Try
+
+            If Not fichero Is Nothing Then
+                Return "Assets/Juegos/" + id + "_" + tipo + ".png"
+            End If
+
+            Try
+                fichero = Await StorageFile.GetFileFromApplicationUriAsync(New Uri("ms-appx:///Assets/Juegos/" + id + "_" + tipo + ".jpg"))
+            Catch ex As Exception
+
+            End Try
+
+            If Not fichero Is Nothing Then
+                Return "Assets/Juegos/" + id + "_" + tipo + ".jpg"
+            End If
+        End If
+
+        Return enlace
 
     End Function
 
@@ -146,34 +148,13 @@ Module Cache
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        Dim boton As Button = pagina.FindName("botonConfigLimpiarCache")
-        boton.IsEnabled = False
+        Estado(False)
 
         Dim pr As ProgressRing = pagina.FindName("prConfigLimpiarCache")
         pr.Visibility = Visibility.Visible
 
-        Dim cbTiles As ComboBox = pagina.FindName("cbConfigModosTiles")
-        cbTiles.IsEnabled = False
-
-        Dim sp1 As StackPanel = pagina.FindName("spModoTile1")
-        sp1.IsHitTestVisible = False
-
-        Dim sp2 As StackPanel = pagina.FindName("spModoTile2")
-        sp2.IsHitTestVisible = False
-
-        Dim gridSeleccionarJuego As Grid = pagina.FindName("gridSeleccionarJuego")
-        gridSeleccionarJuego.Visibility = Visibility.Collapsed
-
-        If File.Exists(ApplicationData.Current.LocalFolder.Path + "\juegos0") Then
-            File.Delete(ApplicationData.Current.LocalFolder.Path + "\juegos0")
-        End If
-
-        If File.Exists(ApplicationData.Current.LocalFolder.Path + "\juegos1") Then
-            File.Delete(ApplicationData.Current.LocalFolder.Path + "\juegos1")
-        End If
-
-        If File.Exists(ApplicationData.Current.LocalFolder.Path + "\juegosCuenta") Then
-            File.Delete(ApplicationData.Current.LocalFolder.Path + "\juegosCuenta")
+        If File.Exists(ApplicationData.Current.LocalFolder.Path + "\juegos") Then
+            File.Delete(ApplicationData.Current.LocalFolder.Path + "\juegos")
         End If
 
         If Directory.Exists(ApplicationData.Current.LocalFolder.Path + "\Cache") = True Then
@@ -186,8 +167,7 @@ Module Cache
 
         Dim listaJuegos As New List(Of Tile)
         Dim helper As New LocalObjectStorageHelper
-        Await helper.SaveFileAsync(Of List(Of Tile))("juegos0", listaJuegos)
-        Await helper.SaveFileAsync(Of List(Of Tile))("juegos1", listaJuegos)
+        Await helper.SaveFileAsync(Of List(Of Tile))("juegos", listaJuegos)
 
         Steam.Generar(False)
 
@@ -200,8 +180,8 @@ Module Cache
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        Dim cbActivar As CheckBox = pagina.FindName("cbActivarCache")
-        cbActivar.IsEnabled = estado
+        Dim ts As ToggleSwitch = pagina.FindName("tsConfigCache")
+        ts.IsEnabled = estado
 
         Dim botonLimpiar As Button = pagina.FindName("botonConfigLimpiarCache")
         botonLimpiar.IsEnabled = estado

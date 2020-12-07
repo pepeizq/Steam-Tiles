@@ -5,41 +5,21 @@
     RequestedTheme="Light">
 
     <Application.Resources>
-        <Style x:Key="EllipsisButton" TargetType="Button">
-            <Setter Property="MaxWidth" Value="0"/>
-        </Style>
-
-        <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
-        <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="White"/>
-        <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="White"/>
-
         <Color x:Key="ColorPrimario">#171a21</Color>
-        <Color x:Key="ColorSecundario">#373e4f</Color>
-        <Color x:Key="ColorTerciario">#a1a9bd</Color>
-        <Color x:Key="ColorCuarto">#b8becd</Color>
-
-        <Color x:Key="ColorCajaRojaFondo">#cd5c5c</Color>
-        <Color x:Key="ColorCajaRojaSombra">#6b2121</Color>
-        <Color x:Key="ColorCajaRojaBoton">#c84d4d</Color>
-        <Color x:Key="ColorCajaRojaBotonHover">#892a2a</Color>
-
-        <SolidColorBrush x:Key="ListViewItemBackgroundSelected" Color="Transparent"/>
-        <SolidColorBrush x:Key="ListViewItemBackgroundPointerOver" Color="{StaticResource ColorPrimario}"/>
-        <SolidColorBrush x:Key="ListViewItemForegroundPointerOver" Color="White"/>
-        <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{StaticResource ColorPrimario}"/>
-
-        <SolidColorBrush x:Key="ColorGridPrincipal" Color="{StaticResource ColorPrimario}"/>
-        <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="{StaticResource ColorPrimario}"/>
-        <SolidColorBrush x:Key="SystemControlForegroundAccentBrush" Color="{StaticResource ColorTerciario}" />
-
-        <AcrylicBrush x:Key="GridTituloBackground" BackgroundSource="Backdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".7"/>
-        <AcrylicBrush x:Key="NavigationViewDefaultPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".7"/>
-        <AcrylicBrush x:Key="NavigationViewExpandedPaneBackground" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".7"/>
-        <AcrylicBrush x:Key="GridAcrilico" BackgroundSource="Backdrop" TintColor="{StaticResource ColorPrimario}" TintOpacity=".1"/>
+        <Color x:Key="ColorSecundario">#687595</Color>
+        <Color x:Key="ColorTerciario">#e6e8ee</Color>
+        <Color x:Key="ColorCuarto">#3f485b</Color>
 
         <SolidColorBrush x:Key="BrushPrimario" Color="{StaticResource ColorPrimario}"/>
         <SolidColorBrush x:Key="BrushSecundario" Color="{StaticResource ColorSecundario}"/>
         <SolidColorBrush x:Key="BrushTercero" Color="{StaticResource ColorTerciario}"/>
         <SolidColorBrush x:Key="BrushCuarto" Color="{StaticResource ColorCuarto}"/>
+
+        <AcrylicBrush x:Key="AcrilicoFondo" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorPrimario}" FallbackColor="{StaticResource ColorCuarto}" TintOpacity=".7"/>
+
+        <Color x:Key="ColorCajaRojaFondo">#cd5c5c</Color>
+        <Color x:Key="ColorCajaRojaSombra">#6b2121</Color>
+        <Color x:Key="ColorCajaRojaBoton">#c84d4d</Color>
+        <Color x:Key="ColorCajaRojaBotonHover">#892a2a</Color>
     </Application.Resources>
 </Application>
