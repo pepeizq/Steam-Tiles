@@ -1,5 +1,6 @@
 ﻿Imports Microsoft.Toolkit.Uwp.Helpers
 Imports Microsoft.Toolkit.Uwp.UI.Controls
+Imports Windows.Storage
 
 Namespace Interfaz
     Module Busqueda
@@ -32,8 +33,8 @@ Namespace Interfaz
 
             Dim listaJuegos As New List(Of Tile)
 
-            If Await helper.FileExistsAsync("juegos") = True Then
-                listaJuegos = Await helper.ReadFileAsync(Of List(Of Tile))("juegos")
+            If Await helper.FileExistsAsync("juegos" + ApplicationData.Current.LocalSettings.Values("modo_tiles").ToString) = True Then
+                listaJuegos = Await helper.ReadFileAsync(Of List(Of Tile))("juegos" + ApplicationData.Current.LocalSettings.Values("modo_tiles").ToString)
             End If
 
             If Not listaJuegos Is Nothing Then

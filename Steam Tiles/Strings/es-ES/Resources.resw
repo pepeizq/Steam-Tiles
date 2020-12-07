@@ -201,6 +201,9 @@
   <data name="ConfigCacheMessage.Text" xml:space="preserve">
     <value>Si limpias la caché, automáticamente volverá a descargar las imágenes de los juegos.</value>
   </data>
+  <data name="ConfigDeleteFolders.Text" xml:space="preserve">
+    <value>Borrar Carpetas</value>
+  </data>
   <data name="ConfigFileMessage.Text" xml:space="preserve">
     <value>Desoculta los ficheros y carpetas, esta opción se encuentra en Opciones del Exploradores de Archivos (usar el buscador para encontrar la opción).</value>
   </data>
@@ -411,6 +414,18 @@
   <data name="SelectGame.Text" xml:space="preserve">
     <value>Selecciona un juego</value>
   </data>
+  <data name="Steam_AccountExample" xml:space="preserve">
+    <value>Ejemplo: https://steamcommunity.com/id/pepeizq/</value>
+  </data>
+  <data name="Steam_ConfigAccount.Text" xml:space="preserve">
+    <value>Antes de añadir tu cuenta debes permitir leer la información de tus juegos.</value>
+  </data>
+  <data name="Steam_ConfigAccount2.Text" xml:space="preserve">
+    <value>Añade el enlace a tu cuenta de Steam Community:</value>
+  </data>
+  <data name="Steam_ConfigFolderMessage.Text" xml:space="preserve">
+    <value>Selecciona las carpetas donde tengas instalados tus juegos, ejemplo: C:\Steam\steamapps</value>
+  </data>
   <data name="Steam_ConfigImport1" xml:space="preserve">
     <value>Juegos Instalados</value>
   </data>
@@ -422,6 +437,12 @@
   </data>
   <data name="Steam_ConfigModeMessage.Text" xml:space="preserve">
     <value>Selecciona el modo:</value>
+  </data>
+  <data name="Steam_StoreDescription" xml:space="preserve">
+    <value>Añade Tiles de tus juegos de Steam en el Menú Inicio de Windows 10.</value>
+  </data>
+  <data name="Steam_StoreTags" xml:space="preserve">
+    <value>Steam,Valve</value>
   </data>
   <data name="Steam_Title" xml:space="preserve">
     <value>Tiles para los juegos de Steam</value>

@@ -121,6 +121,12 @@
     <Content Include="Assets\Logos\AppList.altform-lightunplated_targetsize-256.png" />
     <Content Include="Assets\Logos\AppList.altform-lightunplated_targetsize-32.png" />
     <Content Include="Assets\Logos\AppList.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\MasCosas\github.png" />
+    <Content Include="Assets\MasCosas\pepeizqapps.png" />
+    <Content Include="Assets\MasCosas\pepeizqdeals.png" />
+    <Content Include="Assets\MasCosas\traducir.png" />
+    <Content Include="Assets\MasCosas\twitter.png" />
+    <Content Include="Assets\MasCosas\youtube.png" />
     <Content Include="Assets\steam_logo.png" />
     <None Include="Package.xml" />
     <None Include="Package.StoreAssociation.xml">

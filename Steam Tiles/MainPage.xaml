@@ -519,14 +519,71 @@
                                 <TextBlock x:Uid="Steam_ConfigModeMessage" Grid.Column="1" Foreground="White" TextWrapping="Wrap" Margin="15,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </Grid>
 
-                            <ComboBox x:Name="cbSteamConfigModosTiles" Margin="20,20,0,0"/>
+                            <ComboBox x:Name="cbSteamConfigModosTiles" Margin="20,20,0,0" RequestedTheme="Dark"/>
 
                             <StackPanel x:Name="spSteamConfigModo1" Orientation="Vertical" Visibility="Collapsed">
-                                
+                                <Grid Margin="0,30,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <iconos:FontAwesome Grid.Column="0" Icon="Solid_ChevronRight" Foreground="White" FontSize="15"/>
+                                    <TextBlock x:Uid="Steam_ConfigFolderMessage" Grid.Column="1" Foreground="White" TextWrapping="Wrap" Margin="15,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </Grid>
+
+                                <Button x:Name="botonBuscarCarpetaSteam" Margin="20,20,0,0" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="18,15" BorderThickness="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <iconos:FontAwesome Icon="Solid_Folder" Margin="0,0,15,0" VerticalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Uid="ConfigSearchFolder" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <StackPanel x:Name="spSteamCarpetas" Margin="20,20,0,0" Visibility="Collapsed"/>
+
+                                <Button x:Name="botonBorrarCarpetasSteam" Margin="20,10,0,0" Visibility="Collapsed" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="18,15" BorderThickness="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <iconos:FontAwesome Icon="Solid_Trash" Margin="0,0,15,0" VerticalAlignment="Center" Foreground="White"/>
+                                        <TextBlock x:Uid="ConfigDeleteFolders" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
 
                             <StackPanel x:Name="spSteamConfigModo2" Orientation="Vertical" Visibility="Collapsed">
+                                <Grid Margin="0,30,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
+                                    <iconos:FontAwesome Grid.Column="0" Icon="Solid_ChevronRight" Foreground="White" FontSize="15"/>
+                                    <TextBlock x:Uid="Steam_ConfigAccount" Grid.Column="1" Foreground="White" TextWrapping="Wrap" Margin="15,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </Grid>
+
+                                <StackPanel Orientation="Horizontal" Margin="20,20,0,0">
+                                    <Button x:Name="botonConfigSteamCuentaImagen" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="18,15" BorderThickness="0">
+                                        <StackPanel Orientation="Horizontal">
+                                            <iconos:FontAwesome x:Name="iconoConfigSteamCuentaImagen" Icon="Solid_AngleDoubleDown" Margin="0,0,15,0" VerticalAlignment="Center" Foreground="White"/>
+                                            <TextBlock x:Uid="ConfigShowImage" Foreground="White"/>
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <Grid x:Name="gridConfigSteamCuentaImagen" Margin="20,30,0,0" Visibility="Collapsed">
+                                    <controls:ImageEx Source="Assets/cuentapermisos.jpg" HorizontalAlignment="Left" Stretch="None"/>
+                                </Grid>
+
+                                <Grid Margin="0,30,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <iconos:FontAwesome Grid.Column="0" Icon="Solid_ChevronRight" Foreground="White" FontSize="15"/>
+                                    <TextBlock x:Uid="Steam_ConfigAccount2" Grid.Column="1" Foreground="White" TextWrapping="Wrap" Margin="15,0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                </Grid>
+
+                                <TextBox x:Name="tbConfigSteamCuenta" Margin="20,20,0,0" RequestedTheme="Dark" MinWidth="500"/>
                             </StackPanel>
 
                             <Grid BorderBrush="{StaticResource ColorPrimario}" BorderThickness="0,1,0,0" Margin="0,50"/>

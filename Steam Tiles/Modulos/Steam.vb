@@ -1,13 +1,10 @@
 ﻿Imports Microsoft.Toolkit.Uwp.Helpers
-Imports Microsoft.Toolkit.Uwp.UI.Animations
 Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Newtonsoft.Json
 Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
 Imports Windows.UI
-Imports Windows.UI.Core
-Imports Windows.UI.Xaml.Media.Animation
 
 Module Steam
 
@@ -46,8 +43,7 @@ Module Steam
         End If
 
         If modo = 0 Then
-            'Dim spCarpetas As StackPanel = pagina.FindName("spCarpetasDetectadas")
-            'spCarpetas.Children.Clear()
+            Dim spCarpetas As StackPanel = pagina.FindName("spSteamCarpetas")
 
             Dim numCarpetas As ApplicationDataContainer = ApplicationData.Current.LocalSettings
 
@@ -65,21 +61,12 @@ Module Steam
                     While i < (numCarpetas.Values("numCarpetas") + 1)
                         Try
                             carpetaTemp = Await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(clave + i.ToString)
-
-                            Dim tb As New TextBlock With {
-                                .Text = carpetaTemp.Path
-                            }
-
-                            'spCarpetas.Children.Add(tb)
+                            AñadirCarpeta(spCarpetas, carpetaTemp.Path)
                         Catch ex As Exception
                             StorageApplicationPermissions.FutureAccessList.AddOrReplace(clave + i.ToString, carpeta)
                             numCarpetas.Values("numCarpetas") = i + 1
 
-                            Dim tb As New TextBlock With {
-                                .Text = carpeta.Path
-                            }
-
-                            'spCarpetas.Children.Add(tb)
+                            AñadirCarpeta(spCarpetas, carpeta.Path)
                             Exit While
                         End Try
                         i += 1
@@ -93,12 +80,7 @@ Module Steam
                 While i < (numCarpetas.Values("numCarpetas") + 1)
                     Try
                         Dim carpetaTemp As StorageFolder = Await StorageApplicationPermissions.FutureAccessList.GetFolderAsync(clave + i.ToString)
-
-                        Dim tb As New TextBlock With {
-                            .Text = carpetaTemp.Path
-                        }
-
-                        'spCarpetas.Children.Add(tb)
+                        AñadirCarpeta(spCarpetas, carpetaTemp.Path)
                     Catch ex As Exception
 
                     End Try
@@ -106,13 +88,15 @@ Module Steam
                 End While
             End If
 
-            'If spCarpetas.Children.Count = 0 Then
-            '    Dim tb As New TextBlock With {
-            '        .Text = recursos.GetString("NoFoldersDetected")
-            '    }
+            Dim botonBorrarCarpetasSteam As Button = pagina.FindName("botonBorrarCarpetasSteam")
 
-            '    spCarpetas.Children.Add(tb)
-            'End If
+            If spCarpetas.Children.Count = 0 Then
+                spCarpetas.Visibility = Visibility.Collapsed
+                botonBorrarCarpetasSteam.Visibility = Visibility.Collapsed
+            Else
+                spCarpetas.Visibility = Visibility.Visible
+                botonBorrarCarpetasSteam.Visibility = Visibility.Visible
+            End If
 
             '-------------------------------------------------------------
 
@@ -173,6 +157,9 @@ Module Steam
                 'End If
 
                 If listaCarpetas.Count > 0 Then
+                    Dim gridProgreso As Grid = pagina.FindName("gridProgreso")
+                    Interfaz.Pestañas.Visibilidad_Pestañas(gridProgreso, Nothing)
+
                     For Each carpeta As StorageFolder In listaCarpetas
                         If Not carpeta Is Nothing Then
                             If Not carpeta.Path.Contains("steamapps") Then
@@ -262,14 +249,6 @@ Module Steam
 
                                         End Try
 
-                                        Dim imagenAnchaReducida As String = String.Empty
-
-                                        Try
-                                            imagenAnchaReducida = Await Cache.DescargarImagen(dominioImagenes + "/steam/apps/" + id + "/capsule_184x69.jpg", id, "ancha2")
-                                        Catch ex As Exception
-
-                                        End Try
-
                                         Dim imagenAncha As String = String.Empty
 
                                         Try
@@ -286,15 +265,7 @@ Module Steam
 
                                         End Try
 
-                                        If imagenGrande = String.Empty Then
-                                            Try
-                                                imagenGrande = Await Cache.DescargarImagen(dominioImagenes + "/steam/apps/" + id + "/capsule_616x353.jpg", id, "grande")
-                                            Catch ex As Exception
-
-                                            End Try
-                                        End If
-
-                                        Dim juego As New Tile(titulo, id, "steam://rungameid/" + id, Nothing, imagenLogo, imagenAnchaReducida, imagenAncha, imagenGrande)
+                                        Dim juego As New Tile(titulo, id, "steam://rungameid/" + id, Nothing, imagenLogo, imagenAncha, imagenGrande)
 
                                         listaJuegos.Add(juego)
                                     End If
@@ -319,6 +290,9 @@ Module Steam
 
             Dim k As Integer = 0
             If listaIDs.Count > 0 Then
+                Dim gridProgreso As Grid = pagina.FindName("gridProgreso")
+                Interfaz.Pestañas.Visibilidad_Pestañas(gridProgreso, Nothing)
+
                 For Each id In listaIDs
                     Dim añadir As Boolean = True
                     Dim g As Integer = 0
@@ -352,14 +326,6 @@ Module Steam
 
                                     End Try
 
-                                    Dim imagenAnchaReducida As String = String.Empty
-
-                                    Try
-                                        imagenAnchaReducida = Await Cache.DescargarImagen(dominioImagenes + "/steam/apps/" + id + "/capsule_184x69.jpg", id, "ancha2")
-                                    Catch ex As Exception
-
-                                    End Try
-
                                     Dim imagenAncha As String = String.Empty
 
                                     Try
@@ -376,15 +342,7 @@ Module Steam
 
                                     End Try
 
-                                    If imagenGrande = String.Empty Then
-                                        Try
-                                            imagenGrande = Await Cache.DescargarImagen(dominioImagenes + "/steam/apps/" + id + "/capsule_616x353.jpg", id, "grande")
-                                        Catch ex As Exception
-
-                                        End Try
-                                    End If
-
-                                    Dim juego As New Tile(api.Datos.Titulo, id, "steam://rungameid/" + id, Nothing, imagenLogo, imagenAnchaReducida, imagenAncha, imagenGrande)
+                                    Dim juego As New Tile(api.Datos.Titulo, id, "steam://rungameid/" + id, Nothing, imagenLogo, imagenAncha, imagenGrande)
 
                                     listaJuegos.Add(juego)
                                 End If
@@ -446,8 +404,11 @@ Module Steam
             .Stretch = Stretch.UniformToFill,
             .Padding = New Thickness(0, 0, 0, 0),
             .HorizontalAlignment = HorizontalAlignment.Center,
-            .VerticalAlignment = VerticalAlignment.Center
+            .VerticalAlignment = VerticalAlignment.Center,
+            .Tag = juego.ID
         }
+
+        AddHandler imagen.ImageExFailed, AddressOf ImagenFalla
 
         boton.Tag = juego
         boton.Content = imagen
@@ -470,6 +431,25 @@ Module Steam
         AddHandler boton.PointerExited, AddressOf Interfaz.Sale_Boton_Imagen
 
         gv.Items.Add(panel)
+
+    End Sub
+
+    Private Async Sub ImagenFalla(sender As Object, e As ImageExFailedEventArgs)
+
+        Dim imagen As ImageEx = sender
+        Dim imagenFuente As String = imagen.Source
+
+        If imagenFuente = Nothing Then
+            Dim id As String = imagen.Tag
+            imagen.Source = Await Cache.DescargarImagen(dominioImagenes + "/steam/apps/" + id + "/header.jpg", id, "ancha")
+        Else
+            If imagenFuente.Contains("/library_600x900.jpg") Then
+                imagen.Source = imagenFuente.Replace("/library_600x900.jpg", "/capsule_616x353.jpg")
+            ElseIf imagenFuente.Contains("/capsule_616x353.jpg") Then
+                imagen.Source = imagenFuente.Replace("/capsule_616x353.jpg", "/header.jpg")
+                imagen.Stretch = Stretch.Uniform
+            End If
+        End If
 
     End Sub
 
@@ -551,14 +531,13 @@ Module Steam
 
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
-        Dim spCarpetas As StackPanel = pagina.FindName("spCarpetasDetectadas")
+
+        Dim spCarpetas As StackPanel = pagina.FindName("spSteamCarpetas")
         spCarpetas.Children.Clear()
+        spCarpetas.Visibility = Visibility.Collapsed
 
-        Dim tb As New TextBlock With {
-            .Text = recursos.GetString("NoFoldersDetected")
-        }
-
-        spCarpetas.Children.Add(tb)
+        Dim botonBorrarCarpetasSteam As Button = pagina.FindName("botonBorrarCarpetasSteam")
+        botonBorrarCarpetasSteam.Visibility = Visibility.Collapsed
 
         Dim gv As AdaptiveGridView = pagina.FindName("gvTiles")
         gv.Items.Clear()
@@ -576,8 +555,6 @@ Module Steam
             listaJuegos.Clear()
             Await helper.SaveFileAsync(Of List(Of Tile))("juegos1", listaJuegos)
         End If
-
-        Generar(False)
 
     End Sub
 
@@ -661,24 +638,41 @@ Module Steam
         Return urlIcono
     End Function
 
+    Private Sub AñadirCarpeta(spCarpetas As StackPanel, carpeta As String)
+
+        Dim añadir As Boolean = True
+
+        For Each subcarpeta In spCarpetas.Children
+            Dim subtb As TextBlock = subcarpeta
+
+            If subtb.Text = carpeta Then
+                añadir = False
+            End If
+        Next
+
+        If añadir = True Then
+            Dim tb As New TextBlock With {
+                .Text = carpeta,
+                .Foreground = New SolidColorBrush(Colors.White),
+                .Margin = New Thickness(0, 0, 0, 10)
+            }
+
+            spCarpetas.Children.Add(tb)
+        End If
+
+    End Sub
+
     Public Async Sub Cuenta(cuenta As String)
+
+        cuenta = cuenta.Replace("https://steamcommunity.com/id/", Nothing)
+        cuenta = cuenta.Replace("http://steamcommunity.com/id/", Nothing)
+        cuenta = cuenta.Replace("/", Nothing)
 
         Dim helper As New LocalObjectStorageHelper
 
         Dim usuario As SteamCuenta = Nothing
 
-        Dim frame As Frame = Window.Current.Content
-        Dim pagina As Page = frame.Content
-
-        Dim cbTiles As ComboBox = pagina.FindName("cbConfigModosTiles")
-        cbTiles.IsEnabled = False
-
-        Dim sp1 As StackPanel = pagina.FindName("spModoTile1")
-        sp1.IsHitTestVisible = False
-
-        Dim sp2 As StackPanel = pagina.FindName("spModoTile2")
-        sp2.IsHitTestVisible = False
-
+        Configuracion.Estado(False)
         Cache.Estado(False)
 
         Dim htmlID As String = Await Decompiladores.HttpClient(New Uri("https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=41F2D73A0B5024E9101F8D4E8D8AC21E&vanityurl=" + cuenta))
@@ -752,17 +746,7 @@ Module Steam
             End If
         End If
 
-        Dim gridCuenta As Grid = pagina.FindName("gridConfigCuentaInfo")
-
         If Not usuario Is Nothing Then
-            gridCuenta.Visibility = Visibility.Visible
-
-            Dim imagenCuenta As ImageEx = pagina.FindName("imagenConfigCuentaInfo")
-            imagenCuenta.Source = usuario.Avatar
-
-            Dim tbCuenta As TextBlock = pagina.FindName("tbConfigCuentaInfo")
-            tbCuenta.Text = usuario.Nombre
-
             ApplicationData.Current.LocalSettings.Values("cuenta_steam") = usuario.NombreUrl
 
             Dim htmlJuegos As String = Await Decompiladores.HttpClient(New Uri("https://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=41F2D73A0B5024E9101F8D4E8D8AC21E&steamid=" + usuario.ID64 + "&include_appinfo=1&include_played_free_games=1"))
@@ -828,13 +812,9 @@ Module Steam
                     End If
                 End If
             End If
-        Else
-            gridCuenta.Visibility = Visibility.Collapsed
         End If
 
-        cbTiles.IsEnabled = True
-        sp1.IsHitTestVisible = True
-        sp2.IsHitTestVisible = True
+        Configuracion.Estado(True)
         Cache.Estado(True)
 
     End Sub

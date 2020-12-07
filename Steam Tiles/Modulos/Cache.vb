@@ -153,8 +153,12 @@ Module Cache
         Dim pr As ProgressRing = pagina.FindName("prConfigLimpiarCache")
         pr.Visibility = Visibility.Visible
 
-        If File.Exists(ApplicationData.Current.LocalFolder.Path + "\juegos") Then
-            File.Delete(ApplicationData.Current.LocalFolder.Path + "\juegos")
+        If File.Exists(ApplicationData.Current.LocalFolder.Path + "\juegos0") Then
+            File.Delete(ApplicationData.Current.LocalFolder.Path + "\juegos0")
+        End If
+
+        If File.Exists(ApplicationData.Current.LocalFolder.Path + "\juegos1") Then
+            File.Delete(ApplicationData.Current.LocalFolder.Path + "\juegos1")
         End If
 
         If Directory.Exists(ApplicationData.Current.LocalFolder.Path + "\Cache") = True Then
@@ -167,7 +171,8 @@ Module Cache
 
         Dim listaJuegos As New List(Of Tile)
         Dim helper As New LocalObjectStorageHelper
-        Await helper.SaveFileAsync(Of List(Of Tile))("juegos", listaJuegos)
+        Await helper.SaveFileAsync(Of List(Of Tile))("juegos0", listaJuegos)
+        Await helper.SaveFileAsync(Of List(Of Tile))("juegos1", listaJuegos)
 
         Steam.Generar(False)
 

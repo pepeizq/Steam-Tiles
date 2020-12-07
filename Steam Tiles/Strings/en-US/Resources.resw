@@ -201,6 +201,9 @@
   <data name="ConfigCacheMessage.Text" xml:space="preserve">
     <value>If you clear the cache, it will automatically re-download the images of the games.</value>
   </data>
+  <data name="ConfigDeleteFolders.Text" xml:space="preserve">
+    <value>Delete Folders</value>
+  </data>
   <data name="ConfigFileMessage.Text" xml:space="preserve">
     <value>Unhide files and folders, this option is found in File Explorer Options (use the search engine to find the option).</value>
   </data>
@@ -411,6 +414,18 @@
   <data name="SelectGame.Text" xml:space="preserve">
     <value>Select a game</value>
   </data>
+  <data name="Steam_AccountExample" xml:space="preserve">
+    <value>Example: https://steamcommunity.com/id/pepeizq/</value>
+  </data>
+  <data name="Steam_ConfigAccount.Text" xml:space="preserve">
+    <value>Before adding your account you must allow to read your games.</value>
+  </data>
+  <data name="Steam_ConfigAccount2.Text" xml:space="preserve">
+    <value>Add the link to your Steam Community account:</value>
+  </data>
+  <data name="Steam_ConfigFolderMessage.Text" xml:space="preserve">
+    <value>Select the folders where you have your games installed, example: C:\Steam\steamapps</value>
+  </data>
   <data name="Steam_ConfigImport1" xml:space="preserve">
     <value>Installed Games</value>
   </data>
@@ -422,6 +437,12 @@
   </data>
   <data name="Steam_ConfigModeMessage.Text" xml:space="preserve">
     <value>Select the mode:</value>
+  </data>
+  <data name="Steam_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your games from Steam to the Windows 10 Start Menu.</value>
+  </data>
+  <data name="Steam_StoreTags" xml:space="preserve">
+    <value>Steam,Valve</value>
   </data>
   <data name="Steam_Title" xml:space="preserve">
     <value>Tiles for Steam Games</value>
