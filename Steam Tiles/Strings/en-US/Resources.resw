@@ -264,6 +264,36 @@
   <data name="Discord_Title" xml:space="preserve">
     <value>Tiles for Discord Games</value>
   </data>
+  <data name="Epic_ConfigFolderMessage.Text" xml:space="preserve">
+    <value>Select the folder: C:\ProgramData\Epic</value>
+  </data>
+  <data name="Epic_ConfigImport1" xml:space="preserve">
+    <value>Installed Games</value>
+  </data>
+  <data name="Epic_ConfigImport2" xml:space="preserve">
+    <value>All Games</value>
+  </data>
+  <data name="Epic_ConfigMessage.Text" xml:space="preserve">
+    <value>The application allows you to load your Epic games that are installed or directly select any game on the platform (in this case you must have the game to be able to run it).</value>
+  </data>
+  <data name="Epic_ConfigModeMessage.Text" xml:space="preserve">
+    <value>Select the mode:</value>
+  </data>
+  <data name="Epic_MissingGames.Text" xml:space="preserve">
+    <value>Due to restrictions in the Epic Games API, I must manually integrate their games into the app.</value>
+  </data>
+  <data name="Epic_SelectGame" xml:space="preserve">
+    <value>Select a game (you must have the game on Epic Games)</value>
+  </data>
+  <data name="Epic_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your games from the Epic Games launcher to the Windows 10 Start Menu.</value>
+  </data>
+  <data name="Epic_StoreTags" xml:space="preserve">
+    <value>Epic Games,Fortnite,World War Z,Rocket League,</value>
+  </data>
+  <data name="Epic_Title" xml:space="preserve">
+    <value>Tiles for Epic Games</value>
+  </data>
   <data name="Games" xml:space="preserve">
     <value>Games</value>
   </data>
@@ -411,7 +441,7 @@
   <data name="SearchGame" xml:space="preserve">
     <value>Search for a game</value>
   </data>
-  <data name="SelectGame.Text" xml:space="preserve">
+  <data name="SelectGame" xml:space="preserve">
     <value>Select a game</value>
   </data>
   <data name="Steam_AccountExample" xml:space="preserve">
@@ -474,7 +504,7 @@
   <data name="Ubi_MissingGames.Text" xml:space="preserve">
     <value>Due to restrictions in the Ubisoft Connect API, I must manually integrate their games into the app.</value>
   </data>
-  <data name="Ubi_SelectGame.Text" xml:space="preserve">
+  <data name="Ubi_SelectGame" xml:space="preserve">
     <value>Select a game (you must have the game on Ubisoft Connect)</value>
   </data>
   <data name="Ubi_StoreDescription" xml:space="preserve">

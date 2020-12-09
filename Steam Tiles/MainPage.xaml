@@ -42,15 +42,23 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0" Padding="15" BorderBrush="{StaticResource ColorCajaRojaSombra}" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <Grid.Background>
-                            <SolidColorBrush Color="{StaticResource ColorCajaRojaFondo}" Opacity="0.8"/>
-                        </Grid.Background>
+                    <Grid Grid.Row="0">
+                        <Grid Padding="15" BorderBrush="{StaticResource ColorCajaRojaSombra}" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Grid.Background>
+                                <SolidColorBrush Color="{StaticResource ColorCajaRojaFondo}" Opacity="0.8"/>
+                            </Grid.Background>
 
-                        <TextBlock x:Uid="SelectGame" TextWrapping="Wrap" Foreground="White"/>
+                            <TextBlock x:Name="tbSeleccionarJuego" TextWrapping="Wrap" Foreground="White"/>
+                        </Grid>
+
+                        <Button x:Name="botonSubirJuegos" Style="{ThemeResource ButtonRevealStyle}" Background="Transparent" Padding="15,12" BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="Center" Visibility="Collapsed">
+                            <iconos:FontAwesome Icon="Solid_ArrowUp" Foreground="White" VerticalAlignment="Center" FontSize="17"/>
+                        </Button>
                     </Grid>
 
-                    <controls:AdaptiveGridView x:Name="gvTiles" Grid.Row="1" Margin="0,20,0,0" Padding="0,0,30,0" IsItemClickEnabled="True" animations:ReorderGridAnimation.Duration="250"/>
+                    <ScrollViewer x:Name="svJuegos" Grid.Row="1" Margin="0,20,0,0" Padding="0,0,30,0" VerticalScrollBarVisibility="Auto">
+                        <controls:AdaptiveGridView x:Name="gvTiles" IsItemClickEnabled="True" animations:ReorderGridAnimation.Duration="250"/>
+                    </ScrollViewer>
                 </Grid>
 
                 <Grid x:Name="gridAñadirTile" Visibility="Collapsed" Padding="10">
