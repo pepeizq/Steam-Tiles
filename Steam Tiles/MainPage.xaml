@@ -82,7 +82,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Border Grid.Column="0" BorderThickness="1" BorderBrush="{StaticResource ColorPrimario}" Width="131" Height="61" VerticalAlignment="Center">
-                                    <controls:ImageEx x:Name="imagenJuegoSeleccionado" Stretch="UniformToFill" IsCacheEnabled="True"/>
+                                    <controls:ImageEx x:Name="imagenJuegoSeleccionado" Stretch="UniformToFill" IsCacheEnabled="True" EnableLazyLoading="True"/>
                                 </Border>
 
                                 <TextBlock x:Name="tbJuegoSeleccionado" Grid.Column="1" VerticalAlignment="Center" Margin="20,0" TextWrapping="Wrap" Foreground="White" FontSize="18"/>
@@ -142,7 +142,7 @@
 
                                             <StackPanel Grid.Column="0" Orientation="Vertical">
                                                 <Grid x:Name="gridTilePequeña" Background="Transparent" Width="71" Height="71" VerticalAlignment="Top">
-                                                    <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" Stretch="None"/>
+                                                    <controls:ImageEx x:Name="imagenTilePequeña" IsCacheEnabled="True" Stretch="None" EnableLazyLoading="True"/>
                                                 </Grid>
 
                                                 <TextBlock Text="71x71" Foreground="White" FontSize="13" Margin="0,15,0,0" HorizontalAlignment="Center"/>
@@ -164,7 +164,7 @@
 
                                             <StackPanel Grid.Column="0" Orientation="Vertical">
                                                 <Grid x:Name="gridTileMediana" Background="Transparent" Width="150" Height="150" VerticalAlignment="Top">
-                                                    <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True"/>
+                                                    <controls:ImageEx x:Name="imagenTileMediana" IsCacheEnabled="True" EnableLazyLoading="True"/>
                                                 </Grid>
 
                                                 <TextBlock Text="150x150" Foreground="White" FontSize="13" Margin="0,15,0,0" HorizontalAlignment="Center"/>
@@ -186,7 +186,7 @@
 
                                             <StackPanel Grid.Column="0" Orientation="Vertical">
                                                 <Grid x:Name="gridTileAncha" Background="Transparent" Width="310" Height="150" VerticalAlignment="Top">
-                                                    <controls:ImageEx x:Name="imagenTileAncha" IsCacheEnabled="True" Stretch="UniformToFill"/>
+                                                    <controls:ImageEx x:Name="imagenTileAncha" IsCacheEnabled="True" Stretch="UniformToFill" EnableLazyLoading="True"/>
                                                 </Grid>
 
                                                 <TextBlock Text="310x150" Foreground="White" FontSize="13" Margin="0,15,0,0" HorizontalAlignment="Center"/>
@@ -208,7 +208,7 @@
 
                                             <StackPanel Grid.Column="0" Orientation="Vertical">
                                                 <Grid x:Name="gridTileGrande" Background="Transparent" Width="310" Height="310" VerticalAlignment="Top">
-                                                    <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" Stretch="UniformToFill"/>
+                                                    <controls:ImageEx x:Name="imagenTileGrande" IsCacheEnabled="True" Stretch="UniformToFill" EnableLazyLoading="True"/>
                                                 </Grid>
 
                                                 <TextBlock Text="310x310" Foreground="White" FontSize="13" Margin="0,15,0,0" HorizontalAlignment="Center"/>

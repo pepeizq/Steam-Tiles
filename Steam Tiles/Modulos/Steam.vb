@@ -413,7 +413,8 @@ Module Steam
             .Padding = New Thickness(0, 0, 0, 0),
             .HorizontalAlignment = HorizontalAlignment.Center,
             .VerticalAlignment = VerticalAlignment.Center,
-            .Tag = juego.ID
+            .Tag = juego.ID,
+            .EnableLazyLoading = True
         }
 
         AddHandler imagen.ImageExFailed, AddressOf ImagenFalla
