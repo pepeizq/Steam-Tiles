@@ -566,7 +566,7 @@ Namespace Interfaz
             Dim pagina As Page = frame.Content
 
             Dim gridJuegos As Grid = pagina.FindName("gridJuegos")
-            Pestañas.Visibilidad_Pestañas(gridJuegos, recursos.GetString("Games"))
+            Pestañas.Visibilidad(gridJuegos, recursos.GetString("Games"), Nothing)
 
         End Sub
 

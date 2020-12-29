@@ -1,7 +1,9 @@
-﻿Namespace Interfaz
+﻿Imports Windows.UI.Xaml.Media.Animation
+
+Namespace Interfaz
     Module Pestañas
 
-        Public Sub Visibilidad_Pestañas(gridMostrar As Grid, tag As String)
+        Public Sub Visibilidad(gridMostrar As Grid, tag As String, origen As Object)
 
             Dim recursos As New Resources.ResourceLoader()
 
@@ -30,13 +32,19 @@
             Dim gridAvisoNoJuegos As Grid = pagina.FindName("gridAvisoNoJuegos")
             gridAvisoNoJuegos.Visibility = Visibility.Collapsed
 
-            Dim gridMasTiles As Grid = pagina.FindName("gridMasTiles")
-            gridMasTiles.Visibility = Visibility.Collapsed
-
-            Dim gridMasCosas As Grid = pagina.FindName("gridMasCosas")
-            gridMasCosas.Visibility = Visibility.Collapsed
-
             gridMostrar.Visibility = Visibility.Visible
+
+            '--------------------------------------------------------
+
+            If Not origen Is Nothing Then
+                ConnectedAnimationService.GetForCurrentView().PrepareToAnimate("animacion", origen)
+                Dim animacion As ConnectedAnimation = ConnectedAnimationService.GetForCurrentView().GetAnimation("animacion")
+
+                If Not animacion Is Nothing Then
+                    animacion.Configuration = New DirectConnectedAnimationConfiguration
+                    animacion.TryStart(gridMostrar)
+                End If
+            End If
 
             '--------------------------------------------------------
 

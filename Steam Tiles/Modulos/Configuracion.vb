@@ -79,7 +79,7 @@ Module Configuracion
         Dim gridConfig As Grid = pagina.FindName("gridConfig")
 
         Dim recursos As New Resources.ResourceLoader()
-        Interfaz.Pestañas.Visibilidad_Pestañas(gridConfig, recursos.GetString("Config"))
+        Interfaz.Pestañas.Visibilidad(gridConfig, recursos.GetString("Config"), sender)
 
     End Sub
 

@@ -22,50 +22,73 @@ Module MasCosas
         Dim frame As Frame = Window.Current.Content
         Dim pagina As Page = frame.Content
 
-        Dim grid As Grid = pagina.FindName("gridMasCosas")
+        Dim boton As Button = pagina.FindName("botonMasCosas")
+        boton.Background = New SolidColorBrush(Colors.Transparent)
+        boton.BorderBrush = New SolidColorBrush(Colors.Transparent)
+        boton.BorderThickness = New Thickness(0, 0, 0, 0)
+        boton.Style = App.Current.Resources("ButtonRevealStyle")
 
-        Dim sv As New ScrollViewer With {
-            .VerticalScrollBarVisibility = ScrollBarVisibility.Auto
+        AddHandler boton.PointerEntered, AddressOf Interfaz.EfectosHover.Entra_Basico
+        AddHandler boton.PointerExited, AddressOf Interfaz.EfectosHover.Sale_Basico
+
+        Dim spBoton As New StackPanel With {
+            .Orientation = Orientation.Horizontal
         }
 
-        Dim sp As New StackPanel With {
-            .Orientation = Orientation.Vertical,
-            .Padding = New Thickness(10, 10, 30, 10)
+        Dim icono As New FontAwesome5.FontAwesome With {
+            .Foreground = New SolidColorBrush(App.Current.Resources("ColorPrimario")),
+            .Icon = FontAwesome5.EFontAwesomeIcon.Solid_Cube,
+            .Margin = New Thickness(0, 0, 8, 0),
+            .FontSize = 15
         }
+
+        spBoton.Children.Add(icono)
+
+        Dim tb As New TextBlock With {
+            .Foreground = New SolidColorBrush(App.Current.Resources("ColorPrimario")),
+            .Text = recursos.GetString("MoreThings")
+        }
+
+        spBoton.Children.Add(tb)
+        boton.Content = spBoton
+
+        '------------------------------------------
+
+        Dim sp As StackPanel = pagina.FindName("spMasCosas")
 
         If Not codigoFuente = Nothing Then
             sp.Children.Add(GenerarCaja(recursos.GetString("MoreThingsSourceCode"), recursos.GetString("MoreThingsSourceCodeDescription"),
-                                        codigoFuente, FontAwesome5.EFontAwesomeIcon.Brands_Github, False, "github.png"))
+                                        codigoFuente, FontAwesome5.EFontAwesomeIcon.Brands_Github, False))
         End If
 
         If Not traduccion = Nothing Then
             sp.Children.Add(GenerarCaja(recursos.GetString("MoreThingsHelpTranslate"), recursos.GetString("MoreThingsHelpTranslateDescription"),
-                                        traduccion, FontAwesome5.EFontAwesomeIcon.Solid_GlobeEurope, False, "traducir.png"))
+                                        traduccion, FontAwesome5.EFontAwesomeIcon.Solid_GlobeEurope, False))
         End If
 
         If calificar = True Then
             sp.Children.Add(GenerarCaja(recursos.GetString("MoreThingsRateApp"), recursos.GetString("MoreThingsRateAppDescription"),
-                                        Nothing, FontAwesome5.EFontAwesomeIcon.Solid_ThumbsUp, True, Nothing))
+                                        Nothing, FontAwesome5.EFontAwesomeIcon.Solid_ThumbsUp, True))
         End If
 
         If Not youtube = Nothing Then
             sp.Children.Add(GenerarCaja(recursos.GetString("MoreThingsVideo"), recursos.GetString("MoreThingsVideoDescription"),
-                                        youtube, FontAwesome5.EFontAwesomeIcon.Brands_Youtube, False, "youtube.png"))
+                                        youtube, FontAwesome5.EFontAwesomeIcon.Brands_Youtube, False))
         End If
 
         If pepeizqapps = True Then
             sp.Children.Add(GenerarCaja("pepeizqapps.com", recursos.GetString("MoreThingspepeizqappsDescription"),
-                                        "https://pepeizqapps.com/", FontAwesome5.EFontAwesomeIcon.Solid_Cube, False, "pepeizqapps.png"))
+                                        "https://pepeizqapps.com/", FontAwesome5.EFontAwesomeIcon.Solid_Cube, False))
         End If
 
         If pepeizqdeals = True Then
             sp.Children.Add(GenerarCaja("pepeizqdeals.com", recursos.GetString("MoreThingspepeizqdealsDescription"),
-                                        "https://pepeizqdeals.com/", FontAwesome5.EFontAwesomeIcon.Solid_Cube, False, "pepeizqdeals.png"))
+                                        "https://pepeizqdeals.com/", FontAwesome5.EFontAwesomeIcon.Solid_Cube, False))
         End If
 
         If Not twitter = Nothing Then
             sp.Children.Add(GenerarCaja("@pepeizqu", recursos.GetString("MoreThingsMyTwitterDescription"),
-                                        twitter, FontAwesome5.EFontAwesomeIcon.Brands_Twitter, False, "twitter.png"))
+                                        twitter, FontAwesome5.EFontAwesomeIcon.Brands_Twitter, False))
         End If
 
         If sp.Children.Count > 1 Then
@@ -73,57 +96,65 @@ Module MasCosas
             botonUltimo.Margin = New Thickness(0, 0, 0, 0)
         End If
 
-        sv.Content = sp
-        grid.Children.Add(sv)
-
     End Sub
 
-    Private Function GenerarCaja(titulo As String, descripcion As String, enlace As String, icono2 As FontAwesome5.EFontAwesomeIcon, calificar As Boolean, imagenFondo As String)
+    Private Function GenerarCaja(titulo As String, descripcion As String, enlace As String, icono2 As FontAwesome5.EFontAwesomeIcon, calificar As Boolean)
 
         Dim recursos As New Resources.ResourceLoader
 
         Dim colorFondo As New SolidColorBrush With {
             .Color = App.Current.Resources("ColorCuarto"),
-            .Opacity = 0.5
+            .Opacity = 0.9
         }
 
         Dim spBoton As New StackPanel With {
             .Orientation = Orientation.Vertical,
-            .Padding = New Thickness(30, 30, 30, 30),
+            .Padding = New Thickness(10, 10, 10, 10),
             .BorderBrush = New SolidColorBrush(App.Current.Resources("ColorPrimario")),
-            .BorderThickness = New Thickness(1, 1, 1, 1),
+            .BorderThickness = New Thickness(1.5, 1.5, 1.5, 1.5),
             .Background = colorFondo
         }
 
-        Dim spTitulo As New StackPanel With {
-            .Orientation = Orientation.Horizontal
-        }
+        Dim gridTitulo As New Grid
+
+        Dim col1 As New ColumnDefinition
+        Dim col2 As New ColumnDefinition
+
+        col1.Width = New GridLength(1, GridUnitType.Auto)
+        col2.Width = New GridLength(1, GridUnitType.Star)
+
+        gridTitulo.ColumnDefinitions.Add(col1)
+        gridTitulo.ColumnDefinitions.Add(col2)
 
         Dim icono As New FontAwesome5.FontAwesome With {
             .Icon = icono2,
             .Foreground = New SolidColorBrush(Colors.White),
-            .VerticalAlignment = VerticalAlignment.Center
+            .VerticalAlignment = VerticalAlignment.Center,
+            .FontSize = 14
         }
 
-        spTitulo.Children.Add(icono)
+        icono.SetValue(Grid.ColumnProperty, 0)
+        gridTitulo.Children.Add(icono)
 
         Dim tbTitulo As New TextBlock With {
             .Text = titulo,
-            .Margin = New Thickness(15, 0, 0, 0),
+            .Margin = New Thickness(10, 0, 0, 0),
             .Foreground = New SolidColorBrush(Colors.White),
-            .FontSize = 17,
-            .VerticalAlignment = VerticalAlignment.Center
+            .FontSize = 14,
+            .VerticalAlignment = VerticalAlignment.Center,
+            .TextWrapping = TextWrapping.Wrap
         }
 
-        spTitulo.Children.Add(tbTitulo)
+        tbTitulo.SetValue(Grid.ColumnProperty, 1)
+        gridTitulo.Children.Add(tbTitulo)
 
-        spBoton.Children.Add(spTitulo)
+        spBoton.Children.Add(gridTitulo)
 
         Dim tbDescripcion As New TextBlock With {
             .Text = descripcion,
-            .Margin = New Thickness(0, 15, 0, 0),
+            .Margin = New Thickness(0, 10, 0, 0),
             .Foreground = New SolidColorBrush(Colors.White),
-            .FontSize = 15,
+            .FontSize = 13,
             .VerticalAlignment = VerticalAlignment.Center,
             .TextWrapping = TextWrapping.Wrap
         }
@@ -136,9 +167,10 @@ Module MasCosas
             .BorderBrush = New SolidColorBrush(Colors.Transparent),
             .BorderThickness = New Thickness(0, 0, 0, 0),
             .Style = App.Current.Resources("ButtonRevealStyle"),
-            .Margin = New Thickness(0, 0, 0, 30),
+            .Margin = New Thickness(0, 0, 0, 15),
             .HorizontalAlignment = HorizontalAlignment.Stretch,
-            .HorizontalContentAlignment = HorizontalAlignment.Stretch
+            .HorizontalContentAlignment = HorizontalAlignment.Stretch,
+            .MaxWidth = 400
         }
 
         AddHandler boton.PointerEntered, AddressOf Entra_Boton
@@ -148,31 +180,6 @@ Module MasCosas
             AddHandler boton.Click, AddressOf AbrirClick
         Else
             AddHandler boton.Click, AddressOf CalificarClick
-        End If
-
-        Dim tbToolTip As TextBlock = New TextBlock With {
-            .FontSize = 16,
-            .TextWrapping = TextWrapping.Wrap
-        }
-
-        If calificar = False Then
-            tbToolTip.Text = recursos.GetString("MoreThingsOpen")
-        Else
-            tbToolTip.Text = recursos.GetString("MoreThingsRate")
-        End If
-
-        ToolTipService.SetToolTip(boton, tbToolTip)
-        ToolTipService.SetPlacement(boton, PlacementMode.Mouse)
-
-        If Not imagenFondo = Nothing Then
-            Dim fondoBoton As New ImageBrush With {
-                .ImageSource = New BitmapImage(New Uri("ms-appx:///Assets/MasCosas/" + imagenFondo)),
-                .Stretch = Stretch.UniformToFill,
-                .Opacity = 0.1,
-                .AlignmentY = AlignmentY.Top
-            }
-
-            boton.Background = fondoBoton
         End If
 
         Return boton
@@ -243,12 +250,12 @@ Module MasCosas
         Dim sp As StackPanel = boton.Content
 
         Dim fondo As New SolidColorBrush With {
-            .Opacity = 0.7,
+            .Opacity = 1,
             .Color = App.Current.Resources("ColorCuarto")
         }
 
         sp.Background = fondo
-        sp.Saturation(1).Scale(1.01, 1.01, sp.ActualWidth / 2, sp.ActualHeight / 2).Start()
+        sp.Saturation(1).Scale(1.005, 1.005, sp.ActualWidth / 2, sp.ActualHeight / 2).Start()
 
         Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
 
@@ -260,7 +267,7 @@ Module MasCosas
         Dim sp As StackPanel = boton.Content
 
         Dim fondo As New SolidColorBrush With {
-            .Opacity = 0.5,
+            .Opacity = 0.9,
             .Color = App.Current.Resources("ColorCuarto")
         }
 
