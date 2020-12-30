@@ -209,7 +209,7 @@ Namespace Tiles
 
         End Sub
 
-        Public Sub Titulo(ByVal sender As Object, ByVal e As RoutedEventArgs)
+        Public Sub TituloMostrarAncha(ByVal sender As Object, ByVal e As RoutedEventArgs)
 
             Dim ts As ToggleSwitch = sender
 
@@ -224,9 +224,6 @@ Namespace Tiles
                 If grid.Name = "gridTileAncha" Then
                     Dim sp As StackPanel = pagina.FindName("spImagenTituloTileAncha")
                     sp.Visibility = Visibility.Visible
-                ElseIf grid.Name = "gridTileGrande" Then
-                    Dim sp As StackPanel = pagina.FindName("spImagenTituloTileGrande")
-                    sp.Visibility = Visibility.Visible
                 End If
             Else
                 ApplicationData.Current.LocalSettings.Values("tile_ancha_titulo") = False
@@ -234,7 +231,31 @@ Namespace Tiles
                 If grid.Name = "gridTileAncha" Then
                     Dim sp As StackPanel = pagina.FindName("spImagenTituloTileAncha")
                     sp.Visibility = Visibility.Collapsed
-                ElseIf grid.Name = "gridTileGrande" Then
+                End If
+            End If
+
+        End Sub
+
+        Public Sub TituloMostrarGrande(ByVal sender As Object, ByVal e As RoutedEventArgs)
+
+            Dim ts As ToggleSwitch = sender
+
+            Dim grid As Grid = ts.Tag
+
+            Dim frame As Frame = Window.Current.Content
+            Dim pagina As Page = frame.Content
+
+            If ts.IsOn = True Then
+                ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = True
+
+                If grid.Name = "gridTileGrande" Then
+                    Dim sp As StackPanel = pagina.FindName("spImagenTituloTileGrande")
+                    sp.Visibility = Visibility.Visible
+                End If
+            Else
+                ApplicationData.Current.LocalSettings.Values("tile_grande_titulo") = False
+
+                If grid.Name = "gridTileGrande" Then
                     Dim sp As StackPanel = pagina.FindName("spImagenTituloTileGrande")
                     sp.Visibility = Visibility.Collapsed
                 End If
@@ -246,6 +267,21 @@ Namespace Tiles
 
             Dim cb As ComboBox = sender
             ApplicationData.Current.LocalSettings.Values("tiles_color_titulo") = cb.SelectedIndex
+
+        End Sub
+
+        Public Sub TituloTexto(ByVal sender As Object, ByVal e As TextChangedEventArgs)
+
+            Dim tb As TextBox = sender
+
+            If tb.Text.Trim.Length > 0 Then
+                Dim frame As Frame = Window.Current.Content
+                Dim pagina As Page = frame.Content
+
+                Dim botonAñadirTile As Button = pagina.FindName("botonAñadirTile")
+                Dim juego As Tile = botonAñadirTile.Tag
+                juego.Titulo = tb.Text.Trim
+            End If
 
         End Sub
 

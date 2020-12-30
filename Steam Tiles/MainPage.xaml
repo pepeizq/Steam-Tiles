@@ -37,6 +37,7 @@
                                     <Style TargetType="FlyoutPresenter">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
                                     </Style>
                                 </Flyout.FlyoutPresenterStyle>
 
@@ -59,6 +60,7 @@
                                     <Style TargetType="FlyoutPresenter">
                                         <Setter Property="Background" Value="Transparent"/>
                                         <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="BorderThickness" Value="0"/>
                                     </Style>
                                 </Flyout.FlyoutPresenterStyle>
 
@@ -413,6 +415,9 @@
                                         <StackPanel x:Name="spImagenTituloTileAncha" Orientation="Vertical" Visibility="Collapsed" Margin="0,30,0,0">
                                             <TextBlock x:Uid="ImageTitleColor" Foreground="White"/>
                                             <ComboBox x:Name="cbImagenTituloColorTileAncha" RequestedTheme="Dark" Margin="0,15,0,0"/>
+
+                                            <TextBlock x:Uid="ImageTitleText" Margin="0,30,0,0" Foreground="White"/>
+                                            <TextBox x:Name="tbImagenTituloTextoTileAncha" RequestedTheme="Dark" Margin="0,15,0,0" MinWidth="400" MaxWidth="800" HorizontalAlignment="Left"/>
                                         </StackPanel>
 
                                         <TextBlock x:Uid="ImageIcon" Margin="0,30,0,0" Foreground="White" TextWrapping="Wrap"/>
@@ -482,6 +487,9 @@
                                         <StackPanel x:Name="spImagenTituloTileGrande" Orientation="Vertical" Visibility="Collapsed" Margin="0,30,0,0">
                                             <TextBlock x:Uid="ImageTitleColor" Foreground="White"/>
                                             <ComboBox x:Name="cbImagenTituloColorTileGrande" RequestedTheme="Dark" Margin="0,15,0,0"/>
+
+                                            <TextBlock x:Uid="ImageTitleText" Margin="0,30,0,0" Foreground="White"/>
+                                            <TextBox x:Name="tbImagenTituloTextoTileGrande" RequestedTheme="Dark" Margin="0,15,0,0" MinWidth="400" MaxWidth="800" HorizontalAlignment="Left"/>
                                         </StackPanel>
 
                                         <TextBlock x:Uid="ImageIcon" Margin="0,30,0,0" Foreground="White" TextWrapping="Wrap"/>

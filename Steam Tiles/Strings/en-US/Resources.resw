@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,53 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Activated" xml:space="preserve">
-    <value>Activated</value>
-  </data>
   <data name="AddTile.Text" xml:space="preserve">
     <value>Add Tile</value>
   </data>
-  <data name="Amazon_ConfigFolderPath.Text" xml:space="preserve">
-    <value>Select the file GameProductInfo.sqlite in the folder: C:\Users\[Your User]\AppData\Local\Amazon Games\Data\Games\Sql</value>
+  <data name="Config" xml:space="preserve">
+    <value>Configuration</value>
   </data>
-  <data name="Amazon_StoreDescription" xml:space="preserve">
-    <value>Pin Tiles of your games from the Amazon Games launcher to the Windows 10 Start Menu.</value>
+  <data name="MoreThings" xml:space="preserve">
+    <value>More Things</value>
   </data>
-  <data name="Amazon_StoreTags" xml:space="preserve">
-    <value>Amazon,Amazon Prime,</value>
+  <data name="Contact.Text" xml:space="preserve">
+    <value>Contact</value>
   </data>
-  <data name="Amazon_Title" xml:space="preserve">
-    <value>Tiles for Amazon Games</value>
+  <data name="MissingGames" xml:space="preserve">
+    <value>Missing Games</value>
   </data>
-  <data name="Bethesda_MissingGames.Text" xml:space="preserve">
-    <value>Due to restrictions in the Bethesda API, I must manually integrate their games into the app.</value>
-  </data>
-  <data name="Bethesda_SelectGame.Text" xml:space="preserve">
-    <value>Select a game (you must have the game on Bethesda Launcher)</value>
-  </data>
-  <data name="Bethesda_StoreDescription" xml:space="preserve">
-    <value>Pin Tiles of your games from the Bethesda Launcher to the Windows 10 Start Menu.</value>
-  </data>
-  <data name="Bethesda_StoreTags" xml:space="preserve">
-    <value>Bethesda,Fallout,Elder Scrolls,Wolfenstein,Doom,Dishonored,Rage</value>
-  </data>
-  <data name="Bethesda_Title" xml:space="preserve">
-    <value>Tiles for Bethesda Games</value>
+  <data name="Activated" xml:space="preserve">
+    <value>Activated</value>
   </data>
   <data name="Black" xml:space="preserve">
     <value>Black</value>
-  </data>
-  <data name="Blizzard_SelectGame.Text" xml:space="preserve">
-    <value>Select a game (you must have the game on Blizzard Battle.net)</value>
-  </data>
-  <data name="Blizzard_StoreDescription" xml:space="preserve">
-    <value>Pin Tiles of your games from the Blizzard Battle.net launcher to the Windows 10 Start Menu.</value>
-  </data>
-  <data name="Blizzard_StoreTags" xml:space="preserve">
-    <value>Blizzard,Battle.net,Diablo,Starcraft,Warcraft,Overwatch,Call of Duty,</value>
-  </data>
-  <data name="Blizzard_Title" xml:space="preserve">
-    <value>Tiles for Blizzard Battle.net Games</value>
   </data>
   <data name="BottomLeft" xml:space="preserve">
     <value>Bottom Left</value>
@@ -186,9 +159,6 @@
   <data name="ChangeImageLinkInfo" xml:space="preserve">
     <value>Put the link here</value>
   </data>
-  <data name="Config" xml:space="preserve">
-    <value>Configuration</value>
-  </data>
   <data name="ConfigCache.Text" xml:space="preserve">
     <value>Cache</value>
   </data>
@@ -201,113 +171,11 @@
   <data name="ConfigCacheMessage.Text" xml:space="preserve">
     <value>If you clear the cache, it will automatically re-download the images of the games.</value>
   </data>
-  <data name="ConfigDeleteFolders.Text" xml:space="preserve">
-    <value>Delete Folders</value>
-  </data>
-  <data name="ConfigFileMessage.Text" xml:space="preserve">
-    <value>Unhide files and folders, this option is found in File Explorer Options (use the search engine to find the option).</value>
-  </data>
-  <data name="ConfigFolderMessage.Text" xml:space="preserve">
-    <value>Before being able to generate the available tiles for your games, the application needs to configure the following things:</value>
-  </data>
-  <data name="ConfigNoGamesDetected.Text" xml:space="preserve">
-    <value>No games detected, you must configure the application before you can add Tiles.</value>
-  </data>
-  <data name="ConfigOpen.Text" xml:space="preserve">
-    <value>Open Configuration</value>
-  </data>
-  <data name="ConfigOpenOption.Text" xml:space="preserve">
-    <value>Open option</value>
-  </data>
-  <data name="ConfigSearchFile.Text" xml:space="preserve">
-    <value>Search File</value>
-  </data>
-  <data name="ConfigSearchFolder.Text" xml:space="preserve">
-    <value>Search Folder</value>
-  </data>
-  <data name="ConfigShowImage.Text" xml:space="preserve">
-    <value>Show screenshot with the option</value>
-  </data>
-  <data name="Contact.Text" xml:space="preserve">
-    <value>Contact</value>
-  </data>
   <data name="Disabled" xml:space="preserve">
     <value>Disabled</value>
   </data>
-  <data name="Discord_ConfigImport.Text" xml:space="preserve">
-    <value>Select where you are going to import the games:</value>
-  </data>
-  <data name="Discord_ConfigImport1" xml:space="preserve">
-    <value>Games installed on Discord</value>
-  </data>
-  <data name="Discord_ConfigImport2" xml:space="preserve">
-    <value>Games imported from Steam</value>
-  </data>
-  <data name="Discord_ConfigMessage1.Text" xml:space="preserve">
-    <value>Select the folder where you have your Discord games installed:</value>
-  </data>
-  <data name="Discord_ConfigMessage2.Text" xml:space="preserve">
-    <value>Select the file with extension .log in: C:\Users\[your user]\AppData\Roaming\discord\Local Storage\leveldb</value>
-  </data>
-  <data name="Discord_Message.Text" xml:space="preserve">
-    <value>If your games are from Steam or from another platform other than Discord, I recommend purchasing the corresponding app for your games.</value>
-  </data>
-  <data name="Discord_OpenTiles.Text" xml:space="preserve">
-    <value>Show Apps</value>
-  </data>
-  <data name="Discord_StoreDescription" xml:space="preserve">
-    <value>Pin Tiles of your games from the Discord App to the Windows 10 Start Menu.</value>
-  </data>
-  <data name="Discord_StoreTags" xml:space="preserve">
-    <value>Discord,Steam</value>
-  </data>
-  <data name="Discord_Title" xml:space="preserve">
-    <value>Tiles for Discord Games</value>
-  </data>
-  <data name="Epic_ConfigFolderMessage.Text" xml:space="preserve">
-    <value>Select the folder: C:\ProgramData\Epic</value>
-  </data>
-  <data name="Epic_ConfigImport1" xml:space="preserve">
-    <value>Installed Games</value>
-  </data>
-  <data name="Epic_ConfigImport2" xml:space="preserve">
-    <value>All Games</value>
-  </data>
-  <data name="Epic_ConfigMessage.Text" xml:space="preserve">
-    <value>The application allows you to load your Epic games that are installed or directly select any game on the platform (in this case you must have the game to be able to run it).</value>
-  </data>
-  <data name="Epic_ConfigModeMessage.Text" xml:space="preserve">
-    <value>Select the mode:</value>
-  </data>
-  <data name="Epic_MissingGames.Text" xml:space="preserve">
-    <value>Due to restrictions in the Epic Games API, I must manually integrate their games into the app.</value>
-  </data>
-  <data name="Epic_SelectGame" xml:space="preserve">
-    <value>Select a game (you must have the game on Epic Games)</value>
-  </data>
-  <data name="Epic_StoreDescription" xml:space="preserve">
-    <value>Pin Tiles of your games from the Epic Games launcher to the Windows 10 Start Menu.</value>
-  </data>
-  <data name="Epic_StoreTags" xml:space="preserve">
-    <value>Epic Games,Fortnite,World War Z,Rocket League,</value>
-  </data>
-  <data name="Epic_Title" xml:space="preserve">
-    <value>Tiles for Epic Games</value>
-  </data>
   <data name="Games" xml:space="preserve">
     <value>Games</value>
-  </data>
-  <data name="Gog_ConfigMessage.Text" xml:space="preserve">
-    <value>Select the folder: C:\ProgramData\GOG.com\Galaxy\webcache\[Your ID User]\gog</value>
-  </data>
-  <data name="Gog_StoreDescription" xml:space="preserve">
-    <value>Pin Tiles of your games from GOG Galaxy to the Windows 10 Start Menu.</value>
-  </data>
-  <data name="Gog_StoreTags" xml:space="preserve">
-    <value>Gog,Galaxy,Witcher,Gwent,Cyberpunk</value>
-  </data>
-  <data name="Gog_Title" xml:space="preserve">
-    <value>Tiles for GOG Games</value>
   </data>
   <data name="ImageAdjustment.Text" xml:space="preserve">
     <value>Image fit to Tile space:</value>
@@ -348,9 +216,6 @@
   <data name="ImageTransparent.Text" xml:space="preserve">
     <value>Transparent Tile background:</value>
   </data>
-  <data name="MissingGames" xml:space="preserve">
-    <value>Missing Games</value>
-  </data>
   <data name="MissingGames1.Text" xml:space="preserve">
     <value>For this reason I need your help if you see if a game is missing or if a game runs the version of a region other than yours.</value>
   </data>
@@ -359,9 +224,6 @@
   </data>
   <data name="MissingGames3.Text" xml:space="preserve">
     <value>And I also need to know the country where you are, there are games that can only be run from certain countries.</value>
-  </data>
-  <data name="MoreThings" xml:space="preserve">
-    <value>More Things</value>
   </data>
   <data name="MoreThingsContact" xml:space="preserve">
     <value>Contact</value>
@@ -408,20 +270,167 @@
   <data name="MoreThingsVideoDescription" xml:space="preserve">
     <value>In case you have questions about how to use the application, I have uploaded a video to Youtube.</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Personalization.Text" xml:space="preserve">
+    <value>Personalization</value>
+  </data>
+  <data name="TopLeft" xml:space="preserve">
+    <value>Top Left</value>
+  </data>
+  <data name="TopRight" xml:space="preserve">
+    <value>Top Right</value>
+  </data>
+  <data name="TrialMessage.Text" xml:space="preserve">
+    <value>You are using the trial version of the application, you can only have one Tile active.</value>
+  </data>
+  <data name="Ubi_MissingGames.Text" xml:space="preserve">
+    <value>Due to restrictions in the Ubisoft Connect API, I must manually integrate their games into the app.</value>
+  </data>
+  <data name="Ubi_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your games from the Ubisoft Connect launcher to the Windows 10 Start Menu.</value>
+  </data>
+  <data name="Ubi_StoreTags" xml:space="preserve">
+    <value>Ubisoft,Uplay,Connect,Assassin's Creed,Far Cry,Watch Dogs,Anno,The Division,</value>
+  </data>
+  <data name="White" xml:space="preserve">
+    <value>White</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="SearchGame" xml:space="preserve">
+    <value>Search for a game</value>
+  </data>
+  <data name="StoreVideo" xml:space="preserve">
+    <value>How to use the app</value>
+  </data>
+  <data name="ConfigFolderMessage.Text" xml:space="preserve">
+    <value>Before being able to generate the available tiles for your games, the application needs to configure the following things:</value>
+  </data>
+  <data name="ConfigNoGamesDetected.Text" xml:space="preserve">
+    <value>No games detected, you must configure the application before you can add Tiles.</value>
+  </data>
+  <data name="ConfigOpen.Text" xml:space="preserve">
+    <value>Open Configuration</value>
+  </data>
+  <data name="ConfigSearchFolder.Text" xml:space="preserve">
+    <value>Search Folder</value>
+  </data>
+  <data name="ConfigShowImage.Text" xml:space="preserve">
+    <value>Show screenshot with the option</value>
+  </data>
+  <data name="Twitch_ConfigFolderPath.Text" xml:space="preserve">
+    <value>Select the file GameProductInfo.sqlite in the folder: C:\Users\[Your User]\AppData\Roaming\Twitch\Games\Sql</value>
+  </data>
+  <data name="Twitch_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your games from the Twitch launcher to the Windows 10 Start Menu.</value>
+  </data>
+  <data name="Twitch_StoreTags" xml:space="preserve">
+    <value>Twitch,Amazon Prime,</value>
+  </data>
+  <data name="ConfigOpenOption.Text" xml:space="preserve">
+    <value>Open option</value>
+  </data>
+  <data name="Amazon_ConfigFolderPath.Text" xml:space="preserve">
+    <value>Select the file GameProductInfo.sqlite in the folder: C:\Users\[Your User]\AppData\Local\Amazon Games\Data\Games\Sql</value>
+  </data>
+  <data name="Amazon_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your games from the Amazon Games launcher to the Windows 10 Start Menu.</value>
+  </data>
+  <data name="Amazon_StoreTags" xml:space="preserve">
+    <value>Amazon,Amazon Prime,</value>
+  </data>
+  <data name="Amazon_Title" xml:space="preserve">
+    <value>Tiles for Amazon Games</value>
+  </data>
+  <data name="Bethesda_MissingGames.Text" xml:space="preserve">
+    <value>Due to restrictions in the Bethesda API, I must manually integrate their games into the app.</value>
+  </data>
+  <data name="Bethesda_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your games from the Bethesda Launcher to the Windows 10 Start Menu.</value>
+  </data>
+  <data name="Bethesda_StoreTags" xml:space="preserve">
+    <value>Bethesda,Fallout,Elder Scrolls,Wolfenstein,Doom,Dishonored,Rage</value>
+  </data>
+  <data name="Bethesda_Title" xml:space="preserve">
+    <value>Tiles for Bethesda Games</value>
+  </data>
+  <data name="Blizzard_Title" xml:space="preserve">
+    <value>Tiles for Blizzard Battle.net Games</value>
+  </data>
+  <data name="ConfigFileMessage.Text" xml:space="preserve">
+    <value>Unhide files and folders, this option is found in File Explorer Options (use the search engine to find the option).</value>
+  </data>
+  <data name="ConfigSearchFile.Text" xml:space="preserve">
+    <value>Search File</value>
+  </data>
   <data name="MoreTiles" xml:space="preserve">
     <value>More Tiles</value>
   </data>
   <data name="MoreTilesError" xml:space="preserve">
     <value>The list of applications could not be loaded, but you can visit my website to see them.</value>
   </data>
-  <data name="MoreTilesOpen" xml:space="preserve">
-    <value>Open App in Store</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>No</value>
-  </data>
   <data name="OpenWeb" xml:space="preserve">
     <value>Open Web</value>
+  </data>
+  <data name="Twitch_Title" xml:space="preserve">
+    <value>Tiles for Twitch Games</value>
+  </data>
+  <data name="Ubi_Title" xml:space="preserve">
+    <value>Tiles for Ubisoft Games</value>
+  </data>
+  <data name="Blizzard_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your games from the Blizzard Battle.net launcher to the Windows 10 Start Menu.</value>
+  </data>
+  <data name="Blizzard_StoreTags" xml:space="preserve">
+    <value>Blizzard,Battle.net,Diablo,Starcraft,Warcraft,Overwatch,Call of Duty,</value>
+  </data>
+  <data name="Discord_ConfigImport.Text" xml:space="preserve">
+    <value>Select where you are going to import the games:</value>
+  </data>
+  <data name="Discord_ConfigImport1" xml:space="preserve">
+    <value>Games installed on Discord</value>
+  </data>
+  <data name="Discord_ConfigImport2" xml:space="preserve">
+    <value>Games imported from Steam</value>
+  </data>
+  <data name="Discord_ConfigMessage1.Text" xml:space="preserve">
+    <value>Select the folder where you have your Discord games installed:</value>
+  </data>
+  <data name="Discord_ConfigMessage2.Text" xml:space="preserve">
+    <value>Select the file with extension .log in: C:\Users\[your user]\AppData\Roaming\discord\Local Storage\leveldb</value>
+  </data>
+  <data name="Discord_Message.Text" xml:space="preserve">
+    <value>If your games are from Steam or from another platform other than Discord, I recommend purchasing the corresponding app for your games.</value>
+  </data>
+  <data name="Discord_OpenTiles.Text" xml:space="preserve">
+    <value>Show Apps</value>
+  </data>
+  <data name="Discord_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your games from the Discord App to the Windows 10 Start Menu.</value>
+  </data>
+  <data name="Discord_StoreTags" xml:space="preserve">
+    <value>Discord,Steam</value>
+  </data>
+  <data name="Discord_Title" xml:space="preserve">
+    <value>Tiles for Discord Games</value>
+  </data>
+  <data name="Gog_ConfigMessage.Text" xml:space="preserve">
+    <value>Select the folder: C:\ProgramData\GOG.com\Galaxy\webcache\[Your ID User]\gog</value>
+  </data>
+  <data name="Gog_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your games from GOG Galaxy to the Windows 10 Start Menu.</value>
+  </data>
+  <data name="Gog_StoreTags" xml:space="preserve">
+    <value>Gog,Galaxy,Witcher,Gwent,Cyberpunk</value>
+  </data>
+  <data name="Gog_Title" xml:space="preserve">
+    <value>Tiles for GOG Games</value>
+  </data>
+  <data name="MoreTilesOpen" xml:space="preserve">
+    <value>Open App in Store</value>
   </data>
   <data name="Origin_ConfigMessage.Text" xml:space="preserve">
     <value>Select the folder: C:\ProgramData\Origin\LocalContent</value>
@@ -435,14 +444,8 @@
   <data name="Origin_Title" xml:space="preserve">
     <value>Tiles for Origin Games</value>
   </data>
-  <data name="Personalization.Text" xml:space="preserve">
-    <value>Personalization</value>
-  </data>
-  <data name="SearchGame" xml:space="preserve">
-    <value>Search for a game</value>
-  </data>
-  <data name="SelectGame" xml:space="preserve">
-    <value>Select a game</value>
+  <data name="ConfigDeleteFolders.Text" xml:space="preserve">
+    <value>Delete Folders</value>
   </data>
   <data name="Steam_AccountExample" xml:space="preserve">
     <value>Example: https://steamcommunity.com/id/pepeizq/</value>
@@ -477,49 +480,49 @@
   <data name="Steam_Title" xml:space="preserve">
     <value>Tiles for Steam Games</value>
   </data>
-  <data name="StoreVideo" xml:space="preserve">
-    <value>How to use the app</value>
+  <data name="Epic_ConfigFolderMessage.Text" xml:space="preserve">
+    <value>Select the folder: C:\ProgramData\Epic</value>
   </data>
-  <data name="TopLeft" xml:space="preserve">
-    <value>Top Left</value>
+  <data name="Epic_ConfigImport1" xml:space="preserve">
+    <value>Installed Games</value>
   </data>
-  <data name="TopRight" xml:space="preserve">
-    <value>Top Right</value>
+  <data name="Epic_ConfigImport2" xml:space="preserve">
+    <value>All Games</value>
   </data>
-  <data name="TrialMessage.Text" xml:space="preserve">
-    <value>You are using the trial version of the application, you can only have one Tile active.</value>
+  <data name="Epic_ConfigMessage.Text" xml:space="preserve">
+    <value>The application allows you to load your Epic games that are installed or directly select any game on the platform (in this case you must have the game to be able to run it).</value>
   </data>
-  <data name="Twitch_ConfigFolderPath.Text" xml:space="preserve">
-    <value>Select the file GameProductInfo.sqlite in the folder: C:\Users\[Your User]\AppData\Roaming\Twitch\Games\Sql</value>
+  <data name="Epic_ConfigModeMessage.Text" xml:space="preserve">
+    <value>Select the mode:</value>
   </data>
-  <data name="Twitch_StoreDescription" xml:space="preserve">
-    <value>Pin Tiles of your games from the Twitch launcher to the Windows 10 Start Menu.</value>
+  <data name="Epic_MissingGames.Text" xml:space="preserve">
+    <value>Due to restrictions in the Epic Games API, I must manually integrate their games into the app.</value>
   </data>
-  <data name="Twitch_StoreTags" xml:space="preserve">
-    <value>Twitch,Amazon Prime,</value>
+  <data name="Epic_SelectGame" xml:space="preserve">
+    <value>Select a game (you must have the game on Epic Games)</value>
   </data>
-  <data name="Twitch_Title" xml:space="preserve">
-    <value>Tiles for Twitch Games</value>
+  <data name="Epic_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your games from the Epic Games launcher to the Windows 10 Start Menu.</value>
   </data>
-  <data name="Ubi_MissingGames.Text" xml:space="preserve">
-    <value>Due to restrictions in the Ubisoft Connect API, I must manually integrate their games into the app.</value>
+  <data name="Epic_StoreTags" xml:space="preserve">
+    <value>Epic Games,Fortnite,World War Z,Rocket League,</value>
+  </data>
+  <data name="Epic_Title" xml:space="preserve">
+    <value>Tiles for Epic Games</value>
+  </data>
+  <data name="SelectGame" xml:space="preserve">
+    <value>Select a game</value>
   </data>
   <data name="Ubi_SelectGame" xml:space="preserve">
     <value>Select a game (you must have the game on Ubisoft Connect)</value>
   </data>
-  <data name="Ubi_StoreDescription" xml:space="preserve">
-    <value>Pin Tiles of your games from the Ubisoft Connect launcher to the Windows 10 Start Menu.</value>
+  <data name="Bethesda_SelectGame" xml:space="preserve">
+    <value>Select a game (you must have the game on Bethesda Launcher)</value>
   </data>
-  <data name="Ubi_StoreTags" xml:space="preserve">
-    <value>Ubisoft,Uplay,Connect,Assassin's Creed,Far Cry,Watch Dogs,Anno,The Division,</value>
+  <data name="Blizzard_SelectGame" xml:space="preserve">
+    <value>Select a game (you must have the game on Blizzard Battle.net)</value>
   </data>
-  <data name="Ubi_Title" xml:space="preserve">
-    <value>Tiles for Ubisoft Games</value>
-  </data>
-  <data name="White" xml:space="preserve">
-    <value>White</value>
-  </data>
-  <data name="Yes" xml:space="preserve">
-    <value>Yes</value>
+  <data name="ImageTitleText.Text" xml:space="preserve">
+    <value>Modify the game title:</value>
   </data>
 </root>

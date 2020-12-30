@@ -258,7 +258,7 @@ Namespace Interfaz
             tsImagenTituloTileAncha.OnContent = recursos.GetString("Yes")
             tsImagenTituloTileAncha.OffContent = recursos.GetString("No")
 
-            AddHandler tsImagenTituloTileAncha.Toggled, AddressOf Tiles.Personalizacion.Titulo
+            AddHandler tsImagenTituloTileAncha.Toggled, AddressOf Tiles.Personalizacion.TituloMostrarAncha
             AddHandler tsImagenTituloTileAncha.PointerEntered, AddressOf EfectosHover.Entra_Basico
             AddHandler tsImagenTituloTileAncha.PointerExited, AddressOf EfectosHover.Sale_Basico
 
@@ -275,6 +275,12 @@ Namespace Interfaz
             AddHandler cbImagenTituloColorTileAncha.SelectionChanged, AddressOf Tiles.Personalizacion.TituloColor
             AddHandler cbImagenTituloColorTileAncha.PointerEntered, AddressOf EfectosHover.Entra_Basico
             AddHandler cbImagenTituloColorTileAncha.PointerExited, AddressOf EfectosHover.Sale_Basico
+
+            Dim tbImagenTituloTextoTileAncha As TextBox = pagina.FindName("tbImagenTituloTextoTileAncha")
+
+            AddHandler tbImagenTituloTextoTileAncha.TextChanged, AddressOf Tiles.Personalizacion.TituloTexto
+            AddHandler tbImagenTituloTextoTileAncha.PointerEntered, AddressOf EfectosHover.Entra_Basico
+            AddHandler tbImagenTituloTextoTileAncha.PointerExited, AddressOf EfectosHover.Sale_Basico
 
             Dim tsImagenIconoTileAncha As ToggleSwitch = pagina.FindName("tsImagenIconoTileAncha")
             tsImagenIconoTileAncha.Tag = gridTileAncha
@@ -374,7 +380,7 @@ Namespace Interfaz
             tsImagenTituloTileGrande.OnContent = recursos.GetString("Yes")
             tsImagenTituloTileGrande.OffContent = recursos.GetString("No")
 
-            AddHandler tsImagenTituloTileGrande.Toggled, AddressOf Tiles.Personalizacion.Titulo
+            AddHandler tsImagenTituloTileGrande.Toggled, AddressOf Tiles.Personalizacion.TituloMostrarGrande
             AddHandler tsImagenTituloTileGrande.PointerEntered, AddressOf EfectosHover.Entra_Basico
             AddHandler tsImagenTituloTileGrande.PointerExited, AddressOf EfectosHover.Sale_Basico
 
@@ -391,6 +397,12 @@ Namespace Interfaz
             AddHandler cbImagenTituloColorTileGrande.SelectionChanged, AddressOf Tiles.Personalizacion.TituloColor
             AddHandler cbImagenTituloColorTileGrande.PointerEntered, AddressOf EfectosHover.Entra_Basico
             AddHandler cbImagenTituloColorTileGrande.PointerExited, AddressOf EfectosHover.Sale_Basico
+
+            Dim tbImagenTituloTextoTileGrande As TextBox = pagina.FindName("tbImagenTituloTextoTileGrande")
+
+            AddHandler tbImagenTituloTextoTileGrande.TextChanged, AddressOf Tiles.Personalizacion.TituloTexto
+            AddHandler tbImagenTituloTextoTileGrande.PointerEntered, AddressOf EfectosHover.Entra_Basico
+            AddHandler tbImagenTituloTextoTileGrande.PointerExited, AddressOf EfectosHover.Sale_Basico
 
             Dim tsImagenIconoTileGrande As ToggleSwitch = pagina.FindName("tsImagenIconoTileGrande")
             tsImagenIconoTileGrande.Tag = gridTileGrande
@@ -504,6 +516,14 @@ Namespace Interfaz
             Dim cbImagenTituloColorTileAncha As ComboBox = pagina.FindName("cbImagenTituloColorTileAncha")
             cbImagenTituloColorTileAncha.SelectedIndex = 0
 
+            Dim tbImagenTituloTextoTileAncha As TextBox = pagina.FindName("tbImagenTituloTextoTileAncha")
+
+            If tbImagenTituloTextoTileAncha.Tag Is Nothing Then
+                tbImagenTituloTextoTileAncha.Text = String.Empty
+            Else
+                tbImagenTituloTextoTileAncha.Text = tbImagenTituloTextoTileAncha.Tag
+            End If
+
             Dim tsImagenIconoTileAncha As ToggleSwitch = pagina.FindName("tsImagenIconoTileAncha")
             tsImagenIconoTileAncha.IsOn = False
 
@@ -532,6 +552,14 @@ Namespace Interfaz
 
             Dim cbImagenTituloColorTileGrande As ComboBox = pagina.FindName("cbImagenTituloColorTileGrande")
             cbImagenTituloColorTileGrande.SelectedIndex = 0
+
+            Dim tbImagenTituloTextoTileGrande As TextBox = pagina.FindName("tbImagenTituloTextoTileGrande")
+
+            If tbImagenTituloTextoTileGrande.Tag Is Nothing Then
+                tbImagenTituloTextoTileGrande.Text = String.Empty
+            Else
+                tbImagenTituloTextoTileGrande.Text = tbImagenTituloTextoTileGrande.Tag
+            End If
 
             Dim tsImagenIconoTileGrande As ToggleSwitch = pagina.FindName("tsImagenIconoTileGrande")
             tsImagenIconoTileGrande.IsOn = False
