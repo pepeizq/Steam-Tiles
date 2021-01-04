@@ -112,6 +112,34 @@
                     </ScrollViewer>
                 </Grid>
 
+                <Grid x:Name="gridApp" Visibility="Collapsed">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="30" MaxWidth="500">
+                        <StackPanel.Background>
+                            <SolidColorBrush Color="{StaticResource ColorCuarto}" Opacity="0.8"/>
+                        </StackPanel.Background>
+
+                        <TextBlock x:Name="tbAppMensaje" Foreground="White" TextWrapping="Wrap"/>
+
+                        <TextBlock x:Uid="AppSelectMode" Foreground="White" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,30,0,20"/>
+
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Button x:Name="botonAppModoBlanco" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="18,15" BorderThickness="0" Margin="0,0,30,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ImageEx Source="Assets/App/blanco_mediana.png" Width="32" Height="32" IsCacheEnabled="True" EnableLazyLoading="True"/>
+                                    <TextBlock x:Uid="AppWhite" Foreground="White" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button x:Name="botonAppModoNegro" Style="{ThemeResource ButtonRevealStyle}" Background="{StaticResource ColorCuarto}" Padding="18,15" BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <controls:ImageEx Source="Assets/App/negro_mediana.png" Width="32" Height="32" IsCacheEnabled="True" EnableLazyLoading="True"/>
+                                    <TextBlock x:Uid="AppBlack" Foreground="Black" Margin="15,0,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid> 
+
                 <Grid x:Name="gridAñadirTile" Visibility="Collapsed" Padding="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>

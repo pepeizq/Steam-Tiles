@@ -116,6 +116,14 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\App\blanco_ancha.png" />
+    <Content Include="Assets\App\blanco_grande.png" />
+    <Content Include="Assets\App\blanco_mediana.png" />
+    <Content Include="Assets\App\blanco_pequeña.png" />
+    <Content Include="Assets\App\negro_ancha.png" />
+    <Content Include="Assets\App\negro_grande.png" />
+    <Content Include="Assets\App\negro_mediana.png" />
+    <Content Include="Assets\App\negro_pequeña.png" />
     <Content Include="Assets\Logos\AppList.altform-lightunplated_targetsize-16.png" />
     <Content Include="Assets\Logos\AppList.altform-lightunplated_targetsize-24.png" />
     <Content Include="Assets\Logos\AppList.altform-lightunplated_targetsize-256.png" />
@@ -145,6 +153,7 @@
     <Compile Include="Modulos\Cache.vb" />
     <Compile Include="Modulos\Configuracion.vb" />
     <Compile Include="Modulos\Decompiladores.vb" />
+    <Compile Include="Modulos\Interfaz\App.vb" />
     <Compile Include="Modulos\Interfaz\AñadirTile.vb" />
     <Compile Include="Modulos\Interfaz\Busqueda.vb" />
     <Compile Include="Modulos\Interfaz\EfectosHover.vb" />

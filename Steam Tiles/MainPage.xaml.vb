@@ -6,6 +6,7 @@
         Dim recursos As New Resources.ResourceLoader()
 
         nvPrincipal.MenuItems.Add(Interfaz.NavigationViewItems.Generar(recursos.GetString("Games"), FontAwesome5.EFontAwesomeIcon.Solid_Home))
+        nvPrincipal.MenuItems.Add(Interfaz.NavigationViewItems.Generar(recursos.GetString("App"), FontAwesome5.EFontAwesomeIcon.Brands_Steam))
         nvPrincipal.MenuItems.Add(Interfaz.NavigationViewItems.Generar(recursos.GetString("Config"), FontAwesome5.EFontAwesomeIcon.Solid_Cog))
         nvPrincipal.MenuItems.Add(New NavigationViewItemSeparator)
 
@@ -25,6 +26,8 @@
                     Else
                         Interfaz.Pestañas.Visibilidad(gridJuegos, item.Text, item)
                     End If
+                ElseIf item.Text = recursos.GetString("App") Then
+                    Interfaz.Pestañas.Visibilidad(gridApp, item.Text, item)
                 ElseIf item.Text = recursos.GetString("Config") Then
                     Interfaz.Pestañas.Visibilidad(gridConfig, item.Text, item)
                 End If
@@ -40,6 +43,7 @@
 
         Cache.Cargar()
         Interfaz.Juegos.Cargar()
+        Interfaz.App2.Cargar()
         Interfaz.AñadirTile.Cargar()
         Interfaz.Busqueda.Cargar()
         Configuracion.Cargar()

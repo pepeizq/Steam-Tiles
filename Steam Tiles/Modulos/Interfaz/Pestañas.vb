@@ -20,6 +20,9 @@ Namespace Interfaz
             Dim gridJuegos As Grid = pagina.FindName("gridJuegos")
             gridJuegos.Visibility = Visibility.Collapsed
 
+            Dim gridApp As Grid = pagina.FindName("gridApp")
+            gridApp.Visibility = Visibility.Collapsed
+
             Dim gridAñadirTile As Grid = pagina.FindName("gridAñadirTile")
             gridAñadirTile.Visibility = Visibility.Collapsed
 

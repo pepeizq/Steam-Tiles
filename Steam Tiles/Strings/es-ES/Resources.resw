@@ -523,6 +523,21 @@
     <value>Selecciona un juego (debes tener el juego en Blizzard Battle.net)</value>
   </data>
   <data name="ImageTitleText.Text" xml:space="preserve">
-    <value>Modifica el título del juego:</value>
+    <value>Modifica el título:</value>
+  </data>
+  <data name="App" xml:space="preserve">
+    <value>Aplicación</value>
+  </data>
+  <data name="AppBlack.Text" xml:space="preserve">
+    <value>Negro</value>
+  </data>
+  <data name="AppSelectMode.Text" xml:space="preserve">
+    <value>Selecciona un modo:</value>
+  </data>
+  <data name="AppWhite.Text" xml:space="preserve">
+    <value>Blanco</value>
+  </data>
+  <data name="Steam_AppMessage" xml:space="preserve">
+    <value>Ademas de añadir Tiles para tus juegos de Steam, también puedes añadir una Tile para iniciar solamente Steam.</value>
   </data>
 </root>

@@ -463,7 +463,7 @@ Module Steam
 
     End Sub
 
-    Private Async Sub BotonTile_Click(sender As Object, e As RoutedEventArgs)
+    Public Async Sub BotonTile_Click(sender As Object, e As RoutedEventArgs)
 
         Trial.Detectar()
         Interfaz.AñadirTile.ResetearValores()
@@ -520,11 +520,13 @@ Module Steam
         Dim imagenGrande As ImageEx = pagina.FindName("imagenTileGrande")
         imagenGrande.Source = Nothing
 
-        Try
-            juego.ImagenIcono = Await Cache.DescargarImagen(Await SacarIcono(juego.ID), juego.ID, "icono")
-        Catch ex As Exception
+        If Not juego.ID = "app" Then
+            Try
+                juego.ImagenIcono = Await Cache.DescargarImagen(Await SacarIcono(juego.ID), juego.ID, "icono")
+            Catch ex As Exception
 
-        End Try
+            End Try
+        End If
 
         If Not juego.ImagenIcono = Nothing Then
             imagenPequeña.Source = juego.ImagenIcono
