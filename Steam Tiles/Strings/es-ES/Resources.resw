@@ -370,7 +370,7 @@
     <value>Más Tiles</value>
   </data>
   <data name="MoreTilesError" xml:space="preserve">
-    <value>No se ha podido cargar el listado de aplicaciones, pero puedes visitar mi web para verlas.</value>
+    <value>No se ha podido cargar los datos</value>
   </data>
   <data name="OpenWeb" xml:space="preserve">
     <value>Abrir Web</value>
@@ -539,5 +539,23 @@
   </data>
   <data name="Steam_AppMessage" xml:space="preserve">
     <value>Ademas de añadir Tiles para tus juegos de Steam, también puedes añadir una Tile para iniciar solamente Steam.</value>
+  </data>
+  <data name="Albums" xml:space="preserve">
+    <value>Álbumes</value>
+  </data>
+  <data name="Spotify_SearchAlbum.Text" xml:space="preserve">
+    <value>Buscar Álbum</value>
+  </data>
+  <data name="Spotify_SearchMessage.Text" xml:space="preserve">
+    <value>Introduce el nombre del álbum o del artista, y clickea buscar:</value>
+  </data>
+  <data name="Spotify_StoreDescription" xml:space="preserve">
+    <value>Añade Tiles de tus álbumes de Spotify en el Menú Inicio de Windows 10.</value>
+  </data>
+  <data name="Spotify_StoreTags" xml:space="preserve">
+    <value>Spotify,Música</value>
+  </data>
+  <data name="Spotify_Title" xml:space="preserve">
+    <value>Tiles para los álbumes de Spotify</value>
   </data>
 </root>

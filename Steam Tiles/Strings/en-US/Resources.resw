@@ -370,7 +370,7 @@
     <value>More Tiles</value>
   </data>
   <data name="MoreTilesError" xml:space="preserve">
-    <value>The list of applications could not be loaded, but you can visit my website to see them.</value>
+    <value>Data could not be loaded</value>
   </data>
   <data name="OpenWeb" xml:space="preserve">
     <value>Open Web</value>
@@ -539,5 +539,23 @@
   </data>
   <data name="Steam_AppMessage" xml:space="preserve">
     <value>Besides adding Tiles for your Steam games, you can also add a Tile to start Steam only.</value>
+  </data>
+  <data name="Albums" xml:space="preserve">
+    <value>Albums</value>
+  </data>
+  <data name="Spotify_SearchAlbum.Text" xml:space="preserve">
+    <value>Search Album</value>
+  </data>
+  <data name="Spotify_SearchMessage.Text" xml:space="preserve">
+    <value>Enter the name of the album or artist, and click search:</value>
+  </data>
+  <data name="Spotify_StoreDescription" xml:space="preserve">
+    <value>Pin Tiles of your Spotify albums to the Windows 10 Start Menu.</value>
+  </data>
+  <data name="Spotify_StoreTags" xml:space="preserve">
+    <value>Spotify,Music</value>
+  </data>
+  <data name="Spotify_Title" xml:space="preserve">
+    <value>Tiles for Spotify Albums</value>
   </data>
 </root>

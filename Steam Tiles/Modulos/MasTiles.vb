@@ -1,4 +1,5 @@
 ﻿Imports System.Globalization
+Imports System.Net
 Imports Microsoft.Toolkit.Uwp.UI.Animations
 Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Newtonsoft.Json
@@ -59,6 +60,7 @@ Module MasTiles
                 "9NZMQV0HB386", 'Epic Games
                 "9NBLGGH52SWD", 'GOG
                 "9P6TTBLTHP0L", 'Origin
+                "9MZKKMC82W60", 'Spotify
                 "9NBLGGH51SB3", 'Steam
                 "9NV7SS9FBV6L", 'Twitch
                 "9NF9PH08FRSJ"  'Ubisoft
@@ -99,7 +101,39 @@ Module MasTiles
 
                     If Not apps Is Nothing Then
                         If apps.Apps.Count > 0 Then
+                            Dim listaApps As New List(Of MasTileApp)
+
                             For Each app2 In apps.Apps
+                                Dim titulo As String = WebUtility.HtmlDecode(app2.Detalles(0).Titulo)
+
+                                Dim imagen As String = app2.Detalles(0).Imagenes(0).Enlace
+
+                                If Not imagen.Contains("http:") Then
+                                    imagen = "http:" + imagen
+                                End If
+
+                                Dim precio As String = String.Empty
+
+                                Try
+                                    Dim tempDouble As Double = Double.Parse(app2.Propiedades2(0).Disponible(0).Datos.Precio.PrecioRebajado, CultureInfo.InvariantCulture).ToString
+
+                                    Dim moneda As String = app2.Propiedades2(0).Disponible(0).Datos.Precio.Divisa
+
+                                    Dim formateador As New CurrencyFormatter(moneda) With {
+                                        .Mode = CurrencyFormatterMode.UseSymbol
+                                    }
+
+                                    precio = formateador.Format(tempDouble)
+                                Catch ex As Exception
+
+                                End Try
+
+                                listaApps.Add(New MasTileApp(titulo, imagen, app2.ID, precio))
+                            Next
+
+                            listaApps.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
+
+                            For Each app2 In listaApps
                                 Dim fondo As New SolidColorBrush With {
                                     .Opacity = 0.9,
                                     .Color = App.Current.Resources("ColorCuarto")
@@ -124,17 +158,11 @@ Module MasTiles
                                 gridApp.ColumnDefinitions.Add(col2)
                                 gridApp.ColumnDefinitions.Add(col3)
 
-                                Dim imagenS As String = app2.Detalles(0).Imagenes(0).Enlace
-
-                                If Not imagenS.Contains("http:") Then
-                                    imagenS = "http:" + imagenS
-                                End If
-
                                 Dim imagen As New ImageEx With {
                                     .IsCacheEnabled = True,
                                     .Width = 40,
                                     .Height = 40,
-                                    .Source = imagenS,
+                                    .Source = app2.Imagen,
                                     .Opacity = 0.9,
                                     .EnableLazyLoading = True
                                 }
@@ -144,7 +172,7 @@ Module MasTiles
 
                                 Dim tbTitulo As New TextBlock With {
                                     .Foreground = New SolidColorBrush(Colors.White),
-                                    .Text = app2.Detalles(0).Titulo,
+                                    .Text = app2.Titulo,
                                     .FontSize = 14,
                                     .TextWrapping = TextWrapping.Wrap,
                                     .Margin = New Thickness(10, 0, 15, 0),
@@ -154,26 +182,10 @@ Module MasTiles
                                 tbTitulo.SetValue(Grid.ColumnProperty, 1)
                                 gridApp.Children.Add(tbTitulo)
 
-                                Dim precio As String = String.Empty
-
-                                Try
-                                    Dim tempDouble As Double = Double.Parse(app2.Propiedades2(0).Disponible(0).Datos.Precio.PrecioRebajado, CultureInfo.InvariantCulture).ToString
-
-                                    Dim moneda As String = app2.Propiedades2(0).Disponible(0).Datos.Precio.Divisa
-
-                                    Dim formateador As New CurrencyFormatter(moneda) With {
-                                        .Mode = CurrencyFormatterMode.UseSymbol
-                                    }
-
-                                    precio = formateador.Format(tempDouble)
-                                Catch ex As Exception
-
-                                End Try
-
-                                If Not precio = String.Empty Then
+                                If Not app2.Precio = String.Empty Then
                                     Dim tbPrecio As New TextBlock With {
                                         .Foreground = New SolidColorBrush(Colors.White),
-                                        .Text = precio,
+                                        .Text = app2.Precio,
                                         .FontSize = 13,
                                         .VerticalAlignment = VerticalAlignment.Center
                                     }
@@ -211,7 +223,13 @@ Module MasTiles
                 End If
             End If
         Catch ex As Exception
+            Dim tbError As New TextBlock With {
+                .Foreground = New SolidColorBrush(Colors.White),
+                .Text = recursos.GetString("MoreTilesError"),
+                .HorizontalAlignment = HorizontalAlignment.Center
+            }
 
+            sp.Children.Add(tbError)
         End Try
 
     End Sub
@@ -258,6 +276,22 @@ Module MasTiles
     End Sub
 
 End Module
+
+Public Class MasTileApp
+
+    Public Titulo As String
+    Public Imagen As String
+    Public ID As String
+    Public Precio As String
+
+    Public Sub New(titulo As String, imagen As String, id As String, precio As String)
+        Me.Titulo = titulo
+        Me.Imagen = imagen
+        Me.ID = id
+        Me.Precio = precio
+    End Sub
+
+End Class
 
 Public Class MicrosoftStoreBBDDDetalles
 
