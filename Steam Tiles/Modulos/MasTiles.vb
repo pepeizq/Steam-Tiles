@@ -63,7 +63,8 @@ Module MasTiles
                 "9MZKKMC82W60", 'Spotify
                 "9NBLGGH51SB3", 'Steam
                 "9NV7SS9FBV6L", 'Twitch
-                "9NF9PH08FRSJ"  'Ubisoft
+                "9NF9PH08FRSJ", 'Ubisoft
+                "9N90JJC255ZL"  'Webs
             }
 
             Dim i As Integer = 0
@@ -106,10 +107,19 @@ Module MasTiles
                             For Each app2 In apps.Apps
                                 Dim titulo As String = WebUtility.HtmlDecode(app2.Detalles(0).Titulo)
 
-                                Dim imagen As String = app2.Detalles(0).Imagenes(0).Enlace
+                                Dim imagen As String = String.Empty
 
-                                If Not imagen.Contains("http:") Then
-                                    imagen = "http:" + imagen
+                                For Each subimagen In app2.Detalles(0).Imagenes
+                                    If subimagen.Alto = "300" And subimagen.Ancho = "300" Then
+                                        imagen = subimagen.Enlace
+                                        Exit For
+                                    End If
+                                Next
+
+                                If Not imagen = String.Empty Then
+                                    If Not imagen.Contains("http:") Then
+                                        imagen = "http:" + imagen
+                                    End If
                                 End If
 
                                 Dim precio As String = String.Empty
@@ -135,7 +145,7 @@ Module MasTiles
 
                             For Each app2 In listaApps
                                 Dim fondo As New SolidColorBrush With {
-                                    .Opacity = 0.9,
+                                    .Opacity = 0.8,
                                     .Color = App.Current.Resources("ColorCuarto")
                                 }
 
@@ -252,7 +262,7 @@ Module MasTiles
         }
 
         grid.Background = fondo
-        grid.Saturation(1).Scale(1.005, 1.005, grid.ActualWidth / 2, grid.ActualHeight / 2).Start()
+        grid.Saturation(1).Scale(1.01, 1.01, grid.ActualWidth / 2, grid.ActualHeight / 2).Start()
 
         Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
 
@@ -336,6 +346,12 @@ Public Class MicrosoftStoreBBDDDetallesJuego2Imagen
 
     <JsonProperty("ImagePositionInfo")>
     Public Posicion As String
+
+    <JsonProperty("Width")>
+    Public Ancho As String
+
+    <JsonProperty("Height")>
+    Public Alto As String
 
 End Class
 

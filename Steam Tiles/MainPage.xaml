@@ -43,7 +43,7 @@
 
                                 <Grid Padding="10" MaxHeight="500">
                                     <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource ColorCuarto}" Opacity="0.9"/>
+                                        <SolidColorBrush Color="{StaticResource ColorCuarto}" Opacity="0.8"/>
                                     </Grid.Background>
 
                                     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -66,7 +66,7 @@
 
                                 <Grid Padding="10" MaxHeight="500">
                                     <Grid.Background>
-                                        <SolidColorBrush Color="{StaticResource ColorCuarto}" Opacity="0.9"/>
+                                        <SolidColorBrush Color="{StaticResource ColorCuarto}" Opacity="0.8"/>
                                     </Grid.Background>
 
                                     <ScrollViewer VerticalScrollBarVisibility="Auto">

@@ -104,7 +104,7 @@ Module MasCosas
 
         Dim colorFondo As New SolidColorBrush With {
             .Color = App.Current.Resources("ColorCuarto"),
-            .Opacity = 0.9
+            .Opacity = 0.8
         }
 
         Dim spBoton As New StackPanel With {
@@ -255,7 +255,7 @@ Module MasCosas
         }
 
         sp.Background = fondo
-        sp.Saturation(1).Scale(1.005, 1.005, sp.ActualWidth / 2, sp.ActualHeight / 2).Start()
+        sp.Saturation(1).Scale(1.01, 1.01, sp.ActualWidth / 2, sp.ActualHeight / 2).Start()
 
         Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
 
