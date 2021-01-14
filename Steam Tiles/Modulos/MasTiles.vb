@@ -59,6 +59,7 @@ Module MasTiles
                 "9MWSP8WMMWHX", 'Discord
                 "9NZMQV0HB386", 'Epic Games
                 "9NBLGGH52SWD", 'GOG
+                "9MVGBL5QV1NR", 'Netflix
                 "9P6TTBLTHP0L", 'Origin
                 "9MZKKMC82W60", 'Spotify
                 "9NBLGGH51SB3", 'Steam
@@ -107,19 +108,10 @@ Module MasTiles
                             For Each app2 In apps.Apps
                                 Dim titulo As String = WebUtility.HtmlDecode(app2.Detalles(0).Titulo)
 
-                                Dim imagen As String = String.Empty
+                                Dim imagen As String = app2.Detalles(0).Imagenes(0).Enlace
 
-                                For Each subimagen In app2.Detalles(0).Imagenes
-                                    If subimagen.Alto = "300" And subimagen.Ancho = "300" Then
-                                        imagen = subimagen.Enlace
-                                        Exit For
-                                    End If
-                                Next
-
-                                If Not imagen = String.Empty Then
-                                    If Not imagen.Contains("http:") Then
-                                        imagen = "http:" + imagen
-                                    End If
+                                If Not imagen.Contains("http:") Then
+                                    imagen = "http:" + imagen
                                 End If
 
                                 Dim precio As String = String.Empty
@@ -170,10 +162,9 @@ Module MasTiles
 
                                 Dim imagen As New ImageEx With {
                                     .IsCacheEnabled = True,
-                                    .Width = 40,
-                                    .Height = 40,
+                                    .Width = 60,
+                                    .Height = 60,
                                     .Source = app2.Imagen,
-                                    .Opacity = 0.9,
                                     .EnableLazyLoading = True
                                 }
 
@@ -183,7 +174,6 @@ Module MasTiles
                                 Dim tbTitulo As New TextBlock With {
                                     .Foreground = New SolidColorBrush(Colors.White),
                                     .Text = app2.Titulo,
-                                    .FontSize = 14,
                                     .TextWrapping = TextWrapping.Wrap,
                                     .Margin = New Thickness(10, 0, 15, 0),
                                     .VerticalAlignment = VerticalAlignment.Center
@@ -196,7 +186,6 @@ Module MasTiles
                                     Dim tbPrecio As New TextBlock With {
                                         .Foreground = New SolidColorBrush(Colors.White),
                                         .Text = app2.Precio,
-                                        .FontSize = 13,
                                         .VerticalAlignment = VerticalAlignment.Center
                                     }
 
@@ -262,7 +251,7 @@ Module MasTiles
         }
 
         grid.Background = fondo
-        grid.Saturation(1).Scale(1.01, 1.01, grid.ActualWidth / 2, grid.ActualHeight / 2).Start()
+        grid.Saturation(1).Scale(1.02, 1.02, grid.ActualWidth / 2, grid.ActualHeight / 2).Start()
 
         Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
 
@@ -274,7 +263,7 @@ Module MasTiles
         Dim grid As Grid = boton.Content
 
         Dim fondo As New SolidColorBrush With {
-            .Opacity = 0.9,
+            .Opacity = 0.8,
             .Color = App.Current.Resources("ColorCuarto")
         }
 
@@ -346,12 +335,6 @@ Public Class MicrosoftStoreBBDDDetallesJuego2Imagen
 
     <JsonProperty("ImagePositionInfo")>
     Public Posicion As String
-
-    <JsonProperty("Width")>
-    Public Ancho As String
-
-    <JsonProperty("Height")>
-    Public Alto As String
 
 End Class
 

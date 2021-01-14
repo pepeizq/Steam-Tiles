@@ -129,8 +129,7 @@ Module MasCosas
         Dim icono As New FontAwesome5.FontAwesome With {
             .Icon = icono2,
             .Foreground = New SolidColorBrush(Colors.White),
-            .VerticalAlignment = VerticalAlignment.Center,
-            .FontSize = 14
+            .VerticalAlignment = VerticalAlignment.Center
         }
 
         icono.SetValue(Grid.ColumnProperty, 0)
@@ -140,7 +139,6 @@ Module MasCosas
             .Text = titulo,
             .Margin = New Thickness(10, 0, 0, 0),
             .Foreground = New SolidColorBrush(Colors.White),
-            .FontSize = 14,
             .VerticalAlignment = VerticalAlignment.Center,
             .TextWrapping = TextWrapping.Wrap
         }
@@ -154,7 +152,6 @@ Module MasCosas
             .Text = descripcion,
             .Margin = New Thickness(0, 10, 0, 0),
             .Foreground = New SolidColorBrush(Colors.White),
-            .FontSize = 13,
             .VerticalAlignment = VerticalAlignment.Center,
             .TextWrapping = TextWrapping.Wrap
         }
@@ -255,7 +252,7 @@ Module MasCosas
         }
 
         sp.Background = fondo
-        sp.Saturation(1).Scale(1.01, 1.01, sp.ActualWidth / 2, sp.ActualHeight / 2).Start()
+        sp.Saturation(1).Scale(1.02, 1.02, sp.ActualWidth / 2, sp.ActualHeight / 2).Start()
 
         Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
 
@@ -267,7 +264,7 @@ Module MasCosas
         Dim sp As StackPanel = boton.Content
 
         Dim fondo As New SolidColorBrush With {
-            .Opacity = 0.9,
+            .Opacity = 0.8,
             .Color = App.Current.Resources("ColorCuarto")
         }
 

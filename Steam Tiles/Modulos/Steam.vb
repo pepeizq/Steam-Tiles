@@ -39,14 +39,6 @@ Module Steam
 
         Dim listaJuegos As New List(Of Tile)
 
-        If Await helper.FileExistsAsync("juegos" + modo.ToString) = True Then
-            listaJuegos = Await helper.ReadFileAsync(Of List(Of Tile))("juegos" + modo.ToString)
-        End If
-
-        If listaJuegos Is Nothing Then
-            listaJuegos = New List(Of Tile)
-        End If
-
         If modo = 0 Then
             Dim spCarpetas As StackPanel = pagina.FindName("spSteamCarpetas")
 
@@ -286,6 +278,13 @@ Module Steam
                 h += 1
             End While
         ElseIf modo = 1 Then
+            If Await helper.FileExistsAsync("juegos" + modo.ToString) = True Then
+                listaJuegos = Await helper.ReadFileAsync(Of List(Of Tile))("juegos" + modo.ToString)
+            End If
+
+            If listaJuegos Is Nothing Then
+                listaJuegos = New List(Of Tile)
+            End If
 
             Dim listaIDs As New List(Of String)
 

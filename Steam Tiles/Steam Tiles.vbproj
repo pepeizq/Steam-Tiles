@@ -130,7 +130,6 @@
     <Content Include="Assets\Logos\AppList.altform-lightunplated_targetsize-32.png" />
     <Content Include="Assets\Logos\AppList.altform-lightunplated_targetsize-48.png" />
     <Content Include="Assets\steam_logo.png" />
-    <None Include="Package.xml" />
     <None Include="Package.StoreAssociation.xml">
       <SubType>Designer</SubType>
     </None>
