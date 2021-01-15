@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.Toolkit.Uwp.Helpers
 Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Newtonsoft.Json
+Imports Steam_Tiles.Configuracion
 Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
@@ -30,8 +31,9 @@ Module Steam
         Dim tbProgreso As TextBlock = pagina.FindName("tbProgreso")
         tbProgreso.Text = String.Empty
 
-        Configuracion.Estado(False)
+        General.Estado(False)
         Cache.Estado(False)
+        LimpiezaArchivos.Estado(False)
 
         Dim gv As AdaptiveGridView = pagina.FindName("gvTiles")
         gv.DesiredWidth = anchoColumna
@@ -388,8 +390,9 @@ Module Steam
             Interfaz.Pestañas.Visibilidad(gridAvisoNoJuegos, Nothing, Nothing)
         End If
 
-        Configuracion.Estado(True)
+        General.Estado(True)
         Cache.Estado(True)
+        LimpiezaArchivos.Estado(True)
 
     End Sub
 
@@ -703,8 +706,9 @@ Module Steam
 
         Dim usuario As SteamCuenta = Nothing
 
-        Configuracion.Estado(False)
+        General.Estado(False)
         Cache.Estado(False)
+        LimpiezaArchivos.Estado(False)
 
         Dim htmlID As String = Await Decompiladores.HttpClient(New Uri("https://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?key=41F2D73A0B5024E9101F8D4E8D8AC21E&vanityurl=" + cuenta))
 
@@ -845,8 +849,9 @@ Module Steam
             End If
         End If
 
-        Configuracion.Estado(True)
+        General.Estado(True)
         Cache.Estado(True)
+        LimpiezaArchivos.Estado(True)
 
     End Sub
 

@@ -304,5 +304,41 @@ Namespace Interfaz
 
         End Sub
 
+        Public Sub Entra_Boton_1_05(sender As Object, e As PointerRoutedEventArgs)
+
+            Dim boton As Button = sender
+            boton.Saturation(1).Scale(1.05, 1.05, boton.ActualWidth / 2, boton.ActualHeight / 2).Start()
+
+            Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
+
+        End Sub
+
+        Public Sub Sale_Boton_1_05(sender As Object, e As PointerRoutedEventArgs)
+
+            Dim boton As Button = sender
+            boton.Saturation(1).Scale(1, 1, boton.ActualWidth / 2, boton.ActualHeight / 2).Start()
+
+            Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Arrow, 1)
+
+        End Sub
+
+        Public Sub Entra_Boton_1_02(sender As Object, e As PointerRoutedEventArgs)
+
+            Dim boton As Button = sender
+            boton.Saturation(1).Scale(1.02, 1.02, boton.ActualWidth / 2, boton.ActualHeight / 2).Start()
+
+            Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Hand, 1)
+
+        End Sub
+
+        Public Sub Sale_Boton_1_02(sender As Object, e As PointerRoutedEventArgs)
+
+            Dim boton As Button = sender
+            boton.Saturation(1).Scale(1, 1, boton.ActualWidth / 2, boton.ActualHeight / 2).Start()
+
+            Window.Current.CoreWindow.PointerCursor = New CoreCursor(CoreCursorType.Arrow, 1)
+
+        End Sub
+
     End Module
 End Namespace

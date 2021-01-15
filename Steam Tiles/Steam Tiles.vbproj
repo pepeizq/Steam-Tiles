@@ -149,8 +149,8 @@
     <Compile Include="Clases\SteamCuenta.vb" />
     <Compile Include="Clases\SteamFichero.vb" />
     <Compile Include="Clases\Tile.vb" />
-    <Compile Include="Modulos\Cache.vb" />
-    <Compile Include="Modulos\Configuracion.vb" />
+    <Compile Include="Modulos\Configuracion\Cache.vb" />
+    <Compile Include="Modulos\Configuracion\General.vb" />
     <Compile Include="Modulos\Decompiladores.vb" />
     <Compile Include="Modulos\Interfaz\App.vb" />
     <Compile Include="Modulos\Interfaz\AñadirTile.vb" />
@@ -159,6 +159,7 @@
     <Compile Include="Modulos\Interfaz\Juegos.vb" />
     <Compile Include="Modulos\Interfaz\NavigationViewItems.vb" />
     <Compile Include="Modulos\Interfaz\Pestañas.vb" />
+    <Compile Include="Modulos\Configuracion\LimpiezaArchivos.vb" />
     <Compile Include="Modulos\MasCosas.vb" />
     <Compile Include="Modulos\MasTiles.vb" />
     <Compile Include="Modulos\Notificaciones.vb" />

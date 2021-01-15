@@ -41,12 +41,13 @@
         'Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "es-ES"
         'Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = "en-US"
 
-        Cache.Cargar()
+        Configuracion.General.Cargar()
+        Configuracion.Cache.Cargar()
+        Configuracion.LimpiezaArchivos.Cargar()
         Interfaz.Juegos.Cargar()
         Interfaz.App2.Cargar()
         Interfaz.AñadirTile.Cargar()
         Interfaz.Busqueda.Cargar()
-        Configuracion.Cargar()
         Steam.Generar(False)
         MasTiles.Cargar()
         MasCosas.Cargar()
