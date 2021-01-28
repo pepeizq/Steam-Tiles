@@ -53,7 +53,8 @@ Module MasTiles
 
         Try
             Dim idsConsultar As New List(Of String) From {
-                "9NXV34SMGBHT", 'Amazon
+                "9NXV34SMGBHT", 'Amazon Juegos
+                "9P8MS4J7F6V6", 'Amazon Videos
                 "9NL9Z5CC0FKM", 'Bethesda
                 "9NLKV74DDS0M", 'Blizzard
                 "9MWSP8WMMWHX", 'Discord
