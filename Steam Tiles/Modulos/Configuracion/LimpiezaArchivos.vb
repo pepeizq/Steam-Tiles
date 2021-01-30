@@ -34,6 +34,10 @@ Namespace Configuracion
                 If fichero.FileType.Contains("png") Then
                     Await fichero.DeleteAsync()
                 End If
+
+                If fichero.Name.ToLower.Contains("juegos") Then
+                    Await fichero.DeleteAsync()
+                End If
             Next
 
             pr.Visibility = Visibility.Collapsed
