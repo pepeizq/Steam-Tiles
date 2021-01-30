@@ -63,6 +63,7 @@ Module MasTiles
                 "9MVGBL5QV1NR", 'Netflix
                 "9P6TTBLTHP0L", 'Origin
                 "9MZKKMC82W60", 'Spotify
+                "9P4N7M24PQV4", 'Stadia
                 "9NBLGGH51SB3", 'Steam
                 "9NV7SS9FBV6L", 'Twitch
                 "9NF9PH08FRSJ", 'Ubisoft
