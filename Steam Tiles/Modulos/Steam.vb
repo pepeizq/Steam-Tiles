@@ -2,10 +2,12 @@
 Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Newtonsoft.Json
 Imports Steam_Tiles.Configuracion
+Imports Windows.ApplicationModel.Core
 Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.Pickers
 Imports Windows.UI
+Imports Windows.UI.Core
 Imports Windows.UI.Xaml.Media.Animation
 
 Module Steam
@@ -363,11 +365,14 @@ Module Steam
             End If
         End If
 
-        Try
-            Await helper.SaveFileAsync(Of List(Of Tile))("juegos" + modo.ToString, listaJuegos)
-        Catch ex As Exception
+        Await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
+                                                                      Async Sub()
+                                                                          Try
+                                                                              Await helper.SaveFileAsync(Of List(Of Tile))("juegos" + modo.ToString, listaJuegos)
+                                                                          Catch ex As Exception
 
-        End Try
+                                                                          End Try
+                                                                      End Sub)
 
         If Not listaJuegos Is Nothing Then
             If listaJuegos.Count > 0 Then

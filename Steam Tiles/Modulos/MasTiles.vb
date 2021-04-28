@@ -57,7 +57,6 @@ Module MasTiles
                 "9P8MS4J7F6V6", 'Amazon Videos
                 "9NL9Z5CC0FKM", 'Bethesda
                 "9NLKV74DDS0M", 'Blizzard
-                "9MWSP8WMMWHX", 'Discord
                 "9NZMQV0HB386", 'Epic Games
                 "9NBLGGH52SWD", 'GOG
                 "9MVGBL5QV1NR", 'Netflix
