@@ -15,7 +15,7 @@
         <SolidColorBrush x:Key="BrushTercero" Color="{StaticResource ColorTerciario}"/>
         <SolidColorBrush x:Key="BrushCuarto" Color="{StaticResource ColorCuarto}"/>
 
-        <AcrylicBrush x:Key="AcrilicoFondo" BackgroundSource="HostBackdrop" TintColor="{StaticResource ColorPrimario}" FallbackColor="{StaticResource ColorCuarto}" TintOpacity=".7"/>
+        <AcrylicBrush x:Key="AcrilicoFondo" BackgroundSource="Backdrop" TintColor="{StaticResource ColorPrimario}" FallbackColor="{StaticResource ColorCuarto}" TintOpacity=".7"/>
 
         <Color x:Key="ColorCajaRojaFondo">#cd5c5c</Color>
         <Color x:Key="ColorCajaRojaSombra">#6b2121</Color>
