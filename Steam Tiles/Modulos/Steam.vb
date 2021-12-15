@@ -5,6 +5,7 @@ Imports Steam_Tiles.Configuracion
 Imports Windows.ApplicationModel.Core
 Imports Windows.Storage
 Imports Windows.Storage.AccessCache
+Imports Windows.Storage.FileProperties
 Imports Windows.Storage.Pickers
 Imports Windows.UI
 Imports Windows.UI.Core
@@ -13,7 +14,7 @@ Imports Windows.UI.Xaml.Media.Animation
 Module Steam
 
     Public anchoColumna As Integer = 180
-    Dim clave As String = "carpeta39"
+    Dim clave As String = "carpeta40"
     Dim dominioImagenes As String = "https://cdn.cloudflare.steamstatic.com"
 
     Public Async Sub Generar(buscarCarpeta As Boolean)
@@ -42,6 +43,36 @@ Module Steam
         gv.Items.Clear()
 
         Dim listaJuegos As New List(Of Tile)
+        Dim carpetaFicheros As StorageFolder = Nothing
+        Dim errorCarpeta As Boolean = False
+
+        Try
+            carpetaFicheros = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Juegos")
+        Catch ex As Exception
+            errorCarpeta = True
+        End Try
+
+        If errorCarpeta = True Then
+            Await ApplicationData.Current.LocalFolder.CreateFolderAsync("Juegos")
+            carpetaFicheros = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Juegos")
+        End If
+
+        Dim listaFicheros As IReadOnlyList(Of IStorageItem) = Await carpetaFicheros.GetFilesAsync
+
+        If Not listaFicheros Is Nothing Then
+            If listaFicheros.Count > 0 Then
+                For Each fichero In listaFicheros
+                    Dim propiedades As BasicProperties = Await fichero.GetBasicPropertiesAsync
+
+                    If propiedades.Size > 0 Then
+                        If fichero.Name.Contains("juego_") Then
+                            Dim temp As Tile = Await helper.ReadFileAsync(Of Tile)("Juegos\" + fichero.Name)
+                            listaJuegos.Add(temp)
+                        End If
+                    End If
+                Next
+            End If
+        End If
 
         If modo = 0 Then
             Dim spCarpetas As StackPanel = pagina.FindName("spSteamCarpetas")
@@ -101,7 +132,7 @@ Module Steam
 
             '-------------------------------------------------------------
 
-            Dim listaFicheros As New List(Of SteamFichero)
+            Dim listaFicherosSteam As New List(Of SteamFichero)
 
             Dim h As Integer = 0
             While h < numCarpetas.Values("numCarpetas") + 1
@@ -175,7 +206,7 @@ Module Steam
                                     Dim boton As Button = gv.Items(i)
                                     Dim tile As Tile = boton.Tag
 
-                                    listaFicheros.Add(New SteamFichero(tile.Titulo, tile.ID))
+                                    listaFicherosSteam.Add(New SteamFichero(tile.Titulo, tile.ID))
                                     i += 1
                                 End While
                             End If
@@ -215,7 +246,7 @@ Module Steam
 
                                         Dim id As String = temp4.Trim
 
-                                        listaFicheros.Add(New SteamFichero(titulo, id))
+                                        listaFicherosSteam.Add(New SteamFichero(titulo, id))
                                     Catch ex As Exception
 
                                     End Try
@@ -223,8 +254,8 @@ Module Steam
                             Next
 
                             Dim k As Integer = 0
-                            If listaFicheros.Count > 0 Then
-                                For Each fichero In listaFicheros
+                            If listaFicherosSteam.Count > 0 Then
+                                For Each fichero In listaFicherosSteam
                                     Dim titulo As String = fichero.Titulo
                                     Dim id As String = fichero.ID
 
@@ -271,8 +302,8 @@ Module Steam
                                         listaJuegos.Add(juego)
                                     End If
 
-                                    pbProgreso.Value = CInt((100 / listaFicheros.Count) * k)
-                                    tbProgreso.Text = k.ToString + "/" + listaFicheros.Count.ToString
+                                    pbProgreso.Value = CInt((100 / listaFicherosSteam.Count) * k)
+                                    tbProgreso.Text = k.ToString + "/" + listaFicherosSteam.Count.ToString
                                     k += 1
                                 Next
                             End If
@@ -282,9 +313,9 @@ Module Steam
                 h += 1
             End While
         ElseIf modo = 1 Then
-            If Await helper.FileExistsAsync("juegos" + modo.ToString) = True Then
-                listaJuegos = Await helper.ReadFileAsync(Of List(Of Tile))("juegos" + modo.ToString)
-            End If
+            'If Await helper.FileExistsAsync("juegos" + modo.ToString) = True Then
+            '    listaJuegos = Await helper.ReadFileAsync(Of List(Of Tile))("juegos" + modo.ToString)
+            'End If
 
             If listaJuegos Is Nothing Then
                 listaJuegos = New List(Of Tile)
@@ -365,21 +396,54 @@ Module Steam
             End If
         End If
 
-        Await CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.High,
-                                                                      Async Sub()
-                                                                          Try
-                                                                              Await helper.SaveFileAsync(Of List(Of Tile))("juegos" + modo.ToString, listaJuegos)
-                                                                          Catch ex As Exception
+        Dim resultadosBusqueda As New List(Of Interfaz.BusquedaFichero)
 
-                                                                          End Try
-                                                                      End Sub)
+        If Not listaJuegos Is Nothing Then
+            If listaJuegos.Count > 0 Then
+                For Each juego In listaJuegos
+                    If Not juego Is Nothing Then
+                        Try
+                            If Await helper.FileExistsAsync("Juegos\juego_" + juego.ID) = False Then
+                                Await helper.SaveFileAsync(Of Tile)("Juegos\juego_" + juego.ID, juego)
+                            End If
+                        Catch ex As Exception
+
+                        End Try
+
+                        resultadosBusqueda.Add(New Interfaz.BusquedaFichero(juego.Titulo, "Juegos\juego_" + juego.ID))
+                    End If
+                Next
+            End If
+        End If
+
+        Try
+            Await helper.SaveFileAsync(Of List(Of Interfaz.BusquedaFichero))("busqueda", resultadosBusqueda)
+        Catch ex As Exception
+
+        End Try
 
         If Not listaJuegos Is Nothing Then
             If listaJuegos.Count > 0 Then
                 Dim gridJuegos As Grid = pagina.FindName("gridJuegos")
                 Interfaz.Pestañas.Visibilidad(gridJuegos, recursos.GetString("Games"), Nothing)
 
-                listaJuegos.Sort(Function(x, y) x.Titulo.CompareTo(y.Titulo))
+                listaJuegos.Sort(Function(x, y)
+                                     If Not x Is Nothing Then
+                                         If Not y Is Nothing Then
+                                             Return x.Titulo.CompareTo(y.Titulo)
+                                         End If
+                                     End If
+
+                                     If Not x Is Nothing Then
+                                         Return x.Titulo
+                                     End If
+
+                                     If Not y Is Nothing Then
+                                         Return y.Titulo
+                                     End If
+
+                                     Return Nothing
+                                 End Function)
 
                 gv.Items.Clear()
 
@@ -403,17 +467,6 @@ Module Steam
 
     Public Sub BotonEstilo(juego As Tile, gv As GridView)
 
-        Dim panel As New DropShadowPanel With {
-            .Margin = New Thickness(10, 10, 10, 10),
-            .ShadowOpacity = 0.9,
-            .BlurRadius = 10,
-            .MaxWidth = anchoColumna + 20,
-            .HorizontalAlignment = HorizontalAlignment.Center,
-            .VerticalAlignment = VerticalAlignment.Center
-        }
-
-        Dim boton As New Button
-
         Dim imagen As New ImageEx With {
             .Source = juego.ImagenGrande,
             .IsCacheEnabled = True,
@@ -421,18 +474,25 @@ Module Steam
             .Padding = New Thickness(0, 0, 0, 0),
             .HorizontalAlignment = HorizontalAlignment.Center,
             .VerticalAlignment = VerticalAlignment.Center,
-            .Tag = juego.ID,
             .EnableLazyLoading = True
         }
 
         AddHandler imagen.ImageExFailed, AddressOf ImagenFalla
 
-        boton.Tag = juego
-        boton.Content = imagen
-        boton.Padding = New Thickness(0, 0, 0, 0)
-        boton.Background = New SolidColorBrush(Colors.Transparent)
-
-        panel.Content = boton
+        Dim boton As New Button With {
+            .Tag = juego,
+            .Content = imagen,
+            .Padding = New Thickness(0, 0, 0, 0),
+            .Background = New SolidColorBrush(Colors.Transparent),
+            .Margin = New Thickness(10, 10, 10, 10),
+            .MinHeight = 40,
+            .MinWidth = 40,
+            .MaxWidth = anchoColumna + 20,
+            .BorderBrush = New SolidColorBrush(App.Current.Resources("ColorPrimario")),
+            .BorderThickness = New Thickness(1, 1, 1, 1),
+            .HorizontalAlignment = HorizontalAlignment.Center,
+            .VerticalAlignment = VerticalAlignment.Center
+        }
 
         Dim tbToolTip As TextBlock = New TextBlock With {
             .Text = juego.Titulo,
@@ -447,7 +507,7 @@ Module Steam
         AddHandler boton.PointerEntered, AddressOf Interfaz.Entra_Boton_Imagen
         AddHandler boton.PointerExited, AddressOf Interfaz.Sale_Boton_Imagen
 
-        gv.Items.Add(panel)
+        gv.Items.Add(boton)
 
     End Sub
 
@@ -458,7 +518,10 @@ Module Steam
 
         If imagenFuente = Nothing Then
             Dim id As String = imagen.Tag
-            imagen.Source = Await Cache.DescargarImagen(dominioImagenes + "/steam/apps/" + id + "/header.jpg", id, "ancha")
+
+            If Not id = Nothing Then
+                imagen.Source = Await Cache.DescargarImagen(dominioImagenes + "/steam/apps/" + id + "/header.jpg", id, "ancha")
+            End If
         Else
             If imagenFuente.Contains("/library_600x900.jpg") Then
                 imagen.Source = imagenFuente.Replace("/library_600x900.jpg", "/capsule_616x353.jpg")
@@ -593,6 +656,18 @@ Module Steam
             Dim listaJuegos As List(Of Tile) = Await helper.ReadFileAsync(Of List(Of Tile))("juegos1")
             listaJuegos.Clear()
             Await helper.SaveFileAsync(Of List(Of Tile))("juegos1", listaJuegos)
+        End If
+
+        Dim carpetaFicheros As StorageFolder = ApplicationData.Current.LocalFolder
+
+        Try
+            carpetaFicheros = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Juegos")
+        Catch ex As Exception
+
+        End Try
+
+        If Not carpetaFicheros Is Nothing Then
+            Await carpetaFicheros.DeleteAsync
         End If
 
     End Sub

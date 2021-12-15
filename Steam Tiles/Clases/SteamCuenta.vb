@@ -5,7 +5,7 @@ Public Class SteamCuenta
     Public Property Nombre As String
     Public Property Avatar As String
 
-    Public Sub New(ByVal id64 As String, ByVal nombreurl As String, ByVal nombre As String, ByVal avatar As String)
+    Public Sub New(id64 As String, nombreurl As String, nombre As String, avatar As String)
         Me.ID64 = id64
         Me.NombreUrl = nombreurl
         Me.Nombre = nombre
