@@ -51,25 +51,31 @@ Module Steam
         End Try
 
         If errorCarpeta = True Then
-            Await ApplicationData.Current.LocalFolder.CreateFolderAsync("Juegos")
-            carpetaFicheros = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Juegos")
+            Try
+                Await ApplicationData.Current.LocalFolder.CreateFolderAsync("Juegos", CreationCollisionOption.ReplaceExisting)
+                carpetaFicheros = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Juegos")
+            Catch ex As Exception
+
+            End Try
         End If
 
-        Dim listaFicheros As IReadOnlyList(Of IStorageItem) = Await carpetaFicheros.GetFilesAsync
+        If Not carpetaFicheros Is Nothing Then
+            Dim listaFicheros As IReadOnlyList(Of IStorageItem) = Await carpetaFicheros.GetFilesAsync
 
-        If Not listaFicheros Is Nothing Then
-            If listaFicheros.Count > 0 Then
-                For Each fichero In listaFicheros
-                    Dim propiedades As BasicProperties = Await fichero.GetBasicPropertiesAsync
+            If Not listaFicheros Is Nothing Then
+                If listaFicheros.Count > 0 Then
+                    For Each fichero In listaFicheros
+                        Dim propiedades As BasicProperties = Await fichero.GetBasicPropertiesAsync
 
-                    If propiedades.Size > 0 Then
-                        If fichero.Name.Contains("juego_") Then
-                            Dim temp As Tile = Await helper.ReadFileAsync(Of Tile)("Juegos\" + fichero.Name)
-                            temp.Titulo = temp.Titulo.Trim
-                            listaJuegos.Add(temp)
+                        If propiedades.Size > 0 Then
+                            If fichero.Name.Contains("juego_") Then
+                                Dim temp As Tile = Await helper.ReadFileAsync(Of Tile)("Juegos\" + fichero.Name)
+                                temp.Titulo = temp.Titulo.Trim
+                                listaJuegos.Add(temp)
+                            End If
                         End If
-                    End If
-                Next
+                    Next
+                End If
             End If
         End If
 
