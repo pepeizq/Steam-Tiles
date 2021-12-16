@@ -59,7 +59,13 @@ Namespace Interfaz
                     If listaBusqueda.Count > 0 Then
                         For Each busqueda In listaBusqueda
                             If LimpiarBusqueda(busqueda.Titulo).ToString.Contains(LimpiarBusqueda(tb.Text.Trim.ToLower)) Then
-                                Dim temp As Tile = Await helper.ReadFileAsync(Of Tile)(busqueda.Fichero)
+                                Dim temp As Tile = Nothing
+
+                                Try
+                                    temp = Await helper.ReadFileAsync(Of Tile)(busqueda.Fichero)
+                                Catch ex As Exception
+
+                                End Try
 
                                 If Not temp Is Nothing Then
                                     Dim añadir As Boolean = True
@@ -99,21 +105,30 @@ Namespace Interfaz
 
             ElseIf tb.Text.Trim.Length = 0 Then
 
-                Dim carpetaFicheros As StorageFolder = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Juegos")
-                Dim listaFicheros As IReadOnlyList(Of IStorageItem) = Await carpetaFicheros.GetFilesAsync
+                Dim carpetaFicheros As StorageFolder = Nothing
 
-                If Not listaFicheros Is Nothing Then
-                    If listaFicheros.Count > 0 Then
-                        For Each fichero In listaFicheros
-                            Dim propiedades As BasicProperties = Await fichero.GetBasicPropertiesAsync
+                Try
+                    carpetaFicheros = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Juegos")
+                Catch ex As Exception
 
-                            If propiedades.Size > 0 Then
-                                If fichero.Name.Contains("juego_") Then
-                                    Dim temp As Tile = Await helper.ReadFileAsync(Of Tile)("Juegos\" + fichero.Name)
-                                    listaJuegos.Add(temp)
+                End Try
+
+                If Not carpetaFicheros Is Nothing Then
+                    Dim listaFicheros As IReadOnlyList(Of IStorageItem) = Await carpetaFicheros.GetFilesAsync
+
+                    If Not listaFicheros Is Nothing Then
+                        If listaFicheros.Count > 0 Then
+                            For Each fichero In listaFicheros
+                                Dim propiedades As BasicProperties = Await fichero.GetBasicPropertiesAsync
+
+                                If propiedades.Size > 0 Then
+                                    If fichero.Name.Contains("juego_") Then
+                                        Dim temp As Tile = Await helper.ReadFileAsync(Of Tile)("Juegos\" + fichero.Name)
+                                        listaJuegos.Add(temp)
+                                    End If
                                 End If
-                            End If
-                        Next
+                            Next
+                        End If
                     End If
                 End If
 
