@@ -65,6 +65,7 @@ Module Steam
                     If propiedades.Size > 0 Then
                         If fichero.Name.Contains("juego_") Then
                             Dim temp As Tile = Await helper.ReadFileAsync(Of Tile)("Juegos\" + fichero.Name)
+                            temp.Titulo = temp.Titulo.Trim
                             listaJuegos.Add(temp)
                         End If
                     End If
@@ -379,7 +380,7 @@ Module Steam
 
                                     End Try
 
-                                    Dim juego As New Tile(api.Datos.Titulo, id, "steam://rungameid/" + id, Nothing, imagenLogo, imagenAncha, imagenGrande)
+                                    Dim juego As New Tile(api.Datos.Titulo.Trim, id, "steam://rungameid/" + id, Nothing, imagenLogo, imagenAncha, imagenGrande)
 
                                     listaJuegos.Add(juego)
                                 End If
@@ -523,6 +524,7 @@ Module Steam
         Else
             If imagenFuente.Contains("/library_600x900.jpg") Then
                 imagen.Source = imagenFuente.Replace("/library_600x900.jpg", "/header.jpg")
+                imagen.Stretch = Stretch.Uniform
             End If
         End If
 
