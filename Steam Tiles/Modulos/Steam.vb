@@ -2,13 +2,11 @@
 Imports Microsoft.Toolkit.Uwp.UI.Controls
 Imports Newtonsoft.Json
 Imports Steam_Tiles.Configuracion
-Imports Windows.ApplicationModel.Core
 Imports Windows.Storage
 Imports Windows.Storage.AccessCache
 Imports Windows.Storage.FileProperties
 Imports Windows.Storage.Pickers
 Imports Windows.UI
-Imports Windows.UI.Core
 Imports Windows.UI.Xaml.Media.Animation
 
 Module Steam
@@ -524,10 +522,7 @@ Module Steam
             End If
         Else
             If imagenFuente.Contains("/library_600x900.jpg") Then
-                imagen.Source = imagenFuente.Replace("/library_600x900.jpg", "/capsule_616x353.jpg")
-            ElseIf imagenFuente.Contains("/capsule_616x353.jpg") Then
-                imagen.Source = imagenFuente.Replace("/capsule_616x353.jpg", "/header.jpg")
-                imagen.Stretch = Stretch.Uniform
+                imagen.Source = imagenFuente.Replace("/library_600x900.jpg", "/header.jpg")
             End If
         End If
 
