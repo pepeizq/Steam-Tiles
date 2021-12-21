@@ -40,6 +40,18 @@ Namespace Configuracion
                 End If
             Next
 
+            Dim carpetaFicheros As StorageFolder = ApplicationData.Current.LocalFolder
+
+            Try
+                carpetaFicheros = Await StorageFolder.GetFolderFromPathAsync(ApplicationData.Current.LocalFolder.Path + "\Juegos")
+            Catch ex As Exception
+
+            End Try
+
+            If Not carpetaFicheros Is Nothing Then
+                Await carpetaFicheros.DeleteAsync
+            End If
+
             pr.Visibility = Visibility.Collapsed
             Await CoreApplication.RequestRestartAsync(AppRestartFailureReason.Other)
 

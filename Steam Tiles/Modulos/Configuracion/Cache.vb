@@ -89,7 +89,12 @@ Namespace Configuracion
                                     Dim descargador As New BackgroundDownloader
                                     Dim descarga As DownloadOperation = descargador.CreateDownload(New Uri(enlace), ficheroImagen)
                                     descarga.Priority = BackgroundTransferPriority.High
-                                    Await descarga.StartAsync
+
+                                    Try
+                                        Await descarga.StartAsync
+                                    Catch ex As Exception
+
+                                    End Try
 
                                     If descarga.Progress.Status = BackgroundTransferStatus.Completed Then
                                         Dim ficheroDescargado As IStorageFile = descarga.ResultFile
@@ -101,6 +106,8 @@ Namespace Configuracion
                                             Await ficheroDescargado.DeleteAsync()
                                             Return enlace
                                         End If
+                                    ElseIf descarga.Progress.Status = BackgroundTransferStatus.Error Then
+                                        Return Nothing
                                     End If
                                 End If
                             Else
