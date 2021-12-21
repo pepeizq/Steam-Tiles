@@ -107,7 +107,7 @@ Namespace Configuracion
                                             Return enlace
                                         End If
                                     ElseIf descarga.Progress.Status = BackgroundTransferStatus.Error Then
-                                        Return Nothing
+                                        Return enlace
                                     End If
                                 End If
                             Else
